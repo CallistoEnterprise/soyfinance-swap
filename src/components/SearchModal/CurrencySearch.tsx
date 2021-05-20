@@ -59,7 +59,7 @@ export function CurrencySearch({
 
   const showETH: boolean = useMemo(() => {
     const s = searchQuery.toLowerCase().trim()
-    return s === '' || s === 'b' || s === 'bn' || s === 'bnb'
+    return s === '' || s === 'c' || s === 'cl' || s === 'clo'
   }, [searchQuery])
 
   const tokenComparator = useTokenComparator(invertSearchOrder)
@@ -120,7 +120,7 @@ export function CurrencySearch({
     (e: KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Enter') {
         const s = searchQuery.toLowerCase().trim()
-        if (s === 'bnb') {
+        if (s === 'clo') {
           handleCurrencySelect(ETHER)
         } else if (filteredSortedTokens.length > 0) {
           if (
@@ -171,7 +171,6 @@ export function CurrencySearch({
       </PaddedColumn>
 
       <Separator />
-
       <div style={{ flex: '1' }}>
         <AutoSizer disableWidth>
           {({ height }) => (

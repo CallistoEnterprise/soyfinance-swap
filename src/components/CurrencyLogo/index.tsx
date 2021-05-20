@@ -9,7 +9,7 @@ import CoinLogo from '../pancake/CoinLogo'
 const getTokenLogoURL = (address: string) =>
   `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/smartchain/assets/${address}/logo.png`
 
-const StyledBnbLogo = styled.img<{ size: string }>`
+const StyledCloLogo = styled.img<{ size: string }>`
   width: ${({ size }) => size};
   height: ${({ size }) => size};
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.075);
@@ -34,7 +34,6 @@ export default function CurrencyLogo({
 
   const srcs: string[] = useMemo(() => {
     if (currency === ETHER) return []
-
     if (currency instanceof Token) {
       if (currency instanceof WrappedTokenInfo) {
         return [...uriLocations, `/images/coins/${currency?.address ?? 'token'}.png`, getTokenLogoURL(currency.address)]
@@ -46,7 +45,7 @@ export default function CurrencyLogo({
   }, [currency, uriLocations])
 
   if (currency === ETHER) {
-    return <StyledBnbLogo src="/images/coins/bnb.png" size={size} style={style} />
+    return <StyledCloLogo src="/images/coins/clo.png" size={size} style={style} />
   }
 
   return (currency as any)?.symbol ? (

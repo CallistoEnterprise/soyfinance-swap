@@ -20,6 +20,7 @@ export default async function getTokenList(
   listUrl: string,
   resolveENSContentHash: (ensName: string) => Promise<string>
 ): Promise<TokenList> {
+
   if (listUrl === DEFAULT_TOKEN_LIST_URL) {
     return defaultTokenJson
   }

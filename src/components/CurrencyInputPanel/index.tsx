@@ -171,7 +171,7 @@ export default function CurrencyInputPanel({
                     : currency?.symbol) || TranslateString(1196, 'Select a currency')}
                 </Text>
               )}
-              {!disableCurrencySelect && <ChevronDownIcon />}
+              {!disableCurrencySelect && <ChevronDownIcon style={{marginLeft: 5}}/>}
             </Aligner>
           </CurrencySelect>
         </InputRow>

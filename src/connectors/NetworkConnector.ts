@@ -151,7 +151,6 @@ export class NetworkConnector extends AbstractConnector {
   private currentChainId: number
 
   constructor({ urls, defaultChainId }: NetworkConnectorArguments) {
-    console.log("==== defaultChainId :: ", defaultChainId, urls)
     invariant(defaultChainId || Object.keys(urls).length === 1, 'defaultChainId is a required argument with >1 url')
     super({ supportedChainIds: Object.keys(urls).map((k): number => Number(k)) })
 
