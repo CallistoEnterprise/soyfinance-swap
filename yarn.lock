@@ -2310,10 +2310,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@soy-libs/sdk@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@soy-libs/sdk/-/sdk-0.0.1.tgz#c9120e24b21b5116f0607b6e14ed5609b5d98d9c"
-  integrity sha512-DLap+A+ZEVNspKI+ZsSBvkZZHT+/UukUYyd1paRLtOeLBN2wA9KVpyLnUE8egj84LWWZ8HMYm4P4ylDsBQlAfA==
+"@soy-libs/sdk@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@soy-libs/sdk/-/sdk-0.0.2.tgz#371b4d9b5fd4d83641473ab58b374b0b97553d38"
+  integrity sha512-YnBvEu19x0WdXMDMQftN0lKwFD0LBEXlODDBbMAOrYzIq4rkob5nNut9GaK5Wk3Bz/Rcv4UHJ/b+HGEH6rqrgQ==
   dependencies:
     big.js "^5.2.2"
     decimal.js-light "^2.5.0"
