@@ -12,6 +12,9 @@ sftp-config.json
 # production
 /build
 
+#contracts
+/src/constants/contracts
+
 # misc
 .DS_Store
 .env.local

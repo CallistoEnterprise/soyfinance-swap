@@ -81,128 +81,128 @@ function TokenTags({ currency }: { currency: Currency }) {
 }
 
 function CurrencyRow({
-  currency,
-  onSelect,
-  isSelected,
-  otherSelected,
-  style,
+    currency,
+    onSelect,
+    isSelected,
+    otherSelected,
+    style,
 }: {
-  currency: Currency
-  onSelect: () => void
-  isSelected: boolean
-  otherSelected: boolean
-  style: CSSProperties
+    currency: Currency
+    onSelect: () => void
+    isSelected: boolean
+    otherSelected: boolean
+    style: CSSProperties
 }) {
-  const { account, chainId } = useActiveWeb3React()
-  const key = currencyKey(currency)
-  const selectedTokenList = useSelectedTokenList()
-  const isOnSelectedList = isTokenOnList(selectedTokenList, currency)
-  const customAdded = useIsUserAddedToken(currency)
-  const balance = useCurrencyBalance(account ?? undefined, currency)
+    const { account, chainId } = useActiveWeb3React()
+    const key = currencyKey(currency)
+    const selectedTokenList = useSelectedTokenList()
+    const isOnSelectedList = isTokenOnList(selectedTokenList, currency)
+    const customAdded = useIsUserAddedToken(currency)
+    const balance = useCurrencyBalance(account ?? undefined, currency)
 
-  const removeToken = useRemoveUserAddedToken()
-  const addToken = useAddUserToken()
+    const removeToken = useRemoveUserAddedToken()
+    const addToken = useAddUserToken()
 
-  // only show add or remove buttons if not on selected list
-  return (
-    <MenuItem
-      style={style}
-      className={`token-item-${key}`}
-      onClick={() => (isSelected ? null : onSelect())}
-      disabled={isSelected}
-      selected={otherSelected}
-    >
-      <CurrencyLogo currency={currency} size="24px" />
-      <Column>
-        <Text title={currency.name}>{currency.symbol}</Text>
-        <FadedSpan>
-          {!isOnSelectedList && customAdded && !(currency instanceof WrappedTokenInfo) ? (
-            <Text>
-              Added by user
-              <LinkStyledButton
-                onClick={(event) => {
-                  event.stopPropagation()
-                  if (chainId && currency instanceof Token) removeToken(chainId, currency.address)
-                }}
-              >
-                (Remove)
-              </LinkStyledButton>
-            </Text>
-          ) : null}
-          {!isOnSelectedList && !customAdded && !(currency instanceof WrappedTokenInfo) ? (
-            <Text>
-              Found by address
-              <LinkStyledButton
-                onClick={(event) => {
-                  event.stopPropagation()
-                  if (currency instanceof Token) addToken(currency)
-                }}
-              >
-                (Add)
-              </LinkStyledButton>
-            </Text>
-          ) : null}
-        </FadedSpan>
-      </Column>
-      <TokenTags currency={currency} />
-      <RowFixed style={{ justifySelf: 'flex-end' }}>
-        {balance ? <Balance balance={balance} /> : account ? <Loader /> : null}
-      </RowFixed>
-    </MenuItem>
-  )
+    // only show add or remove buttons if not on selected list
+    return (
+        <MenuItem
+            style={style}
+            className={`token-item-${key}`}
+            onClick={() => (isSelected ? null : onSelect())}
+            disabled={isSelected}
+            selected={otherSelected}
+        >
+            <CurrencyLogo currency={currency} size="24px" />
+            <Column>
+                <Text title={currency.name}>{currency.symbol}</Text>
+                <FadedSpan>
+                {!isOnSelectedList && customAdded && !(currency instanceof WrappedTokenInfo) ? (
+                    <Text>
+                        Added by user
+                        <LinkStyledButton
+                            onClick={(event) => {
+                                event.stopPropagation()
+                                if (chainId && currency instanceof Token) removeToken(chainId, currency.address)
+                            }}
+                        >
+                            (Remove)
+                        </LinkStyledButton>
+                    </Text>
+                ) : null}
+                {!isOnSelectedList && !customAdded && !(currency instanceof WrappedTokenInfo) ? (
+                    <Text>
+                        Found by address
+                        <LinkStyledButton
+                            onClick={(event) => {
+                                event.stopPropagation()
+                                if (currency instanceof Token) addToken(currency)
+                            }}
+                        >
+                            (Add)
+                        </LinkStyledButton>
+                    </Text>
+                ) : null}
+                </FadedSpan>
+            </Column>
+            <TokenTags currency={currency} />
+            <RowFixed style={{ justifySelf: 'flex-end' }}>
+                {balance ? <Balance balance={balance} /> : account ? <Loader /> : null}
+            </RowFixed>
+        </MenuItem>
+    )
 }
 
 export default function CurrencyList({
-  height,
-  currencies,
-  selectedCurrency,
-  onCurrencySelect,
-  otherCurrency,
-  fixedListRef,
-  showETH,
+    height,
+    currencies,
+    selectedCurrency,
+    onCurrencySelect,
+    otherCurrency,
+    fixedListRef,
+    showETH,
 }: {
-  height: number
-  currencies: Currency[]
-  selectedCurrency?: Currency | null
-  onCurrencySelect: (currency: Currency) => void
-  otherCurrency?: Currency | null
-  fixedListRef?: MutableRefObject<FixedSizeList | undefined>
-  showETH: boolean
+    height: number
+    currencies: Currency[]
+    selectedCurrency?: Currency | null
+    onCurrencySelect: (currency: Currency) => void
+    otherCurrency?: Currency | null
+    fixedListRef?: MutableRefObject<FixedSizeList | undefined>
+    showETH: boolean
 }) {
-  const itemData = useMemo(() => (showETH ? [Currency.ETHER, ...currencies] : [...currencies]), [currencies, showETH])
+    const itemData = useMemo(() => (showETH ? [Currency.ETHER, ...currencies] : [...currencies]), [currencies, showETH])
 
-  const Row = useCallback(
-    ({ data, index, style }) => {
-      const currency: Currency = data[index]
-      const isSelected = Boolean(selectedCurrency && currencyEquals(selectedCurrency, currency))
-      const otherSelected = Boolean(otherCurrency && currencyEquals(otherCurrency, currency))
-      const handleSelect = () => onCurrencySelect(currency)
-      return (
-        <CurrencyRow
-          style={style}
-          currency={currency}
-          isSelected={isSelected}
-          onSelect={handleSelect}
-          otherSelected={otherSelected}
-        />
-      )
-    },
-    [onCurrencySelect, otherCurrency, selectedCurrency]
-  )
+    const Row = useCallback(
+        ({ data, index, style }) => {
+            const currency: Currency = data[index]
+            const isSelected = Boolean(selectedCurrency && currencyEquals(selectedCurrency, currency))
+            const otherSelected = Boolean(otherCurrency && currencyEquals(otherCurrency, currency))
+            const handleSelect = () => onCurrencySelect(currency)
+            return (
+                <CurrencyRow
+                    style={style}
+                    currency={currency}
+                    isSelected={isSelected}
+                    onSelect={handleSelect}
+                    otherSelected={otherSelected}
+                />
+            )
+        },
+        [onCurrencySelect, otherCurrency, selectedCurrency]
+    )
 
-  const itemKey = useCallback((index: number, data: any) => currencyKey(data[index]), [])
+    const itemKey = useCallback((index: number, data: any) => currencyKey(data[index]), [])
 
-  return (
-    <FixedSizeList
-      height={height}
-      ref={fixedListRef as any}
-      width="100%"
-      itemData={itemData}
-      itemCount={itemData.length}
-      itemSize={56}
-      itemKey={itemKey}
-    >
-      {Row}
-    </FixedSizeList>
-  )
+    return (
+        <FixedSizeList
+            height={height}
+            ref={fixedListRef as any}
+            width="100%"
+            itemData={itemData}
+            itemCount={itemData.length}
+            itemSize={56}
+            itemKey={itemKey}
+        >
+            {Row}
+        </FixedSizeList>
+    )
 }

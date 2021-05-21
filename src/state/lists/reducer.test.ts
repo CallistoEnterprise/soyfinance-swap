@@ -3,7 +3,7 @@ import { DEFAULT_LIST_OF_LISTS, DEFAULT_TOKEN_LIST_URL } from '../../constants/l
 import { updateVersion } from '../global/actions'
 import { fetchTokenList, acceptListUpdate, addList, removeList, selectList } from './actions'
 import reducer, { ListsState } from './reducer'
-import SOYSWAP_DEFAULT_TOKEN_LIST from '../../constants/token/pancakeswap.json'
+import SOYSWAP_DEFAULT_TOKEN_LIST from '../../constants/token/soyswap.json'
 
 const STUB_TOKEN_LIST = {
   name: '',

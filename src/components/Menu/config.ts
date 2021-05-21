@@ -78,19 +78,19 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Overview',
-        href: '#',
+        href: '#/overview',
       },
       {
         label: 'Tokens',
-        href: '#',
+        href: '#/tokens',
       },
       {
         label: 'Pairs',
-        href: '#',
+        href: '#/pairs',
       },
       {
         label: 'Accounts',
-        href: '#',
+        href: '#/accounts',
       },
     ],
   },
@@ -105,27 +105,27 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Contact',
-        href: '#',
+        href: '#/contract',
       },
       {
         label: 'Voting',
-        href: '#',
+        href: '#/voting',
       },
       {
         label: 'Github',
-        href: '#',
+        href: '#/github',
       },
       {
         label: 'Docs',
-        href: '#',
+        href: '#/docs',
       },
       {
         label: 'Blog',
-        href: '#',
+        href: '#/blog',
       },
       {
         label: 'Merch',
-        href: '#',
+        href: '#/merch',
       },
     ],
   },
