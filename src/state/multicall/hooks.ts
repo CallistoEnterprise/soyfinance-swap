@@ -54,7 +54,7 @@ function useCallsData(calls: (Call | undefined)[], options?: ListenerOptions): C
   const callResults = useSelector<AppState, AppState['multicall']['callResults']>(
     (state) => state.multicall.callResults
   )
-  console.log("==== callResults ::", chainId, callResults)
+
   const dispatch = useDispatch<AppDispatch>()
 
   const serializedCallKeys: string = useMemo(
@@ -220,9 +220,8 @@ export function useMultipleContractSingleData(
         : [],
     [addresses, callData, fragment]
   )
-console.log("==== calls ::", calls)
+
   const results = useCallsData(calls, options)
-  console.log("===== results ::", results, methodName)
 
   const latestBlockNumber = useBlockNumber()
 

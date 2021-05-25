@@ -152,9 +152,6 @@ const Swap = () => {
     interruptRedirectCountdown,
   ])
 
-//   console.log("==== showWrap ::", showWrap);
-//   console.log("==== parsedAmount ::", parsedAmount);
-//   console.log("==== trade ::", trade)
   const parsedAmounts = showWrap
     ? {
         [Field.INPUT]: parsedAmount,
@@ -204,13 +201,6 @@ const Swap = () => {
         : parsedAmounts[dependentField]?.toSignificant(6) ?? '',
     }
 
-    {
-        // console.log("====formattedAmounts:: ", formattedAmounts, )
-        // console.log("====independentField :: ", independentField)
-        // console.log("====typedValue :: ", typedValue)
-        // console.log("====dependentField :: ", dependentField)
-        // console.log("====parsedAmounts :: ", parsedAmounts, showWrap, trade)
-    }
   const route = trade?.route
   const userHasSpecifiedInputOutput = Boolean(
     currencies[Field.INPUT] && currencies[Field.OUTPUT] && parsedAmounts[independentField]?.greaterThan(JSBI.BigInt(0))
@@ -474,9 +464,6 @@ const Swap = () => {
               )}
             </AutoColumn>
             <BottomGrouping>
-                {
-                    console.log("====== noRoute, userHasSpecifiedInputOutput, showApproveFlow ::", noRoute, userHasSpecifiedInputOutput, showApproveFlow)
-                }
               {disableSwap && (
                 <Flex alignItems="center" justifyContent="center" mb="1rem">
                   <Text color="failure">
