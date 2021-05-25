@@ -7,11 +7,11 @@ import useTheme from 'hooks/useTheme'
 import useGetPriceData from 'hooks/useGetPriceData'
 import useGetLocalProfile from 'hooks/useGetLocalProfile'
 import useAuth from 'hooks/useAuth'
-import links from './config'
 
 import { Helmet } from 'react-helmet-async'
 import { useLocation } from 'react-router'
 import { customMeta, DEFAULT_META } from 'constants/meta'
+import links from './config'
 
 const PageMeta = ({price}) => {
   const { pathname } = useLocation()
