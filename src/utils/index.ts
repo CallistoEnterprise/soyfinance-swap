@@ -19,22 +19,22 @@ export function isAddress(value: any): string | false {
 
 const CLOSCAN_PREFIXES: { [chainId in ChainId]: string } = {
   820: '',
-  20729: 'testnet.'
+  20729: 'testnet-'
 }
 
-export function getBscScanLink(chainId: ChainId, data: string, type: 'transaction' | 'token' | 'address'): string {
-  const prefix = `https://${CLOSCAN_PREFIXES[chainId] || CLOSCAN_PREFIXES[ChainId.MAINNET]}bscscan.com`
+export function getCallistoScanLink(chainId: ChainId, data: string, type: 'transaction' | 'token' | 'address'): string {
+  const prefix = `https://${CLOSCAN_PREFIXES[chainId] || CLOSCAN_PREFIXES[ChainId.MAINNET]}explorer.callisto.network`
 
   switch (type) {
     case 'transaction': {
-      return `${prefix}/tx/${data}`
+      return `${prefix}/tx/${data}/internal-transactions`
     }
     case 'token': {
-      return `${prefix}/token/${data}`
+      return `${prefix}/token/${data}/token-transfers`
     }
     case 'address':
     default: {
-      return `${prefix}/address/${data}`
+      return `${prefix}/address/${data}/contracts`
     }
   }
 }

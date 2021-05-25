@@ -220,7 +220,7 @@ export function useMultipleContractSingleData(
         : [],
     [addresses, callData, fragment]
   )
-
+console.log("==== calls ::", calls)
   const results = useCallsData(calls, options)
   console.log("===== results ::", results, methodName)
 

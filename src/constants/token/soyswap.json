@@ -12,12 +12,12 @@
   "tokens": [
     
     {
-      "name": "Coinary Token",
-      "symbol": "CYT",
-      "address": "0x0fA3Aab74949a4F43261EB38E3c29E126CAF4864",
+      "name": "DIMW",
+      "symbol": "DIMW",
+      "address": "0x259A2C4d65657faeF907a548995280D52ADE3B1e",
       "chainId": 20729,
       "decimals": 18,
-      "logoURI": "localhost:3000/images/coins/0x0fA3Aab74949a4F43261EB38E3c29E126CAF4864.png"
+      "logoURI": "localhost:3000/images/coins/0x259A2C4d65657faeF907a548995280D52ADE3B1e.png"
     }
   ]
 }
