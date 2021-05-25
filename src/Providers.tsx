@@ -1,5 +1,6 @@
 import React from 'react'
 import { createWeb3ReactRoot, Web3ReactProvider } from '@web3-react/core'
+import { HelmetProvider } from 'react-helmet-async'
 import { Provider } from 'react-redux'
 import { ModalProvider } from '@soy-libs/uikit'
 import { NetworkContextName } from './constants'
@@ -14,9 +15,11 @@ const Providers: React.FC = ({ children }) => {
     <Web3ReactProvider getLibrary={getLibrary}>
       <Web3ProviderNetwork getLibrary={getLibrary}>
         <Provider store={store}>
-          <ThemeContextProvider>
-            <ModalProvider>{children}</ModalProvider>
-          </ThemeContextProvider>
+          <HelmetProvider>
+            <ThemeContextProvider>
+              <ModalProvider>{children}</ModalProvider>
+            </ThemeContextProvider>
+          </HelmetProvider>
         </Provider>
       </Web3ProviderNetwork>
     </Web3ReactProvider>

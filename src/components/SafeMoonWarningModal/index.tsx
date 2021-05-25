@@ -17,18 +17,10 @@ const WarningContainer = styled.div`
 `
 
 const StyledWarningIcon = styled(AlertTriangle)`
-  stroke: ${({ theme }) => theme.colors.failure};
+  stroke: ${({ theme }) => theme.colors.binance};
 `
 
-export default function SyrupWarningModal({
-  isOpen,
-  transactionType,
-  onConfirm,
-}: {
-  isOpen: boolean
-  transactionType: string | null
-  onConfirm: () => void
-}) {
+export default function SafeMoonWarningModal({ isOpen, onConfirm }: { isOpen: boolean; onConfirm: () => void }) {
   const [understandChecked, setUnderstandChecked] = useState(false)
   const toggleUnderstand = useCallback(() => setUnderstandChecked((uc) => !uc), [])
 
@@ -39,25 +31,22 @@ export default function SyrupWarningModal({
         <AutoColumn gap="lg">
           <AutoRow gap="6px">
             <StyledWarningIcon />
-            <Text color="failure">Syrup Warning</Text>
+            <Text>Notice for trading SafeMoon</Text>
           </AutoRow>
-          {transactionType !== '' && (
-            <>
-              <Text color="failure">
-                Please be careful when <strong>{transactionType}</strong> SYRUP.
-              </Text>
-              <Text color="failure">
-                {transactionType === 'Buying'
-                  ? 'You will not receive CAKE rewards for holding purchased SYRUP.'
-                  : 'You will need to buy back the same amount of SYRUP to be able to convert back to CAKE.'}
-              </Text>
-            </>
-          )}
+          <>
+            <Text>
+              To trade SAFEMOON, you must click on the settings icon and{' '}
+              <strong>set your slippage tolerance to 12%+</strong>
+            </Text>
+            <Text>This is because SafeMoon taxes a 10% fee on each transaction.</Text>
+            <Text>• 5% fee = redistributed to all existing holders</Text>
+            <Text>• 5% fee = used to add liquidity</Text>
+          </>
           <RowBetween>
             <div>
               <label htmlFor="understand-checkbox" style={{ cursor: 'pointer', userSelect: 'none' }}>
                 <input
-                  id="understand-checkbox"
+                  id="understand-safeMoonWarning"
                   type="checkbox"
                   className="understand-checkbox"
                   checked={understandChecked}
@@ -67,6 +56,7 @@ export default function SyrupWarningModal({
               </label>
             </div>
             <Button
+              id="confirm-safeMoonWarning"
               disabled={!understandChecked}
               variant="danger"
               style={{ width: '140px' }}

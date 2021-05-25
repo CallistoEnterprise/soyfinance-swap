@@ -1,157 +1,134 @@
 [
   {
     "constant": true,
-    "type": "function",
-    "stateMutability": "view",
-    "payable": false,
+    "inputs": [],
+    "name": "getCurrentBlockTimestamp",
     "outputs": [
       {
-        "type": "uint256",
-        "name": "blockNumber",
-        "internalType": "uint256"
-      },
+        "name": "timestamp",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
       {
-        "type": "bytes[]",
-        "name": "returnData",
-        "internalType": "bytes[]"
+        "components": [{"name": "target","type": "address"},{"name": "callData","type": "bytes"}],
+        "name": "calls",
+        "type": "tuple[]"
       }
     ],
     "name": "aggregate",
-    "inputs": [
-      {
-        "type": "tuple[]",
-        "name": "calls",
-        "internalType": "struct Multicall.Call[]",
-        "components": [
-          {
-            "type": "address",
-            "name": "target",
-            "internalType": "address"
-          },
-          {
-            "type": "bytes",
-            "name": "callData",
-            "internalType": "bytes"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "constant": true,
-    "type": "function",
-    "stateMutability": "view",
-    "payable": false,
     "outputs": [
       {
-        "type": "bytes32",
-        "name": "blockHash",
-        "internalType": "bytes32"
-      }
-    ],
-    "name": "getBlockHash",
-    "inputs": [
-      {
-        "type": "uint256",
         "name": "blockNumber",
-        "internalType": "uint256"
-      }
-    ]
-  },
-  {
-    "constant": true,
-    "payable": false,
-    "type": "function",
-    "stateMutability": "view",
-    "outputs": [
+        "type": "uint256"
+      },
       {
-        "type": "address",
-        "name": "coinbase",
-        "internalType": "address"
+        "name": "returnData",
+        "type": "bytes[]"
       }
     ],
-    "name": "getCurrentBlockCoinbase",
-    "inputs": []
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
   },
   {
     "constant": true,
-    "payable": false,
-    "type": "function",
-    "stateMutability": "view",
+    "inputs": [],
+    "name": "getLastBlockHash",
     "outputs": [
       {
-        "type": "uint256",
-        "name": "difficulty",
-        "internalType": "uint256"
+        "name": "blockHash",
+        "type": "bytes32"
       }
     ],
-    "name": "getCurrentBlockDifficulty",
-    "inputs": []
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
   },
   {
     "constant": true,
-    "payable": false,
-    "type": "function",
-    "stateMutability": "view",
-    "outputs": [
+    "inputs": [
       {
-        "type": "uint256",
-        "name": "gaslimit",
-        "internalType": "uint256"
-      }
-    ],
-    "name": "getCurrentBlockGasLimit",
-    "inputs": []
-  },
-  {
-    "constant": true,
-    "payable": false,
-    "type": "function",
-    "stateMutability": "view",
-    "outputs": [
-      {
-        "type": "uint256",
-        "name": "timestamp",
-        "internalType": "uint256"
-      }
-    ],
-    "name": "getCurrentBlockTimestamp",
-    "inputs": []
-  },
-  {
-    "constant": true,
-    "payable": false,
-    "type": "function",
-    "stateMutability": "view",
-    "outputs": [
-      {
-        "type": "uint256",
-        "name": "balance",
-        "internalType": "uint256"
+        "name": "addr",
+        "type": "address"
       }
     ],
     "name": "getEthBalance",
-    "inputs": [
+    "outputs": [
       {
-        "type": "address",
-        "name": "addr",
-        "internalType": "address"
+        "name": "balance",
+        "type": "uint256"
       }
-    ]
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
   },
   {
     "constant": true,
-    "payable": false,
-    "type": "function",
-    "stateMutability": "view",
+    "inputs": [],
+    "name": "getCurrentBlockDifficulty",
     "outputs": [
       {
-        "type": "bytes32",
-        "name": "blockHash",
-        "internalType": "bytes32"
+        "name": "difficulty",
+        "type": "uint256"
       }
     ],
-    "name": "getLastBlockHash",
-    "inputs": []
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getCurrentBlockGasLimit",
+    "outputs": [
+      {
+        "name": "gaslimit",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getCurrentBlockCoinbase",
+    "outputs": [
+      {
+        "name": "coinbase",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "blockNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "getBlockHash",
+    "outputs": [
+      {
+        "name": "blockHash",
+        "type": "bytes32"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
   }
 ]

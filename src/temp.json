@@ -1,0 +1,342 @@
+{
+        "route": {
+        "pairs": [
+            {
+                "liquidityToken": {
+                    "decimals": 18,
+                    "symbol": "UNI-V2",
+                    "name": "Uniswap V2",
+                    "chainId": 56,
+                    "address": "0xBA51D1AB95756ca4eaB8737eCD450cd8F05384cF"
+                },
+                "tokenAmounts": [
+                    {
+                        "numerator": [
+                            2145339559,
+                            1774057519,
+                            28901
+                        ],
+                        "denominator": [
+                            -1486618624,
+                            232830643
+                        ],
+                        "currency": {
+                                "decimals": 18,
+                                "symbol": "ADA",
+                                "name": "Cardano Token",
+                                "chainId": 56,
+                                "address": "0x3EE2200Efb3400fAbB9AacF31297cBdD1d435D47",
+                                "tokenInfo": {
+                                "name": "Cardano Token",
+                                "symbol": "ADA",
+                                "address": "0x3ee2200efb3400fabb9aacf31297cbdd1d435d47",
+                                "chainId": 56,
+                                "decimals": 18,
+                                "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x3ee2200efb3400fabb9aacf31297cbdd1d435d47.png"
+                            },
+                            "tags": []
+                        },
+                        "token": {
+                                "decimals": 18,
+                                "symbol": "ADA",
+                                "name": "Cardano Token",
+                                "chainId": 56,
+                                "address": "0x3EE2200Efb3400fAbB9AacF31297cBdD1d435D47",
+                                "tokenInfo": {
+                                "name": "Cardano Token",
+                                "symbol": "ADA",
+                                "address": "0x3ee2200efb3400fabb9aacf31297cbdd1d435d47",
+                                "chainId": 56,
+                                "decimals": 18,
+                                "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x3ee2200efb3400fabb9aacf31297cbdd1d435d47.png"
+                            },
+                            "tags": []
+                        }
+                    },
+                    {
+                    "numerator": [
+                        2135999817,
+                        -90996091,
+                        134
+                    ],
+                    "denominator": [
+                        -1486618624,
+                        232830643
+                    ],
+                    "currency": {
+                            "decimals": 18,
+                            "symbol": "WBNB",
+                            "name": "Wrapped BNB",
+                            "chainId": 56,
+                            "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+                        },
+                    "token": {
+                            "decimals": 18,
+                            "symbol": "WBNB",
+                            "name": "Wrapped BNB",
+                            "chainId": 56,
+                            "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+                        }
+                    }
+                ]
+            }
+        ],
+        "path": [
+            {
+            "decimals": 18,
+            "symbol": "WBNB",
+            "name": "Wrapped BNB",
+            "chainId": 56,
+            "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+            },
+            {
+            "decimals": 18,
+            "symbol": "ADA",
+            "name": "Cardano Token",
+            "chainId": 56,
+            "address": "0x3EE2200Efb3400fAbB9AacF31297cBdD1d435D47",
+            "tokenInfo": {
+                "name": "Cardano Token",
+                "symbol": "ADA",
+                "address": "0x3ee2200efb3400fabb9aacf31297cbdd1d435d47",
+                "chainId": 56,
+                "decimals": 18,
+                "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x3ee2200efb3400fabb9aacf31297cbdd1d435d47.png"
+            },
+            "tags": []
+            }
+        ],
+        "midPrice": {
+            "numerator": [
+            2145339559,
+            1774057519,
+            28901
+            ],
+            "denominator": [
+            2135999817,
+            -90996091,
+            134
+            ],
+            "baseCurrency": {
+            "decimals": 18,
+            "symbol": "WBNB",
+            "name": "Wrapped BNB",
+            "chainId": 56,
+            "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+            },
+            "quoteCurrency": {
+            "decimals": 18,
+            "symbol": "ADA",
+            "name": "Cardano Token",
+            "chainId": 56,
+            "address": "0x3EE2200Efb3400fAbB9AacF31297cBdD1d435D47",
+            "tokenInfo": {
+                "name": "Cardano Token",
+                "symbol": "ADA",
+                "address": "0x3ee2200efb3400fabb9aacf31297cbdd1d435d47",
+                "chainId": 56,
+                "decimals": 18,
+                "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x3ee2200efb3400fabb9aacf31297cbdd1d435d47.png"
+            },
+            "tags": []
+            },
+            "scalar": {
+            "numerator": [
+                -1486618624,
+                232830643
+            ],
+            "denominator": [
+                -1486618624,
+                232830643
+            ]
+            }
+        },
+        "input": {
+            "decimals": 18,
+            "symbol": "BNB",
+            "name": "Binance"
+        },
+        "output": {
+            "decimals": 18,
+            "symbol": "ADA",
+            "name": "Cardano Token",
+            "chainId": 56,
+            "address": "0x3EE2200Efb3400fAbB9AacF31297cBdD1d435D47",
+            "tokenInfo": {
+            "name": "Cardano Token",
+            "symbol": "ADA",
+            "address": "0x3ee2200efb3400fabb9aacf31297cbdd1d435d47",
+            "chainId": 56,
+            "decimals": 18,
+            "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x3ee2200efb3400fabb9aacf31297cbdd1d435d47.png"
+            },
+            "tags": []
+        }
+        },
+        "tradeType": 0,
+        "inputAmount": {
+        "numerator": [
+            -1486618624,
+            232830643
+        ],
+        "denominator": [
+            -1486618624,
+            232830643
+        ],
+        "currency": {
+            "decimals": 18,
+            "symbol": "BNB",
+            "name": "Binance"
+        }
+        },
+        "outputAmount": {
+        "numerator": [
+            405929500,
+            -1855796067,
+            11
+        ],
+        "denominator": [
+            -1486618624,
+            232830643
+        ],
+        "currency": {
+            "decimals": 18,
+            "symbol": "ADA",
+            "name": "Cardano Token",
+            "chainId": 56,
+            "address": "0x3EE2200Efb3400fAbB9AacF31297cBdD1d435D47",
+            "tokenInfo": {
+            "name": "Cardano Token",
+            "symbol": "ADA",
+            "address": "0x3ee2200efb3400fabb9aacf31297cbdd1d435d47",
+            "chainId": 56,
+            "decimals": 18,
+            "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x3ee2200efb3400fabb9aacf31297cbdd1d435d47.png"
+            },
+            "tags": []
+        },
+        "token": {
+            "decimals": 18,
+            "symbol": "ADA",
+            "name": "Cardano Token",
+            "chainId": 56,
+            "address": "0x3EE2200Efb3400fAbB9AacF31297cBdD1d435D47",
+            "tokenInfo": {
+            "name": "Cardano Token",
+            "symbol": "ADA",
+            "address": "0x3ee2200efb3400fabb9aacf31297cbdd1d435d47",
+            "chainId": 56,
+            "decimals": 18,
+            "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x3ee2200efb3400fabb9aacf31297cbdd1d435d47.png"
+            },
+            "tags": []
+        }
+        },
+        "executionPrice": {
+        "numerator": [
+            405929500,
+            -1855796067,
+            11
+        ],
+        "denominator": [
+            -1486618624,
+            232830643
+        ],
+        "baseCurrency": {
+            "decimals": 18,
+            "symbol": "BNB",
+            "name": "Binance"
+        },
+        "quoteCurrency": {
+            "decimals": 18,
+            "symbol": "ADA",
+            "name": "Cardano Token",
+            "chainId": 56,
+            "address": "0x3EE2200Efb3400fAbB9AacF31297cBdD1d435D47",
+            "tokenInfo": {
+            "name": "Cardano Token",
+            "symbol": "ADA",
+            "address": "0x3ee2200efb3400fabb9aacf31297cbdd1d435d47",
+            "chainId": 56,
+            "decimals": 18,
+            "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x3ee2200efb3400fabb9aacf31297cbdd1d435d47.png"
+            },
+            "tags": []
+        },
+        "scalar": {
+            "numerator": [
+            -1486618624,
+            232830643
+            ],
+            "denominator": [
+            -1486618624,
+            232830643
+            ]
+        }
+        },
+        "nextMidPrice": {
+            "numerator": [
+                1739410059,
+                -665113710,
+                28889
+            ],
+            "denominator": [
+                649381193,
+                141834553,
+                135
+            ],
+            "baseCurrency": {
+                "decimals": 18,
+                "symbol": "WBNB",
+                "name": "Wrapped BNB",
+                "chainId": 56,
+                "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+            },
+            "quoteCurrency": {
+                "decimals": 18,
+                "symbol": "ADA",
+                "name": "Cardano Token",
+                "chainId": 56,
+                "address": "0x3EE2200Efb3400fAbB9AacF31297cBdD1d435D47",
+                "tokenInfo": {
+                "name": "Cardano Token",
+                "symbol": "ADA",
+                "address": "0x3ee2200efb3400fabb9aacf31297cbdd1d435d47",
+                "chainId": 56,
+                "decimals": 18,
+                "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x3ee2200efb3400fabb9aacf31297cbdd1d435d47.png"
+                },
+                "tags": []
+            },
+            "scalar": {
+                "numerator": [
+                    -1486618624,
+                    232830643
+                ],
+                "denominator": [
+                    -1486618624,
+                    232830643
+                ]
+            }
+        },
+        "priceImpact": {
+            "numerator": [
+                -1902148828,
+                -1745226537,
+                1758838243,
+                -1808692733,
+                -1367157874,
+                -753129854,
+                718
+            ],
+            "denominator": [
+                -1625554944,
+                1573383697,
+                1629664599,
+                1899747460,
+                1159964809,
+                -490281400,
+                211477
+            ]
+        }
+  }

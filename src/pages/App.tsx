@@ -16,6 +16,7 @@ import { EN, allLanguages } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
 
+
 import Menu from '../components/Menu'
 
 const AppWrapper = styled.div`
@@ -46,8 +47,7 @@ const BodyWrapper = styled.div`
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    background-image: url('/images/arch-${({ theme }) => (theme.isDark ? 'dark' : 'light')}.svg'),
-      url('/images/left-soy.svg'), url('/images/right-soy.svg');
+    background-image: url('/images/group-soy.svg'), url('/images/left-soy.svg'), url('/images/right-soy.svg');
     background-repeat: no-repeat;
     background-position: center 420px, 10% 230px, 90% 230px;
     background-size: contain, 266px, 266px;
@@ -122,6 +122,7 @@ export default function App() {
           >
             <TranslationsContext.Provider value={{ translations, setTranslations }}>
               <Menu>
+
                 <BodyWrapper>
                   <Popups />
                   <Web3ReactManager>

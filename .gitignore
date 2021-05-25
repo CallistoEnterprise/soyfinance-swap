@@ -14,6 +14,7 @@ sftp-config.json
 
 #contracts
 /src/constants/contracts
+/src/constants/abis/data.json
 
 # misc
 .DS_Store

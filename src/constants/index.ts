@@ -25,6 +25,8 @@ export const ETH = new Token(
   'Binance-Peg Ethereum Token'
 )
 
+const CYT = new Token(ChainId.CLOTESTNET, "0x0fA3Aab74949a4F43261EB38E3c29E126CAF4864", 18, 'CYT', 'Test token')
+
 const WETH_ONLY: ChainTokenList = {
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET]],
   [ChainId.CLOTESTNET]: [WETH[ChainId.CLOTESTNET]],
@@ -32,7 +34,8 @@ const WETH_ONLY: ChainTokenList = {
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
-  ...WETH_ONLY,
+  // ...WETH_ONLY,
+  [ChainId.CLOTESTNET]: [...WETH_ONLY[ChainId.CLOTESTNET], CYT],
   [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, BUSD, USDT, UST, ETH],
 }
 
