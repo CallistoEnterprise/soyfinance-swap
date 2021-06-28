@@ -44,6 +44,8 @@ const Menu: React.FC = (props) => {
   const priceData = useGetPriceData()
   const cakePriceUsd = priceData ? Number(priceData.callisto.usd) : undefined
   const profile = useGetLocalProfile()
+
+  console.log(account)
   
   useEffect(() => {
     login(ConnectorNames.Injected);

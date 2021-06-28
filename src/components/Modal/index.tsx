@@ -17,7 +17,7 @@ const StyledDialogOverlay = styled(AnimatedDialogOverlay)`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 100px 0px 0px 230px;
+    padding: 100px 0px 0px -20px;
 
     background-color: rgba(0, 0, 0, 0.3);
   }
@@ -32,7 +32,7 @@ const StyledDialogContent = styled(({ minHeight, maxHeight, mobile, isOpen, ...r
   'aria-label': 'dialog',
 })`
   &[data-reach-dialog-content] {
-    margin: 0 0 2rem 0;
+    margin: 80px 0 2rem 0;
     border: 1px solid ${({ theme }) => theme.colors.primary};
     background-color: ${({ theme }) => theme.colors.background};
     box-shadow: 0 4px 8px 0 ${transparentize(0.95, '#191326')};
