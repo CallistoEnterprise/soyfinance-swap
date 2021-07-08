@@ -42,7 +42,7 @@ export function getCallistoScanLink(chainId: ChainId, data: string, type: 'trans
 
 const builders = {
   closcan: (chainName: string, data: string, type: 'transaction' | 'token' | 'address' | 'block') => {
-    const prefix = `https://${chainName ? `${chainName}.` : ''}explorer.callisto.network`
+    const prefix = `https://${chainName ? `${chainName}` : ''}explorer.callisto.network`
     switch (type) {
       case 'transaction': {
         return `${prefix}/tx/${data}/internal-transactions`

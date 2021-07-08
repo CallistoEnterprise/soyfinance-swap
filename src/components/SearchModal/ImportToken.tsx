@@ -11,7 +11,6 @@ import { SectionBreak } from 'components/swap/styleds'
 import { useAddUserToken } from 'state/user/hooks'
 import { getExplorerLink } from 'utils'
 import { useActiveWeb3React } from 'hooks'
-// import { ExternalLink } from '../../theme/components'
 import { useCombinedInactiveList } from 'state/lists/hooks'
 import ListLogo from 'components/ListLogo'
 import { PaddedColumn, Checkbox } from './styleds'
@@ -25,17 +24,13 @@ const Wrapper = styled.div`
 `
 
 const WarningWrapper = styled(Card)<{ highWarning: boolean }>`
-  background-color: ${({ theme, highWarning }) =>
-    highWarning ? transparentize(0.8, theme.red1) : transparentize(0.8, theme.yellow2)};
+  background-color: ${({ highWarning }) =>highWarning ? transparentize(0.8, "red") : transparentize(0.8, "yellow")};
   width: fit-content;
 `
 
-const AddressText = styled.input`
+const AddressText = styled.p`
   font-size: 12px;
 `
-// export const CloseIcon = styled(X)<{ onClick: () => void }>`
-//   cursor: pointer;
-// `
 
 interface ImportProps {
   tokens: Token[]

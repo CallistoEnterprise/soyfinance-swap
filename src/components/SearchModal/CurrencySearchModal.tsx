@@ -56,7 +56,7 @@ export default function CurrencySearchModal({
 
     // used for import token flow
     const [importToken, setImportToken] = useState<Token | undefined>()
-
+console.log("===== import Token ::", importToken)
     // used for import list
     const [importList, setImportList] = useState<TokenList | undefined>()
     const [listURL, setListUrl] = useState<string | undefined>()
