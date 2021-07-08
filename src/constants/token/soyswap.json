@@ -21,10 +21,10 @@
     {
       "name": "Callisto Enterprise",
       "symbol": "CLOE",
-      "address": "0x1eAa43544dAa399b87EEcFcC6Fa579D5ea4A6187",
+      "address": "0xF247c669E08837129965fF3cBcaC9E3695A9684B",
       "chainId": 20729,
       "decimals": 18,
-      "logoURI": "localhost:3000/images/coins/0x1eAa43544dAa399b87EEcFcC6Fa579D5ea4A6187.png"
+      "logoURI": "localhost:3000/images/coins/0xF247c669E08837129965fF3cBcaC9E3695A9684B.png"
     },
     {
       "name": "Coinary Token",
@@ -37,10 +37,10 @@
     {
       "name": "Bulls USD",
       "symbol": "BUSDT",
-      "address": "0xbf6c50889d3a620eb42C0F188b65aDe90De958c4",
+      "address": "0xAB99622d19298EC2BEAB50EFF91A9b6F46Af747C",
       "chainId": 20729,
       "decimals": 18,
-      "logoURI": "localhost:3000/images/coins/0xbf6c50889d3a620eb42C0F188b65aDe90De958c4.png"
+      "logoURI": "localhost:3000/images/coins/0xAB99622d19298EC2BEAB50EFF91A9b6F46Af747C.png"
     }
   ]
 }
