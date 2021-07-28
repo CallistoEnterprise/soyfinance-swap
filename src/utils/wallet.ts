@@ -9,8 +9,7 @@ import { nodes } from './getRpcUrl'
 export const setupNetwork = async () => {
   const provider = (window as Window).ethereum
   if (provider) {
-    const chainId = parseInt(process.env.REACT_APP_CHAIN_ID === undefined ? "20792" : process.env.REACT_APP_CHAIN_ID, 10)
-    console.log("===provider :: ", provider, chainId)
+    const chainId = parseInt(process.env.REACT_APP_CHAIN_ID === undefined ? "820" : process.env.REACT_APP_CHAIN_ID, 10)
 
     try {
       if( provider.request ){
@@ -19,14 +18,14 @@ export const setupNetwork = async () => {
           params: [
             {
               chainId: `0x${chainId.toString(16)}`,
-              chainName: 'Callisto TestNet',
+              chainName: 'Callisto',
               nativeCurrency: {
-                name: 'CLO',
-                symbol: 'clo',
+                name: 'Callisto',
+                symbol: 'CLO',
                 decimals: 18,
               },
               rpcUrls: nodes,
-              blockExplorerUrls: ['https://testnet-explorer.callisto.network/'],
+              blockExplorerUrls: ['https://explorer.callisto.network/'],
             },
           ],
         })

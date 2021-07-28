@@ -11,14 +11,6 @@
   "keywords": ["soyswap", "default"],
   "tokens": [
     {
-      "name": "DIMW",
-      "symbol": "DIMW",
-      "address": "0x259A2C4d65657faeF907a548995280D52ADE3B1e",
-      "chainId": 20729,
-      "decimals": 18,
-      "logoURI": "localhost:3000/images/coins/0x259A2C4d65657faeF907a548995280D52ADE3B1e.png"
-    },
-    {
       "name": "Callisto Enterprise",
       "symbol": "CLOE",
       "address": "0xF247c669E08837129965fF3cBcaC9E3695A9684B",

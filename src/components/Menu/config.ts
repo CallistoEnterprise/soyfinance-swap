@@ -20,11 +20,11 @@ const config: MenuEntry[] = [
       },
     ],
   },
-  {
-    label: 'Farms',
-    icon: 'FarmIcon',
-    href: '/farms',
-  },
+  // {
+  //   label: 'Farms',
+  //   icon: 'FarmIcon',
+  //   href: '/farms',
+  // },
   // {
   //   label: 'Pools',
   //   icon: 'PoolIcon',
@@ -76,22 +76,22 @@ const config: MenuEntry[] = [
     label: 'Info',
     icon: 'InfoIcon',
     items: [
-      {
-        label: 'Overview',
-        href: '#/overview',
-      },
-      {
-        label: 'Tokens',
-        href: '#/tokens',
-      },
-      {
-        label: 'Pairs',
-        href: '#/pairs',
-      },
-      {
-        label: 'Accounts',
-        href: '#/accounts',
-      },
+      // {
+      //   label: 'Overview',
+      //   href: '#/overview',
+      // },
+      // {
+      //   label: 'Tokens',
+      //   href: '#/tokens',
+      // },
+      // {
+      //   label: 'Pairs',
+      //   href: '#/pairs',
+      // },
+      // {
+      //   label: 'Accounts',
+      //   href: '#/accounts',
+      // },
     ],
   },
   // {
@@ -103,30 +103,30 @@ const config: MenuEntry[] = [
     label: 'More',
     icon: 'MoreIcon',
     items: [
-      {
-        label: 'Contact',
-        href: '#/contract',
-      },
-      {
-        label: 'Voting',
-        href: '#/voting',
-      },
+      // {
+      //   label: 'Contact',
+      //   href: '#/contract',
+      // },
+      // {
+      //   label: 'Voting',
+      //   href: '#/voting',
+      // },
       {
         label: 'Github',
-        href: '#/github',
+        href: 'https://github.com/SoyFinance/soyfinance-swap',
       },
       {
         label: 'Docs',
-        href: '#/docs',
+        href: 'https://github.com/SoyFinance/soyfinance-swap/docs',
       },
       {
         label: 'Blog',
-        href: '#/blog',
+        href: 'https://github.com/SoyFinance/soyfinance-swap/blog',
       },
-      {
-        label: 'Merch',
-        href: '#/merch',
-      },
+      // {
+      //   label: 'Merch',
+      //   href: '#/merch',
+      // },
     ],
   },
 ]
