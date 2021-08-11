@@ -1,7 +1,8 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@soy-libs/sdk'
 
-export const ROUTER_ADDRESS = '0x44512d991EAcAf1c7B27B756f4e54034898C3552'
-
+export const ROUTER_ADDRESS =  '0xB4dDe88Fd2D7Cf5AA0880fa2Ec893124Cbbe0FA3'
+// for mainnet: 0xB4dDe88Fd2D7Cf5AA0880fa2Ec893124Cbbe0FA3
+// for testnet: 0x44512d991EAcAf1c7B27B756f4e54034898C3552
 // a list of tokens by chain
 type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]

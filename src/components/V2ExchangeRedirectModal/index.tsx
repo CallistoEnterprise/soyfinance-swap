@@ -56,7 +56,7 @@ const V2ExchangeRedirectModal = ({ onDismiss = defaultOnDismiss, handleCloseModa
     <Modal onDismiss={onDismiss} title="Redirecting to V2 Exchange" hideCloseButton>
       <Flex flexDirection="column" maxWidth="320px" alignItems="center" justifyContent="center">
         <Text color="failure" mb="16px">
-          PancakeSwap V1 is no longer supported.
+          SoySwap V1 is no longer supported.
         </Text>
 
         <Text textAlign="center" mb="8px">
@@ -66,7 +66,7 @@ const V2ExchangeRedirectModal = ({ onDismiss = defaultOnDismiss, handleCloseModa
           {timerSecondsRemaining}s
         </Heading>
         <Divider />
-        <StyledLink href="https://exchange.pancakeswap.finance/#/swap" external>
+        <StyledLink href="https://exchange.soyswap.finance/#/swap" external>
           <Button mt="8px" width="100%">
             Go to V2 Exchange now
           </Button>
