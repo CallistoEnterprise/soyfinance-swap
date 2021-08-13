@@ -27,14 +27,14 @@ export function getCallistoScanLink(chainId: ChainId, data: string, type: 'trans
 
   switch (type) {
     case 'transaction': {
-      return `${prefix}/tx/${data}/internal-transactions`
+      return `${prefix}/tx/${data}/token-transfers`
     }
     case 'token': {
-      return `${prefix}/token/${data}/token-transfers`
+      return `${prefix}/address/${data}/transactions`
     }
     case 'address':
     default: {
-      return `${prefix}/address/${data}/contracts`
+      return `${prefix}/address/${data}/transactions`
     }
   }
 }

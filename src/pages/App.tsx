@@ -15,10 +15,9 @@ import { RedirectPathToSwapOnly } from './Swap/redirects'
 import { EN, allLanguages } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
-
-
 import Menu from '../components/Menu'
 
+// ${({isDark}) => isDark? `${blackback}`: `${whiteback}`};
 const AppWrapper = styled.div`
   display: flex;
   flex-flow: column;
@@ -66,7 +65,7 @@ export default function App() {
   const apiKey = `${process.env.REACT_APP_CROWDIN_APIKEY}`
   const projectId = parseInt(`${process.env.REACT_APP_CROWDIN_PROJECTID}`)
   const fileId = 6
-
+ 
   const credentials: Credentials = {
     token: apiKey,
   }
@@ -122,7 +121,6 @@ export default function App() {
           >
             <TranslationsContext.Provider value={{ translations, setTranslations }}>
               <Menu>
-
                 <BodyWrapper>
                   <Popups />
                   <Web3ReactManager>

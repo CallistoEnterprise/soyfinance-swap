@@ -1,4 +1,4 @@
-import { MenuEntry } from '@soy-libs/uikit'
+import { MenuEntry, menuStatus } from '@soy-libs/uikit'
 
 const config: MenuEntry[] = [
   {
@@ -20,113 +20,42 @@ const config: MenuEntry[] = [
       },
     ],
   },
-  // {
-  //   label: 'Farms',
-  //   icon: 'FarmIcon',
-  //   href: '/farms',
-  // },
-  // {
-  //   label: 'Pools',
-  //   icon: 'PoolIcon',
-  //   href: '/pools',
-  // },
-  // {
-  //   label: 'Prediction',
-  //   icon: 'PredictionsIcon',
-  //   href: '/prediction',
-  //   status: {
-  //     text: 'BETA',
-  //     color: 'warning',
-  //   },
-  // },
-  // {
-  //   label: 'Lottery',
-  //   icon: 'TicketIcon',
-  //   href: '/lottery',
-  // },
-  // {
-  //   label: 'Collectibles',
-  //   icon: 'NftIcon',
-  //   href: '/collectibles',
-  // },
-  // {
-  //   label: 'Team Battle',
-  //   icon: 'TeamBattleIcon',
-  //   href: '/competition',
-  // },
-  // {
-  //   label: 'Teams & Profile',
-  //   icon: 'GroupsIcon',
-  //   items: [
-  //     {
-  //       label: 'Leaderboard',
-  //       href: '/teams',
-  //     },
-  //     {
-  //       label: 'Task Center',
-  //       href: '/profile/tasks',
-  //     },
-  //     {
-  //       label: 'Your Profile',
-  //       href: '/profile',
-  //     },
-  //   ],
-  // },
+  {
+    label: 'Farms',
+    icon: 'FarmIcon',
+    href: '/#',
+    status: {
+      text: 'SOON',
+      color: 'warning'
+    }
+  },
+  {
+    label: 'Pools',
+    icon: 'PoolIcon',
+    href: '/#',
+    status: menuStatus.SOON
+  },
   {
     label: 'Info',
     icon: 'InfoIcon',
-    items: [
-      // {
-      //   label: 'Overview',
-      //   href: '#/overview',
-      // },
-      // {
-      //   label: 'Tokens',
-      //   href: '#/tokens',
-      // },
-      // {
-      //   label: 'Pairs',
-      //   href: '#/pairs',
-      // },
-      // {
-      //   label: 'Accounts',
-      //   href: '#/accounts',
-      // },
-    ],
+    href: 'https://soy.finance/',
   },
-  // {
-  //   label: 'IFO',
-  //   icon: 'IfoIcon',
-  //   href: '/ifo',
-  // },
   {
     label: 'More',
     icon: 'MoreIcon',
     items: [
-      // {
-      //   label: 'Contact',
-      //   href: '#/contract',
-      // },
-      // {
-      //   label: 'Voting',
-      //   href: '#/voting',
-      // },
       {
         label: 'Github',
         href: 'https://github.com/SoyFinance/soyfinance-swap',
       },
       {
         label: 'Docs',
-        href: 'https://github.com/SoyFinance/soyfinance-swap/docs',
+        href: 'https://callisto.network/',
       },
       {
         label: 'Blog',
-        href: 'https://github.com/SoyFinance/soyfinance-swap/blog',
+        href: 'https://callisto.network/blog/',
       },
-      // {
-      //   label: 'Merch',
-      //   href: '#/merch',
-      // },
     ],
   },
 ]

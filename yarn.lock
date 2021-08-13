@@ -1141,9 +1141,9 @@
     regenerator-runtime "^0.13.4"
 
 "@babel/runtime@^7.8.7":
-  version "7.14.8"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.8.tgz#7119a56f421018852694290b9f9148097391b446"
-  integrity sha512-twj3L8Og5SaCRCErB4x4ajbvBIVV77CGeFglHpeg5WC5FF8TZzBWXtTJ4MqaD9QszLYTtr+IsaAL2rEUevb+eg==
+  version "7.15.3"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.15.3.tgz#2e1c2880ca118e5b2f9988322bd8a7656a32502b"
+  integrity sha512-OvwMLqNXkCXSz1kSm58sEsNuhqOx/fKpnUnKnFB5v8uDda5bLNEHNgKPvhDN6IU0LDcnHQ90LlJ0Q6jnyBSIBA==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -2286,9 +2286,9 @@
   integrity sha512-DvJbbn3dUgMxDnJLH+RZQPnXak1h4ZVYQ7CWiFWjQwBFkVajT4rfw2PdpHLTSTwxrYfnoEXkuBiwkDm6tPMQeA==
 
 "@popperjs/core@^2.9.2":
-  version "2.9.2"
-  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.9.2.tgz#adea7b6953cbb34651766b0548468e743c6a2353"
-  integrity sha512-VZMYa7+fXHdwIq1TDhSXoVmSPEGM/aa+6Aiq3nVVJ9bXr24zScr+NlKFKC3iPljA7ho/GAZr+d2jOf5GIRC30Q==
+  version "2.9.3"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.9.3.tgz#8b68da1ebd7fc603999cf6ebee34a4899a14b88e"
+  integrity sha512-xDu17cEfh7Kid/d95kB6tZsLOmSWKCZKtprnhVepjsSaCij+lM3mItSJDuuHDMbCWTh8Ejmebwb+KONcCJ0eXQ==
 
 "@reach/dialog@^0.10.3":
   version "0.10.5"
@@ -2395,10 +2395,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@soy-libs/sdk@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@soy-libs/sdk/-/sdk-0.0.5.tgz#25f9a7cdb7ba8f5437ae902e4659d57fa8dbbfb1"
-  integrity sha512-ju3bXZUEsmTv6nySUE+rF6fBA9Kx0XWdZsE+wPYj38GMI7ZbD1bpIGM0YOP9Sh8e+OzSEof4HvVkMchwxjL0/Q==
+"@soy-libs/sdk@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@soy-libs/sdk/-/sdk-0.0.7.tgz#270d70a1e95050a6c8888f2e91d91eae93827737"
+  integrity sha512-XRhcPD8BuKdoLeLLoeVaWnGXw7uIaYfSWyJhp8FplD9DCqyn5/Icj2xI4j9waSyo7ujgeq2805Js/u7nRTQHvw==
   dependencies:
     big.js "^5.2.2"
     decimal.js-light "^2.5.0"
@@ -2407,10 +2407,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@soy-libs/uikit@^0.1.9":
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/@soy-libs/uikit/-/uikit-0.1.9.tgz#71590f94a89d659c573cb3be9cad8340c688eeda"
-  integrity sha512-rxJzCQAAL7mKogCfJOHFh+2CAS6qO1qhIReUBYgQ4/DdFgqSd3779U0rSyl1/Iy688DbunMlvsel9JyFlNRR5Q==
+"@soy-libs/uikit@^0.2.6":
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/@soy-libs/uikit/-/uikit-0.2.6.tgz#0163a4ebbaebb3b62fec5c75c670069493411cef"
+  integrity sha512-rodsvMIKiOOQF4sKTy1w0l+vSKCbrgXGvV98Vpv5hUxzYsV+uXrFpbJNX0GQu3Yi5ICxPO0NYwWTUhyKs8ZkKA==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"
@@ -2795,9 +2795,9 @@
   integrity sha512-oVfRvqHV/V6D1yifJbVRU3TMp8OT6o6BG+U9MkwuJ3U8/CsDHvalRpsxBqivn71ztOFZBTfJMvETbqHiaNSj7Q==
 
 "@types/lodash@^4.14.168":
-  version "4.14.171"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.171.tgz#f01b3a5fe3499e34b622c362a46a609fdb23573b"
-  integrity sha512-7eQ2xYLLI/LsicL2nejW9Wyko3lcpN6O/z0ZLHrEQsg280zIdCv1t/0m6UtBjUHokCGBQ3gYTbHzDkZ1xOBwwg==
+  version "4.14.172"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.172.tgz#aad774c28e7bfd7a67de25408e03ee5a8c3d028a"
+  integrity sha512-/BHF5HAx3em7/KkzVKm3LrsD6HZAXuXO1AJZQ3cRRBZj4oHZDviWPYu0aEplAqDFNHZPW6d3G7KN+ONcCCC7pw==
 
 "@types/minimatch@*":
   version "3.0.4"
@@ -9627,9 +9627,9 @@ js-yaml@^3.13.1:
     esprima "^4.0.0"
 
 jsbi@^3.1.4:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/jsbi/-/jsbi-3.1.4.tgz#9654dd02207a66a4911b4e4bb74265bc2cbc9dd0"
-  integrity sha512-52QRRFSsi9impURE8ZUbzAMCLjPm4THO7H2fcuIvaaeFTbSysvkodbQQXIVsNgq/ypDbq6dJiuGKL0vZ/i9hUg==
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/jsbi/-/jsbi-3.1.6.tgz#572431b0ff4b9c0f5f4b41e214dba76a734e676b"
+  integrity sha512-CGjq13y28FrBA5mAU+rsfHaVKEF9jrw3PhzZpIzTeMiPsT0XRDAS6E7QS8/ZTmFQUtl2MDJsxKQoYJzAhF7B1w==
 
 jsbn@~0.1.0:
   version "0.1.1"
