@@ -2407,10 +2407,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@soy-libs/uikit@^0.2.6":
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@soy-libs/uikit/-/uikit-0.2.6.tgz#0163a4ebbaebb3b62fec5c75c670069493411cef"
-  integrity sha512-rodsvMIKiOOQF4sKTy1w0l+vSKCbrgXGvV98Vpv5hUxzYsV+uXrFpbJNX0GQu3Yi5ICxPO0NYwWTUhyKs8ZkKA==
+"@soy-libs/uikit@^0.2.8":
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/@soy-libs/uikit/-/uikit-0.2.8.tgz#9e78272434153b417ef6e51309f0d8adbb711dad"
+  integrity sha512-/pvwzqFJUKtNlADn/GEz7z9f4YLM9tpn8AeW6hdkWPbFEMvIpxwkaDZBDxo61rhF3/BxYOYVPlKcnPRJt++XQg==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"
