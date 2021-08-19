@@ -1,15 +1,15 @@
 import React, { useContext, useState } from 'react'
-import { PaddedColumn, Separator } from './styleds'
 import { RowBetween } from 'components/Row'
 import { ArrowLeft } from 'react-feather'
 import { Text } from 'rebass'
 import styled, { ThemeContext } from 'styled-components'
 import { Token } from '@soy-libs/sdk'
-import { ManageLists } from './ManageLists'
-import ManageTokens from './ManageTokens'
 import { TokenList } from '@uniswap/token-lists'
-import { CurrencyModalView } from './CurrencySearchModal'
 import { CloseIcon } from '@soy-libs/uikit'
+import { ManageLists } from './ManageLists' /* eslint-disable-line */
+import ManageTokens from './ManageTokens' /* eslint-disable-line */
+import { CurrencyModalView } from './CurrencySearchModal' /* eslint-disable-line */
+import { PaddedColumn, Separator } from './styleds'
 
 const Wrapper = styled.div`
   width: 100%;

@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react'
 type ApiResponse = {
   callisto:{
     usd: number
-    usd_24h_change: number
-    usd_24h_vol: number
-    usd_market_cap: number
+    USD_24H_CHANGE: number
+    USD_24H_VOL: number
+    USD_MARKET_CAP: number
   }
 }
 

@@ -36,11 +36,11 @@ export default createReducer(initialState, builder =>
       }
       const txs = transactions[chainId] ?? {}
       txs[hash] = { hash, approval, summary, from, addedTime: now() }
-      transactions[chainId] = txs
+      transactions[chainId] = txs /* eslint-disable-line */
     })
     .addCase(clearAllTransactions, (transactions, { payload: { chainId } }) => {
       if (!transactions[chainId]) return
-      transactions[chainId] = {}
+      transactions[chainId] = {} /* eslint-disable-line */
     })
     .addCase(checkedTransaction, (transactions, { payload: { chainId, hash, blockNumber } }) => {
       const tx = transactions[chainId]?.[hash]

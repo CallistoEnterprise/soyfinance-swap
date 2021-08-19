@@ -9,14 +9,14 @@ import { ALLOWED_PRICE_IMPACT_HIGH, PRICE_IMPACT_WITHOUT_FEE_CONFIRM_MIN } from 
 export default function confirmPriceImpactWithoutFee(priceImpactWithoutFee: Percent): boolean {
   if (!priceImpactWithoutFee.lessThan(PRICE_IMPACT_WITHOUT_FEE_CONFIRM_MIN)) {
     return (
-      window.prompt(
+      window.prompt( /* eslint-disable-line */
         `This swap has a price impact of at least ${PRICE_IMPACT_WITHOUT_FEE_CONFIRM_MIN.toFixed(
           0
         )}%. Please type the word "confirm" to continue with this swap.`
       ) === 'confirm'
     )
   } if (!priceImpactWithoutFee.lessThan(ALLOWED_PRICE_IMPACT_HIGH)) {
-    return window.confirm(
+    return window.confirm( /* eslint-disable-line */
       `This swap has a price impact of at least ${ALLOWED_PRICE_IMPACT_HIGH.toFixed(
         0
       )}%. Please confirm that you would like to continue with this swap.`

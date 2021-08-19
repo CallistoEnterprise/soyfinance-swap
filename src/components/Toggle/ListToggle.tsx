@@ -41,7 +41,7 @@ export default function ListToggle({ id, isActive, bgColor, toggle }: ToggleProp
   return (
     <Wrapper id={id} isActive={isActive} onClick={toggle}>
       {isActive && (
-        <StatusText fontWeight="600" margin="0 6px" isActive={true}>
+        <StatusText fontWeight="600" margin="0 6px" isActive>
           ON
         </StatusText>
       )}

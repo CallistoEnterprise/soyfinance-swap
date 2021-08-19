@@ -101,7 +101,7 @@ export default function Modal({
                 maxHeight={maxHeight}
                 mobile={isMobile}
               >
-                {!initialFocusRef && isMobile ? <div tabIndex={1} /> : null}
+                {!initialFocusRef && isMobile ? <div/> : null}
                 {children}
               </StyledDialogContent>
             </StyledDialogOverlay>

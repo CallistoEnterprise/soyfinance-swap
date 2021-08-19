@@ -1,6 +1,5 @@
 import React, { useRef, RefObject, useCallback, useState, useMemo, useContext } from 'react'
 import Column from 'components/Column'
-import { PaddedColumn, Separator, SearchInput } from './styleds'
 import Row, { RowBetween, RowFixed } from 'components/Row'
 import { TrashIcon, ExternalLinkIcon, ButtonText } from 'theme'
 import { useToken } from 'hooks/Tokens'
@@ -11,12 +10,11 @@ import CurrencyLogo from 'components/CurrencyLogo'
 import { getExplorerLink, isAddress } from 'utils'
 import { useActiveWeb3React } from 'hooks'
 import Card from 'components/Card'
-import ImportRow from './ImportRow'
-import useTheme from '../../hooks/useTheme'
-
-import { CurrencyModalView } from './CurrencySearchModal'
 import { ExternalLink } from 'components/Shared'
 import { Text } from '@soy-libs/uikit'
+import { PaddedColumn, Separator, SearchInput } from './styleds'
+import ImportRow from './ImportRow'
+import { CurrencyModalView } from './CurrencySearchModal' /* eslint-disable-line */
 
 const Wrapper = styled.div`
   width: 100%;
@@ -79,9 +77,9 @@ export default function ManageTokens({
       userAddedTokens.map(token => (
         <RowBetween key={token.address} width="100%">
           <RowFixed>
-            <CurrencyLogo currency={token} size={'20px'} />
+            <CurrencyLogo currency={token} size="20px" />
             <ExternalLink href={getExplorerLink(chainId, token.address, 'address')}>
-              <Text ml={'10px'} fontWeight={600}>
+              <Text ml="10px" fontWeight={600}>
                 {token.symbol}
               </Text>
             </ExternalLink>
@@ -103,7 +101,7 @@ export default function ManageTokens({
             <SearchInput
               type="text"
               id="token-search-input"
-              placeholder={'0x0000'}
+              placeholder="0x0000"
               value={searchQuery}
               autoComplete="off"
               ref={inputRef as RefObject<HTMLInputElement>}

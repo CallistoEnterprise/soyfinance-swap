@@ -41,15 +41,11 @@ export default function ChartToggle({ id, isActive, bgColor, toggle }: TogglePro
   return (
     <Wrapper id={id} isActive={isActive} onClick={toggle}>
       {isActive && (
-        <StatusText fontWeight="600" margin="0 6px" isActive={true}>
-          {''}
-        </StatusText>
+        <StatusText fontWeight="600" margin="0 6px" isActive />
       )}
       <ToggleElement isActive={isActive} bgColor={bgColor} />
       {!isActive && (
-        <StatusText fontWeight="600" margin="0 6px" isActive={false}>
-          {''}
-        </StatusText>
+        <StatusText fontWeight="600" margin="0 6px" isActive={false} />
       )}
     </Wrapper>
   )

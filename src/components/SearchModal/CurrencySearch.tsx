@@ -8,15 +8,16 @@ import { FixedSizeList } from 'react-window'
 import styled, { ThemeContext } from 'styled-components'
 import AutoSizer from 'react-virtualized-auto-sizer'
 import useI18n from 'hooks/useI18n'
+import useDebounce from 'hooks/useDebounce'
+import useToggle from 'hooks/useToggle'
+import { useOnClickOutside } from 'hooks/useOnClickOutside'
+import { Edit } from 'react-feather'
+import { ButtonText, IconWrapper } from 'theme'
 import { useActiveWeb3React } from '../../hooks'
 import { AppState } from '../../state'
 import { useAllTokens, useIsUserAddedToken, useToken, useFoundOnInactiveList } from '../../hooks/Tokens'
-import { useSelectedListInfo } from '../../state/lists/hooks'
-import { LinkStyledButton } from '../Shared'
 import { isAddress } from '../../utils'
-import Card from '../Card'
 import Column from '../Column'
-import ListLogo from '../ListLogo'
 import QuestionHelper from '../QuestionHelper'
 import Row, { RowBetween, RowFixed } from '../Row'
 import CommonBases from './CommonBases'
@@ -25,13 +26,8 @@ import { filterTokens, useSortedTokensByQuery } from './filtering'
 import SortButton from './SortButton'
 import { useTokenComparator } from './sorting'
 import { PaddedColumn, SearchInput, Separator } from './styleds'
-import useDebounce from 'hooks/useDebounce'
-import useToggle from 'hooks/useToggle'
-import useOnClickOutside from 'hooks/useOnClickOutside'
-import { Edit } from 'react-feather'
 
 import ImportRow from './ImportRow'
-import { ButtonText, IconWrapper } from 'theme'
 
 const Footer = styled.div`
   width: 100%;
@@ -175,7 +171,6 @@ export function CurrencySearch({
   const node = useRef<HTMLDivElement>()
   useOnClickOutside(node, open ? toggle : undefined)
 
-  const selectedListInfo = useSelectedListInfo()
   const TranslateString = useI18n()
 
   const inactiveTokens = useFoundOnInactiveList(debouncedQuery)
@@ -262,33 +257,3 @@ export function CurrencySearch({
 }
 
 export default CurrencySearch
-
-
-      {/* {null && (
-        <>
-          <Separator />
-          <Card>
-            <RowBetween>
-              {selectedListInfo.current ? (
-                <Row>
-                  {selectedListInfo.current.logoURI ? (
-                    <ListLogo
-                      style={{ marginRight: 12 }}
-                      logoURI={selectedListInfo.current.logoURI}
-                      alt={`${selectedListInfo.current.name} list logo`}
-                    />
-                  ) : null}
-                  <Text id="currency-search-selected-list-name">{selectedListInfo.current.name}</Text>
-                </Row>
-              ) : null}
-              <LinkStyledButton
-                style={{ fontWeight: 500, color: theme.colors.textSubtle, fontSize: 16 }}
-                onClick={onChangeList}
-                id="currency-search-change-list-button"
-              >
-                {selectedListInfo.current ? TranslateString(180, 'Change') : TranslateString(1152, 'Select a list')}
-              </LinkStyledButton>
-            </RowBetween>
-          </Card>
-        </>
-      )} */}

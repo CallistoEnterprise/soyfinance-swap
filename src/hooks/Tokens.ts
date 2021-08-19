@@ -1,8 +1,8 @@
 import { parseBytes32String } from '@ethersproject/strings'
 import { Currency, ETHER, Token, currencyEquals } from '@soy-libs/sdk'
 import { useMemo } from 'react'
-import { useSelectedTokenList, useCombinedActiveList, useCombinedInactiveList } from '../state/lists/hooks'
-import { TokenAddressMap, useDefaultTokenList, useUnsupportedTokenList } from './../state/lists/hooks'
+import { useSelectedTokenList, useCombinedInactiveList , TokenAddressMap } from '../state/lists/hooks'
+
 import { NEVER_RELOAD, useSingleCallResult } from '../state/multicall/hooks'
 // eslint-disable-next-line import/no-cycle
 import { useUserAddedTokens } from '../state/user/hooks'
@@ -22,7 +22,7 @@ function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean):
 
     // reduce to just tokens
     const mapWithoutUrls = Object.keys(tokenMap[chainId]).reduce<{ [address: string]: Token }>((newMap, address) => {
-      newMap[address] = tokenMap[chainId][address]
+      newMap[address] = tokenMap[chainId][address] /* eslint-disable-line */
       return newMap
     }, {})
 
@@ -31,9 +31,9 @@ function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean):
         userAddedTokens
           // reduce into all ALL_TOKENS filtered by the current chain
           .reduce<{ [address: string]: Token }>(
-            (tokenMap, token) => {
-              tokenMap[token.address] = token
-              return tokenMap
+            (tokenMap_, token) => {
+              tokenMap_[token.address] = token /* eslint-disable-line */
+              return tokenMap_
             },
             // must make a copy because reduce modifies the map, and we do not
             // want to make a copy in every iteration
@@ -56,7 +56,7 @@ export function useAllInactiveTokens(): { [address: string]: Token } {
   const filteredInactive = activeTokensAddresses
     ? Object.keys(inactiveTokens).reduce<{ [address: string]: Token }>((newMap, address) => {
         if (!activeTokensAddresses.includes(address)) {
-          newMap[address] = inactiveTokens[address]
+          newMap[address] = inactiveTokens[address] /* eslint-disable-line */
         }
         return newMap
       }, {})
@@ -83,10 +83,10 @@ export function useFoundOnInactiveList(searchQuery: string): Token[] | undefined
   return useMemo(() => {
     if (!chainId || searchQuery === '') {
       return undefined
-    } else {
+    } 
       const tokens = filterTokens(Object.values(inactiveTokens), searchQuery)
       return tokens
-    }
+    
   }, [chainId, inactiveTokens, searchQuery])
 }
 
@@ -102,7 +102,7 @@ export function useAllTokens(): { [address: string]: Token } {
         // reduce into all ALL_TOKENS filtered by the current chain
         .reduce<{ [address: string]: Token }>(
           (tokenMap, token) => {
-            tokenMap[token.address] = token
+            tokenMap[token.address] = token /* eslint-disable-line */
             return tokenMap
           },
           // must make a copy because reduce modifies the map, and we do not

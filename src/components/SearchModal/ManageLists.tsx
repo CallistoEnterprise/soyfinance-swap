@@ -4,9 +4,14 @@ import ReactGA from 'react-ga'
 import { usePopper } from 'react-popper'
 import { useDispatch, useSelector } from 'react-redux'
 import styled, { ThemeContext } from 'styled-components'
+import { TokenList } from '@uniswap/token-lists'
+import { Button, Text } from '@soy-libs/uikit'
+import Card from 'components/Card'
+import { UNSUPPORTED_LIST_URLS } from 'constants/lists'
+import { ExternalLink, LinkStyledButton } from 'components/Shared'
+import { IconWrapper, ButtonEmpty } from 'theme'
 import { useFetchListCallback } from '../../hooks/useFetchListCallback'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
-import { TokenList } from '@uniswap/token-lists'
 
 import useToggle from '../../hooks/useToggle'
 import { AppDispatch, AppState } from '../../state'
@@ -16,19 +21,13 @@ import { useIsListActive, useAllLists2, useActiveListUrls } from '../../state/li
 import listVersionLabel from '../../utils/listVersionLabel'
 import { parseENSAddress } from '../../utils/parseENSAddress'
 import uriToHttp from '../../utils/uriToHttp'
-import { Button, Text } from '@soy-libs/uikit'
 
 import Column, { AutoColumn } from '../Column'
 import ListLogo from '../ListLogo'
 import Row, { RowFixed, RowBetween } from '../Row'
 import { PaddedColumn, SearchInput, Separator, SeparatorDark } from './styleds'
-import { useListColor } from 'hooks/useColor'
 import ListToggle from '../Toggle/ListToggle'
-import Card from 'components/Card'
-import { CurrencyModalView } from './CurrencySearchModal'
-import { UNSUPPORTED_LIST_URLS } from 'constants/lists'
-import { ExternalLink, LinkStyledButton } from 'components/Shared'
-import { IconWrapper, ButtonEmpty } from 'theme'
+import { CurrencyModalView } from './CurrencySearchModal' /* eslint-disable-line */
 
 const Wrapper = styled(Column)`
   width: 100%;
@@ -131,7 +130,7 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
       action: 'Start Remove List',
       label: listUrl
     })
-    if (window.prompt(`Please confirm you would like to remove this list by typing REMOVE`) === `REMOVE`) {
+    if (window.prompt('Please confirm you would like to remove this list by typing REMOVE') === 'REMOVE') { /* eslint-disable-line */
       ReactGA.event({
         category: 'Lists',
         action: 'Confirm Remove List',
@@ -180,7 +179,7 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
               <Settings stroke={isActive ? theme.colors.background : theme.colors.text} size={12} />
             </ButtonEmpty>
             {open && (
-              <PopoverContainer show={true} ref={setPopperElement as any} style={styles.popper} {...attributes.popper}>
+              <PopoverContainer show ref={setPopperElement as any} style={styles.popper} {...attributes.popper}>
                 <div>{list && listVersionLabel(list.version)}</div>
                 <SeparatorDark />
                 <ExternalLink href={`https://tokenlists.org/token-list?url=${listUrl}`}>View list</ExternalLink>
@@ -199,7 +198,7 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
         isActive={isActive}
         bgColor={listColor}
         toggle={() => {
-          isActive ? handleDisableList() : handleEnableList()
+          isActive ? handleDisableList() : handleEnableList() /* eslint-disable-line */
         }}
       />
     </RowWrapper>
@@ -251,7 +250,7 @@ export function ManageLists({
     return listUrls
       .filter(listUrl => {
         // only show loaded lists, hide unsupported lists
-        return Boolean(lists[listUrl].current) && !Boolean(UNSUPPORTED_LIST_URLS.includes(listUrl))
+        return Boolean(lists[listUrl].current) && !UNSUPPORTED_LIST_URLS.includes(listUrl)
       })
       .sort((u1, u2) => {
         const { current: l1 } = lists[u1]
@@ -293,7 +292,7 @@ export function ManageLists({
       fetchTempList()
     } else {
       setTempList(undefined)
-      listUrlInput !== '' && setAddError('Enter valid list location')
+      listUrlInput !== '' && setAddError('Enter valid list location') /* eslint-disable-line */
     }
 
     // reset error
@@ -339,12 +338,12 @@ export function ManageLists({
                 {tempList.logoURI && <ListLogo logoURI={tempList.logoURI} size="40px" />}
                 <AutoColumn gap="4px" style={{ marginLeft: '20px' }}>
                   <Text fontWeight={600}>{tempList.name}</Text>
-                  <Text fontSize={'12px'}>{tempList.tokens.length} tokens</Text>
+                  <Text fontSize="12px">{tempList.tokens.length} tokens</Text>
                 </AutoColumn>
               </RowFixed>
               {isImported ? (
                 <RowFixed>
-                  <IconWrapper stroke={theme.colors.textSubtle} size="16px" marginRight={'10px'}>
+                  <IconWrapper stroke={theme.colors.textSubtle} size="16px" marginRight="10px">
                     <CheckCircle />
                   </IconWrapper>
                   <Text color={theme.colors.textSubtle}>Loaded</Text>

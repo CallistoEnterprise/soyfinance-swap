@@ -3,6 +3,10 @@ import React, { CSSProperties, MutableRefObject, useCallback, useMemo } from 're
 import { FixedSizeList } from 'react-window'
 import styled from 'styled-components'
 import { Text } from '@soy-libs/uikit'
+import { wrappedCurrency } from 'utils/wrappedCurrency'
+import { LightGreyCard } from 'components/Card'
+import TokenListLogo from 'assets/svg/tokenlist.svg'
+import QuestionHelper from 'components/QuestionHelper'
 import { useActiveWeb3React } from '../../hooks'
 import { useSelectedTokenList, WrappedTokenInfo } from '../../state/lists/hooks'
 import { useAddUserToken, useRemoveUserAddedToken } from '../../state/user/hooks'
@@ -16,10 +20,6 @@ import { MouseoverTooltip } from '../Tooltip'
 import { FadedSpan, MenuItem } from './styleds'
 import Loader from '../Loader'
 import { isTokenOnList } from '../../utils'
-import { wrappedCurrency } from 'utils/wrappedCurrency'
-import { LightGreyCard } from 'components/Card'
-import TokenListLogo from 'assets/svg/tokenlist.svg'
-import QuestionHelper from 'components/QuestionHelper'
 import ImportRow from './ImportRow'
 
 function currencyKey(currency: Currency): string {
@@ -238,10 +238,10 @@ export default function CurrencyList({
                         token={token}
                         showImportView={showImportView}
                         setImportToken={setImportToken}
-                        dim={true}
+                        dim
                     />
                 )
-            } else {
+            } 
                 return (
                     <CurrencyRow
                         style={style}
@@ -251,7 +251,7 @@ export default function CurrencyList({
                         otherSelected={otherSelected}
                     />
                 )
-            }
+            
         },
         [
             chainId,

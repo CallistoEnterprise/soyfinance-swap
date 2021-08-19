@@ -53,7 +53,7 @@ export default createReducer(initialState, builder =>
     .addCase(removePopup, (state, { payload: { key } }) => {
       state.popupList.forEach(p => {
         if (p.key === key) {
-          p.show = false
+          p.show = false /* eslint-disable-line */
         }
       })
     })

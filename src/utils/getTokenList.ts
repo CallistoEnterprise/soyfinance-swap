@@ -51,7 +51,7 @@ export default async function getTokenList(
     const isLast = i === urls.length - 1
     let response
     try {
-      response = await fetch(url)
+      response = await fetch(url) /* eslint-disable-line */
     } catch (error) {
       console.error('Failed to fetch list', listUrl, error)
       if (isLast) throw new Error(`Failed to download list ${listUrl}`)
@@ -65,7 +65,7 @@ export default async function getTokenList(
       continue
     }
 
-    const json = await response.json()
+    const json = await response.json() /* eslint-disable-line */
     if (!tokenListValidator(json)) {
       const validationErrors: string =
         tokenListValidator.errors?.reduce<string>((memo, error) => {

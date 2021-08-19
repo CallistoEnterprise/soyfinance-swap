@@ -156,7 +156,7 @@ export class NetworkConnector extends AbstractConnector {
 
     this.currentChainId = defaultChainId || Number(Object.keys(urls)[0])
     this.providers = Object.keys(urls).reduce<{ [chainId: number]: MiniRpcProvider }>((accumulator, chainId) => {
-      accumulator[Number(chainId)] = new MiniRpcProvider(Number(chainId), urls[Number(chainId)])
+      accumulator[Number(chainId)] = new MiniRpcProvider(Number(chainId), urls[Number(chainId)]) /* eslint-disable-line */
       return accumulator
     }, {})
   }
@@ -177,11 +177,11 @@ export class NetworkConnector extends AbstractConnector {
     return this.currentChainId
   }
 
-  public async getAccount(): Promise<null> {
+  public async getAccount(): Promise<null> { /* eslint-disable-line */
     return null
   }
 
-  public deactivate() {
+  public deactivate() { /* eslint-disable-line */
     return null
   }
 }

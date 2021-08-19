@@ -1,11 +1,9 @@
 
 import React, { HTMLProps, useCallback } from 'react'
 import ReactGA from 'react-ga'
-import { Link } from 'react-router-dom'
-import styled, { keyframes } from 'styled-components'
-import { Button as RebassButton, ButtonProps } from 'rebass/styled-components'
-import { darken } from 'polished'
-import { ArrowLeft, X, ExternalLink as LinkIconFeather, Trash } from 'react-feather'
+import styled from 'styled-components'
+import { Button as RebassButton } from 'rebass/styled-components'
+import { ExternalLink as LinkIconFeather, Trash } from 'react-feather'
 
 export const IconWrapper = styled.div<{ stroke?: string; size?: string; marginRight?: string; marginLeft?: string }>`
   display: flex;
@@ -26,8 +24,8 @@ const Base = styled(RebassButton)<{
     borderRadius?: string
     altDisabledStyle?: boolean
   }>`
-    padding: ${({ padding }) => (padding ? padding : '18px')};
-    width: ${({ width }) => (width ? width : '100%')};
+    padding: ${({ padding }) => (padding || '18px')};
+    width: ${({ width }) => (width || '100%')};
     font-weight: 500;
     text-align: center;
     border-radius: 40px;

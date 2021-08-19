@@ -64,7 +64,7 @@ export default function ImportRow({
 
   return (
     <TokenSection style={style}>
-      <CurrencyLogo currency={token} size={'24px'} style={{ opacity: dim ? '0.6' : '1' }} />
+      <CurrencyLogo currency={token} size="24px" style={{ opacity: dim ? '0.6' : '1' }} />
       <AutoColumn gap="4px" style={{ opacity: dim ? '0.6' : '1' }}>
         <AutoRow>
           <Text fontWeight={500}>{token.symbol}</Text>
@@ -86,7 +86,7 @@ export default function ImportRow({
           width="fit-content"
           padding="6px 12px"
           onClick={() => {
-            setImportToken && setImportToken(token)
+            setImportToken && setImportToken(token) /* eslint-disable-line */
             showImportView()
           }}
         >

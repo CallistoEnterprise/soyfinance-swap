@@ -2,11 +2,11 @@ import { ChainId, Token } from '@soy-libs/sdk'
 import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
-import { UNSUPPORTED_LIST_URLS } from './../../constants/lists'
 import DEFAULT_TOKEN_LIST from 'constants/token/soyswap.json'
+import sortByListPriority from 'utils/listSort'
+import { UNSUPPORTED_LIST_URLS } from "../../constants/lists"
 import { AppState } from '../index'
 
-import sortByListPriority from 'utils/listSort'
 
 const UNSUPPORTED_TOKEN_LIST = {
   "name": "Uniswap V2 Unsupported List",

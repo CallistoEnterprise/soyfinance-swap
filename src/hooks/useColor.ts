@@ -3,7 +3,6 @@ import { shade } from 'polished'
 import Vibrant from 'node-vibrant'
 import { hex } from 'wcag-contrast'
 import { Token, ChainId } from '@soy-libs/sdk'
-import uriToHttp from 'utils/uriToHttp'
 
 async function getColorFromToken(token: Token): Promise<string | null> {
   if (token.chainId === ChainId.CLOTESTNET && token.address === '0xc7AD46e0b8a400Bb3C915120d284AafbA8fc4735') {
@@ -23,20 +22,6 @@ async function getColorFromToken(token: Token): Promise<string | null> {
           AAscore = hex(detectedHex, '#FFF')
         }
         return detectedHex
-      }
-      return null
-    })
-    .catch(() => null)
-}
-
-async function getColorFromUriPath(uri: string): Promise<string | null> {
-  const formattedPath = uriToHttp(uri)[0]
-
-  return Vibrant.from(formattedPath)
-    .getPalette()
-    .then(palette => {
-      if (palette?.Vibrant) {
-        return palette.Vibrant.hex
       }
       return null
     })
@@ -70,18 +55,7 @@ export function useListColor(listImageUri?: string) {
   const [color, setColor] = useState('#0094ec')
 
   useLayoutEffect(() => {
-    let stale = false
-
-    // if (listImageUri) {
-    //   getColorFromUriPath(listImageUri).then(color => {
-    //     if (!stale && color !== null) {
-    //       setColor(color)
-    //     }
-    //   })
-    // }
-
     return () => {
-      stale = true
       setColor('#0094ec')
     }
   }, [listImageUri])

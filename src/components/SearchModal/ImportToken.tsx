@@ -5,7 +5,7 @@ import Card from 'components/Card'
 import { AutoColumn } from 'components/Column'
 import { RowBetween, RowFixed, AutoRow } from 'components/Row'
 import CurrencyLogo from 'components/CurrencyLogo'
-import { ArrowLeft, AlertTriangle, X } from 'react-feather'
+import { ArrowLeft, AlertTriangle } from 'react-feather'
 import { transparentize } from 'polished'
 import { SectionBreak } from 'components/swap/styleds'
 import { useAddUserToken } from 'state/user/hooks'
@@ -13,9 +13,9 @@ import { getExplorerLink } from 'utils'
 import { useActiveWeb3React } from 'hooks'
 import { useCombinedInactiveList } from 'state/lists/hooks'
 import ListLogo from 'components/ListLogo'
-import { PaddedColumn, Checkbox } from './styleds'
 import { Button, Text, CloseIcon } from '@soy-libs/uikit'
 import { ExternalLink } from 'components/Shared'
+import { PaddedColumn, Checkbox } from './styleds'
 
 const Wrapper = styled.div`
   position: relative;
@@ -60,9 +60,9 @@ export function ImportToken({ tokens, onBack, onDismiss, handleCurrencySelect }:
     <Wrapper>
       <PaddedColumn gap="14px" style={{ width: '100%', flex: '1 1' }}>
         <RowBetween>
-          {onBack ? <ArrowLeft style={{ cursor: 'pointer' }} onClick={onBack} /> : <div></div>}
+          {onBack ? <ArrowLeft style={{ cursor: 'pointer' }} onClick={onBack} /> : <div />}
           <Text>Import {tokens.length > 1 ? 'Tokens' : 'Token'}</Text>
-          {onDismiss ? <CloseIcon onClick={onDismiss} /> : <div></div>}
+          {onDismiss ? <CloseIcon onClick={onDismiss} /> : <div />}
         </RowBetween>
       </PaddedColumn>
       <SectionBreak />
@@ -70,10 +70,10 @@ export function ImportToken({ tokens, onBack, onDismiss, handleCurrencySelect }:
         {tokens.map(token => {
           const list = chainId && inactiveTokenList?.[chainId]?.[token.address]
           return (
-            <Card backgroundColor={theme.colors.background} key={'import' + token.address} className=".token-warning-container">
+            <Card backgroundColor={theme.colors.background} key={`import${  token.address}`} className=".token-warning-container">
               <AutoColumn gap="10px">
                 <AutoRow align="center">
-                  <CurrencyLogo currency={token} size={'24px'} />
+                  <CurrencyLogo currency={token} size="24px" />
                   <Text ml="8px" mr="8px" fontWeight={500}>
                     {token.symbol}
                   </Text>
@@ -92,7 +92,7 @@ export function ImportToken({ tokens, onBack, onDismiss, handleCurrencySelect }:
                     </Text>
                   </RowFixed>
                 ) : (
-                  <WarningWrapper borderRadius="4px" padding="4px" highWarning={true}>
+                  <WarningWrapper borderRadius="4px" padding="4px" highWarning>
                     <RowFixed>
                       <AlertTriangle stroke={theme.colors.failure} size="10px" />
                       <Text color={theme.colors.failure} ml="4px" fontSize="10px" fontWeight={500}>
@@ -111,7 +111,7 @@ export function ImportToken({ tokens, onBack, onDismiss, handleCurrencySelect }:
         >
           <AutoColumn justify="center" style={{ textAlign: 'center', gap: '16px', marginBottom: '12px' }}>
             <AlertTriangle stroke={fromLists ? theme.colors.text : theme.colors.failure} size={32} />
-            <Text fontWeight={600} fontSize={"20px"} >
+            <Text fontWeight={600} fontSize="20px" >
               Trade at your own risk!
             </Text>
           </AutoColumn>
@@ -143,7 +143,7 @@ export function ImportToken({ tokens, onBack, onDismiss, handleCurrencySelect }:
           padding="10px 1rem"
           onClick={() => {
             tokens.map(token => addToken(token))
-            handleCurrencySelect && handleCurrencySelect(tokens[0])
+            handleCurrencySelect?? handleCurrencySelect(tokens[0]) /* eslint-disable-line */
           }}
           className=".token-dismiss-button"
         >

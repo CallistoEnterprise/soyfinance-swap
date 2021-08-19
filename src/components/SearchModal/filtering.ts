@@ -59,11 +59,11 @@ export function useSortedTokensByQuery(tokens: Token[] | undefined, searchQuery:
     tokens.map(token => {
       if (token.symbol?.toLowerCase() === symbolMatch[0]) {
         return exactMatches.push(token)
-      } else if (token.symbol?.toLowerCase().startsWith(searchQuery.toLowerCase().trim())) {
+      } if (token.symbol?.toLowerCase().startsWith(searchQuery.toLowerCase().trim())) {
         return symbolSubtrings.push(token)
-      } else {
+      } 
         return rest.push(token)
-      }
+      
     })
 
     return [...exactMatches, ...symbolSubtrings, ...rest]

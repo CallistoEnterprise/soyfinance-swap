@@ -40,7 +40,7 @@ export function retry<T>(
     while (true) {
       let result: T
       try {
-        result = await fn()
+        result = await fn() /* eslint-disable-line */
         if (!completed) {
           resolve(result)
           completed = true
@@ -55,9 +55,9 @@ export function retry<T>(
           completed = true
           break
         }
-        n--
+        n-- /* eslint-disable-line */
       }
-      await waitRandom(minWait, maxWait)
+      await waitRandom(minWait, maxWait) /* eslint-disable-line */
     }
   })
   return {

@@ -5,20 +5,19 @@ import Card from 'components/Card'
 import { AutoColumn } from 'components/Column'
 import { RowBetween, RowFixed, AutoRow } from 'components/Row'
 import { ArrowLeft, AlertTriangle } from 'react-feather'
-import useTheme from 'hooks/useTheme'
 import { transparentize } from 'polished'
 import { SectionBreak } from 'components/swap/styleds'
 import ListLogo from 'components/ListLogo'
-import { PaddedColumn, Checkbox, TextDot } from './styleds'
 import { TokenList } from '@uniswap/token-lists'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from 'state'
 import { useFetchListCallback } from 'hooks/useFetchListCallback'
 import { removeList, enableList } from 'state/lists/actions'
-import { CurrencyModalView } from './CurrencySearchModal'
 import { useAllLists } from 'state/lists/hooks'
 import { Text, CloseIcon, Button } from '@soy-libs/uikit'
 import { ExternalLink } from 'components/Shared'
+import { CurrencyModalView } from './CurrencySearchModal' /* eslint-disable-line */
+import { PaddedColumn, Checkbox, TextDot } from './styleds'
 
 const Wrapper = styled.div`
   position: relative;
@@ -96,12 +95,12 @@ export function ImportList({ listURL, list, setModalView, onDismiss }: ImportPro
                       {list.name}
                     </Text>
                     <TextDot />
-                    <Text fontSize={'16px'} ml="6px">
+                    <Text fontSize="16px" ml="6px">
                       {list.tokens.length} tokens
                     </Text>
                   </RowFixed>
                   <ExternalLink href={`https://tokenlists.org/token-list?url=${listURL}`}>
-                    <Text fontSize={'12px'} color={theme.colors.text}>
+                    <Text fontSize="12px" color={theme.colors.text}>
                       {listURL}
                     </Text>
                   </ExternalLink>
@@ -112,7 +111,7 @@ export function ImportList({ listURL, list, setModalView, onDismiss }: ImportPro
           <Card style={{ backgroundColor: transparentize(0.8, theme.colors.failure) }}>
             <AutoColumn justify="center" style={{ textAlign: 'center', gap: '16px', marginBottom: '12px' }}>
               <AlertTriangle stroke={theme.colors.failure} size={32} />
-              <Text fontWeight={500} fontSize={`20px`} color={theme.colors.failure}>
+              <Text fontWeight={500} fontSize="20px" color={theme.colors.failure}>
                 Import at your own risk{' '}
               </Text>
             </AutoColumn>

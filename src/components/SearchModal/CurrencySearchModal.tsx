@@ -1,15 +1,14 @@
-import { Currency, Token } from '@soy-libs/sdk'
 import React, { useCallback, useEffect, useState } from 'react'
+import { Currency, Token } from '@soy-libs/sdk'
 import { TokenList } from '@uniswap/token-lists'
-import useLast from '../../hooks/useLast'
 import usePrevious from 'hooks/usePrevious'
+import useLast from '../../hooks/useLast'
 import { useSelectedListUrl } from '../../state/lists/hooks'
 import Modal from '../Modal'
 import { CurrencySearch } from './CurrencySearch'
-import { ListSelect } from './ListSelect'
+import Manage from './Manage' /* eslint-disable-line */
+import { ImportList } from './ImportList' /* eslint-disable-line */
 import { ImportToken } from './ImportToken'
-import { ImportList } from './ImportList'
-import Manage from './Manage'
 
 interface CurrencySearchModalProps {
     isOpen: boolean
@@ -19,6 +18,7 @@ interface CurrencySearchModalProps {
     otherSelectedCurrency?: Currency | null
     showCommonBases?: boolean
 }
+
 export enum CurrencyModalView {
     search,
     manage,
@@ -59,13 +59,6 @@ export default function CurrencySearchModal({
     // used for import list
     const [importList, setImportList] = useState<TokenList | undefined>()
     const [listURL, setListUrl] = useState<string | undefined>()
-
-    // const handleClickChangeList = useCallback(() => {
-    //     // setListView(true)
-    // }, [])
-    // const handleClickBack = useCallback(() => {
-    //     setListView(0)
-    // }, [])
 
     const selectedListUrl = useSelectedListUrl()
     const noListSelected = !selectedListUrl
@@ -109,27 +102,3 @@ export default function CurrencySearchModal({
         </Modal>
     )
 }
-
-            {/* {listView ? (
-            <ListSelect onDismiss={onDismiss} onBack={handleClickBack} />
-            ) : noListSelected ? (
-            <CurrencySearch
-                isOpen={isOpen}
-                onDismiss={onDismiss}
-                onCurrencySelect={handleCurrencySelect}
-                onChangeList={handleClickChangeList}
-                selectedCurrency={selectedCurrency}
-                otherSelectedCurrency={otherSelectedCurrency}
-                showCommonBases={false}
-            />
-            ) : (
-            <CurrencySearch
-                isOpen={isOpen}
-                onDismiss={onDismiss}
-                onCurrencySelect={handleCurrencySelect}
-                onChangeList={handleClickChangeList}
-                selectedCurrency={selectedCurrency}
-                otherSelectedCurrency={otherSelectedCurrency}
-                showCommonBases={false}
-            />
-            )} */}

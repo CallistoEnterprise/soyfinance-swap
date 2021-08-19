@@ -18,8 +18,8 @@ import { toV2LiquidityToken, useTrackedTokenPairs } from 'state/user/hooks'
 import { Dots } from 'components/swap/styleds'
 import useI18n from 'hooks/useI18n'
 import PageHeader from 'components/PageHeader'
-import AppBody from '../AppBody'
 import Container from 'components/Container'
+import AppBody from '../AppBody'
 
 export default function Pool() {
   const theme = useContext(ThemeContext)
