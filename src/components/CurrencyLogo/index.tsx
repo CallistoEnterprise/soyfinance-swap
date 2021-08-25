@@ -36,16 +36,16 @@ export default function CurrencyLogo({
     if (currency === ETHER) return []
     if (currency instanceof Token) {
       if (currency instanceof WrappedTokenInfo) {
-        return [...uriLocations, `/images/coins/${currency?.address ?? 'token'}.png`, getTokenLogoURL(currency.address)]
+        return [...uriLocations, `https://app.soy.finance/images/coins/${currency?.address ?? 'token'}.png`, getTokenLogoURL(currency.address)]
       }
 
-      return [`/images/coins/${currency?.address ?? 'token'}.png`, getTokenLogoURL(currency.address)]
+      return [`https://app.soy.finance/images/coins/${currency?.address ?? 'token'}.png`, getTokenLogoURL(currency.address)]
     }
     return []
   }, [currency, uriLocations])
 
   if (currency === ETHER) {
-    return <StyledCloLogo src="/images/coins/clo.png" size={size} style={style} />
+    return <StyledCloLogo src="https://app.soy.finance/images/coins/clo.png" size={size} style={style} />
   }
 
   return (currency as any)?.symbol ? (
