@@ -22,7 +22,7 @@ function Nav({ activeIndex = 0 }: { activeIndex?: number }) {
         <ButtonMenuItem
           id="pool-nav-link"
           as="a"
-          href="https://clobridge.netlify.app/"
+          href="https://"
           target="_blank"
           rel="noreferrer noopener"
         >
