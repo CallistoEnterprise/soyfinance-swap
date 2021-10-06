@@ -20,13 +20,22 @@ function Nav({ activeIndex = 0 }: { activeIndex?: number }) {
           {TranslateString(262, 'Liquidity')}
         </ButtonMenuItem>
         <ButtonMenuItem
-          id="pool-nav-link"
+          id="bridge-nav-link"
           as="a"
           href="https://callistobridge.netlify.app/"
           target="_blank"
           rel="noreferrer noopener"
         >
           Bridge
+        </ButtonMenuItem>
+        <ButtonMenuItem
+          id="sto-nav-link"
+          as="a"
+          href="https://choamtoken.com/publicsale"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          CHOAM Sale
         </ButtonMenuItem>
       </ButtonMenu>
     </StyledNav>
