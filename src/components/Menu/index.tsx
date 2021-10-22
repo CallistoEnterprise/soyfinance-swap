@@ -1,44 +1,41 @@
-import React, { useContext, useEffect } from 'react'
-import { ConnectorNames, Menu as UikitMenu} from '@soy-libs/uikit'
-import { useWeb3React } from '@web3-react/core'
-import { allLanguages } from 'constants/localisation/languageCodes'
-import { LanguageContext } from 'hooks/LanguageContext'
+import React from 'react'
+import { Menu as UikitMenu } from '@soy-libs/uikit2'
+import { languageList } from 'config/localization/languages'
+import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import useGetPriceData from 'hooks/useGetPriceData'
-import useGetLocalProfile from 'hooks/useGetLocalProfile'
-import useAuth from 'hooks/useAuth'
-import links from './config'
+// import { usePriceCakeBusd } from 'state/farms/hooks'
+import { useProfile } from 'state/profile/hooks'
+import config from './config'
+import UserMenu from './UserMenu'
 
-const Menu: React.FC = (props) => {
-  const { account } = useWeb3React()
-  const { login, logout } = useAuth()
-  const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
+const Menu = (props) => {
   const { isDark, toggleTheme } = useTheme()
+  // const cloPriceUsd = usePriceCakeBusd()
+  const { profile } = useProfile()
+  const { currentLanguage, setLanguage, t } = useTranslation()
   const priceData = useGetPriceData()
-  const cakePriceUsd = priceData ? Number(priceData.callisto.usd) : undefined
-  const profile = useGetLocalProfile()
+  const cloPriceUsd = priceData? Number(priceData.callisto.usd) : undefined
 
-  useEffect(() => {
-    login(ConnectorNames.Injected);
-  }, [login])
-  
   return (
-    <>
-      <UikitMenu
-        links={links}
-        account={account as string}
-        login={login}
-        logout={logout}
-        isDark={isDark}
-        toggleTheme={toggleTheme}
-        currentLang={selectedLanguage?.code || ''}
-        langs={allLanguages}
-        setLang={setSelectedLanguage}
-        cakePriceUsd={cakePriceUsd}
-        profile={profile}
-        {...props}
-      />
-    </>
+    <UikitMenu
+      userMenu={<UserMenu />}
+      isDark={isDark}
+      toggleTheme={toggleTheme}
+      currentLang={currentLanguage?.code}
+      langs={languageList}
+      setLang={setLanguage}
+      cakePriceUsd={cloPriceUsd}
+      links={config(t)}
+      profile={{
+        username: profile?.username,
+        image: profile?.nft ? `/images/nfts/${profile.nft?.images.sm}` : undefined,
+        profileLink: '/profile',
+        noProfileLink: '/profile',
+        showPip: !profile?.username,
+      }}
+      {...props}
+    />
   )
 }
 

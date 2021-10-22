@@ -1,16 +1,23 @@
+/* eslint-disable no-param-reassign */
 import { parseBytes32String } from '@ethersproject/strings'
-import { Currency, ETHER, Token, currencyEquals } from '@soy-libs/sdk'
+import { Currency, ETHER, Token, currencyEquals } from '@soy-libs/sdk2'
 import { useMemo } from 'react'
-import { useSelectedTokenList, useCombinedInactiveList , TokenAddressMap } from '../state/lists/hooks'
+import { arrayify } from 'ethers/lib/utils'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import {
+  TokenAddressMap,
+  useDefaultTokenList,
+  useUnsupportedTokenList,
+  useCombinedActiveList,
+  useCombinedInactiveList,
+} from '../state/lists/hooks'
 
 import { NEVER_RELOAD, useSingleCallResult } from '../state/multicall/hooks'
-// eslint-disable-next-line import/no-cycle
-import { useUserAddedTokens } from '../state/user/hooks'
+import useUserAddedTokens from '../state/user/hooks/useUserAddedTokens'
 import { isAddress } from '../utils'
 
-import { useActiveWeb3React } from './index'
-import { filterTokens } from '../components/SearchModal/filtering'
 import { useBytes32TokenContract, useTokenContract } from './useContract'
+import { filterTokens } from '../components/SearchModal/filtering'
 
 // reduce token map into standard address <-> Token mapping, optionally include user added tokens
 function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean): { [address: string]: Token } {
@@ -22,7 +29,7 @@ function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean):
 
     // reduce to just tokens
     const mapWithoutUrls = Object.keys(tokenMap[chainId]).reduce<{ [address: string]: Token }>((newMap, address) => {
-      newMap[address] = tokenMap[chainId][address] /* eslint-disable-line */
+      newMap[address] = tokenMap[chainId][address].token
       return newMap
     }, {})
 
@@ -32,18 +39,28 @@ function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean):
           // reduce into all ALL_TOKENS filtered by the current chain
           .reduce<{ [address: string]: Token }>(
             (tokenMap_, token) => {
-              tokenMap_[token.address] = token /* eslint-disable-line */
+              tokenMap_[token.address] = token
               return tokenMap_
             },
             // must make a copy because reduce modifies the map, and we do not
             // want to make a copy in every iteration
-            { ...mapWithoutUrls }
+            { ...mapWithoutUrls },
           )
       )
     }
 
     return mapWithoutUrls
   }, [chainId, userAddedTokens, tokenMap, includeUserAdded])
+}
+
+export function useDefaultTokens(): { [address: string]: Token } {
+  const defaultList = useDefaultTokenList()
+  return useTokensFromMap(defaultList, false)
+}
+
+export function useAllTokens(): { [address: string]: Token } {
+  const allTokens = useCombinedActiveList()
+  return useTokensFromMap(allTokens, true)
 }
 
 export function useAllInactiveTokens(): { [address: string]: Token } {
@@ -56,13 +73,18 @@ export function useAllInactiveTokens(): { [address: string]: Token } {
   const filteredInactive = activeTokensAddresses
     ? Object.keys(inactiveTokens).reduce<{ [address: string]: Token }>((newMap, address) => {
         if (!activeTokensAddresses.includes(address)) {
-          newMap[address] = inactiveTokens[address] /* eslint-disable-line */
+          newMap[address] = inactiveTokens[address]
         }
         return newMap
       }, {})
     : inactiveTokens
 
   return filteredInactive
+}
+
+export function useUnsupportedTokens(): { [address: string]: Token } {
+  const unsupportedTokensMap = useUnsupportedTokenList()
+  return useTokensFromMap(unsupportedTokensMap, false)
 }
 
 export function useIsTokenActive(token: Token | undefined | null): boolean {
@@ -83,51 +105,31 @@ export function useFoundOnInactiveList(searchQuery: string): Token[] | undefined
   return useMemo(() => {
     if (!chainId || searchQuery === '') {
       return undefined
-    } 
-      const tokens = filterTokens(Object.values(inactiveTokens), searchQuery)
-      return tokens
-    
+    }
+    const tokens = filterTokens(Object.values(inactiveTokens), searchQuery)
+    return tokens
   }, [chainId, inactiveTokens, searchQuery])
-}
-
-export function useAllTokens(): { [address: string]: Token } {
-  const { chainId } = useActiveWeb3React()
-  const userAddedTokens = useUserAddedTokens()
-  const allTokens = useSelectedTokenList()
-
-  return useMemo(() => {
-    if (!chainId) return {}
-    return (
-      userAddedTokens
-        // reduce into all ALL_TOKENS filtered by the current chain
-        .reduce<{ [address: string]: Token }>(
-          (tokenMap, token) => {
-            tokenMap[token.address] = token /* eslint-disable-line */
-            return tokenMap
-          },
-          // must make a copy because reduce modifies the map, and we do not
-          // want to make a copy in every iteration
-          { ...allTokens[chainId] }
-        )
-    )
-  }, [chainId, userAddedTokens, allTokens])
 }
 
 // Check if currency is included in custom list from user storage
 export function useIsUserAddedToken(currency: Currency | undefined | null): boolean {
   const userAddedTokens = useUserAddedTokens()
+
   if (!currency) {
     return false
   }
+
   return !!userAddedTokens.find((token) => currencyEquals(currency, token))
 }
 
 // parse a name or symbol from a token response
 const BYTES32_REGEX = /^0x[a-fA-F0-9]{64}$/
+
 function parseStringOrBytes32(str: string | undefined, bytes32: string | undefined, defaultValue: string): string {
   return str && str.length > 0
     ? str
-    : bytes32 && BYTES32_REGEX.test(bytes32)
+    : // need to check for proper bytes string and valid terminator
+    bytes32 && BYTES32_REGEX.test(bytes32) && arrayify(bytes32)[31] === 0
     ? parseBytes32String(bytes32)
     : defaultValue
 }
@@ -150,7 +152,7 @@ export function useToken(tokenAddress?: string): Token | undefined | null {
     token ? undefined : tokenContractBytes32,
     'name',
     undefined,
-    NEVER_RELOAD
+    NEVER_RELOAD,
   )
   const symbol = useSingleCallResult(token ? undefined : tokenContract, 'symbol', undefined, NEVER_RELOAD)
   const symbolBytes32 = useSingleCallResult(token ? undefined : tokenContractBytes32, 'symbol', undefined, NEVER_RELOAD)
@@ -166,7 +168,7 @@ export function useToken(tokenAddress?: string): Token | undefined | null {
         address,
         decimals.result[0],
         parseStringOrBytes32(symbol.result?.[0], symbolBytes32.result?.[0], 'UNKNOWN'),
-        parseStringOrBytes32(tokenName.result?.[0], tokenNameBytes32.result?.[0], 'Unknown Token')
+        parseStringOrBytes32(tokenName.result?.[0], tokenNameBytes32.result?.[0], 'Unknown Token'),
       )
     }
     return undefined

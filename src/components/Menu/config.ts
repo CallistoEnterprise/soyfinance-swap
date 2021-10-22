@@ -1,59 +1,72 @@
-import { MenuEntry, menuStatus } from '@soy-libs/uikit'
+import { MenuEntry } from '@soy-libs/uikit2'
+import { ContextApi } from 'contexts/Localization/types'
 
-const config: MenuEntry[] = [
+const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
-    label: 'Home',
+    label: t('Home'),
     icon: 'HomeIcon',
-    href: '/',
+    href: '/home',
   },
   {
-    label: 'Trade',
+    label: t('Trade'),
     icon: 'TradeIcon',
     items: [
       {
-        label: 'Exchange',
+        label: t('Exchange'),
         href: '/swap',
       },
       {
-        label: 'Liquidity',
+        label: t('Liquidity'),
         href: '/pool',
+      },
+      {
+        label: t('Bridge'),
+        href: 'https://callistobridge.netlify.app/',
+        target: "_blank",
+      },
+      {
+        label: t('CHOAM Sale'),
+        href: 'https://choamtoken.com/publicsale/',
+        target: "_blank",
       },
     ],
   },
   {
-    label: 'Farms',
+    label: t('Farms'),
     icon: 'FarmIcon',
-    href: '/#',
-    status: {
-      text: 'SOON',
-      color: 'warning'
-    }
+    href: '/farms',
   },
+  // {
+  //   label: t('Pools'),
+  //   icon: 'PoolIcon',
+  //   href: '/pools',
+  // },
+  // {
+  //   label: t('Collectibles'),
+  //   icon: 'NftIcon',
+  //   href: '/#',
+  //   status: menuStatus.SOON,
+  // },
   {
-    label: 'Pools',
-    icon: 'PoolIcon',
-    href: '/#',
-    status: menuStatus.SOON
-  },
-  {
-    label: 'Info',
+    label: t('Info'),
     icon: 'InfoIcon',
     href: 'https://soy.finance/',
+    // status: menuStatus.SOON,
   },
   {
-    label: 'More',
+    label: t('More'),
     icon: 'MoreIcon',
     items: [
       {
-        label: 'Github',
+        label: t('Github'),
         href: 'https://github.com/SoyFinance/soyfinance-swap',
       },
       {
-        label: 'Docs',
+        label: t('Docs'),
         href: 'https://callisto.network/',
       },
       {
-        label: 'Blog',
+        label: t('Blog'),
         href: 'https://callisto.network/blog/',
       },
     ],

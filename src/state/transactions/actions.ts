@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit'
-import { ChainId } from '@soy-libs/sdk'
+import { ChainId } from '@soy-libs/sdk2'
 
 export interface SerializableTransactionReceipt {
   to: string
@@ -17,6 +17,7 @@ export const addTransaction = createAction<{
   hash: string
   from: string
   approval?: { tokenAddress: string; spender: string }
+  claim?: { recipient: string }
   summary?: string
 }>('transactions/addTransaction')
 export const clearAllTransactions = createAction<{ chainId: ChainId }>('transactions/clearAllTransactions')

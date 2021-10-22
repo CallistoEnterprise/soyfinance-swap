@@ -1,48 +1,23 @@
-import React, { useContext, useState } from 'react'
-import { Token, Currency } from '@soy-libs/sdk'
-import styled, { ThemeContext } from 'styled-components'
-import Card from 'components/Card'
-import { AutoColumn } from 'components/Column'
-import { RowBetween, RowFixed, AutoRow } from 'components/Row'
-import CurrencyLogo from 'components/CurrencyLogo'
-import { ArrowLeft, AlertTriangle } from 'react-feather'
-import { transparentize } from 'polished'
-import { SectionBreak } from 'components/swap/styleds'
+import React, { useState } from 'react'
+import { Token, Currency } from '@soy-libs/sdk2'
+import { Button, Text, ErrorIcon, Flex, Message, Checkbox, Link, Tag, Grid } from '@soy-libs/uikit2'
+import { AutoColumn } from 'components/Layout/Column'
 import { useAddUserToken } from 'state/user/hooks'
-import { getExplorerLink } from 'utils'
-import { useActiveWeb3React } from 'hooks'
+import { getCallistoExpLink } from 'utils'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useCombinedInactiveList } from 'state/lists/hooks'
-import ListLogo from 'components/ListLogo'
-import { Button, Text, CloseIcon } from '@soy-libs/uikit'
-import { ExternalLink } from 'components/Shared'
-import { PaddedColumn, Checkbox } from './styleds'
-
-const Wrapper = styled.div`
-  position: relative;
-  width: 100%;
-  overflow: auto;
-`
-
-const WarningWrapper = styled(Card)<{ highWarning: boolean }>`
-  background-color: ${({ highWarning }) =>highWarning ? transparentize(0.8, "red") : transparentize(0.8, "yellow")};
-  width: fit-content;
-`
-
-const AddressText = styled.p`
-  font-size: 12px;
-`
+import { ListLogo } from 'components/Logo'
+import { useTranslation } from 'contexts/Localization'
 
 interface ImportProps {
   tokens: Token[]
-  onBack?: () => void
-  onDismiss?: () => void
   handleCurrencySelect?: (currency: Currency) => void
 }
 
-export function ImportToken({ tokens, onBack, onDismiss, handleCurrencySelect }: ImportProps) {
-  const theme = useContext(ThemeContext)
-
+function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
   const { chainId } = useActiveWeb3React()
+
+  const { t } = useTranslation()
 
   const [confirmed, setConfirmed] = useState(false)
 
@@ -51,105 +26,85 @@ export function ImportToken({ tokens, onBack, onDismiss, handleCurrencySelect }:
   // use for showing import source on inactive tokens
   const inactiveTokenList = useCombinedInactiveList()
 
-  // higher warning severity if either is not on a list
-  const fromLists =
-    (chainId && inactiveTokenList?.[chainId]?.[tokens[0]?.address]) ||
-    (chainId && inactiveTokenList?.[chainId]?.[tokens[1]?.address])
-
   return (
-    <Wrapper>
-      <PaddedColumn gap="14px" style={{ width: '100%', flex: '1 1' }}>
-        <RowBetween>
-          {onBack ? <ArrowLeft style={{ cursor: 'pointer' }} onClick={onBack} /> : <div />}
-          <Text>Import {tokens.length > 1 ? 'Tokens' : 'Token'}</Text>
-          {onDismiss ? <CloseIcon onClick={onDismiss} /> : <div />}
-        </RowBetween>
-      </PaddedColumn>
-      <SectionBreak />
-      <PaddedColumn gap="md">
-        {tokens.map(token => {
-          const list = chainId && inactiveTokenList?.[chainId]?.[token.address]
-          return (
-            <Card backgroundColor={theme.colors.background} key={`import${  token.address}`} className=".token-warning-container">
-              <AutoColumn gap="10px">
-                <AutoRow align="center">
-                  <CurrencyLogo currency={token} size="24px" />
-                  <Text ml="8px" mr="8px" fontWeight={500}>
-                    {token.symbol}
-                  </Text>
-                  <Text fontWeight={300}>{token.name}</Text>
-                </AutoRow>
-                {chainId && (
-                  <ExternalLink href={getExplorerLink(chainId, token.address, 'address')}>
-                    <AddressText>{token.address}</AddressText>
-                  </ExternalLink>
-                )}
-                {list !== undefined ? (
-                  <RowFixed>
-                    {list.logoURI && <ListLogo logoURI={list.logoURI} size="12px" />}
-                    <Text ml="6px" color={theme.colors.text}>
-                      via {list.name}
-                    </Text>
-                  </RowFixed>
-                ) : (
-                  <WarningWrapper borderRadius="4px" padding="4px" highWarning>
-                    <RowFixed>
-                      <AlertTriangle stroke={theme.colors.failure} size="10px" />
-                      <Text color={theme.colors.failure} ml="4px" fontSize="10px" fontWeight={500}>
-                        Unknown Source
-                      </Text>
-                    </RowFixed>
-                  </WarningWrapper>
-                )}
-              </AutoColumn>
-            </Card>
-          )
-        })}
+    <AutoColumn gap="lg">
+      <Message variant="warning">
+        <Text>
+          {t(
+            'Anyone can create a ERC20 token on Polygon Network with any name, including creating fake versions of existing tokens and tokens that claim to represent projects that do not have a token.',
+          )}
+          <br />
+          <br />
+          {t('If you purchase an arbitrary token, you may be unable to sell it back.')}
+        </Text>
+      </Message>
 
-        <Card
-          style={{ backgroundColor: fromLists ? transparentize(0.8, theme.colors.text) : transparentize(0.8, theme.colors.failure) }}
-        >
-          <AutoColumn justify="center" style={{ textAlign: 'center', gap: '16px', marginBottom: '12px' }}>
-            <AlertTriangle stroke={fromLists ? theme.colors.text : theme.colors.failure} size={32} />
-            <Text fontWeight={600} fontSize="20px" >
-              Trade at your own risk!
-            </Text>
-          </AutoColumn>
+      {tokens.map((token) => {
+        const list = chainId && inactiveTokenList?.[chainId]?.[token.address]?.list
+        const address = token.address
+          ? `${token.address.substring(0, 6)}...${token.address.substring(token.address.length - 4)}`
+          : null
+        return (
+          <Grid key={token.address} gridTemplateRows="1fr 1fr 1fr" gridGap="4px">
+            {list !== undefined ? (
+              <Tag
+                variant="success"
+                outline
+                scale="sm"
+                startIcon={list.logoURI && <ListLogo logoURI={list.logoURI} size="12px" />}
+              >
+                {t('via')} {list.name}
+              </Tag>
+            ) : (
+              <Tag variant="failure" outline scale="sm" startIcon={<ErrorIcon color="failure" />}>
+                {t('Unknown Source')}
+              </Tag>
+            )}
+            <Flex alignItems="center">
+              <Text mr="8px">{token.name}</Text>
+              <Text>({token.symbol})</Text>
+            </Flex>
+            {chainId && (
+              <Flex justifyContent="space-between" width="100%">
+                <Text mr="4px">{address}</Text>
+                <Link href={getCallistoExpLink(token.address, 'address', chainId)} external>
+                  ({t('View on CallistoExp')})
+                </Link>
+              </Flex>
+            )}
+          </Grid>
+        )
+      })}
 
-          <AutoColumn style={{ textAlign: 'center', gap: '16px', marginBottom: '12px' }}>
-            <Text fontWeight={400}>
-              Anyone can create a token, including creating fake versions of existing tokens that claim to represent
-              projects.
-            </Text>
-            <Text fontWeight={600} >
-              If you purchase this token, you may not be able to sell it back.
-            </Text>
-          </AutoColumn>
-          <AutoRow justify="center" style={{ cursor: 'pointer' }} onClick={() => setConfirmed(!confirmed)}>
-            <Checkbox
-              className=".understand-checkbox"
-              name="confirmed"
-              type="checkbox"
-              checked={confirmed}
-              onChange={() => setConfirmed(!confirmed)}
-            />
-            <Text ml="10px" fontSize="16px" fontWeight={500}>
-              I understand
-            </Text>
-          </AutoRow>
-        </Card>
+      <Flex justifyContent="space-between" alignItems="center">
+        <Flex alignItems="center" onClick={() => setConfirmed(!confirmed)}>
+          <Checkbox
+            scale="sm"
+            name="confirmed"
+            type="checkbox"
+            checked={confirmed}
+            onChange={() => setConfirmed(!confirmed)}
+          />
+          <Text ml="8px" style={{ userSelect: 'none' }}>
+            {t('I understand')}
+          </Text>
+        </Flex>
         <Button
+          variant="danger"
           disabled={!confirmed}
-          padding="10px 1rem"
           onClick={() => {
-            tokens.map(token => addToken(token))
-            handleCurrencySelect?? handleCurrencySelect(tokens[0]) /* eslint-disable-line */
+            tokens.map((token) => addToken(token))
+            if (handleCurrencySelect) {
+              handleCurrencySelect(tokens[0])
+            }
           }}
           className=".token-dismiss-button"
         >
-          Import
+          {t('Import')}
         </Button>
-      </PaddedColumn>
-    </Wrapper>
+      </Flex>
+    </AutoColumn>
   )
 }
+
+export default ImportToken

@@ -1,4 +1,4 @@
-import { Currency, ETHER, Token } from '@soy-libs/sdk'
+import { Currency, ETHER, Token } from '@soy-libs/sdk2'
 
 export function currencyId(currency: Currency): string {
   if (currency === ETHER) return 'CLO'

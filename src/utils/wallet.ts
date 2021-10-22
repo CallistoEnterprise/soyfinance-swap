@@ -1,44 +1,40 @@
 // Set of helper functions to facilitate wallet setup
 
+import { BASE_CALLISTO_SCAN_URL } from 'config'
 import { nodes } from './getRpcUrl'
 
 /**
- * Prompt the user to add BSC as a network on Metamask, or switch to BSC if the wallet is on a different network
+ * Prompt the user to add Polygon as a network on Metamask, or switch to Polygon if the wallet is on a different network
  * @returns {boolean} true if the setup succeeded, false otherwise
  */
 export const setupNetwork = async () => {
-  const provider = (window as Window).ethereum
+  const provider = window.ethereum
   if (provider) {
-    const chainId = parseInt(process.env.REACT_APP_CHAIN_ID === undefined ? "820" : process.env.REACT_APP_CHAIN_ID, 10)
-
+    const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
     try {
-      if( provider.request ){
-        await provider.request({
-          method: 'wallet_addEthereumChain',
-          params: [
-            {
-              chainId: `0x${chainId.toString(16)}`,
-              chainName: 'Callisto',
-              nativeCurrency: {
-                name: 'Callisto',
-                symbol: 'CLO',
-                decimals: 18,
-              },
-              rpcUrls: nodes,
-              blockExplorerUrls: ['https://explorer.callisto.network/'],
+      await provider.request({
+        method: 'wallet_addEthereumChain',
+        params: [
+          {
+            chainId: `0x${chainId.toString(16)}`,
+            chainName: 'Callisto Mainnet',
+            nativeCurrency: {
+              name: 'CLO',
+              symbol: 'clo',
+              decimals: 18,
             },
-          ],
-        })
-        return true
-      } 
-      console.error("Can't setup the CLO network on metamask because provider.request is undefined")
-      return false
+            rpcUrls: nodes,
+            blockExplorerUrls: [`${BASE_CALLISTO_SCAN_URL}/`],
+          },
+        ],
+      })
+      return true
     } catch (error) {
-      console.error(error)
+      console.error('Failed to setup the network in Metamask:', error)
       return false
     }
   } else {
-    console.error("Can't setup the CLO network on metamask because window.ethereum is undefined")
+    console.error("Can't setup the Polygon network on metamask because window.ethereum is undefined")
     return false
   }
 }
@@ -48,31 +44,21 @@ export const setupNetwork = async () => {
  * @param tokenAddress
  * @param tokenSymbol
  * @param tokenDecimals
- * @param tokenImage
  * @returns {boolean} true if the token has been added, false otherwise
  */
-export const registerToken = async (
-  tokenAddress: string,
-  tokenSymbol: string,
-  tokenDecimals: number,
-  tokenImage: string,
-) => {
-  const provider = (window as Window).ethereum
-  if( provider?.request ){
-    const tokenAdded = await provider.request({
-      method: 'wallet_watchAsset',
-      params: {
-        type: 'ERC20',
-        options: {
-          address: tokenAddress,
-          symbol: tokenSymbol,
-          decimals: tokenDecimals,
-          image: tokenImage,
-        },
+export const registerToken = async (tokenAddress: string, tokenSymbol: string, tokenDecimals: number) => {
+  const tokenAdded = await window.ethereum.request({
+    method: 'wallet_watchAsset',
+    params: {
+      type: 'ERC20',
+      options: {
+        address: tokenAddress,
+        symbol: tokenSymbol,
+        decimals: tokenDecimals,
+        image: `https://app.soy.finance/images/coins/${tokenAddress}.png`,
       },
-    })
-  
-    return tokenAdded
-  }
-  return null;
+    },
+  })
+
+  return tokenAdded
 }

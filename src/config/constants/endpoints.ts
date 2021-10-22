@@ -1,0 +1,8 @@
+export const GRAPH_API_PROFILE = ""
+export const GRAPH_API_PREDICTION = ""
+export const GRAPH_API_LOTTERY = ""
+export const SNAPSHOT_VOTING_API = ""
+export const SNAPSHOT_BASE_URL = ""
+export const SNAPSHOT_API = ""
+export const SNAPSHOT_HUB_API = ""
+export const BITQUERY_API = ""
