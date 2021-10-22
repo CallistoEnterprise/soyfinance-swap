@@ -29,7 +29,7 @@ const Footer = () => {
   return (
     <Wrapper>
       <Flex flexDirection={['column', 'column', 'row']} alignItems="center">
-        <ButtonMenuItem href="https://v1.soy.finance/" target="_blank">V1</ButtonMenuItem>
+        <ButtonMenuItem href="https://app1.soy.finance/" target="_blank">V1</ButtonMenuItem>
       </Flex>
     </Wrapper>
   )
