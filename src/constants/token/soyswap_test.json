@@ -34,6 +34,14 @@
       "chainId": 20729,
       "decimals": 18,
       "logoURI": "localhost:3000/images/coins/0xAB99622d19298EC2BEAB50EFF91A9b6F46Af747C.png"
+    },
+    {
+      "name": "Coinary Token",
+      "symbol": "CYT",
+      "address": "0x6182d2cd59227c20B486a53976dcEeAF38e76Eed",
+      "chainId": 820,
+      "decimals": 18,
+      "logoURI": "https://app.soy.finance/images/coins/0x6182d2cd59227c20B486a53976dcEeAF38e76Eed.png"
     }
   ]
 }

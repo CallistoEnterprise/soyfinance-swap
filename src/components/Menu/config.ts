@@ -1,4 +1,4 @@
-import { MenuEntry, menuStatus } from '@soy-libs/uikit'
+import { MenuEntry } from '@soy-libs/uikit'
 
 const config: MenuEntry[] = [
   {
@@ -23,17 +23,7 @@ const config: MenuEntry[] = [
   {
     label: 'Farms',
     icon: 'FarmIcon',
-    href: '/#',
-    status: {
-      text: 'SOON',
-      color: 'warning'
-    }
-  },
-  {
-    label: 'Pools',
-    icon: 'PoolIcon',
-    href: '/#',
-    status: menuStatus.SOON
+    href: 'https://app.soy.finance/farms'
   },
   {
     label: 'Info',
