@@ -3,19 +3,19 @@ import { Menu as UikitMenu } from '@soy-libs/uikit2'
 import { languageList } from 'config/localization/languages'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
-import useGetPriceData from 'hooks/useGetPriceData'
-// import { usePriceCakeBusd } from 'state/farms/hooks'
+// import useGetPriceData from 'hooks/useGetPriceData'
+import { usePriceCakeBusd } from 'state/farms/hooks'
 import { useProfile } from 'state/profile/hooks'
 import config from './config'
 import UserMenu from './UserMenu'
 
 const Menu = (props) => {
   const { isDark, toggleTheme } = useTheme()
-  // const cloPriceUsd = usePriceCakeBusd()
+  const soyPriceUsd = usePriceCakeBusd()
   const { profile } = useProfile()
   const { currentLanguage, setLanguage, t } = useTranslation()
-  const priceData = useGetPriceData()
-  const cloPriceUsd = priceData? Number(priceData.callisto.usd) : undefined
+  // const priceData = useGetPriceData()
+  // const cloPriceUsd = priceData? Number(priceData.callisto.usd) : undefined
 
   return (
     <UikitMenu
@@ -25,7 +25,7 @@ const Menu = (props) => {
       currentLang={currentLanguage?.code}
       langs={languageList}
       setLang={setLanguage}
-      cakePriceUsd={cloPriceUsd}
+      cakePriceUsd={soyPriceUsd}
       links={config(t)}
       profile={{
         username: profile?.username,

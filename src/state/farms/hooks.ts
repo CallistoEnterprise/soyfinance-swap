@@ -100,9 +100,9 @@ export const usePriceBnbBusd = (): BigNumber => {
 }
 
 export const usePriceCakeBusd = (): BigNumber => {
-  // const soyCLOFarm = useFarmFromPid(1)
-  const priceData = useGetPriceData()
-  const cloPriceUsd = priceData? Number(priceData.callisto.usd) : undefined
-  // return new BigNumber(soyCLOFarm.token.usdcPrice)
-  return new BigNumber(cloPriceUsd)
+  const soyCLOFarm = useFarmFromPid(1)
+  // const priceData = useGetPriceData()
+  // const cloPriceUsd = priceData? Number(priceData.callisto.usd) : undefined
+  return new BigNumber(soyCLOFarm.token.usdcPrice)
+  // return new BigNumber(cloPriceUsd)
 }

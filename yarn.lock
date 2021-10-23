@@ -2178,10 +2178,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@soy-libs/uikit2@^0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@soy-libs/uikit2/-/uikit2-0.1.6.tgz#a23abcf7c841075f694c0d545d620f25eb55ced6"
-  integrity sha512-NqTalrRgd4ZeMdpv0D50GDB/q3pZy9PV18DxvhyyZnA0Z+mdN3ISOtK/9eVseXzbmaDr94ILRJ0y+nqFqiPgig==
+"@soy-libs/uikit2@^0.1.7":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@soy-libs/uikit2/-/uikit2-0.1.7.tgz#67e753368e2970b6f05037e96448af4e903405cc"
+  integrity sha512-hl9tn4fweXUe2keG/6/fxgzYF6dkF6hCR5J1o7V6QJIh/BioO5QPZyW3OeB9ojiJeBcM18JsdU9hQsKwp9aHow==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"
@@ -2554,9 +2554,9 @@
   integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
 
 "@types/lodash@^4.14.168":
-  version "4.14.175"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.175.tgz#b78dfa959192b01fae0ad90e166478769b215f45"
-  integrity sha512-XmdEOrKQ8a1Y/yxQFOMbC47G/V2VDO1GvMRnl4O75M4GW/abC5tnfzadQYkqEveqRM1dEJGFFegfPNA2vvx2iw==
+  version "4.14.176"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.176.tgz#641150fc1cda36fbfa329de603bbb175d7ee20c0"
+  integrity sha512-xZmuPTa3rlZoIbtDUyJKZQimJV3bxCmzMIO2c9Pz9afyDro6kr7R79GwcB6mRhuoPmV2p1Vb66WOJH7F886WKQ==
 
 "@types/marked@^2.0.2":
   version "2.0.5"
