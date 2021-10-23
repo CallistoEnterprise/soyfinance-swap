@@ -26,7 +26,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       },
       {
         label: t('CHOAM Sale'),
-        href: 'https://choamtoken.com/publicsale/',
+        href: 'https://choamtoken.com/publicsale',
         target: "_blank",
       },
     ],
