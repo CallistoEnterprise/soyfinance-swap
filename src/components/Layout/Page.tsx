@@ -36,7 +36,7 @@ const PageMeta = () => {
 
   const pageMeta = getCustomMeta(pathname, t) || {}
   const { title, description, image } = { ...DEFAULT_META, ...pageMeta }
-  const pageTitle = cakePriceUsdDisplay ? [title, cakePriceUsdDisplay].join(' - ') : title
+  // const pageTitle = cakePriceUsdDisplay ? [title, cakePriceUsdDisplay].join(' - ') : title
 
   return (
     <Helmet>
