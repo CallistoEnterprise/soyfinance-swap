@@ -18,7 +18,9 @@ type PublicFarmData = {
   tokenPriceVsQuote: SerializedBigNumber
   poolWeight: SerializedBigNumber
   multiplier: string
+  realmulti?: BigNumber
 }
+const manualMulti = [40, 30, 20, 10, 10]
 
 const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
   const { lpAddresses, token, quoteToken, localFarmAddresses } = farm
@@ -93,10 +95,11 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
   ])
 
   const bigAlloc = new BigNumber(allocPoint[0].toString())
-  const poolWeight = totalAllocPoint[0] ? bigAlloc.div(new BigNumber(totalAllocPoint[0].toString())) : BIG_ZERO
-  const multi = (new BigNumber(allocPoint[0].toString())).div(new BigNumber(1000));
+  const poolWeight = totalAllocPoint[0] ? bigAlloc.div(new BigNumber(totalAllocPoint[0].toString())).div(new BigNumber(100)) : BIG_ZERO
+  // const realMulti = (new BigNumber(allocPoint[0].toString())).div(new BigNumber(1000));
+  const multi = new BigNumber(manualMulti[farm.pid])
 
-
+// console.log(poolWeight.toString())
   return {
     tokenAmountMc: tokenAmountMc.toJSON(),
     quoteTokenAmountMc: quoteTokenAmountMc.toJSON(),
@@ -107,6 +110,7 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
     tokenPriceVsQuote: quoteTokenAmountTotal.div(tokenAmountTotal).toJSON(),
     poolWeight: poolWeight.toJSON(),
     multiplier: `${multi.toString()}X`,
+    // realmulti: realMulti
   }
 }
 
