@@ -15,6 +15,7 @@ export const tokenEarnedPerThousandDollarsCompounding = ({
     // Reduce the APR by the % performance fee
     const feeRelativeToApr = (farmApr / 100) * performanceFee
     const aprAfterFee = farmApr - feeRelativeToApr
+    
     aprAsDecimal = aprAfterFee / 100
   }
 

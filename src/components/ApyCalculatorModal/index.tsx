@@ -105,12 +105,12 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
     <Modal title={t('ROI')} onDismiss={onDismiss}>
       {isFarm && (
         <Box>
-          <Flex mb="8px" justifyContent="space-between">
+          {/* <Flex mb="8px" justifyContent="space-between">
             <Text small color="textSubtle">
               {t('APR (incl. LP rewards)')}
             </Text>
             <Text small>{displayApr}%</Text>
-          </Flex>
+          </Flex> */}
           <Flex mb="24px" justifyContent="space-between">
             <Text small color="textSubtle">
               {t('Base APR (yield only)')}
@@ -196,15 +196,15 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         <GridItem>
           <Text textAlign="right" mr="12px" ml="12px">
-            {getRoi({
+            {parseInt(getRoi({
               amountEarned: tokenEarnedPerThousand365D,
               amountInvested: oneThousandDollarsWorthOfToken,
-            }).toFixed(roundingDecimals)}
+            }).toFixed(roundingDecimals))}
             %
           </Text>
         </GridItem>
         <GridItem>
-          <Text textAlign="right">{tokenEarnedPerThousand365D}</Text>
+          <Text textAlign="right">{(tokenEarnedPerThousand365D)}</Text>
         </GridItem>
       </Grid>
       <Flex justifyContent="center">

@@ -45,7 +45,7 @@ export const getFarmApr = (
   if (!cakeRewardsApr.isNaN() && cakeRewardsApr.isFinite()) {
     cakeRewardsAprAsNumber = cakeRewardsApr.toNumber()
   }
-  const lpRewardsApr = lpAprs[farmAddress?.toLocaleLowerCase()] ?? 10
+  const lpRewardsApr = lpAprs[farmAddress?.toLocaleLowerCase()] ?? 0
   return { cakeRewardsApr: cakeRewardsAprAsNumber, lpRewardsApr }
 }
 
