@@ -39,3 +39,17 @@ export const AUCTION_WHITELISTED_BIDDERS_TO_FETCH = 500
 export const ONE_YEAR_TIMESTAMP = 365 * 24 * 60 * 60
 export const REWARD_TOKENS_PER_YEAR = new BigNumber(50000000)
 
+// SOY/CLO ->30
+// CLO/CLOE ->20
+// CLO/ETH->20
+// CLO/BNB->20
+// SOY/ETH->10
+// SOY/BNB->10
+// CLO/ETC->20
+// SOY/ETC->10
+// CLO/USDT->20
+// CLO/BUSDT->10
+// SOY/USDT->5
+// SOY/BUSDT->10
+
+

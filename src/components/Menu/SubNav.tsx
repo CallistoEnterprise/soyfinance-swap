@@ -6,6 +6,12 @@ import { useTranslation } from 'contexts/Localization'
 
 const StyledNav = styled.nav`
   margin-bottom: 40px;
+
+  .d-none {
+    @media screen and (max-width: 560px) {
+      display: none;
+    }
+  }
 `
 
 const getActiveIndex = (pathname: string): number => {
@@ -37,7 +43,7 @@ const Nav = () => {
         <ButtonMenuItem id="pool-nav-bridge" href="https://callistobridge.netlify.app/" as="a" target="_blank">
           {t('Bridge')}
         </ButtonMenuItem>
-        <ButtonMenuItem id="pool-nav-choam" href="https://choamtoken.com/publicsale" as="a" target="_blank">
+        <ButtonMenuItem id="pool-nav-choam" className="d-none" href="https://choamtoken.com/publicsale" as="a" target="_blank">
           {t('CHOAM Sale')}
         </ButtonMenuItem>
       </ButtonMenu>
