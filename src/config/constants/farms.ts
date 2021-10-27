@@ -64,3 +64,9 @@ const farms: FarmConfig[] = [
 ]
 
 export default farms
+
+
+// SOY-ETH LP: 0xe0a4d8356c0ded2e0e7a4af6db2a164f7d1ad243
+// CLO-ETH LP: 0x162c8b62cda2ec98dafe8ccb0624bb2bc08d6a7b
+// SOY-BNB LP: 0x3006b056ea9423804084d6ba9080d6356ec78c10
+// CLO-BNB LP: 0x7543bf769903fec667d73d58c602deffecb2c9c2
