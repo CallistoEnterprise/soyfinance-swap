@@ -85,15 +85,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://callistoenterprise.com/',
   },
-  // cyt:{
-  //   symbol: 'CYT',
-  //   address: {
-  //     820: '0x6182d2cd59227c20B486a53976dcEeAF38e76Eed',
-  //     20729: '0x6182d2cd59227c20B486a53976dcEeAF38e76Eed',
-  //   },
-  //   decimals: 18,
-  //   projectLink: 'https://explorer.callisto.network/address/0x6182d2cd59227c20B486a53976dcEeAF38e76Eed/transactions',
-  // },
+  ccetc:{
+    symbol: 'ccETC',
+    address: {
+      820: '0xCCc766f97629a4E14b3af8C91EC54f0b5664A69F',
+      20729: '0xCCc766f97629a4E14b3af8C91EC54f0b5664A69F',
+    },
+    decimals: 18,
+    projectLink: 'https://explorer.callisto.network/address/0xCCc766f97629a4E14b3af8C91EC54f0b5664A69F/transactions',
+  },
   ccbnb:{
     symbol: 'ccBNB',
     address: {
@@ -113,7 +113,7 @@ const tokens = {
     projectLink: 'https://explorer.callisto.network/address/0xcC00860947035a26Ffe24EcB1301ffAd3a89f910/transactions',
   },
   "ccbnb-erc223":{
-    symbol: 'ccBNB(ERC223)',
+    symbol: 'ccBNB',
     address: {
       820: '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF',
       20729: '0xCC78D0A86B0c0a3b32DEBd773Ec81510xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF30F9527CF',
@@ -122,7 +122,7 @@ const tokens = {
     projectLink: 'https://explorer.callisto.network/address/0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF/transactions',
   },
   "cceth-erc223":{
-    symbol: 'ccETH(ERC223)',
+    symbol: 'ccETH',
     address: {
       820: '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910',
       20729: '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910',

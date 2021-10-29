@@ -56,7 +56,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   onDismiss,
   tokenPrice,
   apr,
-  displayApr,
+  // displayApr,
   linkLabel,
   linkHref,
   earningTokenSymbol = 'SOY',
