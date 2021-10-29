@@ -69,7 +69,7 @@ const farms: FarmConfig[] = [
       820: '0x3493391e234834c93C0ED675A4872cF48D63AD1C',
     },
     localFarmAddresses: {
-      820: '0x022Aa809BBa4110809ffa91f4aCb8475E82b77Dd',
+      820: '0x009B08c79aF977557513a71132fC1CcC582Be310',
       20729: ''
     },
     token: tokens.ccetc,
@@ -83,7 +83,7 @@ const farms: FarmConfig[] = [
       820: '0xcE49b862ED38414C86914Df5E6d854AfBe203563',
     },
     localFarmAddresses: {
-      820: '0x29B227c3437aB7b04370d21aeb7BcF1590016884',
+      820: '0xF257e70b0B4A5E75BD351ceA7499b54f29636b0c',
       20729: ''
     },
     token: tokens.ccetc,
