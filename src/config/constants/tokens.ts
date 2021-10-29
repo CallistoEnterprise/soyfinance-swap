@@ -74,7 +74,7 @@ const tokens = {
       20729: '0xbf6c50889d3a620eb42C0F188b65aDe90De958c4',
     },
     decimals: 18,
-    projectLink: 'https://explorer.callisto.network/address/0xbf6c50889d3a620eb42C0F188b65aDe90De958c4/transactions',
+    projectLink: 'https://bullsinvesting.club/',
   },
   cloe:{
     symbol: 'CLOE',
@@ -105,6 +105,24 @@ const tokens = {
   },
   cceth:{
     symbol: 'ccETH',
+    address: {
+      820: '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910',
+      20729: '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910',
+    },
+    decimals: 18,
+    projectLink: 'https://explorer.callisto.network/address/0xcC00860947035a26Ffe24EcB1301ffAd3a89f910/transactions',
+  },
+  "ccbnb-erc223":{
+    symbol: 'ccBNB(ERC223)',
+    address: {
+      820: '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF',
+      20729: '0xCC78D0A86B0c0a3b32DEBd773Ec81510xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF30F9527CF',
+    },
+    decimals: 18,
+    projectLink: 'https://explorer.callisto.network/address/0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF/transactions',
+  },
+  "cceth-erc223":{
+    symbol: 'ccETH(ERC223)',
     address: {
       820: '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910',
       20729: '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910',

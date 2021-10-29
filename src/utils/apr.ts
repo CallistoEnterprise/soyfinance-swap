@@ -1,5 +1,4 @@
 import BigNumber from 'bignumber.js'
-// import { SOY_PER_BLOCK } from 'config'
 import { REWARD_TOKENS_PER_YEAR } from 'config'
 import lpAprs from 'config/constants/lpAprs.json'
 
