@@ -22,19 +22,18 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       {
         label: t('Bridge'),
         href: 'https://callistobridge.netlify.app/',
-        target: "_blank",
-      },
-      {
-        label: t('CHOAM Sale'),
-        href: 'https://choamtoken.com/publicsale',
-        target: "_blank",
-      },
+      }
     ],
   },
   {
     label: t('Farms'),
     icon: 'FarmIcon',
     href: '/farms',
+  },
+  {
+    label: t('CHOAM Sale'),
+    href: 'https://choamtoken.com/publicsale',
+    icon: "ChoamIcon",
   },
   // {
   //   label: t('Pools'),
