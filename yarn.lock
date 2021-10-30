@@ -2178,10 +2178,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@soy-libs/uikit2@^0.1.8":
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/@soy-libs/uikit2/-/uikit2-0.1.8.tgz#8b039c1faf93f46713fd647737423be1771647c7"
-  integrity sha512-froNUtstkNkD+NL4RsyrtpewR9RJBy/k2H0okc38KkmsF1okw45X/8EoBDSV7mGE+L2g2HNX8i/oNMXo8FHm8Q==
+"@soy-libs/uikit2@^0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@soy-libs/uikit2/-/uikit2-0.1.9.tgz#36845d7d4671137ec030277a5e0a2ed9acf265eb"
+  integrity sha512-GCYb3Y+83Q7xQUafUZxKhBpLeD+qoWVq9SCL9o7z5HYbhGYCaVW5Z6trvhiIeaFk5d+ErUc7O6TXEfb+2isaAA==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"

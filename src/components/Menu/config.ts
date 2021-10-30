@@ -22,6 +22,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       {
         label: t('Bridge'),
         href: 'https://callistobridge.netlify.app/',
+        target: "_blank"
       }
     ],
   },
@@ -34,6 +35,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     label: t('CHOAM Sale'),
     href: 'https://choamtoken.com/publicsale',
     icon: "ChoamIcon",
+    target: "_blank"
   },
   // {
   //   label: t('Pools'),
@@ -50,7 +52,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     label: t('Info'),
     icon: 'InfoIcon',
     href: 'https://soy.finance/',
-    // status: menuStatus.SOON,
+    target: "_blank"
   },
   {
     label: t('More'),
@@ -59,14 +61,17 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       {
         label: t('Github'),
         href: 'https://github.com/SoyFinance/soyfinance-swap',
+        target: "_blank"
       },
       {
         label: t('Docs'),
         href: 'https://callisto.network/',
+        target: "_blank"
       },
       {
         label: t('Blog'),
         href: 'https://callisto.network/blog/',
+        target: "_blank"
       },
     ],
   },
