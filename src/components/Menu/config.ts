@@ -60,7 +60,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     items: [
       {
         label: t('Github'),
-        href: 'https://github.com/SoyFinance/soyfinance-swap',
+        href: 'https://github.com/SoyFinance',
         target: "_blank"
       },
       {
