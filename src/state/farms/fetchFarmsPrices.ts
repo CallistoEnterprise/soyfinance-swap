@@ -27,9 +27,9 @@ const getFarmBaseTokenPrice = (farm: Farm, quoteTokenFarm: Farm, cloPriceBusd: B
 
   // Possible alternative farm quoteTokens:
   // UST (i.e. MIR-UST), pBTC (i.e. PNT-pBTC), BTCB (i.e. bBADGER-BTCB), ETH (i.e. SUSHI-ETH)
-  // If the farm's quote token isn't USDC or wCLO, we then use the quote token, of the original farm's quote token
+  // If the farm's quote token isn't BUSDT or wCLO, we then use the quote token, of the original farm's quote token
   // i.e. for farm PNT - pBTC we use the pBTC farm's quote token - CLO, (pBTC - CLO)
-  // from the CLO - pBTC price, we can calculate the PNT - USDC price
+  // from the CLO - pBTC price, we can calculate the PNT - BUSDT price
   if (quoteTokenFarm.quoteToken.symbol === 'WCLO') {
     const quoteTokenInBusd = cloPriceBusd.times(quoteTokenFarm.tokenPriceVsQuote)
     return hasTokenPriceVsQuote && quoteTokenInBusd
@@ -37,14 +37,14 @@ const getFarmBaseTokenPrice = (farm: Farm, quoteTokenFarm: Farm, cloPriceBusd: B
       : BIG_ZERO
   }
 
-  if (quoteTokenFarm.quoteToken.symbol === 'USDC') {
+  if (quoteTokenFarm.quoteToken.symbol === 'BUSDT') {
     const quoteTokenInBusd = quoteTokenFarm.tokenPriceVsQuote
     return hasTokenPriceVsQuote && quoteTokenInBusd
       ? new BigNumber(farm.tokenPriceVsQuote).times(quoteTokenInBusd)
       : BIG_ZERO
   }
 
-  // Catch in case token does not have immediate or once-removed USDC/wCLO quoteToken
+  // Catch in case token does not have immediate or once-removed BUSDT/wCLO quoteToken
   return BIG_ZERO
 }
 
