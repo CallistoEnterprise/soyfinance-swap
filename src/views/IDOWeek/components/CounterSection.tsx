@@ -6,7 +6,7 @@ const Counter = () => {
 
     return (
         <Container>
-            <Text fontSize="18px">Round 1 of 180 ends in</Text>
+            <Text fontSize="18px">Round 1 of 26 ends in</Text>
             <Text fontSize="67px">00:00:00</Text>
         </Container>
     )

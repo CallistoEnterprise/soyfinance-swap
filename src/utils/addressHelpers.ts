@@ -17,17 +17,26 @@ export const getMasterChefAddress = () => {
 export const getLocalFarmAddress = (farmAddresses) => {
   return getAddress(farmAddresses)
 }
-export const getSousChefAddress = () => {
-  return getAddress(addresses.sousChef)
-}
-export const getMaticStakingAddress = () => {
-  return getAddress(addresses.maticStaking)
-}
 export const getMulticallAddress = () => {
   return getAddress(addresses.multiCall)
 }
 export const getWmaticAddress = () => {
   return getAddress(tokens.wclo.address)
+}
+export const getDailyIdoAddress = () => {
+  return getAddress(addresses.dailyIdo)
+}
+
+
+
+
+
+
+export const getSousChefAddress = () => {
+  return getAddress(addresses.sousChef)
+}
+export const getMaticStakingAddress = () => {
+  return getAddress(addresses.maticStaking)
 }
 export const getLotteryV2Address = () => {
   return getAddress(addresses.lotteryV2)

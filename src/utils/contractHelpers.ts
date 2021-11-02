@@ -9,6 +9,9 @@ import { Address, PoolCategory } from 'config/constants/types'
 // Addresses
 import {
   getAddress,
+  getDailyIdoAddress,
+
+
   getPancakeProfileAddress,
   getPancakeRabbitsAddress,
   getBunnyFactoryAddress,
@@ -40,6 +43,7 @@ import bep20Abi from 'config/abi/erc20.json'
 import erc721Abi from 'config/abi/erc721.json'
 import lpTokenAbi from 'config/abi/lpToken.json'
 import soyAbi from 'config/abi/soy.json'
+import dailyIdoAbi from 'config/abi/dailyIdo.json'
 import ifoV1Abi from 'config/abi/ifoV1.json'
 import ifoV2Abi from 'config/abi/ifoV2.json'
 import pointCenterIfo from 'config/abi/pointCenterIfo.json'
@@ -149,6 +153,16 @@ export const getLocalFarmContract = (addresses: Address, signer?: ethers.Signer 
 export const getLocalFarmContractWithAccount = (addresses: Address, library: Web3Provider, account: string) => {
   return getContract2(getLocalFarmAddress(addresses), localFarmAbi, library, account)
 }
+export const getDailyIdoContractWithAccount = (library: Web3Provider, account: string) => {
+  return getContract2(getDailyIdoAddress(), dailyIdoAbi, library, account)
+}
+export const getDailyIdoContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(dailyIdoAbi, getDailyIdoAddress(), signer)
+}
+
+
+
+
 export const getClaimRefundContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(claimRefundAbi, getClaimRefundAddress(), signer)
 }

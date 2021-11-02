@@ -82,7 +82,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
   const { t } = useTranslation()
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
-// console.log(farm)
+
   const totalValueFormatted =
     farm.liquidity && farm.liquidity.gt(0)
       ? `$${farm.liquidity.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`

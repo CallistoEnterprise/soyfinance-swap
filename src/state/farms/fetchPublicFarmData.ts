@@ -96,10 +96,8 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
 
   const bigAlloc = new BigNumber(allocPoint[0].toString())
   const poolWeight = totalAllocPoint[0] ? bigAlloc.div(new BigNumber(totalAllocPoint[0].toString())).div(new BigNumber(100)) : BIG_ZERO
-  // const realMulti = (new BigNumber(allocPoint[0].toString())).div(new BigNumber(1000));
   const multi = new BigNumber(manualMulti[farm.pid])
 
-// console.log(poolWeight.toString())
   return {
     tokenAmountMc: tokenAmountMc.toJSON(),
     quoteTokenAmountMc: quoteTokenAmountMc.toJSON(),
@@ -110,7 +108,6 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
     tokenPriceVsQuote: quoteTokenAmountTotal.div(tokenAmountTotal).toJSON(),
     poolWeight: poolWeight.toJSON(),
     multiplier: `${multi.toString()}X`,
-    // realmulti: realMulti
   }
 }
 
