@@ -32,6 +32,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: '/farms',
   },
   {
+    label: t('IDO'),
+    icon: 'IDOIcon',
+    href: '/ido',
+  },
+  {
     label: t('CHOAM Sale'),
     href: 'https://choamtoken.com/publicsale',
     icon: "ChoamIcon",

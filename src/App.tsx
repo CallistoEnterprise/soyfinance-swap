@@ -19,6 +19,8 @@ import history from './routerHistory'
 // Views included in the main bundle
 // import Pools from './views/Pools'
 import Swap from './views/Swap'
+import IDO from './views/IDO'
+// import IDOWeek from './views/IDOWeek'
 import {
   RedirectDuplicateTokenIds,
   RedirectOldAddLiquidityPathStructure,
@@ -71,7 +73,7 @@ const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
 const Liquidity = lazy(() => import('./views/Pool'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
-
+const IDOWeek = lazy(() => import('./views/IDOWeek'))
 // This config is required for number formatting
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
@@ -125,6 +127,8 @@ const App: React.FC = () => {
                 <Route path="/farms">
                   <Farms />
                 </Route>
+                <Route exact strict path="/ido" component={IDO} />
+                <Route exact strict path="/ido-week" component={IDOWeek} />
                 {/* Redirect */}
                 <Route path="/home">
                   <Redirect to="/swap" />

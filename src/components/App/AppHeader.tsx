@@ -53,4 +53,17 @@ const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig 
   )
 }
 
+export const BidderHeader = ({ title, noConfig = false }) => {
+  return (
+    <AppHeaderContainer>
+      <Flex alignItems="center" mr={noConfig ? 0 : '16px'}>
+        <Flex flexDirection="column">
+          <Heading as="h2" mb="8px">
+            {title}
+          </Heading>
+        </Flex>
+      </Flex>
+    </AppHeaderContainer>
+  )
+}
 export default AppHeader
