@@ -201,7 +201,7 @@ export default function IDODaily() {
     <IDOPage>
       <CustomRow>
         <AppBody>
-          <AppHeader title={t('SOY Finance IDO')} subtitle={t('Invest In Your Funds Safety')} />
+          <AppHeader title={t('SOY Finance IDO Pool')} subtitle={t('Invest In Your Funds Safety')} />
           <Wrapper id="swap-page">
             <AutoColumn gap="md">
               <Counter
