@@ -10,6 +10,7 @@ import { getDecimalAmount } from 'utils/formatBalance'
 import tokens from 'config/constants/tokens'
 import { useCurrencyBalance } from 'state/wallet/hooks'
 import useToast from 'hooks/useToast'
+import { usePriceCakeBusd } from 'state/farms/hooks'
 import Counter from './components/CounterSection'
 import { AutoColumn } from '../../components/Layout/Column'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
@@ -82,6 +83,7 @@ export default function IDODaily() {
   const { account } = useActiveWeb3React()
   const { onStakeBet } = useStakeBet()
   const { toastError, toastSuccess } = useToast()
+  const cakePrice = usePriceCakeBusd()
 
   const [txPending, setTxPending] = useState(false)
 
@@ -205,16 +207,32 @@ export default function IDODaily() {
               <Counter
                 item={!publicData ? 0: publicData.endTime}
                 curRound = {publicData ? publicData.currentRound : 0}
+                soyToSell = {publicData ? publicData.soyToSell : 0}
               />
               <AutoColumn justify="space-between">
                 <StatusSection currentAmount={publicData ? publicData.currentCollectedUSD : 0}/>
               </AutoColumn>
-              <AutoColumn justify="space-between">
+              { publicData && <AutoColumn justify="space-between">
                 <AutoRow justify='space-between' style={{ padding: '0 1rem' }}>
                   <Text>Average Price</Text>
-                  <Text>1 SOY = {publicData? parseFloat(publicData.soyAvgPrice) < 0.0001 ? '<0.0001' : publicData.soyAvgPrice.toFixed(4) : 0.00} USD</Text>
+                  <Text
+                    color={
+                      parseFloat(publicData.soyAvgPrice) < parseFloat(cakePrice.toString()) ?
+                      'red':
+                      'primary'
+                    }
+                  >1 SOY = {publicData? parseFloat(publicData.soyAvgPrice) !== 0 && parseFloat(publicData.soyAvgPrice) < 0.0001 ? '<0.0001' : parseInt((publicData.soyAvgPrice * 10000).toString()) / 10000 : 0} USD
+                  </Text>
                 </AutoRow>
-              </AutoColumn>
+                <AutoRow justify='space-between' style={{ padding: '0 1rem' }}>
+                  <Text>Minimum Price</Text>
+                  <Text>1 SOY = {publicData? parseFloat(publicData.minPrice) !== 0 && parseFloat(publicData.minPrice) < 0.0001 ? '<0.0001' : parseInt((publicData.minPrice * 10000).toString()) / 10000 : 0} USD</Text>
+                </AutoRow>
+                <AutoRow justify='space-between' style={{ padding: '0 1rem' }}>
+                  <Text>Maximum Price</Text>
+                  <Text>1 SOY = {publicData? parseFloat(publicData.maxPrice) !== 0 && parseFloat(publicData.maxPrice) < 0.0001 ? '<0.0001' : parseInt((publicData.maxPrice * 10000).toString()) / 10000 : 0} USD</Text>
+                </AutoRow>
+              </AutoColumn>}
               <CurrencyInputPanel
                 label={independentField === Field.OUTPUT && !showWrap && trade ? t('From (estimated)') : t('From')}
                 value={formattedAmounts[Field.INPUT]}

@@ -26,7 +26,7 @@ function formatString(val: number) {
     return val.toString()
 }
 
-const Counter = ({item, curRound}) => {
+const Counter = ({item, curRound, soyToSell}) => {
     const unlockTime = item === undefined? 0 : item
     const [diff, setDiff] = useState(0)
 
@@ -54,6 +54,7 @@ const Counter = ({item, curRound}) => {
 
     return (
         <Container>
+            <Text fontSize="18px">{`Number of SOY for this round ${soyToSell.toFixed(2)} SOY`}</Text>
             <Text fontSize="18px">{`Round ${curRound} of 180 ends in`}</Text>
             {item !== undefined && <Text fontSize="67px">{item === 0 || curRound === 0 ? '00:00:00' : datetime}</Text>}
         </Container>
