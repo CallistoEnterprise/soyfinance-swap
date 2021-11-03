@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useCallback } from 'react'
 import { getDailyIdoContractWithAccount } from 'utils/contractHelpers'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'

@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { CurrencyAmount } from '@soy-libs/sdk2'
 import { Button, Text, Box, Card } from '@soy-libs/uikit2'
-import { RouteComponentProps } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
 import { BidderHeader } from 'components/App/AppHeader'
@@ -28,7 +27,7 @@ import {
   useSwapActionHandlers,
   useSwapState,
 } from '../../state/swap/hooks'
-import { useExpertModeManager, useUserSlippageTolerance } from '../../state/user/hooks'
+import { useUserSlippageTolerance } from '../../state/user/hooks'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
 import CircleLoader from '../../components/Loader/CircleLoader'
@@ -75,25 +74,8 @@ const BidderWrapper = styled(Card)`
   height: fit-content;
   z-index: 0;
 `
-const statistics = [
-  {
-    id: 'Round 1',
-    cloAmount: 150,
-    soyAmount: 50,
-    unlockDate: '01/05/2022'
-  },{
-    id: 'Round 2',
-    cloAmount: 150,
-    soyAmount: 150,
-    unlockDate: '01/05/2022'
-  },{
-    id: 'Round 3',
-    cloAmount: 150,
-    soyAmount: 150,
-    unlockDate: '01/05/2022'
-  }
-]
-export default function IDODaily({ history }: RouteComponentProps) {
+
+export default function IDODaily() {
 
   const { t } = useTranslation()
 
@@ -105,7 +87,9 @@ export default function IDODaily({ history }: RouteComponentProps) {
 
   const publicData = useGetPublicData()
   const userData = useGetUserDetail()
-  // get custom setting values for user
+  const {statistics} = userData
+
+  // get custom setting values for user 
   const [allowedSlippage] = useUserSlippageTolerance()
 
   // swap state
@@ -115,8 +99,6 @@ export default function IDODaily({ history }: RouteComponentProps) {
 
   const {
     wrapType,
-    execute: onWrap,
-    inputError: wrapInputError,
   } = useWrapCallback(currencies[Field.INPUT], currencies[Field.OUTPUT], typedValue)
   const showWrap: boolean = wrapType !== WrapType.NOT_APPLICABLE
   const trade = showWrap ? undefined : v2Trade
@@ -212,7 +194,8 @@ export default function IDODaily({ history }: RouteComponentProps) {
       onUserInput(Field.INPUT, maxAmountInput.toExact())
     } 
   }, [maxAmountInput, onUserInput])
-
+  // if(publicData)
+  //   console.log(publicData.currentRound)
   return (
     <IDOPage>
       <CustomRow>
@@ -220,7 +203,9 @@ export default function IDODaily({ history }: RouteComponentProps) {
           <AppHeader title={t('SOY Finance IDO')} subtitle={t('Invest In Your Funds Safety')} />
           <Wrapper id="swap-page">
             <AutoColumn gap="md">
-              <Counter />
+              <Counter
+                item={publicData && publicData.currentRound === 0 ? statistics[0]: statistics[publicData ? publicData.currentRound - 2 : 0]}
+                curRound = {publicData ? publicData.currentRound - 1 : 0}/>
               <AutoColumn justify="space-between">
                 <StatusSection currentAmount={publicData ? publicData.currentCollectedUSD : 0}/>
               </AutoColumn>
@@ -265,9 +250,9 @@ export default function IDODaily({ history }: RouteComponentProps) {
             </Box>
           </Wrapper>
         </AppBody>
-        <SpacerH />
-        <SpacerV />
-        <BidderWrapper>
+        {account && statistics && <SpacerH />}
+        {account && statistics && <SpacerV />}
+        {account && statistics && <BidderWrapper>
           <BidderHeader title={t('Bidder Statistics')} />
           <Wrapper id="swap-page">
               <AutoColumn justify="space-between">
@@ -276,7 +261,7 @@ export default function IDODaily({ history }: RouteComponentProps) {
                 }
               </AutoColumn>
           </Wrapper>
-        </BidderWrapper>
+        </BidderWrapper>}
       </CustomRow>
     </IDOPage>
   )

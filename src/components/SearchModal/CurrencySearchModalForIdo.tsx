@@ -9,23 +9,12 @@ import {
   ModalBody,
   InjectedModalProps,
   Heading,
-  Button,
 } from '@soy-libs/uikit2'
 import styled from 'styled-components'
 import usePrevious from 'hooks/usePreviousValue'
-import { TokenList } from '@uniswap/token-lists'
 import { useTranslation } from 'contexts/Localization'
 import CurrencySearchIdo from './CurrencySearchIdo'
-import ImportToken from './ImportToken'
-import Manage from './Manage'
-import ImportList from './ImportList'
 import { CurrencyModalView } from './types'
-
-const Footer = styled.div`
-  width: 100%;
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
-  text-align: center;
-`
 
 const StyledModalContainer = styled(ModalContainer)`
   max-width: 420px;
@@ -66,10 +55,6 @@ export default function CurrencySearchModalForIdo({
   // used for import token flow
   const [importToken, setImportToken] = useState<Token | undefined>()
 
-  // used for import list
-  const [importList, setImportList] = useState<TokenList | undefined>()
-  const [listURL, setListUrl] = useState<string | undefined>()
-  
   const { t } = useTranslation()
 
   const config = {

@@ -5,7 +5,7 @@ export default {
   },
   dailyIdo: {
     20729: '',
-    820: '0xD649cb8D15F07FF93857a4dDcC180317c23fA617',
+    820: '0x2c15D993B846193c855c47e2b06d27f734A2f5d9',
   },
 
 

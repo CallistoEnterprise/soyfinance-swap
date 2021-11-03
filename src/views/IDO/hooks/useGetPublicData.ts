@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getDailyIdoContractWithAccount, getDailyIdoContract } from 'utils/contractHelpers'
+import { getDailyIdoContract } from 'utils/contractHelpers'
 
 const useGetPublicData = () => {
     const [publicData, setPublicData] = useState(null)
