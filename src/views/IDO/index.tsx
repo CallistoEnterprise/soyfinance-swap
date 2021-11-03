@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 import { CurrencyAmount } from '@soy-libs/sdk2'
 import { Button, Text, Box, Card } from '@soy-libs/uikit2'
@@ -18,7 +18,6 @@ import { AutoRow } from '../../components/Layout/Row'
 import { Wrapper } from './components/styleds'
 import { AppHeader, AppBody } from '../../components/App'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
-import { ApprovalState, useApproveCallbackFromTrade } from '../../hooks/useApproveCallback'
 import { useSwapCallback } from '../../hooks/useSwapCallback'
 import useWrapCallback, { WrapType } from '../../hooks/useWrapCallback'
 import { Field } from '../../state/swap/actions'
@@ -37,6 +36,8 @@ import BidderStatus from './components/BidderStatus'
 import useGetPublicData from './hooks/useGetPublicData'
 import useStakeBet from './hooks/useStakeBet'
 import useGetUserDetail from './hooks/useGetUserDetail'
+import useGetAllowance from './hooks/useGetAllowance'
+import useApprove from './hooks/useApprove'
 
 const CustomRow = styled.div`
   width: 100%;
@@ -80,9 +81,10 @@ export default function IDODaily() {
   const userData = useGetUserDetail()
   const {statistics, hasBidder} = userData
 
+  const [approveStatus, setApproveStatus] = useState('')
+
   // get custom setting values for user 
   const [allowedSlippage] = useUserSlippageTolerance()
-
   // swap state
   const { independentField, typedValue, recipient } = useSwapState()
   const { v2Trade, currencyBalances, parsedAmount, currencies, inputError: swapInputError } = useDerivedSwapInfo()
@@ -105,6 +107,7 @@ export default function IDODaily() {
       }
 
   const { onCurrencySelection, onUserInput } = useSwapActionHandlers()
+
   const isValid = !swapInputError
   const dependentField: Field = independentField === Field.INPUT ? Field.OUTPUT : Field.INPUT
 
@@ -123,21 +126,25 @@ export default function IDODaily() {
   }
 
   // check whether the user has approved the router on the input token
-  const [approval] = useApproveCallbackFromTrade(trade, allowedSlippage)
+  // const [approval] = useApproveCallbackFromTrade(trade, allowedSlippage)
 
   // check if user has gone through approval process, used to show two step buttons, reset on token change
-  const [approvalSubmitted, setApprovalSubmitted] = useState<boolean>(false)
+  // const [approvalSubmitted, setApprovalSubmitted] = useState<boolean>(false)
 
   // mark when a user has submitted an approval, reset onTokenSelection for input field
-  useEffect(() => {
-    if (approval === ApprovalState.PENDING) {
-      setApprovalSubmitted(true)
-    }
-  }, [approval, approvalSubmitted])
+  // useEffect(() => {
+  //   if (approval === ApprovalState.PENDING) {
+  //     setApprovalSubmitted(true)
+  //   }
+  // }, [approval, approvalSubmitted])
 
   const maxAmountInput: CurrencyAmount | undefined = maxAmountSpend(currencyBalances[Field.INPUT])
   const atMaxAmountInput = Boolean(maxAmountInput && parsedAmounts[Field.INPUT]?.equalTo(maxAmountInput))
 
+  const otherToken = tokens[currencies[Field.INPUT]?.symbol.toLocaleLowerCase()]?? {}
+  const allowance = useGetAllowance(otherToken === undefined ? '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a' : otherToken.address === undefined ? '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a' : getAddress(otherToken.address), account?? undefined)
+
+  const { onApprove } = useApprove()
   // the callback to execute the swap
   const { error: swapCallbackError } = useSwapCallback(trade, allowedSlippage, recipient)
 
@@ -156,7 +163,6 @@ export default function IDODaily() {
       if (currencies[Field.INPUT].symbol === 'CLO') {
         tokenAddr = '0x0000000000000000000000000000000000000001'
       } else {
-        const otherToken = tokens[currencies[Field.INPUT].symbol.toLocaleLowerCase()]
         tokenAddr = getAddress(otherToken.address)
       }
       await onStakeBet(tokenAddr, inputAmount)
@@ -174,7 +180,7 @@ export default function IDODaily() {
 
   const handleInputSelect = useCallback(
     (inputCurrency) => {
-      setApprovalSubmitted(false) // reset 2 step UI for approvals
+      // setApprovalSubmitted(false) // reset 2 step UI for approvals
       onCurrencySelection(Field.INPUT, inputCurrency)
     },
     [onCurrencySelection],
@@ -235,6 +241,38 @@ export default function IDODaily() {
               />
             </AutoColumn>
             <Box mt="1rem">
+              {
+                !allowance && otherToken.address !== undefined && !approveStatus.includes(`[${otherToken.symbol}]`) ?
+                <Button
+                  variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
+                  onClick={async () => {
+                    if (account) {
+                      setTxPending(true)
+                      try{
+                        const res = await onApprove(getAddress(otherToken.address))
+                        if (res) {
+                          toastSuccess("Success!", "Approved successfully.")
+                          setTxPending(false)
+                          setApproveStatus(`${approveStatus}[${otherToken.symbol}]`)
+                        }
+                      } catch(err) {
+                        toastError("Error!", "Approving failed.")
+                        setTxPending(false)
+                      }
+                    } else {
+                      console.error("connect wallet!")
+                    }
+                  }}
+                  id="swap-button"
+                  width="100%"
+                  disabled={!account}
+                >
+                  {
+                    txPending?
+                    <CircleLoader />:
+                    'Approve'
+                  }
+                </Button>:
                 <Button
                   variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
                   onClick={() => {
@@ -253,7 +291,7 @@ export default function IDODaily() {
                    account && parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance) ?
                   `Insufficient balance`:
                   `Submit Your Bid`}
-                </Button>
+                </Button>}
             </Box>
           </Wrapper>
         </AppBody>

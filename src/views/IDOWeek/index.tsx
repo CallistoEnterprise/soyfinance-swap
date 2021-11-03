@@ -37,6 +37,8 @@ import BidderStatus from './components/BidderStatus'
 import useGetPublicData from './hooks/useGetPublicData'
 import useStakeBet from './hooks/useStakeBet'
 import useGetUserDetail from './hooks/useGetUserDetail'
+import useGetAllowance from './hooks/useGetAllowance'
+import useApprove from './hooks/useApprove'
 
 const CustomRow = styled.div`
   width: 100%;
@@ -83,6 +85,7 @@ export default function IDODaily() {
   const publicData = useGetPublicData()
   const userData = useGetUserDetail()
   const {statistics, hasBidder} = userData
+  const [approveStatus, setApproveStatus] = useState('')
 
   // get custom setting values for user 
   const [allowedSlippage] = useUserSlippageTolerance()
@@ -142,6 +145,11 @@ export default function IDODaily() {
   const maxAmountInput: CurrencyAmount | undefined = maxAmountSpend(currencyBalances[Field.INPUT])
   const atMaxAmountInput = Boolean(maxAmountInput && parsedAmounts[Field.INPUT]?.equalTo(maxAmountInput))
 
+  const otherToken = tokens[currencies[Field.INPUT]?.symbol.toLocaleLowerCase()]?? {}
+  const allowance = useGetAllowance(otherToken === undefined ? '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a' : otherToken.address === undefined ? '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a' : getAddress(otherToken.address), account?? undefined)
+
+  const { onApprove } = useApprove()
+
   // the callback to execute the swap
   const { error: swapCallbackError } = useSwapCallback(trade, allowedSlippage, recipient)
 
@@ -160,7 +168,7 @@ export default function IDODaily() {
       if (currencies[Field.INPUT].symbol === 'CLO') {
         tokenAddr = '0x0000000000000000000000000000000000000001'
       } else {
-        const otherToken = tokens[currencies[Field.INPUT].symbol.toLocaleLowerCase()]
+        // const otherToken = tokens[currencies[Field.INPUT].symbol.toLocaleLowerCase()]
         tokenAddr = getAddress(otherToken.address)
       }
       await onStakeBet(tokenAddr, inputAmount)
@@ -239,6 +247,38 @@ export default function IDODaily() {
               />
             </AutoColumn>
             <Box mt="1rem">
+              {
+                !allowance && otherToken.address !== undefined && !approveStatus.includes(`[${otherToken.symbol}]`) ?
+                <Button
+                  variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
+                  onClick={async () => {
+                    if (account) {
+                      setTxPending(true)
+                      try{
+                        const res = await onApprove(getAddress(otherToken.address))
+                        if (res) {
+                          toastSuccess("Success!", "Approved successfully.")
+                          setTxPending(false)
+                          setApproveStatus(`${approveStatus}[${otherToken.symbol}]`)
+                        }
+                      } catch(err) {
+                        toastError("Error!", "Approving failed.")
+                        setTxPending(false)
+                      }
+                    } else {
+                      console.error("connect wallet!")
+                    }
+                  }}
+                  id="swap-button"
+                  width="100%"
+                  disabled={!account}
+                >
+                  {
+                    txPending?
+                    <CircleLoader />:
+                    'Approve'
+                  }
+                </Button>:
                 <Button
                   variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
                   onClick={() => {
@@ -257,7 +297,7 @@ export default function IDODaily() {
                    account && parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance) ?
                   `Insufficient balance`:
                   `Submit Your Bid`}
-                </Button>
+                </Button>}
             </Box>
           </Wrapper>
         </AppBody>
