@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useCurrencyBalance } from '../../state/wallet/hooks'
-import CurrencySearchModal from '../SearchModal/CurrencySearchModal'
+import CurrencySearchModal from '../SearchModal/CurrencySearchModalForIdo'
 import { CurrencyLogo, DoubleCurrencyLogo } from '../Logo'
 
 import { RowBetween } from '../Layout/Row'

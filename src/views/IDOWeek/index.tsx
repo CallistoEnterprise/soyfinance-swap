@@ -13,7 +13,7 @@ import useToast from 'hooks/useToast'
 import { usePriceCakeBusd } from 'state/farms/hooks'
 import Counter from './components/CounterSection'
 import { AutoColumn } from '../../components/Layout/Column'
-import CurrencyInputPanel from '../../components/CurrencyInputPanel'
+import CurrencyInputPanel from '../../components/CurrencyInputPanelForIdo'
 import { AutoRow } from '../../components/Layout/Row'
 import { Wrapper } from './components/styleds'
 import { AppHeader, AppBody } from '../../components/App'
@@ -194,7 +194,7 @@ export default function IDODaily() {
     <IDOPage>
       <CustomRow>
         <AppBody>
-          <AppHeader title={t('SOY Finance IDO Pool')} subtitle={t('Invest In Your Funds Safety')} />
+          <AppHeader title={t('SOY Finance IDO Pool')} subtitle={t('Invest In Your Funds Safety')} noConfig />
           <Wrapper id="swap-page">
             <AutoColumn gap="md">
               <Counter
@@ -227,7 +227,7 @@ export default function IDODaily() {
                 </AutoRow>
               </AutoColumn>}
               <CurrencyInputPanel
-                label={independentField === Field.OUTPUT && !showWrap && trade ? t('From (estimated)') : t('From')}
+                label={independentField === Field.OUTPUT && !showWrap && trade ? t('') : t('')}
                 value={formattedAmounts[Field.INPUT]}
                 showMaxButton={!atMaxAmountInput}
                 currency={currencies[Field.INPUT]}

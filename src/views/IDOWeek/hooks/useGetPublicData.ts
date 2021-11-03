@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
-import { getDailyIdoContract } from 'utils/contractHelpers'
+import { getWeeklyIdoContract } from 'utils/contractHelpers'
 
 const useGetPublicData = () => {
     const [publicData, setPublicData] = useState(null)
 
     useEffect(() => {
         const getData = async () => {
-            const contract = getDailyIdoContract()
+            const contract = getWeeklyIdoContract()
             const curRoundId = await contract.currentRoundId()
             const collected = await contract.getCollectedUSD()
             const auctionRound = await contract.auctionRound(curRoundId)

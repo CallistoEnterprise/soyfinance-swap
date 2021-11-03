@@ -1,11 +1,11 @@
 import { useCallback } from 'react'
-import { getDailyIdoContractWithAccount } from 'utils/contractHelpers'
+import { getWeeklyIdoContractWithAccount } from 'utils/contractHelpers'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 
 const useStakeBet = () => {
   const { account, library } = useWeb3React()
-  const contract = getDailyIdoContractWithAccount(library, account)
+  const contract = getWeeklyIdoContractWithAccount(library, account)
   const handleStake = useCallback(
     async (token: string, amount: BigNumber) => {
       if (token === '0x0000000000000000000000000000000000000001')

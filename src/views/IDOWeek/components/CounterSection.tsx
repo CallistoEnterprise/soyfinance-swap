@@ -55,7 +55,7 @@ const Counter = ({item, curRound, soyToSell}) => {
     return (
         <Container>
             <Text fontSize="18px">{`Number of SOY for this round ${soyToSell.toFixed(2)} SOY`}</Text>
-            <Text fontSize="18px">{`Round ${curRound} of 16 ends in`}</Text>
+            <Text fontSize="18px">{`Round ${curRound} of 26 ends in`}</Text>
             {item !== undefined && <Text fontSize="67px">{item === 0 || curRound === 0 ? '00:00:00' : datetime}</Text>}
         </Container>
     )
