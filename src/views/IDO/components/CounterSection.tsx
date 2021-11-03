@@ -22,7 +22,7 @@ function formatString(val: number) {
 }
 
 const Counter = ({item, curRound}) => {
-    const unlockTime = item.unlockDate / 1000
+    const unlockTime = item === undefined? 0 : item.unlockDate / 1000
     const [diff, setDiff] = useState(0)
 
     useEffect(() => {
@@ -49,7 +49,7 @@ const Counter = ({item, curRound}) => {
     return (
         <Container>
             <Text fontSize="18px">{`Round ${curRound} of 180 ends in`}</Text>
-            <Text fontSize="67px">{item.unlockDate === 0 || curRound === 0 ? '00:00:00' : datetime}</Text>
+            {item !== undefined && <Text fontSize="67px">{item.unlockDate === 0 || curRound === 0 ? '00:00:00' : datetime}</Text>}
         </Container>
     )
 }

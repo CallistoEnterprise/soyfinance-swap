@@ -250,9 +250,9 @@ export default function IDODaily() {
             </Box>
           </Wrapper>
         </AppBody>
-        {account && statistics && <SpacerH />}
-        {account && statistics && <SpacerV />}
-        {account && statistics && <BidderWrapper>
+        {account && statistics.length > 0 && <SpacerH />}
+        {account && statistics.length > 0 && <SpacerV />}
+        {account && statistics.length > 0 && <BidderWrapper>
           <BidderHeader title={t('Bidder Statistics')} />
           <Wrapper id="swap-page">
               <AutoColumn justify="space-between">

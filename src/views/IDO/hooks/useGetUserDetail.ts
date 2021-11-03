@@ -2,28 +2,9 @@ import { useWeb3React } from '@web3-react/core'
 import { useEffect, useState } from 'react'
 import { getDailyIdoContractWithAccount } from 'utils/contractHelpers'
 
-const empty = [
-    {
-      id: 'Round 1',
-      cloAmount: 0,
-      soyAmount: 0,
-      unlockDate: 0
-    },{
-      id: 'Round 2',
-      cloAmount: 0,
-      soyAmount: 0,
-      unlockDate: 0
-    },{
-      id: 'Round 3',
-      cloAmount: 0,
-      soyAmount: 0,
-      unlockDate: 0
-    }
-]
-
 const useGetUserDetail = () => {
     const [userData, setUserData] = useState({
-        statistics: empty,
+        statistics: [],
         soyLocked: 0,
         soyToClaim: 0
     })
@@ -36,16 +17,12 @@ const useGetUserDetail = () => {
             const { lockedDate, lockedSoy, soyPrice} = res
             const soyLocked = parseFloat(res.soyLocked.toString()) / 1000000000000000000
             const soyToClaim = parseFloat(res.soyToClaim.toString()) / 1000000000000000000
-            const ret = empty.map((item, index) => {
-                if (lockedSoy.length > index){
+            const ret = lockedSoy.map((item, index) => {
                     return {
-                        ...item,
                         cloAmount: parseFloat(soyPrice[index].toString()) / 1000000000000000000,
-                        soyAmount: parseFloat(lockedSoy[index].toString()) / 1000000000000000000,
+                        soyAmount: parseFloat(item.toString()) / 1000000000000000000,
                         unlockDate: parseInt(lockedDate[index].toString()) * 1000,
                     }
-                }
-                return item
             })
 
             setUserData({
