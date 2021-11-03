@@ -8,8 +8,8 @@ const BidderStatus = ({item}) => {
     const d = new Date(item.unlockDate)
     const dd = d.getDate() < 10 ? `0${d.getDate()}` : d.getDate()
     const mm = d.getMonth() + 1 < 10 ? `0${d.getMonth() + 1}` : d.getMonth() + 1
-    const date = item.unlockDate === 0 ? '--/--/----' : `${dd}/${mm}/${d.getFullYear()}`
-    
+    const date = item.unlockDate === 0 ? '--/--/--' : `${dd}/${mm}/${d.getFullYear()}`
+
     return (
         <Container>
             <AutoColumn>

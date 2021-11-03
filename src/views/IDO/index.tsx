@@ -87,7 +87,7 @@ export default function IDODaily() {
 
   const publicData = useGetPublicData()
   const userData = useGetUserDetail()
-  const {statistics} = userData
+  const {statistics, hasBidder} = userData
 
   // get custom setting values for user 
   const [allowedSlippage] = useUserSlippageTolerance()
@@ -194,8 +194,7 @@ export default function IDODaily() {
       onUserInput(Field.INPUT, maxAmountInput.toExact())
     } 
   }, [maxAmountInput, onUserInput])
-  // if(publicData)
-  //   console.log(publicData.currentRound)
+
   return (
     <IDOPage>
       <CustomRow>
@@ -204,15 +203,16 @@ export default function IDODaily() {
           <Wrapper id="swap-page">
             <AutoColumn gap="md">
               <Counter
-                item={publicData && publicData.currentRound === 0 ? statistics[0]: statistics[publicData ? publicData.currentRound - 2 : 0]}
-                curRound = {publicData ? publicData.currentRound - 1 : 0}/>
+                item={!publicData ? 0: publicData.endTime}
+                curRound = {publicData ? publicData.currentRound : 0}
+              />
               <AutoColumn justify="space-between">
                 <StatusSection currentAmount={publicData ? publicData.currentCollectedUSD : 0}/>
               </AutoColumn>
               <AutoColumn justify="space-between">
                 <AutoRow justify='space-between' style={{ padding: '0 1rem' }}>
                   <Text>Average Price</Text>
-                  <Text>1 CLO = 0.2 SOY</Text>
+                  <Text>1 SOY = {publicData? publicData.soyAvgPrice : 0.00} USD</Text>
                 </AutoRow>
               </AutoColumn>
               <CurrencyInputPanel
@@ -250,14 +250,19 @@ export default function IDODaily() {
             </Box>
           </Wrapper>
         </AppBody>
-        {account && statistics.length > 0 && <SpacerH />}
-        {account && statistics.length > 0 && <SpacerV />}
-        {account && statistics.length > 0 && <BidderWrapper>
+        {account && hasBidder && <SpacerH />}
+        {account && hasBidder && <SpacerV />}
+        {account && hasBidder && <BidderWrapper>
           <BidderHeader title={t('Bidder Statistics')} />
           <Wrapper id="swap-page">
               <AutoColumn justify="space-between">
                 {
-                  statistics.map((item) => <BidderStatus item={item} key={item.id}/>)
+                  statistics.map((item) => {
+                    if (item.unlockDate === 0) return null
+                    return (
+                      <BidderStatus item={item} key={item.id}/>
+                    )
+                  })
                 }
               </AutoColumn>
           </Wrapper>

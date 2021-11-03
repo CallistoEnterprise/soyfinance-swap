@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Flex } from '@soy-libs/uikit2'
-import Footer from 'components/Menu/Footer'
 import NavForIDO from 'components/Menu/SubNavForIDO'
 
 const StyledPage = styled.div`
@@ -34,7 +33,6 @@ const IDOPage: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children, ...
       <NavForIDO />
       {children}
       <Flex flexGrow={1} />
-      <Footer />
     </StyledPage>
   )
 }

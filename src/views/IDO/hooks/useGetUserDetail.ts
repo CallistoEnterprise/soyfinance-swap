@@ -6,7 +6,8 @@ const useGetUserDetail = () => {
     const [userData, setUserData] = useState({
         statistics: [],
         soyLocked: 0,
-        soyToClaim: 0
+        soyToClaim: 0,
+        hasBidder: false
     })
     const { account, library } = useWeb3React()
 
@@ -17,18 +18,24 @@ const useGetUserDetail = () => {
             const { lockedDate, lockedSoy, soyPrice} = res
             const soyLocked = parseFloat(res.soyLocked.toString()) / 1000000000000000000
             const soyToClaim = parseFloat(res.soyToClaim.toString()) / 1000000000000000000
+            let hasBidder = false
             const ret = lockedSoy.map((item, index) => {
-                    return {
-                        cloAmount: parseFloat(soyPrice[index].toString()) / 1000000000000000000,
-                        soyAmount: parseFloat(item.toString()) / 1000000000000000000,
-                        unlockDate: parseInt(lockedDate[index].toString()) * 1000,
-                    }
+                if (parseInt(lockedDate[index].toString()) !== 0 && !hasBidder){
+                    hasBidder = true;
+                }
+                return {
+                    id: `Round ${index+1}`,
+                    cloAmount: parseFloat(soyPrice[index].toString()) / 1000000000000000000,
+                    soyAmount: parseFloat(item.toString()) / 1000000000000000000,
+                    unlockDate: parseInt(lockedDate[index].toString()) * 1000,
+                }
             })
 
             setUserData({
                 statistics: ret,
                 soyLocked,
-                soyToClaim
+                soyToClaim,
+                hasBidder
             })
         }
         if(account)

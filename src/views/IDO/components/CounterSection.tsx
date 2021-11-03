@@ -5,13 +5,18 @@ import { Text } from '@soy-libs/uikit2';
 function getDate(seconds) {
     return Math.floor(seconds/(3600 * 24))
 }
-function getHour2(seconds) {
-    const newVal = seconds - getDate(seconds) * 3600 * 24
-    return Math.floor(newVal/3600)
+function getHour(seconds) {
+    return Math.floor(seconds/3600)
 }
 
 function getMin(seconds) {
     return Math.floor((seconds%3600)/60)
+}
+
+function getSec(seconds) {
+    const h = getHour(seconds)
+    const m = getMin(seconds)
+    return seconds - h * 3600 - m * 60
 }
 
 function formatString(val: number) {
@@ -22,7 +27,7 @@ function formatString(val: number) {
 }
 
 const Counter = ({item, curRound}) => {
-    const unlockTime = item === undefined? 0 : item.unlockDate / 1000
+    const unlockTime = item === undefined? 0 : item
     const [diff, setDiff] = useState(0)
 
     useEffect(() => {
@@ -35,6 +40,7 @@ const Counter = ({item, curRound}) => {
                     setDiff(unlockTime - current)
                 } else {
                     setDiff(0)
+                    clearInterval(timer)
                 }
             }, 1000)
         }
@@ -44,12 +50,12 @@ const Counter = ({item, curRound}) => {
         }
     }, [unlockTime])
 
-    const datetime = `${formatString(getDate(diff))} : ${formatString(getHour2(diff))} : ${formatString(getMin(diff))}`
+    const datetime = `${formatString(getHour(diff))} : ${formatString(getMin(diff))} : ${formatString(getSec(diff))}`
 
     return (
         <Container>
             <Text fontSize="18px">{`Round ${curRound} of 180 ends in`}</Text>
-            {item !== undefined && <Text fontSize="67px">{item.unlockDate === 0 || curRound === 0 ? '00:00:00' : datetime}</Text>}
+            {item !== undefined && <Text fontSize="67px">{item === 0 || curRound === 0 ? '00:00:00' : datetime}</Text>}
         </Container>
     )
 }
