@@ -2,9 +2,14 @@ import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { CurrencyAmount } from '@soy-libs/sdk2'
 import { Button, Text, Box, Card } from '@soy-libs/uikit2'
-import { RouteComponentProps } from 'react-router-dom'
+import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
 import { BidderHeader } from 'components/App/AppHeader'
+import { getAddress } from 'utils/addressHelpers'
+import { getDecimalAmount } from 'utils/formatBalance'
+import tokens from 'config/constants/tokens'
+import { useCurrencyBalance } from 'state/wallet/hooks'
+import useToast from 'hooks/useToast'
 import Counter from './components/CounterSection'
 import { AutoColumn } from '../../components/Layout/Column'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
@@ -22,13 +27,16 @@ import {
   useSwapActionHandlers,
   useSwapState,
 } from '../../state/swap/hooks'
-import { useExpertModeManager, useUserSlippageTolerance } from '../../state/user/hooks'
+import { useUserSlippageTolerance } from '../../state/user/hooks'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
 import CircleLoader from '../../components/Loader/CircleLoader'
 import IDOPage from '../IDOPage'
 import StatusSection from './components/StatusSection'
 import BidderStatus from './components/BidderStatus'
+import useGetPublicData from './hooks/useGetPublicData'
+import useStakeBet from './hooks/useStakeBet'
+import useGetUserDetail from './hooks/useGetUserDetail'
 
 // const Label = styled(Text)`
 //   font-size: 12px;
@@ -66,44 +74,31 @@ const BidderWrapper = styled(Card)`
   height: fit-content;
   z-index: 0;
 `
-const statistics = [
-  {
-    id: 'Round 1',
-    cloAmount: 150,
-    soyAmount: 50,
-    unlockDate: '01/05/2022'
-  },{
-    id: 'Round 2',
-    cloAmount: 150,
-    soyAmount: 150,
-    unlockDate: '01/05/2022'
-  },{
-    id: 'Round 3',
-    cloAmount: 150,
-    soyAmount: 150,
-    unlockDate: '01/05/2022'
-  }
-]
-export default function IDOWeekly({ history }: RouteComponentProps) {
+
+export default function IDODaily() {
 
   const { t } = useTranslation()
 
   const { account } = useActiveWeb3React()
+  const { onStakeBet } = useStakeBet()
+  const { toastError, toastSuccess } = useToast()
 
-  // for expert mode
-  const [isExpertMode] = useExpertModeManager()
+  const [txPending, setTxPending] = useState(false)
 
-  // get custom setting values for user
+  const publicData = useGetPublicData()
+  const userData = useGetUserDetail()
+  const {statistics, hasBidder} = userData
+
+  // get custom setting values for user 
   const [allowedSlippage] = useUserSlippageTolerance()
 
   // swap state
   const { independentField, typedValue, recipient } = useSwapState()
   const { v2Trade, currencyBalances, parsedAmount, currencies, inputError: swapInputError } = useDerivedSwapInfo()
+  const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currencies[Field.INPUT] ?? undefined)
 
   const {
     wrapType,
-    execute: onWrap,
-    inputError: wrapInputError,
   } = useWrapCallback(currencies[Field.INPUT], currencies[Field.OUTPUT], typedValue)
   const showWrap: boolean = wrapType !== WrapType.NOT_APPLICABLE
   const trade = showWrap ? undefined : v2Trade
@@ -137,7 +132,7 @@ export default function IDOWeekly({ history }: RouteComponentProps) {
   }
 
   // check whether the user has approved the router on the input token
-  const [approval, approveCallback] = useApproveCallbackFromTrade(trade, allowedSlippage)
+  const [approval] = useApproveCallbackFromTrade(trade, allowedSlippage)
 
   // check if user has gone through approval process, used to show two step buttons, reset on token change
   const [approvalSubmitted, setApprovalSubmitted] = useState<boolean>(false)
@@ -153,13 +148,35 @@ export default function IDOWeekly({ history }: RouteComponentProps) {
   const atMaxAmountInput = Boolean(maxAmountInput && parsedAmounts[Field.INPUT]?.equalTo(maxAmountInput))
 
   // the callback to execute the swap
-  const { callback: swapCallback, error: swapCallbackError } = useSwapCallback(trade, allowedSlippage, recipient)
+  const { error: swapCallbackError } = useSwapCallback(trade, allowedSlippage, recipient)
 
   const { priceImpactWithoutFee } = computeTradePriceBreakdown(trade)
 
-  const handleSubmit = useCallback(() => {
-    console.error("handle submit")
-  }, [])
+  const balance = selectedCurrencyBalance?.toSignificant(6) ?? '0'
+
+  const handleSubmit = async () => {
+    if (parseFloat(formattedAmounts[Field.INPUT]) >= parseFloat(balance)) {
+      return;
+    }
+    const inputAmount = getDecimalAmount(new BigNumber(formattedAmounts[Field.INPUT]))
+    try {
+      setTxPending(true)
+      let tokenAddr = '';
+      if (currencies[Field.INPUT].symbol === 'CLO') {
+        tokenAddr = '0x0000000000000000000000000000000000000001'
+      } else {
+        const otherToken = tokens[currencies[Field.INPUT].symbol.toLocaleLowerCase()]
+        tokenAddr = getAddress(otherToken.address)
+      }
+      await onStakeBet(tokenAddr, inputAmount)
+      toastSuccess("Success!", "You betted in this round successfully")
+      setTxPending(false)
+    } catch(err) {
+      setTxPending(false)
+      toastError("Error!", "Excution reverted!")
+      console.info(err)
+    }
+  }
 
   // warnings on slippage
   const priceImpactSeverity = warningSeverity(priceImpactWithoutFee)
@@ -185,14 +202,17 @@ export default function IDOWeekly({ history }: RouteComponentProps) {
           <AppHeader title={t('SOY Finance IDO')} subtitle={t('Invest In Your Funds Safety')} />
           <Wrapper id="swap-page">
             <AutoColumn gap="md">
-              <Counter />
+              <Counter
+                item={!publicData ? 0: publicData.endTime}
+                curRound = {publicData ? publicData.currentRound : 0}
+              />
               <AutoColumn justify="space-between">
-                <StatusSection />
+                <StatusSection currentAmount={publicData ? publicData.currentCollectedUSD : 0}/>
               </AutoColumn>
               <AutoColumn justify="space-between">
                 <AutoRow justify='space-between' style={{ padding: '0 1rem' }}>
                   <Text>Average Price</Text>
-                  <Text>1 CLO = 0.2 SOY</Text>
+                  <Text>1 SOY = {publicData? parseFloat(publicData.soyAvgPrice) < 0.0001 ? '<0.0001' : publicData.soyAvgPrice.toFixed(4) : 0.00} USD</Text>
                 </AutoRow>
               </AutoColumn>
               <CurrencyInputPanel
@@ -219,26 +239,34 @@ export default function IDOWeekly({ history }: RouteComponentProps) {
                   }}
                   id="swap-button"
                   width="100%"
-                  disabled={!account && (!isValid || (priceImpactSeverity > 3 && !isExpertMode) || !!swapCallbackError)}
+                  disabled={!account || balance === '0' || parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance) || parseFloat(formattedAmounts[Field.INPUT]) === 0 || formattedAmounts[Field.INPUT] === ''}
                 >
-                  {/* <CircleLoader/> */}
-                  Submit Your Bid
+                  {txPending?
+                  <CircleLoader />:
+                   account && parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance) ?
+                  `Insufficient balance`:
+                  `Submit Your Bid`}
                 </Button>
             </Box>
           </Wrapper>
         </AppBody>
-        <SpacerH />
-        <SpacerV />
-        <BidderWrapper>
+        {account && hasBidder && <SpacerH />}
+        {account && hasBidder && <SpacerV />}
+        {account && hasBidder && <BidderWrapper>
           <BidderHeader title={t('Bidder Statistics')} />
           <Wrapper id="swap-page">
               <AutoColumn justify="space-between">
                 {
-                  statistics.map((item) => <BidderStatus item={item} key={item.id}/>)
+                  statistics.map((item) => {
+                    if (item.unlockDate === 0) return null
+                    return (
+                      <BidderStatus item={item} key={item.id}/>
+                    )
+                  })
                 }
               </AutoColumn>
           </Wrapper>
-        </BidderWrapper>
+        </BidderWrapper>}
       </CustomRow>
     </IDOPage>
   )

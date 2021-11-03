@@ -212,7 +212,7 @@ export default function IDODaily() {
               <AutoColumn justify="space-between">
                 <AutoRow justify='space-between' style={{ padding: '0 1rem' }}>
                   <Text>Average Price</Text>
-                  <Text>1 SOY = {publicData? publicData.soyAvgPrice : 0.00} USD</Text>
+                  <Text>1 SOY = {publicData? parseFloat(publicData.soyAvgPrice) < 0.0001 ? '<0.0001' : publicData.soyAvgPrice.toFixed(4) : 0.00} USD</Text>
                 </AutoRow>
               </AutoColumn>
               <CurrencyInputPanel

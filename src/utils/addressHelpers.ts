@@ -26,7 +26,9 @@ export const getWmaticAddress = () => {
 export const getDailyIdoAddress = () => {
   return getAddress(addresses.dailyIdo)
 }
-
+export const getWeeklyIdoAddress = () => {
+  return getAddress(addresses.weeklyIdo)
+}
 
 
 

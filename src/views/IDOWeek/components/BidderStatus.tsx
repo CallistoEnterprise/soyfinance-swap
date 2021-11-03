@@ -5,6 +5,10 @@ import { AutoColumn } from 'components/Layout/Column'
 import { AutoRow } from 'components/Layout/Row'
 
 const BidderStatus = ({item}) => {
+    const d = new Date(item.unlockDate)
+    const dd = d.getDate() < 10 ? `0${d.getDate()}` : d.getDate()
+    const mm = d.getMonth() + 1 < 10 ? `0${d.getMonth() + 1}` : d.getMonth() + 1
+    const date = item.unlockDate === 0 ? '--/--/--' : `${dd}/${mm}/${d.getFullYear()}`
 
     return (
         <Container>
@@ -12,7 +16,7 @@ const BidderStatus = ({item}) => {
                 <AutoRow justify="space-between" >
                     <AutoColumn justify="space-between">
                         <Text fontSize="14px">{item.id}</Text>
-                        <Text fontSize="24px" mt="5px" color="primary">{item.soyAmount} SOY</Text>
+                        <Text fontSize="24px" mt="5px" color="primary">{item.unlockDate === 0 ? '-' : item.soyAmount.toFixed(2)} SOY</Text>
                     </AutoColumn>
                     <Line />
                     <AutoColumn justify="space-between">
@@ -20,8 +24,8 @@ const BidderStatus = ({item}) => {
                         <Text fontSize="14px" mt="5px">Unlocked on:</Text>
                     </AutoColumn>
                     <AutoColumn justify="space-between">
-                        <Text fontSize="14px">{item.cloAmount} CLO</Text>
-                        <Text fontSize="14px" mt="5px">{item.unlockDate}</Text>
+                        <Text fontSize="14px" textAlign="end">{item.unlockDate === 0 ? '-' : item.cloAmount.toFixed(2)} CLO</Text>
+                        <Text fontSize="14px" mt="5px" textAlign="end">{date}</Text>
                     </AutoColumn>
                 </AutoRow>
             </AutoColumn>

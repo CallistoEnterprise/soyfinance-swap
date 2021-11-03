@@ -6,7 +6,7 @@ import { AutoColumn } from 'components/Layout/Column'
 import { AutoRow } from 'components/Layout/Row'
 import { CurrencyLogo } from 'components/Logo'
 
-const StatusSection = () => {
+const StatusSection = ({currentAmount}) => {
 
     return (
         <Container>
@@ -14,7 +14,7 @@ const StatusSection = () => {
                 <AutoRow justify="space-between" >
                     <AutoColumn justify="space-between">
                         <Text fontSize="14px">CLO coins collected during this round</Text>
-                        <Text fontSize="24px" color="primary" mt="5px">1350000.05</Text>
+                        <Text fontSize="24px" color="primary" mt="5px">{`$${currentAmount.toFixed(2)}`}</Text>
                     </AutoColumn>
                     
                     <CurrencyLogo currency={ETHER} size="60px" style={{ marginRight: '8px' }} />

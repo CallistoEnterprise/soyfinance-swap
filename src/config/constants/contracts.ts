@@ -5,9 +5,12 @@ export default {
   },
   dailyIdo: {
     20729: '',
-    820: '0x2c15D993B846193c855c47e2b06d27f734A2f5d9',
+    820: '0xEbBDd505bA4E6CaD0C17ccd5cbd88CBA073Fe934',
   },
-
+  weeklyIdo: {
+    20729: '',
+    820: '0xAD2e597F27F5988ADB8876D1c3b1A5C64c6d7403',
+  }, 
 
 
 

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components'
 import { Text } from '@soy-libs/uikit2';
 
-function getDate(seconds) {
-    return Math.floor(seconds/(3600 * 24))
-}
+// function getDate(seconds) {
+//     return Math.floor(seconds/(3600 * 24))
+// }
 function getHour(seconds) {
     return Math.floor(seconds/3600)
 }
@@ -50,7 +50,7 @@ const Counter = ({item, curRound}) => {
         }
     }, [unlockTime])
 
-    const datetime = `${formatString(getHour(diff))} : ${formatString(getMin(diff))} : ${formatString(getSec(diff))}`
+    const datetime = `${formatString(getHour(diff))}:${formatString(getMin(diff))}:${formatString(getSec(diff))}`
 
     return (
         <Container>
