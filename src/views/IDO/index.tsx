@@ -17,7 +17,6 @@ import CurrencyInputPanel from '../../components/CurrencyInputPanel'
 import { AutoRow } from '../../components/Layout/Row'
 import { Wrapper } from './components/styleds'
 import { AppHeader, AppBody } from '../../components/App'
-
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
 import { ApprovalState, useApproveCallbackFromTrade } from '../../hooks/useApproveCallback'
 import { useSwapCallback } from '../../hooks/useSwapCallback'
@@ -38,12 +37,6 @@ import BidderStatus from './components/BidderStatus'
 import useGetPublicData from './hooks/useGetPublicData'
 import useStakeBet from './hooks/useStakeBet'
 import useGetUserDetail from './hooks/useGetUserDetail'
-
-// const Label = styled(Text)`
-//   font-size: 12px;
-//   font-weight: bold;
-//   color: ${({ theme }) => theme.colors.secondary};
-// `
 
 const CustomRow = styled.div`
   width: 100%;
@@ -77,16 +70,12 @@ const BidderWrapper = styled(Card)`
 `
 
 export default function IDODaily() {
-
   const { t } = useTranslation()
-
   const { account } = useActiveWeb3React()
   const { onStakeBet } = useStakeBet()
   const { toastError, toastSuccess } = useToast()
   const cakePrice = usePriceCakeBusd()
-
   const [txPending, setTxPending] = useState(false)
-
   const publicData = useGetPublicData()
   const userData = useGetUserDetail()
   const {statistics, hasBidder} = userData
