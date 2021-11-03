@@ -32,7 +32,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: '/farms',
   },
   {
-    label: t('IDO'),
+    label: t('SOY Finance IDO'),
     icon: 'IDOIcon',
     href: '/ido',
   },
