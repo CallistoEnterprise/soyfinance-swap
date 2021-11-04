@@ -174,7 +174,7 @@ export default function IDODaily() {
 
       const res = await onStakeBet(tokenAddr, inputAmount)
       if (res){
-        toastSuccess("Success!", "You betted in this round successfully")
+        toastSuccess("Success!", "Your bid was successfully placed.")
         setTxPending(false)
       } else {
         toastWarning("Warning!", "Rejected transaction.")

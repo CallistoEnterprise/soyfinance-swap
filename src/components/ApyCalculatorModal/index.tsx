@@ -101,6 +101,8 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
     performanceFee,
   })
 
+  const customAPR = (365 * getRoi({ amountEarned: tokenEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfToken })).toFixed(2,)
+
   return (
     <Modal title={t('ROI')} onDismiss={onDismiss}>
       {isFarm && (
@@ -115,7 +117,8 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
             <Text small color="textSubtle">
               {t('Base APR (yield only)')}
             </Text>
-            <Text small>{apr.toFixed(roundingDecimals)}%</Text>
+            {/* <Text small>{apr.toFixed(roundingDecimals)}%</Text> */}
+            <Text small>{customAPR}%</Text>
           </Flex>
         </Box>
       )}
