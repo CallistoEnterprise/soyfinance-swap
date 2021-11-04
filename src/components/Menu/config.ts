@@ -19,17 +19,18 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
         label: t('Liquidity'),
         href: '/pool',
       },
-      {
-        label: t('Bridge'),
-        href: 'https://callistobridge.netlify.app/',
-        target: "_blank"
-      }
     ],
   },
   {
     label: t('Farms'),
     icon: 'FarmIcon',
     href: '/farms',
+  },
+  {
+    label: t('Bridge'),
+    icon: 'BridgeIcon',
+    href: 'https://callistobridge.netlify.app/',
+    target: "_blank"
   },
   {
     label: t('SOY Finance IDO'),

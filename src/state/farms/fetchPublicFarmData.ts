@@ -97,6 +97,9 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
   const bigAlloc = new BigNumber(allocPoint[0].toString())
   const poolWeight = totalAllocPoint[0] ? bigAlloc.div(new BigNumber(totalAllocPoint[0].toString())).div(new BigNumber(100)) : BIG_ZERO
   const multi = new BigNumber(manualMulti[farm.pid])
+  // const real = allocPoint.div(100).toString()
+
+  // console.log("realMulti ::", allocPoint.toString())
 
   return {
     tokenAmountMc: tokenAmountMc.toJSON(),

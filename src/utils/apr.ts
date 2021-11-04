@@ -38,14 +38,14 @@ export const getFarmApr = (
   farmAddress: string,
 ): { cakeRewardsApr: number; lpRewardsApr: number } => {
 
-  const yearlyCakeRewardAllocation = REWARD_TOKENS_PER_YEAR.times(poolWeight)
-  const cakeRewardsApr = yearlyCakeRewardAllocation.times(cakePriceUsd).div(poolLiquidityUsd).times(100)
-  let cakeRewardsAprAsNumber = null
-  if (!cakeRewardsApr.isNaN() && cakeRewardsApr.isFinite()) {
-    cakeRewardsAprAsNumber = cakeRewardsApr.toNumber()
+  const yearlySoyRewardAllocation = REWARD_TOKENS_PER_YEAR.times(poolWeight)
+  const soyRewardsApr = yearlySoyRewardAllocation.times(cakePriceUsd).div(poolLiquidityUsd).times(100)
+  let soyRewardsAprAsNumber = null
+  if (!soyRewardsApr.isNaN() && soyRewardsApr.isFinite()) {
+    soyRewardsAprAsNumber = soyRewardsApr.toNumber()
   }
   const lpRewardsApr = lpAprs[farmAddress?.toLocaleLowerCase()] ?? 0
-  return { cakeRewardsApr: cakeRewardsAprAsNumber, lpRewardsApr }
+  return { cakeRewardsApr: soyRewardsAprAsNumber, lpRewardsApr }
 }
 
 export default null
