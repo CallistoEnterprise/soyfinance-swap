@@ -77,7 +77,7 @@ export default function IDODaily() {
 
   const { account } = useActiveWeb3React()
   const { onStakeBet } = useStakeBet()
-  const { toastError, toastSuccess } = useToast()
+  const { toastError, toastSuccess, toastWarning } = useToast()
   const cakePrice = usePriceCakeBusd()
 
   const [txPending, setTxPending] = useState(false)
@@ -171,9 +171,15 @@ export default function IDODaily() {
         // const otherToken = tokens[currencies[Field.INPUT].symbol.toLocaleLowerCase()]
         tokenAddr = getAddress(otherToken.address)
       }
-      await onStakeBet(tokenAddr, inputAmount)
-      toastSuccess("Success!", "You betted in this round successfully")
-      setTxPending(false)
+
+      const res = await onStakeBet(tokenAddr, inputAmount)
+      if (res){
+        toastSuccess("Success!", "You betted in this round successfully")
+        setTxPending(false)
+      } else {
+        toastWarning("Warning!", "Rejected transaction.")
+        setTxPending(false)
+      }
     } catch(err) {
       setTxPending(false)
       toastError("Error!", "Excution reverted!")
@@ -260,6 +266,9 @@ export default function IDODaily() {
                           toastSuccess("Success!", "Approved successfully.")
                           setTxPending(false)
                           setApproveStatus(`${approveStatus}[${otherToken.symbol}]`)
+                        } else {
+                          toastWarning("Warning!", "Rejected transaction.")
+                          setTxPending(false)
                         }
                       } catch(err) {
                         toastError("Error!", "Approving failed.")

@@ -30,7 +30,6 @@ const useGetUserDetail = () => {
                     unlockDate: parseInt(lockedDate[index].toString()) * 1000,
                 }
             })
-
             setUserData({
                 statistics: ret,
                 soyLocked,

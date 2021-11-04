@@ -8,10 +8,21 @@ const useStakeBet = () => {
   const contract = getWeeklyIdoContractWithAccount(library, account)
   const handleStake = useCallback(
     async (token: string, amount: BigNumber) => {
-      if (token === '0x0000000000000000000000000000000000000001')
-        await contract.makeBet(token, amount.toString(), {value: amount.toString()})
-      else
-        await contract.makeBet(token, amount.toString(), {value: 0})
+      try {
+        let tx = null
+        if (token === '0x0000000000000000000000000000000000000001'){
+          tx = await contract.makeBet(token, amount.toString(), {value: amount.toString()})
+        } else{
+          tx = await contract.makeBet(token, amount.toString(), {value: 0})
+        }
+        if (tx) {
+          const receipt = await tx.wait()
+          return receipt.status
+        }
+        return false
+      } catch(err) {
+        return false
+      }
     },
     [contract],
   )
