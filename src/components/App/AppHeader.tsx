@@ -67,6 +67,7 @@ export const BidderHeader = ({ title, handleClick, loading, noConfig = false }) 
       <Flex>
         <Button
           onClick={handleClick}
+          disabled={loading}
         >
           {
             loading ?
