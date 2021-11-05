@@ -4,7 +4,7 @@ import { Text } from '@soy-libs/uikit2'
 import { AutoColumn } from 'components/Layout/Column'
 import { AutoRow } from 'components/Layout/Row'
 
-const BidderStatus = ({item}) => {
+const BidderStatus = ({item, prevSoyPrice}) => {
     const d = new Date(item.unlockDate)
     const dd = d.getDate() < 10 ? `0${d.getDate()}` : d.getDate()
     const mm = d.getMonth() + 1 < 10 ? `0${d.getMonth() + 1}` : d.getMonth() + 1
@@ -24,7 +24,7 @@ const BidderStatus = ({item}) => {
                         <Text fontSize="14px" mt="5px">Unlocked on:</Text>
                     </AutoColumn>
                     <AutoColumn justify="space-between">
-                        <Text fontSize="14px" textAlign="end">{item.unlockDate === 0 ? '-' : item.cloAmount.toFixed(6)} USD</Text>
+                        <Text fontSize="14px" textAlign="end">{item.unlockDate === 0 ? '-' : prevSoyPrice === 0 ? 0 : prevSoyPrice.toFixed(6)} USD</Text>
                         <Text fontSize="14px" mt="5px" textAlign="end">{date}</Text>
                     </AutoColumn>
                 </AutoRow>

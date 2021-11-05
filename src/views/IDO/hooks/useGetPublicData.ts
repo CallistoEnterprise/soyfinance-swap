@@ -10,6 +10,21 @@ const useGetPublicData = () => {
             const curRoundId = await contract.currentRoundId()
             const collected = await contract.getCollectedUSD()
             const auctionRound = await contract.auctionRound(curRoundId)
+            const intCurRoundId = parseInt(curRoundId.toString())
+            const calls = []
+            for (let i = 1 ; i < intCurRoundId ; i++) {
+                calls.push(contract.auctionRound(i))
+            }
+            const data = await Promise.all(calls).then(values => {
+                return values
+            })
+
+            const soyPrices = data.map((item) => {
+                const soyToSell = parseFloat(item.soyToSell.toString()) / 1000000000000000000
+                const usdCollected = parseFloat(item.usdCollected.toString()) / 1000000000000000000
+                const prevSoyUsdPrice = soyToSell === 0 ? 0 : usdCollected / soyToSell
+                return prevSoyUsdPrice
+            })
             const minPricePercentage = await contract.minPricePercentage()
             const maxPricePercentage = await contract.maxPricePercentage()
             const lastRoundSoyPrice = await contract.lastRoundSoyPrice()
@@ -18,6 +33,7 @@ const useGetPublicData = () => {
             const maxPrice = maxPricePercentage * parseFloat(lastRoundSoyPrice.toString()) / 100000000000000000000
             const soyToSell = parseFloat(auctionRound.soyToSell.toString()) / 1000000000000000000
             const usdCollected = parseFloat(auctionRound.usdCollected.toString()) / 1000000000000000000
+            
             const start = parseFloat(auctionRound.start.toString())
             const end = parseFloat(auctionRound.end.toString())
             const averagePrice = soyToSell === 0 ? 0 : usdCollected / soyToSell
@@ -30,7 +46,8 @@ const useGetPublicData = () => {
                 startTime: start,
                 endTime: end,
                 minPrice,
-                maxPrice
+                maxPrice,
+                prevSoyUsdPrice: soyPrices
             }
             setPublicData(returnData)
         }

@@ -84,6 +84,7 @@ export default function IDODaily() {
   const userData = useGetUserDetail()
   const {statistics, hasBidder} = userData
 
+  // const prevSoyUsdPrice = getSoyPriceArray()
   const [approveStatus, setApproveStatus] = useState('')
 
   // get custom setting values for user 
@@ -331,10 +332,10 @@ export default function IDODaily() {
           <Wrapper id="swap-page">
               <AutoColumn justify="space-between">
                 {
-                  statistics.map((item) => {
+                  statistics.map((item, index) => {
                     if (item.unlockDate === 0) return null
                     return (
-                      <BidderStatus item={item} key={item.id}/>
+                      <BidderStatus item={item} key={item.id} prevSoyPrice={publicData ? publicData.prevSoyUsdPrice[index] : 0}/>
                     )
                   })
                 }
