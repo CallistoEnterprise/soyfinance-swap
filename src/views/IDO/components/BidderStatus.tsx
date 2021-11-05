@@ -24,7 +24,7 @@ const BidderStatus = ({item}) => {
                         <Text fontSize="14px" mt="5px">Unlocked on:</Text>
                     </AutoColumn>
                     <AutoColumn justify="space-between">
-                        <Text fontSize="14px" textAlign="end">{item.unlockDate === 0 ? '-' : item.cloAmount.toFixed(2)} CLO</Text>
+                        <Text fontSize="14px" textAlign="end">{item.unlockDate === 0 ? '-' : item.cloAmount.toFixed(6)} USD</Text>
                         <Text fontSize="14px" mt="5px" textAlign="end">{date}</Text>
                     </AutoColumn>
                 </AutoRow>

@@ -1,5 +1,6 @@
 import { useWeb3React } from '@web3-react/core'
 import { useEffect, useState } from 'react'
+import { usePriceBnbBusd } from 'state/farms/hooks'
 import { getDailyIdoContractWithAccount } from 'utils/contractHelpers'
 
 const useGetUserDetail = () => {
@@ -10,6 +11,7 @@ const useGetUserDetail = () => {
         hasBidder: false
     })
     const { account, library } = useWeb3React()
+    const cloUsdPrice = usePriceBnbBusd()
 
     useEffect(() => {
         const getData = async () => {
@@ -25,7 +27,7 @@ const useGetUserDetail = () => {
                 }
                 return {
                     id: `Round ${index+1}`,
-                    cloAmount: parseFloat(soyPrice[index].toString()) / 1000000000000000000,
+                    cloAmount: parseFloat(cloUsdPrice.toString()) * (parseFloat(soyPrice[index].toString()) / 1000000000000000000),
                     soyAmount: parseFloat(item.toString()) / 1000000000000000000,
                     unlockDate: parseInt(lockedDate[index].toString()) * 1000,
                 }
@@ -39,7 +41,7 @@ const useGetUserDetail = () => {
         }
         if(account)
             getData()
-    }, [account, library])
+    }, [account, library, cloUsdPrice])
 
     return userData
 }

@@ -38,6 +38,7 @@ import useStakeBet from './hooks/useStakeBet'
 import useGetUserDetail from './hooks/useGetUserDetail'
 import useGetAllowance from './hooks/useGetAllowance'
 import useApprove from './hooks/useApprove'
+import useClaim from './hooks/useClaim'
 
 const CustomRow = styled.div`
   width: 100%;
@@ -74,9 +75,11 @@ export default function IDODaily() {
   const { t } = useTranslation()
   const { account } = useActiveWeb3React()
   const { onStakeBet } = useStakeBet()
+  const { onClaim } = useClaim()
   const { toastError, toastSuccess, toastWarning } = useToast()
   const cakePrice = usePriceCakeBusd()
   const [txPending, setTxPending] = useState(false)
+  const [claimPending, setClaimPending] = useState(false)
   const publicData = useGetPublicData()
   const userData = useGetUserDetail()
   const {statistics, hasBidder} = userData
@@ -175,6 +178,24 @@ export default function IDODaily() {
       }
     } catch(err) {
       setTxPending(false)
+      toastError("Error!", "Excution reverted!")
+      console.info(err)
+    }
+  }
+
+  const handleClaim = async () => {
+    try {
+      setClaimPending(true)
+      const res = await onClaim()
+      if (res) {
+        toastSuccess("Success!", "Your bid was successfully claimed.")
+        setClaimPending(false)
+      } else {
+        toastWarning("Warning!", "Rejected transaction.")
+        setClaimPending(false)
+      }
+    } catch(err) {
+      setClaimPending(false)
       toastError("Error!", "Excution reverted!")
       console.info(err)
     }
@@ -306,7 +327,7 @@ export default function IDODaily() {
         {account && hasBidder && <SpacerH />}
         {account && hasBidder && <SpacerV />}
         {account && hasBidder && <BidderWrapper>
-          <BidderHeader title={t('Bidder Statistics')} />
+          <BidderHeader title={t('Bidder Statistics')} handleClick={() => handleClaim()} loading={claimPending}/>
           <Wrapper id="swap-page">
               <AutoColumn justify="space-between">
                 {

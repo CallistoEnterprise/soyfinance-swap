@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, Flex, Heading, IconButton, ArrowBackIcon } from '@soy-libs/uikit2'
+import { Text, Flex, Heading, IconButton, ArrowBackIcon, Button } from '@soy-libs/uikit2'
 import { Link } from 'react-router-dom'
+import CircleLoader from 'components/Loader/CircleLoader'
 import Settings from './Settings'
 import Transactions from './Transactions'
 import QuestionHelper from '../QuestionHelper'
@@ -53,7 +54,7 @@ const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig 
   )
 }
 
-export const BidderHeader = ({ title, noConfig = false }) => {
+export const BidderHeader = ({ title, handleClick, loading, noConfig = false }) => {
   return (
     <AppHeaderContainer>
       <Flex alignItems="center" mr={noConfig ? 0 : '16px'}>
@@ -62,6 +63,17 @@ export const BidderHeader = ({ title, noConfig = false }) => {
             {title}
           </Heading>
         </Flex>
+      </Flex>
+      <Flex>
+        <Button
+          onClick={handleClick}
+        >
+          {
+            loading ?
+            <CircleLoader />:
+            'Claim'
+          }
+        </Button>
       </Flex>
     </AppHeaderContainer>
   )
