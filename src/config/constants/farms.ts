@@ -89,6 +89,34 @@ const farms: FarmConfig[] = [
     token: tokens.ccetc,
     quoteToken: tokens.soy,
   },
+  // {
+  //   pid: 7,
+  //   lpSymbol: 'BNB-SOY LP',
+  //   lpAddresses: {
+  //     20729: '',
+  //     820: '0x640048AB3cBbf580534fef2bba50d49f0399f12c',
+  //   },
+  //   localFarmAddresses: {
+  //     820: '0xF257e70b0B4A5E75BD351ceA7499b54f29636b0c',
+  //     20729: ''
+  //   },
+  //   token: tokens.ccbnb,
+  //   quoteToken: tokens.soy,
+  // },
+  // {
+  //   pid: 8,
+  //   lpSymbol: 'ETH-SOY LP',
+  //   lpAddresses: {
+  //     20729: '',
+  //     820: '0x27B7d8fc40B95e22d3C799A93AEefe0FD60cF99D',
+  //   },
+  //   localFarmAddresses: {
+  //     820: '',
+  //     20729: ''
+  //   },
+  //   token: tokens.cceth,
+  //   quoteToken: tokens.soy,
+  // },
 ]
 
 export default farms
