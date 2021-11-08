@@ -20,7 +20,7 @@ type PublicFarmData = {
   multiplier: string
   realmulti?: BigNumber
 }
-const manualMulti = [40, 30, 20, 10, 10, 20, 10]
+const manualMulti = [40, 47, 13, 25, 5, 10, 5, 10, 3]
 
 const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
   const { lpAddresses, token, quoteToken, localFarmAddresses } = farm

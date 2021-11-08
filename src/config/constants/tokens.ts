@@ -115,20 +115,20 @@ const tokens = {
   "ccbnb-erc223":{
     symbol: 'ccBNB',
     address: {
-      820: '0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF',
+      820: '0xcCDe29903E621Ca12DF33BB0aD9D1ADD7261Ace9',
       20729: '',
     },
     decimals: 18,
-    projectLink: 'https://explorer.callisto.network/address/0xCC78D0A86B0c0a3b32DEBd773Ec815130F9527CF/transactions',
+    projectLink: 'https://explorer.callisto.network/address/0xcCDe29903E621Ca12DF33BB0aD9D1ADD7261Ace9/transactions',
   },
-  "cceth-erc223":{
+  "cceth_erc223":{
     symbol: 'ccETH',
     address: {
-      820: '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910',
-      20729: '0xcC00860947035a26Ffe24EcB1301ffAd3a89f910',
+      820: '0xcC208c32Cc6919af5d8026dAB7A3eC7A57CD1796',
+      20729: '',
     },
     decimals: 18,
-    projectLink: 'https://explorer.callisto.network/address/0xcC00860947035a26Ffe24EcB1301ffAd3a89f910/transactions',
+    projectLink: 'https://explorer.callisto.network/address/0xcC208c32Cc6919af5d8026dAB7A3eC7A57CD1796/transactions',
   },
 }
 

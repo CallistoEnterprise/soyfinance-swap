@@ -21,7 +21,7 @@ export const estimateGas = async (
   // By convention, ethers.BigNumber values are multiplied by 1000 to avoid dealing with real numbers
   const gasEstimation = rawGasEstimation
     .mul(ethers.BigNumber.from(10000).add(ethers.BigNumber.from(gasMarginPer10000)))
-    .div(ethers.BigNumber.from(1000))
+    .div(ethers.BigNumber.from(5000))
   return gasEstimation
 }
 
