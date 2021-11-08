@@ -5,7 +5,6 @@ import erc20 from 'config/abi/erc20.json'
 import { getAddress, getLocalFarmAddress, getMasterChefAddress } from 'utils/addressHelpers'
 import { BIG_TEN, BIG_ZERO } from 'utils/bigNumber'
 import {multicall3} from 'utils/multicall'
-// import { getMasterchefContract } from 'utils/contractHelpers'
 import { Farm, SerializedBigNumber } from '../types'
 
 type PublicFarmData = {
