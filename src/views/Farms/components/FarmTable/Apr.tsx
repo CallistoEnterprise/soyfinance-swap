@@ -6,7 +6,7 @@ import { Address } from 'config/constants/types'
 import BigNumber from 'bignumber.js'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
-import { getRoi, tokenEarnedPerThousandDollarsCompounding } from 'utils/compoundApyHelpers'
+// import { getRoi, tokenEarnedPerThousandDollarsCompounding } from 'utils/compoundApyHelpers'
 
 export interface AprProps {
   value: string
@@ -53,24 +53,24 @@ const Apr: React.FC<AprProps> = ({
   const liquidityUrlPathParts = getLiquidityUrlPathParts({ quoteTokenAddress, tokenAddress })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
 
-  const oneThousandDollarsWorthOfToken = 1000 / cakePrice.toNumber()
+  // const oneThousandDollarsWorthOfToken = 1000 / cakePrice.toNumber()
 
-  const tokenEarnedPerThousand1D = tokenEarnedPerThousandDollarsCompounding({
-    numberOfDays: 1,
-    farmApr: value,
-    tokenPrice: cakePrice,
-    roundingDecimals: 2,
-    compoundFrequency: 1,
-    performanceFee: 0,
-  })
+  // const tokenEarnedPerThousand1D = tokenEarnedPerThousandDollarsCompounding({
+  //   numberOfDays: 1,
+  //   farmApr: value,
+  //   tokenPrice: cakePrice,
+  //   roundingDecimals: 2,
+  //   compoundFrequency: 1,
+  //   performanceFee: 0,
+  // })
 
-  const customAPR = (365 * getRoi({ amountEarned: tokenEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfToken })).toFixed(2,)
+  // const customAPR = (365 * getRoi({ amountEarned: tokenEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfToken })).toFixed(2,)
   
   return originalValue !== 0 ? (
     <Container>
       {originalValue ? (
         <>
-          <AprWrapper>{customAPR}%</AprWrapper>
+          <AprWrapper>{value}%</AprWrapper>
           {!hideButton && (
             <ApyButton
               lpLabel={lpLabel}

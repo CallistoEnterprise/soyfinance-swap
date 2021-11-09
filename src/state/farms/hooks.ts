@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
 import { useWeb3React } from '@web3-react/core'
@@ -30,15 +30,15 @@ export const usePollFarmsData = (includeArchive = false) => {
 
 /**
  * Fetches the "core" farm data used globally
- * 1 = SOY-CLO LP
- * 3 = BUSDT-CLO LP
+ * 2 = SOY-CLO LP
+ * 4 = BUSDT-CLO LP
  */
 export const usePollCoreFarmData = () => {
   const dispatch = useAppDispatch()
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
-    dispatch(fetchFarmsPublicDataAsync([1, 3]))
+    dispatch(fetchFarmsPublicDataAsync([2, 4]))
   }, [dispatch, fastRefresh])
 }
 
@@ -95,14 +95,16 @@ export const useLpTokenPrice = (symbol: string) => {
 // /!\ Deprecated , use the USDC hook in /hooks
 
 export const usePriceBnbBusd = (): BigNumber => {
-  const cloBusdtFarm = useFarmFromPid(3)
+  const cloBusdtFarm = useFarmFromPid(4)
   return new BigNumber(cloBusdtFarm.quoteToken.usdcPrice)
 }
 
 export const usePriceCakeBusd = (): BigNumber => {
-  const soyCLOFarm = useFarmFromPid(1)
-  // const priceData = useGetPriceData()
-  // const cloPriceUsd = priceData? Number(priceData.callisto.usd) : undefined
-  return new BigNumber(soyCLOFarm.token.usdcPrice)
-  // return new BigNumber(cloPriceUsd)
+  const soyCloFarm = useFarmFromPid(2)
+  const soyPriceBusdtAsString = soyCloFarm.token.usdcPrice
+  const soyPriceBusdt = useMemo(() => {
+    return new BigNumber(soyPriceBusdtAsString)
+  }, [soyPriceBusdtAsString])
+
+  return soyPriceBusdt
 }

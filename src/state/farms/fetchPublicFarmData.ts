@@ -19,12 +19,11 @@ type PublicFarmData = {
   multiplier: string
   realmulti?: BigNumber
 }
-const manualMulti = [40, 47, 13, 25, 5, 10, 5, 10, 3]
+// const manualMulti = [40, 47, 13, 25, 5, 10, 5, 10, 3]
 
 const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
   const { lpAddresses, token, quoteToken, localFarmAddresses } = farm
   const lpAddress = getAddress(lpAddresses)
-  // const globalFarmContract = getMasterchefContract()
 
   const calls = [
     // Balance of token in the LP contract
@@ -92,13 +91,20 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
       name: 'totalMultipliers'
     }
   ])
+  const [mulitiplierOfFarm]= await multicall3(masterchefABI, [
+    {
+      address: getMasterChefAddress(),
+      name: 'localFarms',
+      params: [farm.pid]
+    }
+  ])
 
   const bigAlloc = new BigNumber(allocPoint[0].toString())
-  const poolWeight = totalAllocPoint[0] ? bigAlloc.div(new BigNumber(totalAllocPoint[0].toString())).div(new BigNumber(100)) : BIG_ZERO
-  const multi = new BigNumber(manualMulti[farm.pid])
+  const poolWeight = totalAllocPoint[0] ? bigAlloc.div(new BigNumber(1000)) : BIG_ZERO
+  // const multi = new BigNumber(manualMulti[farm.pid])
   // const real = allocPoint.div(100).toString()
 
-  // console.log("realMulti ::", allocPoint.toString())
+  console.log("realMulti ::", bigAlloc.toString(), totalAllocPoint[0].toString())
 
   return {
     tokenAmountMc: tokenAmountMc.toJSON(),
@@ -109,7 +115,7 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
     lpTotalInQuoteToken: lpTotalInQuoteToken.toJSON(),
     tokenPriceVsQuote: quoteTokenAmountTotal.div(tokenAmountTotal).toJSON(),
     poolWeight: poolWeight.toJSON(),
-    multiplier: `${multi.toString()}X`,
+    multiplier: `${mulitiplierOfFarm[1].toString()}X`,
   }
 }
 

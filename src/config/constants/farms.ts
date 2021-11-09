@@ -3,10 +3,11 @@ import { FarmConfig } from './types'
 
 const farms: FarmConfig[] = [
   /**
-   * These 3 farms (PID 0, 251, 252) should always be at the top of the file.
+   * These 3 farms (PID 0, 4, 5) should always be at the top of the file.
    */
-  {
-    pid: 1,
+  
+   {
+    pid: 2,
     lpSymbol: 'SOY-CLO LP',
     lpAddresses: {
       20729: '',
@@ -19,22 +20,8 @@ const farms: FarmConfig[] = [
     token: tokens.soy,
     quoteToken: tokens.wclo,
   },
-  {
-    pid: 2,
-    lpSymbol: 'CLOE-CLO LP',
-    lpAddresses: {
-      20729: '',
-      820: '0x6cC3F66d249D6bF299b226DEeB3E1c9Ed4dF60Da',
-    },
-    localFarmAddresses: {
-      820: '0xfe61A8dc1458D013f31b7B5d0DDf82864Cf89035',
-      20729: ''
-    },
-    token: tokens.cloe,
-    quoteToken: tokens.wclo,
-  },
-  {
-    pid: 3,
+   {
+    pid: 4,
     lpSymbol: 'BUSDT-CLO LP',
     lpAddresses: {
       20729: '',
@@ -48,7 +35,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wclo,
   },
   {
-    pid: 4,
+    pid: 5,
     lpSymbol: 'SOY-BUSDT LP',
     lpAddresses: {
       20729: '',
@@ -62,21 +49,21 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.busdt,
   },
   {
-    pid: 5,
-    lpSymbol: 'ETC-CLO LP',
+    pid: 3,
+    lpSymbol: 'CLOE-CLO LP',
     lpAddresses: {
       20729: '',
-      820: '0x3493391e234834c93C0ED675A4872cF48D63AD1C',
+      820: '0x6cC3F66d249D6bF299b226DEeB3E1c9Ed4dF60Da',
     },
     localFarmAddresses: {
-      820: '0x009B08c79aF977557513a71132fC1CcC582Be310',
+      820: '0xfe61A8dc1458D013f31b7B5d0DDf82864Cf89035',
       20729: ''
     },
-    token: tokens.ccetc,
+    token: tokens.cloe,
     quoteToken: tokens.wclo,
   },
   {
-    pid: 6,
+    pid: 8,
     lpSymbol: 'ETC-SOY LP',
     lpAddresses: {
       20729: '',
@@ -90,7 +77,21 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.soy,
   },
   {
-    pid: 7,
+    pid: 9,
+    lpSymbol: 'ETC-CLO LP',
+    lpAddresses: {
+      20729: '',
+      820: '0x3493391e234834c93C0ED675A4872cF48D63AD1C',
+    },
+    localFarmAddresses: {
+      820: '0x009B08c79aF977557513a71132fC1CcC582Be310',
+      20729: ''
+    },
+    token: tokens.ccetc,
+    quoteToken: tokens.wclo,
+  },
+  {
+    pid: 10,
     lpSymbol: 'ETH-SOY LP',
     lpAddresses: {
       20729: '',
@@ -104,7 +105,7 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.soy,
   },
   {
-    pid: 8,
+    pid: 11,
     lpSymbol: 'ETH-CLO LP',
     lpAddresses: {
       20729: '',

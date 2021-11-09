@@ -9,7 +9,7 @@ import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import { getAddress } from 'utils/addressHelpers'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
-import { getRoi, tokenEarnedPerThousandDollarsCompounding } from 'utils/compoundApyHelpers'
+// import { getRoi, tokenEarnedPerThousandDollarsCompounding } from 'utils/compoundApyHelpers'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
@@ -100,18 +100,18 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
   const lpAddress = getAddress(farm.lpAddresses)
   const isPromotedFarm = farm.token.symbol === 'SOY'
 
-  const oneThousandDollarsWorthOfToken = 1000 / cakePrice.toNumber()
+  // const oneThousandDollarsWorthOfToken = 1000 / cakePrice.toNumber()
 
-  const tokenEarnedPerThousand1D = tokenEarnedPerThousandDollarsCompounding({
-    numberOfDays: 1,
-    farmApr: farm.apr,
-    tokenPrice: cakePrice,
-    roundingDecimals: 2,
-    compoundFrequency: 1,
-    performanceFee: 0,
-  })
+  // const tokenEarnedPerThousand1D = tokenEarnedPerThousandDollarsCompounding({
+  //   numberOfDays: 1,
+  //   farmApr: farm.apr,
+  //   tokenPrice: cakePrice,
+  //   roundingDecimals: 2,
+  //   compoundFrequency: 1,
+  //   performanceFee: 0,
+  // })
 
-  const customAPR = (365 * getRoi({ amountEarned: tokenEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfToken })).toFixed(2,)
+  // const customAPR = (365 * getRoi({ amountEarned: tokenEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfToken })).toFixed(2,)
   
   return (
     <FCard isPromotedFarm={isPromotedFarm}>
@@ -136,7 +136,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
                   apr={farm.apr}
                   displayApr={displayApr}
                 />
-                {customAPR}%
+                {farm.apr.toFixed(2)}%
               </>
             ) : (
               <Skeleton height={24} width={80} />
