@@ -40,14 +40,12 @@ const BodyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  // padding: 32px 16px;
   align-items: center;
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 1;
   justify-content: center;
-  // background-image: url('/images/group-soy.svg');
   background-repeat: no-repeat;
   background-position: bottom 24px center;
   background-size: 90%;
