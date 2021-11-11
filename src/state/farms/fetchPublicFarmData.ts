@@ -104,8 +104,6 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
   // const multi = new BigNumber(manualMulti[farm.pid])
   // const real = allocPoint.div(100).toString()
 
-  console.log("realMulti ::", bigAlloc.toString(), totalAllocPoint[0].toString())
-
   return {
     tokenAmountMc: tokenAmountMc.toJSON(),
     quoteTokenAmountMc: quoteTokenAmountMc.toJSON(),
