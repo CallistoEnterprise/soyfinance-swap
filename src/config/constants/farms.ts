@@ -92,7 +92,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 10,
-    lpSymbol: 'ETH-SOY LP',
+    lpSymbol: 'SOY-ETH LP',
     lpAddresses: {
       20729: '',
       820: '0xE0A4D8356c0Ded2e0E7A4Af6DB2a164f7d1aD243',
@@ -106,7 +106,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 11,
-    lpSymbol: 'ETH-CLO LP',
+    lpSymbol: 'CLO-ETH LP',
     lpAddresses: {
       20729: '',
       820: '0x162c8b62cDa2Ec98DafE8ccb0624bB2bc08d6a7b',
@@ -116,6 +116,34 @@ const farms: FarmConfig[] = [
       20729: ''
     },
     token: tokens.cceth_erc223,
+    quoteToken: tokens.wclo,
+  },
+  {
+    pid: 12,
+    lpSymbol: 'SOY-BNB LP',
+    lpAddresses: {
+      20729: '',
+      820: '0x3006b056eA9423804084D6bA9080d6356EC78c10',
+    },
+    localFarmAddresses: {
+      820: '0xF411Ff92CAcd87Ee7EcB4fD83A5e7AF5D2946c9e',
+      20729: ''
+    },
+    token: tokens['ccbnb-erc223'],
+    quoteToken: tokens.soy,
+  },
+  {
+    pid: 13,
+    lpSymbol: 'CLO-BNB LP',
+    lpAddresses: {
+      20729: '',
+      820: '0x7543bf769903fEc667D73D58C602dEfFEcb2c9C2',
+    },
+    localFarmAddresses: {
+      820: '0xC58556bdA9A0083E3acF8fdDE838fd8941A423bF',
+      20729: ''
+    },
+    token: tokens['ccbnb-erc223'],
     quoteToken: tokens.wclo,
   },
 ]
