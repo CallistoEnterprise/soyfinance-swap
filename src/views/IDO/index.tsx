@@ -219,6 +219,14 @@ export default function IDODaily() {
     } 
   }, [maxAmountInput, onUserInput])
 
+  let claimAmount = 0;
+  const currentTime = Date.now();
+  statistics?.forEach((_) => {
+    if (_.unlockDate <= currentTime) {
+      claimAmount += _.soyAmount;
+    }
+  })
+
   return (
     <IDOPage>
       <CustomRow>
@@ -328,7 +336,7 @@ export default function IDODaily() {
         {account && hasBidder && <SpacerH />}
         {account && hasBidder && <SpacerV />}
         {account && hasBidder && <BidderWrapper>
-          <BidderHeader title={t('Bidder Statistics')} handleClick={() => handleClaim()} loading={claimPending}/>
+          <BidderHeader title={t('Bidder Statistics')} handleClick={() => handleClaim()} loading={claimPending} claimAmount={claimAmount}/>
           <Wrapper id="swap-page">
               <AutoColumn justify="space-between">
                 {

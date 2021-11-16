@@ -3,7 +3,7 @@ import { FarmConfig } from './types'
 
 const farms: FarmConfig[] = [
   /**
-   * These 3 farms (PID 0, 4, 5) should always be at the top of the file.
+   * These 3 farms (PID 2, 4) should always be at the top of the file.
    */
   
    {
@@ -20,7 +20,7 @@ const farms: FarmConfig[] = [
     token: tokens.soy,
     quoteToken: tokens.wclo,
   },
-   {
+  {
     pid: 4,
     lpSymbol: 'BUSDT-CLO LP',
     lpAddresses: {

@@ -54,7 +54,8 @@ const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig 
   )
 }
 
-export const BidderHeader = ({ title, handleClick, loading, noConfig = false }) => {
+export const BidderHeader = ({ title, handleClick, loading, claimAmount = 0, noConfig = false }) => {
+
   return (
     <AppHeaderContainer>
       <Flex alignItems="center" mr={noConfig ? 0 : '16px'}>
@@ -62,12 +63,15 @@ export const BidderHeader = ({ title, handleClick, loading, noConfig = false }) 
           <Heading as="h2" mb="8px">
             {title}
           </Heading>
+          <Text color="textSubtle" fontSize="14px">
+            {claimAmount === 0 ? 'There is no any amount to be claim.' : `${claimAmount.toFixed(2)} SOY may be claimed.`}
+          </Text>
         </Flex>
       </Flex>
       <Flex>
         <Button
           onClick={handleClick}
-          disabled={loading}
+          disabled={loading || claimAmount <= 0}
         >
           {
             loading ?
