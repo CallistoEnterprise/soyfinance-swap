@@ -1,6 +1,5 @@
 import { useWeb3React } from '@web3-react/core'
 import { useEffect, useState } from 'react'
-// import { usePriceBnbBusd } from 'state/farms/hooks'
 import { getDailyIdoContractWithAccount } from 'utils/contractHelpers'
 
 const useGetUserDetail = () => {
@@ -11,7 +10,6 @@ const useGetUserDetail = () => {
         hasBidder: false
     })
     const { account, library } = useWeb3React()
-    // const cloUsdPrice = usePriceBnbBusd()
 
     useEffect(() => {
         const getData = async () => {

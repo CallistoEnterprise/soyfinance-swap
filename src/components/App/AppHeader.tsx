@@ -64,7 +64,7 @@ export const BidderHeader = ({ title, handleClick, loading, claimAmount = 0, noC
             {title}
           </Heading>
           <Text color="textSubtle" fontSize="14px">
-            {claimAmount === 0 ? 'There is no any amount to be claim.' : `${claimAmount.toFixed(2)} SOY may be claimed.`}
+            {claimAmount === 0 ? 'There is no any amount to be claim.' : `${claimAmount.toFixed(6)} SOY may be claimed.`}
           </Text>
         </Flex>
       </Flex>

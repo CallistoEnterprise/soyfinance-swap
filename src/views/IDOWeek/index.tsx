@@ -87,7 +87,7 @@ export default function IDODaily() {
 
   const publicData = useGetPublicData()
   const userData = useGetUserDetail()
-  const {statistics, hasBidder} = userData
+  const {statistics, hasBidder, soyToClaim} = userData
   const [approveStatus, setApproveStatus] = useState('')
 
   // get custom setting values for user 
@@ -225,14 +225,6 @@ export default function IDODaily() {
     } 
   }, [maxAmountInput, onUserInput])
 
-  let claimAmount = 0;
-  const currentTime = Date.now();
-  statistics?.forEach((_) => {
-    if (_.unlockDate <= currentTime) {
-      claimAmount += _.soyAmount;
-    }
-  })
-
   return (
     <IDOPage>
       <CustomRow>
@@ -342,7 +334,7 @@ export default function IDODaily() {
         {account && hasBidder && <SpacerH />}
         {account && hasBidder && <SpacerV />}
         {account && hasBidder && <BidderWrapper>
-          <BidderHeader title={t('Bidder Statistics')} handleClick={() => handleClaim()} loading={claimPending} claimAmount={claimAmount}/>
+          <BidderHeader title={t('Bidder Statistics')} handleClick={() => handleClaim()} loading={claimPending} claimAmount={soyToClaim}/>
           <Wrapper id="swap-page">
               <AutoColumn justify="space-between">
                 {

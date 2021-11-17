@@ -5,6 +5,7 @@ import { AutoColumn } from 'components/Layout/Column'
 import { AutoRow } from 'components/Layout/Row'
 
 const BidderStatus = ({item, prevSoyPrice}) => {
+    // const currentTime = Date.now();
     const d = new Date(item.unlockDate)
     const dd = d.getDate() < 10 ? `0${d.getDate()}` : d.getDate()
     const mm = d.getMonth() + 1 < 10 ? `0${d.getMonth() + 1}` : d.getMonth() + 1
