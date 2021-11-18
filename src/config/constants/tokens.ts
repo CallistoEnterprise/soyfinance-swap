@@ -112,7 +112,7 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xcC00860947035a26Ffe24EcB1301ffAd3a89f910/transactions',
   },
-  "ccbnb-erc223":{
+  "ccbnb_erc223":{
     symbol: 'ccBNB',
     address: {
       820: '0xcCDe29903E621Ca12DF33BB0aD9D1ADD7261Ace9',

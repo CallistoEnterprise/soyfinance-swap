@@ -70,7 +70,7 @@ const Farms = lazy(() => import('./views/Farms'))
 const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
 const Liquidity = lazy(() => import('./views/Pool'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
-const Info = lazy(() => import('./views/Info'))
+// const Info = lazy(() => import('./views/Info'))
 
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
 const IDOWeek = lazy(() => import('./views/IDOWeek'))

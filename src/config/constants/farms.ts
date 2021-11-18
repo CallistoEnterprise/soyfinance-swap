@@ -129,7 +129,7 @@ const farms: FarmConfig[] = [
       820: '0xF411Ff92CAcd87Ee7EcB4fD83A5e7AF5D2946c9e',
       20729: ''
     },
-    token: tokens['ccbnb-erc223'],
+    token: tokens.ccbnb_erc223,
     quoteToken: tokens.soy,
   },
   {
@@ -143,7 +143,7 @@ const farms: FarmConfig[] = [
       820: '0xC58556bdA9A0083E3acF8fdDE838fd8941A423bF',
       20729: ''
     },
-    token: tokens['ccbnb-erc223'],
+    token: tokens.ccbnb_erc223,
     quoteToken: tokens.wclo,
   },
 ]

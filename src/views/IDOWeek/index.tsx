@@ -148,7 +148,11 @@ export default function IDODaily() {
   const maxAmountInput: CurrencyAmount | undefined = maxAmountSpend(currencyBalances[Field.INPUT])
   const atMaxAmountInput = Boolean(maxAmountInput && parsedAmounts[Field.INPUT]?.equalTo(maxAmountInput))
 
-  const otherToken = tokens[currencies[Field.INPUT]?.symbol.toLocaleLowerCase()]?? {}
+
+  const tempSymbol = currencies[Field.INPUT]?.name.includes('ERC223') ?
+                     `${currencies[Field.INPUT]?.symbol.toLocaleLowerCase()}_erc223`:
+                     currencies[Field.INPUT]?.symbol.toLocaleLowerCase()
+  const otherToken = tokens[tempSymbol]?? {}
   const allowance = useGetAllowance(otherToken === undefined ? '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a' : otherToken.address === undefined ? '0xF5AD6F6EDeC824C7fD54A66d241a227F6503aD3a' : getAddress(otherToken.address), account?? undefined)
 
   const { onApprove } = useApprove()
@@ -161,7 +165,11 @@ export default function IDODaily() {
   const balance = selectedCurrencyBalance?.toSignificant(6) ?? '0'
 
   const handleSubmit = async () => {
-    if (parseFloat(formattedAmounts[Field.INPUT]) >= parseFloat(balance)) {
+    if (
+      (parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance + 0.005) && currencies[Field.INPUT].symbol === 'CLO') ||
+      (parseFloat(formattedAmounts[Field.INPUT]) >= parseFloat(balance) && currencies[Field.INPUT].symbol !== 'CLO')
+    ) {
+      toastWarning("Warning!", "Insufficient balance.")
       return;
     }
     const inputAmount = getDecimalAmount(new BigNumber(formattedAmounts[Field.INPUT]))

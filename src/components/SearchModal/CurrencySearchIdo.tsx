@@ -48,7 +48,6 @@ function CurrencySearchIdo({
   const [invertSearchOrder] = useState<boolean>(false)
 
   const allTokens = useAllTokens()
-console.log(allTokens)
   // if they input an address, use it
   const searchToken = useToken(debouncedQuery)
   const searchTokenIsAdded = useIsUserAddedToken(searchToken)
@@ -123,6 +122,7 @@ console.log(allTokens)
                                                                       (item.symbol === 'ccETH' && item.name.includes('ERC223')) ||
                                                                       (item.symbol === 'ccBNB' && item.name.includes('ERC223'))
                                                                     )
+  // console.log(filteredSortedTokens1)
 
   return (
     <>
