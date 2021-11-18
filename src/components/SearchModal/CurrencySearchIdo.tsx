@@ -48,7 +48,7 @@ function CurrencySearchIdo({
   const [invertSearchOrder] = useState<boolean>(false)
 
   const allTokens = useAllTokens()
-
+console.log(allTokens)
   // if they input an address, use it
   const searchToken = useToken(debouncedQuery)
   const searchTokenIsAdded = useIsUserAddedToken(searchToken)
@@ -118,7 +118,11 @@ function CurrencySearchIdo({
   // if no results on main list, show option to expand into inactive
   const inactiveTokens = useFoundOnInactiveList(debouncedQuery)
   const filteredInactiveTokens: Token[] = useSortedTokensByQuery(inactiveTokens, debouncedQuery)
-  const filteredSortedTokens1 = filteredSortedTokens.filter((item) => item.symbol === 'CLOE')
+  const filteredSortedTokens1 = filteredSortedTokens.filter((item) => item.symbol === 'CLOE' ||
+                                                                      item.symbol === 'ccETC' ||
+                                                                      (item.symbol === 'ccETH' && item.name.includes('ERC223')) ||
+                                                                      (item.symbol === 'ccBNB' && item.name.includes('ERC223'))
+                                                                    )
 
   return (
     <>
