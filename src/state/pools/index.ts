@@ -43,7 +43,7 @@ const initialState: PoolsState = {
 }
 
 // Thunks
-export const fetchPoolsPublicDataAsync = (currentBlock: number, rewardBlockCount: BigNumber, rwBLCntOfSousChef: BigNumber, rwBLCntOfMaticStaking: BigNumber) => async (dispatch, getState) => {
+export const fetchPoolsPublicDataAsync = (currentBlock: number, rewardBlockCount: BigNumber) => async (dispatch, getState) => {
   const blockLimits = await fetchPoolsBlockLimits()
   const totalStakings = await fetchPoolsTotalStaking()
   const prices = getTokenPricesFromFarm(getState().farms.data)

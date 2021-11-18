@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { Currency, Token } from '@soy-libs/sdk2'
+import { Currency } from '@soy-libs/sdk2'
 import {
   ModalContainer,
   ModalHeader,
@@ -53,7 +53,7 @@ export default function CurrencySearchModalForIdo({
   const prevView = usePrevious(modalView)
 
   // used for import token flow
-  const [importToken, setImportToken] = useState<Token | undefined>()
+  // const [importToken, setImportToken] = useState<Token | undefined>()
 
   const { t } = useTranslation()
 
@@ -85,7 +85,7 @@ export default function CurrencySearchModalForIdo({
             otherSelectedCurrency={otherSelectedCurrency}
             showCommonBases={showCommonBases}
             showImportView={() => setModalView(CurrencyModalView.importToken)}
-            setImportToken={setImportToken}
+            // setImportToken={()}
           />)}
       </StyledModalBody>
     </StyledModalContainer>

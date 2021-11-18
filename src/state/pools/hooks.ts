@@ -23,7 +23,7 @@ export const useFetchPublicPoolsData = (rewardBlockCount: BigNumber, rwBLCntOfSo
   useEffect(() => {
     const fetchPoolsPublicData = async () => {
       const blockNumber = await simpleRpcProvider.getBlockNumber()
-      dispatch(fetchPoolsPublicDataAsync(blockNumber, rewardBlockCount, rwBLCntOfSousChef, rwBLCntOfMaticStaking))
+      dispatch(fetchPoolsPublicDataAsync(blockNumber, rewardBlockCount)) // , rwBLCntOfSousChef, rwBLCntOfMaticStaking
     }
 
     fetchPoolsPublicData()

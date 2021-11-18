@@ -283,7 +283,6 @@ export default function IDODaily() {
                     if (account) {
                       setTxPending(true)
                       try{
-                        console.log(otherToken.address)
                         const res = await onApprove(getAddress(otherToken.address))
                         if (res) {
                           toastSuccess("Success!", "Approved successfully.")

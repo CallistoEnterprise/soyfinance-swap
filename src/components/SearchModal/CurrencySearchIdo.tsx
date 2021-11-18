@@ -23,7 +23,7 @@ interface CurrencySearchProps {
   otherSelectedCurrency?: Currency | null
   showCommonBases?: boolean
   showImportView: () => void
-  setImportToken: (token: Token) => void
+  setImportToken?: (token: Token) => void
 }
 
 const swapSound = new Audio('swap.mp3')

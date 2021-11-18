@@ -22,7 +22,7 @@ const StyledLinkExternal = styled(LinkExternal)`
 
 const DetailsSection: React.FC<ExpandableSectionProps> = ({
   CallistoExpAddress,
-  infoAddress,
+  // infoAddress,
   removed,
   totalValueFormatted,
   lpLabel,
