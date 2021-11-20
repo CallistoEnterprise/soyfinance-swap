@@ -9,6 +9,8 @@ const useGetPublicData = () => {
             const contract = getWeeklyIdoContract()
             const curRoundId = await contract.currentRoundId()
             const collected = await contract.getCollectedUSD()
+            const maxIteration = await contract.maxExtendRounds()
+            const defaultDuration = await contract.roundDuration()
             const auctionRound = await contract.auctionRound(curRoundId)
             const intCurRoundId = parseInt(curRoundId.toString())
             const calls = []
@@ -36,6 +38,10 @@ const useGetPublicData = () => {
             const start = parseFloat(auctionRound.start.toString())
             const end = parseFloat(auctionRound.end.toString())
             const averagePrice = soyToSell === 0 ? 0 : usdCollected / soyToSell
+            
+            const curDuration = parseFloat(defaultDuration.toString()) === 0 ? 0 : (end - start) / parseFloat(defaultDuration.toString());
+            const iteration = `${curDuration.toFixed(0)}/${maxIteration}`
+
             const returnData = {
                 currentRound: curRoundId.toNumber(),
                 soyToSell,
@@ -46,7 +52,8 @@ const useGetPublicData = () => {
                 endTime: end,
                 minPrice,
                 maxPrice,
-                prevSoyUsdPrice: soyPrices
+                prevSoyUsdPrice: soyPrices,
+                iteration
             }
             setPublicData(returnData)
         }

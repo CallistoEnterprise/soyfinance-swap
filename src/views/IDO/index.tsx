@@ -237,6 +237,7 @@ export default function IDODaily() {
                 item={!publicData ? 0: publicData.endTime}
                 curRound = {publicData ? publicData.currentRound : 0}
                 soyToSell = {publicData ? publicData.soyToSell : 0}
+                iteration = {publicData ? publicData.iteration : 0}
               />
               <AutoColumn justify="space-between">
                 <StatusSection currentAmount={publicData ? publicData.currentCollectedUSD : 0}/>
