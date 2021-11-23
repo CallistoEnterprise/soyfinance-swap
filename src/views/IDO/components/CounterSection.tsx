@@ -29,7 +29,7 @@ function formatString(val: number) {
 const Counter = ({item, curRound, soyToSell, iteration}) => {
     const unlockTime = item === undefined? 0 : item
     const [diff, setDiff] = useState(0)
-
+    
     useEffect(() => {
         let timer
         const timeCount = () => {

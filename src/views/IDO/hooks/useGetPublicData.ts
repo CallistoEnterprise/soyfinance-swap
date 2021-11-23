@@ -39,6 +39,7 @@ const useGetPublicData = () => {
             const start = parseFloat(auctionRound.start.toString())
             const end = parseFloat(auctionRound.end.toString())
             const averagePrice = soyToSell === 0 ? 0 : usdCollected / soyToSell
+            
             const curDuration = parseFloat(defaultDuration.toString()) === 0 ? 0 : (end - start) / parseFloat(defaultDuration.toString());
             const iteration = `${curDuration.toFixed(0)}/${maxIteration}`
 

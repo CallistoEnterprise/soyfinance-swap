@@ -82,7 +82,7 @@ export default function IDODaily() {
   const [claimPending, setClaimPending] = useState(false)
   const publicData = useGetPublicData()
   const userData = useGetUserDetail()
-  const {statistics, hasBidder, soyToClaim} = userData
+  const {statistics, hasBidder, soyToClaim, soyLocked} = userData
 
   // const prevSoyUsdPrice = getSoyPriceArray()
   const [approveStatus, setApproveStatus] = useState('')
@@ -343,7 +343,7 @@ export default function IDODaily() {
                   statistics.map((item, index) => {
                     if (item.unlockDate === 0) return null
                     return (
-                      <BidderStatus item={item} key={item.id} prevSoyPrice={publicData ? publicData.prevSoyUsdPrice[index] : 0}/>
+                      <BidderStatus item={item} key={item.id} prevSoyPrice={publicData ? publicData.prevSoyUsdPrice[index] : 0} soyLocked={soyLocked}/>
                     )
                   })
                 }
