@@ -4,12 +4,12 @@ import { Text } from '@soy-libs/uikit2'
 import { AutoColumn } from 'components/Layout/Column'
 import { AutoRow } from 'components/Layout/Row'
 
-const BidderStatus = ({item, prevSoyPrice, soyLocked}) => {
+const BidderStatus = ({item, prevSoyPrice}) => {
     const d = new Date(item.unlockDate)
     const dd = d.getDate() < 10 ? `0${d.getDate()}` : d.getDate()
     const mm = d.getMonth() + 1 < 10 ? `0${d.getMonth() + 1}` : d.getMonth() + 1
     const date = item.unlockDate === 0 ? '--/--/--' : `${dd}/${mm}/${d.getFullYear()}`
-    const bonus = (0.25 * soyLocked).toFixed(2)
+    const bonus = (0.25 * item.soyAmount).toFixed(2)
 
     return (
         <Container>
