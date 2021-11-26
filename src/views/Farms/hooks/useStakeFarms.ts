@@ -1,10 +1,10 @@
 import { useCallback } from 'react'
+import { useWeb3React } from '@web3-react/core'
 import { stakeFarm } from 'utils/calls'
 // import { useMasterchef } from 'hooks/useContract'
 import farms from 'config/constants/farms'
 import { getLpContractWithAccount } from 'utils/contractHelpers'
 import { getAddress } from 'utils/addressHelpers'
-import { useWeb3React } from '@web3-react/core'
 
 const useStakeFarms = (pid: number) => {
   const { account, library } = useWeb3React()
