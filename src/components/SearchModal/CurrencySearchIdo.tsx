@@ -119,6 +119,7 @@ function CurrencySearchIdo({
   const filteredInactiveTokens: Token[] = useSortedTokensByQuery(inactiveTokens, debouncedQuery)
   const filteredSortedTokens1 = filteredSortedTokens.filter((item) => item.symbol === 'CLOE' ||
                                                                       item.symbol === 'ccETC' ||
+                                                                      item.symbol === 'BUSDT' ||
                                                                       (item.symbol === 'ccETH' && item.name.includes('ERC223')) ||
                                                                       (item.symbol === 'ccBNB' && item.name.includes('ERC223'))
                                                                     )
