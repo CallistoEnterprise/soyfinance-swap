@@ -147,18 +147,18 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wclo,
   },
   {
-    pid: 14,
+    pid: 15,
     lpSymbol: 'SOY-CAKE LP',
     lpAddresses: {
       20729: '',
       820: '0x4309b1FfF68E4C46abc9c92FB813cAFD1fC05A70',
     },
     localFarmAddresses: {
-      820: '0xAF23234a530AbdEBbb9F8CdBdd0fbFD200D65ba7',
+      820: '0xa99E8864A727717F5C4c82031F99D360eb577738',
       20729: ''
     },
-    token: tokens.soy,
-    quoteToken: tokens.cake,
+    token: tokens.cake,
+    quoteToken: tokens.soy,
   },
 ]
 
