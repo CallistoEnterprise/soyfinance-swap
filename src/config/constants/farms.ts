@@ -146,6 +146,20 @@ const farms: FarmConfig[] = [
     token: tokens.ccbnb_erc223,
     quoteToken: tokens.wclo,
   },
+  {
+    pid: 14,
+    lpSymbol: 'SOY-CAKE LP',
+    lpAddresses: {
+      20729: '',
+      820: '0x4309b1FfF68E4C46abc9c92FB813cAFD1fC05A70',
+    },
+    localFarmAddresses: {
+      820: '0xAF23234a530AbdEBbb9F8CdBdd0fbFD200D65ba7',
+      20729: ''
+    },
+    token: tokens.soy,
+    quoteToken: tokens.cake,
+  },
 ]
 
 export default farms

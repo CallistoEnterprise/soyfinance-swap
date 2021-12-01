@@ -130,6 +130,15 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xcC208c32Cc6919af5d8026dAB7A3eC7A57CD1796/transactions',
   },
+  cake: {
+    symbol: 'ccCAKE',
+    address: {
+      820: '0xCC2D45F7fE1b8864a13F5D552345eB3f5a005FEd',
+      20729: '',
+    },
+    decimals: 18,
+    projectLink: 'https://explorer.callisto.network/address/0xCC2D45F7fE1b8864a13F5D552345eB3f5a005FEd/transactions',
+  }
 }
 
 export default tokens
