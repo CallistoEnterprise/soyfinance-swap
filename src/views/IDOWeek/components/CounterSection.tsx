@@ -26,7 +26,7 @@ function formatString(val: number) {
     return val.toString()
 }
 
-const Counter = ({item, curRound, soyToSell, iteration}) => {
+const Counter = ({item, curRound, soyToSell, iteration, weekly}) => {
     const unlockTime = item === undefined? 0 : item
     const [diff, setDiff] = useState(0)
 
@@ -54,10 +54,11 @@ const Counter = ({item, curRound, soyToSell, iteration}) => {
 
     return (
         <Container>
-            <Text fontSize="18px">{`Number of SOY for this round ${soyToSell.toFixed(2)} SOY.`}</Text>
-            {iteration !== 0 && <Text fontSize="18px">{`Current Iteration : ${iteration}.`}</Text>}
-            <Text fontSize="18px">{`Round ${curRound} of 26 ends in`}</Text>
-            {item !== undefined && <Text fontSize="67px">{item === 0 || curRound === 0 ? '00:00:00' : datetime}</Text>}
+            {weekly && <Text fontSize="24px">Weekly IDO is closed.</Text>}
+            {!weekly && <Text fontSize="18px">{`Number of SOY for this round ${soyToSell.toFixed(2)} SOY.`}</Text>}
+            {iteration !== 0 && !weekly && <Text fontSize="18px">{`Current Iteration : ${iteration}.`}</Text>}
+            {!weekly && <Text fontSize="18px">{`Round ${curRound} of 26 ends in`}</Text>}
+            {item !== undefined && !weekly && <Text fontSize="67px">{item === 0 || curRound === 0 ? '00:00:00' : datetime}</Text>}
         </Container>
     )
 }

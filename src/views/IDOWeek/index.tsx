@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { CurrencyAmount } from '@soy-libs/sdk2'
-import { Button, Text, Box, Card } from '@soy-libs/uikit2'
+import { Button, Box, Card } from '@soy-libs/uikit2'
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
 import { BidderHeader } from 'components/App/AppHeader'
@@ -10,11 +10,11 @@ import { getDecimalAmount } from 'utils/formatBalance'
 import tokens from 'config/constants/tokens'
 import { useCurrencyBalance } from 'state/wallet/hooks'
 import useToast from 'hooks/useToast'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+// import { usePriceCakeBusd } from 'state/farms/hooks'
 import Counter from './components/CounterSection'
 import { AutoColumn } from '../../components/Layout/Column'
 import CurrencyInputPanel from '../../components/CurrencyInputPanelForIdo'
-import { AutoRow } from '../../components/Layout/Row'
+// import { AutoRow } from '../../components/Layout/Row'
 import { Wrapper } from './components/styleds'
 import { AppHeader, AppBody } from '../../components/App'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
@@ -80,7 +80,7 @@ export default function IDODaily() {
   const { onStakeBet } = useStakeBet()
   const { onClaim } = useClaim()
   const { toastError, toastSuccess, toastWarning } = useToast()
-  const cakePrice = usePriceCakeBusd()
+  // const cakePrice = usePriceCakeBusd()
   const [claimPending, setClaimPending] = useState(false)
 
   const [txPending, setTxPending] = useState(false)
@@ -245,11 +245,12 @@ export default function IDODaily() {
                 curRound = {publicData ? publicData.currentRound : 0}
                 soyToSell = {publicData ? publicData.soyToSell : 0}
                 iteration = {publicData ? publicData.iteration : 0}
+                weekly
               />
               <AutoColumn justify="space-between">
                 <StatusSection currentAmount={publicData ? publicData.currentCollectedUSD : 0}/>
               </AutoColumn>
-              { publicData && <AutoColumn justify="space-between">
+              {/* { publicData && <AutoColumn justify="space-between">
                 <AutoRow justify='space-between' style={{ padding: '0 1rem' }}>
                   <Text>Average Price</Text>
                   <Text
@@ -269,7 +270,7 @@ export default function IDODaily() {
                   <Text>Maximum Price</Text>
                   <Text>1 SOY = {publicData? parseFloat(publicData.maxPrice) !== 0 && parseFloat(publicData.maxPrice) < 0.0001 ? '<0.0001' : parseInt((publicData.maxPrice * 10000).toString()) / 10000 : 0} USD</Text>
                 </AutoRow>
-              </AutoColumn>}
+              </AutoColumn>} */}
               <CurrencyInputPanel
                 label={independentField === Field.OUTPUT && !showWrap && trade ? t('') : t('')}
                 value={formattedAmounts[Field.INPUT]}
@@ -310,7 +311,8 @@ export default function IDODaily() {
                   }}
                   id="swap-button"
                   width="100%"
-                  disabled={!account}
+                  disabled
+                  // disabled={!account}
                 >
                   {
                     txPending?
@@ -329,13 +331,16 @@ export default function IDODaily() {
                   }}
                   id="swap-button"
                   width="100%"
-                  disabled={!account || balance === '0' || parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance) || parseFloat(formattedAmounts[Field.INPUT]) === 0 || formattedAmounts[Field.INPUT] === ''}
+                  disabled
+                  // disabled={!account || balance === '0' || parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance) || parseFloat(formattedAmounts[Field.INPUT]) === 0 || formattedAmounts[Field.INPUT] === ''}
                 >
                   {txPending?
                   <CircleLoader />:
-                   account && parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance) ?
-                  `Insufficient balance`:
-                  `Submit Your Bid`}
+                  `IDO is closed`
+                  //  account && parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance) ?
+                  // `Insufficient balance`:
+                  // `Submit Your Bid`
+                  }
                 </Button>}
             </Box>
           </Wrapper>
