@@ -81,14 +81,6 @@
       "chainId": 820,
       "decimals": 18,
       "logoURI": "https://app.soy.finance/images/coins/0xCC2D45F7fE1b8864a13F5D552345eB3f5a005FEd.png"
-    },
-    {
-      "name": "Wrapped TWT",
-      "symbol": "ccTWT",
-      "address": "0xCC099e75152ACCda96d54FAbaf6e333ca44AD86e",
-      "chainId": 820,
-      "decimals": 18,
-      "logoURI": "https://app.soy.finance/images/coins/0xCC099e75152ACCda96d54FAbaf6e333ca44AD86e.png"
     }
   ]
 }
