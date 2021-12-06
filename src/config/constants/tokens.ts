@@ -138,6 +138,15 @@ const tokens = {
     },
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xCC2D45F7fE1b8864a13F5D552345eB3f5a005FEd/transactions',
+  },
+  twt: {
+    symbol: 'ccTWT',
+    address: {
+      820: '0xCC099e75152ACCda96d54FAbaf6e333ca44AD86e',
+      20729: '',
+    },
+    decimals: 18,
+    projectLink: 'https://explorer.callisto.network/address/0xCC099e75152ACCda96d54FAbaf6e333ca44AD86e/transactions',
   }
 }
 
