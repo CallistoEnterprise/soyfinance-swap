@@ -57,8 +57,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
     label: t('Info'),
     icon: 'InfoIcon',
-    href: 'https://soy.finance/',
-    target: "_blank"
+    href: '/info'
   },
   {
     label: t('More'),
