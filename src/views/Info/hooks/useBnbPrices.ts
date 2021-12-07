@@ -14,32 +14,32 @@ export interface BnbPrices {
 const BNB_PRICES = gql`
   query prices($block24: Int!, $block48: Int!, $blockWeek: Int!) {
     current: bundle(id: "1") {
-      bnbPrice
+      cloPrice
     }
     oneDay: bundle(id: "1", block: { number: $block24 }) {
-      bnbPrice
+      cloPrice
     }
     twoDay: bundle(id: "1", block: { number: $block48 }) {
-      bnbPrice
+      cloPrice
     }
     oneWeek: bundle(id: "1", block: { number: $blockWeek }) {
-      bnbPrice
+      cloPrice
     }
   }
 `
 
 interface PricesResponse {
   current: {
-    bnbPrice: string
+    cloPrice: string
   }
   oneDay: {
-    bnbPrice: string
+    cloPrice: string
   }
   twoDay: {
-    bnbPrice: string
+    cloPrice: string
   }
   oneWeek: {
-    bnbPrice: string
+    cloPrice: string
   }
 }
 
@@ -47,7 +47,7 @@ const fetchBnbPrices = async (
   block24: number,
   block48: number,
   blockWeek: number,
-): Promise<{ bnbPrices: BnbPrices | undefined; error: boolean }> => {
+): Promise<{ cloPrices: BnbPrices | undefined; error: boolean }> => {
   try {
     const data = await request<PricesResponse>(INFO_CLIENT, BNB_PRICES, {
       block24,
@@ -56,18 +56,18 @@ const fetchBnbPrices = async (
     })
     return {
       error: false,
-      bnbPrices: {
-        current: parseFloat(data.current?.bnbPrice ?? '0'),
-        oneDay: parseFloat(data.oneDay?.bnbPrice ?? '0'),
-        twoDay: parseFloat(data.twoDay?.bnbPrice ?? '0'),
-        week: parseFloat(data.oneWeek?.bnbPrice ?? '0'),
+      cloPrices: {
+        current: parseFloat(data.current?.cloPrice ?? '0'),
+        oneDay: parseFloat(data.oneDay?.cloPrice ?? '0'),
+        twoDay: parseFloat(data.twoDay?.cloPrice ?? '0'),
+        week: parseFloat(data.oneWeek?.cloPrice ?? '0'),
       },
     }
   } catch (error) {
-    console.error('Failed to fetch BNB prices', error)
+    console.error('Failed to fetch CLO prices', error)
     return {
       error: true,
-      bnbPrices: undefined,
+      cloPrices: undefined,
     }
   }
 }
@@ -85,11 +85,11 @@ export const useBnbPrices = (): BnbPrices | undefined => {
   useEffect(() => {
     const fetch = async () => {
       const [block24, block48, blockWeek] = blocks
-      const { bnbPrices, error: fetchError } = await fetchBnbPrices(block24.number, block48.number, blockWeek.number)
+      const { cloPrices, error: fetchError } = await fetchBnbPrices(block24.number, block48.number, blockWeek.number)
       if (fetchError) {
         setError(true)
       } else {
-        setPrices(bnbPrices)
+        setPrices(cloPrices)
       }
     }
     if (!prices && !error && blocks && !blockError) {
