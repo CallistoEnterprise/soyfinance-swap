@@ -160,6 +160,20 @@ const farms: FarmConfig[] = [
     token: tokens.cake,
     quoteToken: tokens.soy,
   },
+  {
+    pid: 16,
+    lpSymbol: 'SOY-TWT LP',
+    lpAddresses: {
+      20729: '',
+      820: '0x7f342fEd3A80ea475631196709D2C6c4a94816C8',
+    },
+    localFarmAddresses: {
+      820: '0x6eFf6b17d4Ad50a25483Cc8d149fbfC275B05435',
+      20729: ''
+    },
+    token: tokens.twt,
+    quoteToken: tokens.soy,
+  },
 ]
 
 export default farms
