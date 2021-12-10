@@ -147,6 +147,15 @@ const tokens = {
     },
     decimals: 18,
     projectLink: 'https://explorer.callisto.network/address/0xCC099e75152ACCda96d54FAbaf6e333ca44AD86e/transactions',
+  },
+  wsg: {
+    symbol: "ccWSG",
+    address: {
+      820: "0xccEbb9f0EE6D720DebccEE42f52915037f774A70",
+      20729: ''
+    },
+    decimals: 18,
+    projectLink: "https://wsg.gg/"
   }
 }
 

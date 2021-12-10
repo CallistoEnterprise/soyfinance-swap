@@ -174,6 +174,20 @@ const farms: FarmConfig[] = [
     token: tokens.twt,
     quoteToken: tokens.soy,
   },
+  // {
+  //   pid: 16,
+  //   lpSymbol: 'SOY-WSG LP',
+  //   lpAddresses: {
+  //     20729: '',
+  //     820: '0xE92a69F2aCAad1480ec945A60fBFdFB921436F51',
+  //   },
+  //   localFarmAddresses: {
+  //     820: '0x6eFf6b17d4Ad50a25483Cc8d149fbfC275B05436',
+  //     20729: ''
+  //   },
+  //   token: tokens.wsg,
+  //   quoteToken: tokens.soy,
+  // },
 ]
 
 export default farms

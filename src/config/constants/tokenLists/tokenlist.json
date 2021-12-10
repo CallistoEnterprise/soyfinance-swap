@@ -89,6 +89,14 @@
       "chainId": 820,
       "decimals": 18,
       "logoURI": "https://app.soy.finance/images/coins/0xCC099e75152ACCda96d54FAbaf6e333ca44AD86e.png"
+    },
+    {
+      "name": "Wrapped WSG",
+      "symbol": "ccWSG",
+      "address": "0xccEbb9f0EE6D720DebccEE42f52915037f774A70",
+      "chainId": 820,
+      "decimals": 18,
+      "logoURI": "https://app.soy.finance/images/coins/0xccEbb9f0EE6D720DebccEE42f52915037f774A70.png"
     }
   ]
 }
