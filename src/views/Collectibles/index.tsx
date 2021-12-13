@@ -18,7 +18,7 @@ const Collectibles = () => {
     <Page>
       <StyledHero>
         <Heading as="h1" scale="xxl" color="secondary">
-          {t('Soyfinance Collectibles')}
+          {t('Soyfinance NFTs')}
         </Heading>
       </StyledHero>
       <NftList />

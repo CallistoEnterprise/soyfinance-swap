@@ -1,10 +1,12 @@
 import React from 'react'
 import orderBy from 'lodash/orderBy'
 import { useWeb3React } from '@web3-react/core'
+import { Text } from '@soy-libs/uikit2'
 import nfts from 'config/constants/nfts'
 import { useAppDispatch } from 'state'
 import { fetchWalletNfts } from 'state/collectibles'
 import { useGetCollectibles } from 'state/collectibles/hooks'
+import Dots from 'components/Loader/Dots'
 import NftCard from './NftCard'
 import NftGrid from './NftGrid'
 import EasterNftCard from './NftCard/EasterNftCard'
@@ -31,7 +33,10 @@ const NftList = () => {
 
   return (
     <NftGrid>
-      {orderBy(nfts, 'sortOrder').map((nft) => {
+      <Text fontSize="30px">
+        <Dots>Comming Soon</Dots>
+      </Text>
+      {/* {orderBy(nfts, 'sortOrder').map((nft) => {
         const Card = nftComponents[nft.identifier] || NftCard
 
         return (
@@ -39,7 +44,7 @@ const NftList = () => {
             <Card nft={nft} tokenIds={tokenIds[nft.identifier]} refresh={handleRefresh} />
           </div>
         )
-      })}
+      })} */}
     </NftGrid>
   )
 }

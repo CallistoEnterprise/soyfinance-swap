@@ -1,4 +1,4 @@
-import { MenuEntry } from '@soy-libs/uikit2'
+import { MenuEntry, menuStatus } from '@soy-libs/uikit2'
 import { ContextApi } from 'contexts/Localization/types'
 
 const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
@@ -48,12 +48,12 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   //   icon: 'PoolIcon',
   //   href: '/pools',
   // },
-  // {
-  //   label: t('Collectibles'),
-  //   icon: 'NftIcon',
-  //   href: '/#',
-  //   status: menuStatus.SOON,
-  // },
+  {
+    label: t('NFT'),
+    icon: 'NftIcon',
+    href: '/nft',
+    status: menuStatus.SOON,
+  },
   {
     label: t('Info'),
     icon: 'InfoIcon',
