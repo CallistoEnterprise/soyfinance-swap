@@ -156,6 +156,15 @@ const tokens = {
     },
     decimals: 18,
     projectLink: "https://wsg.gg/"
+  },
+  reef: {
+    symbol: "ccREEF",
+    address: {
+      820: "0xCc1530716A7eBecFdc7572eDCbF01766f042155c",
+      20729: ''
+    },
+    decimals: 18,
+    projectLink: "https://explorer.callisto.network/address/0xCc1530716A7eBecFdc7572eDCbF01766f042155c/transactions"
   }
 }
 

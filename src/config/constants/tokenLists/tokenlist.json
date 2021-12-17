@@ -97,6 +97,14 @@
       "chainId": 820,
       "decimals": 18,
       "logoURI": "https://app.soy.finance/images/coins/0xccEbb9f0EE6D720DebccEE42f52915037f774A70.png"
+    },
+    {
+      "name": "Wrapped REEF",
+      "symbol": "ccREEF",
+      "address": "0xCc1530716A7eBecFdc7572eDCbF01766f042155c",
+      "chainId": 820,
+      "decimals": 18,
+      "logoURI": "https://app.soy.finance/images/coins/0xCc1530716A7eBecFdc7572eDCbF01766f042155c.png"
     }
   ]
 }
