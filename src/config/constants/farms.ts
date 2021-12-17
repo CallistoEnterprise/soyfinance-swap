@@ -188,20 +188,20 @@ const farms: FarmConfig[] = [
     token: tokens.wsg,
     quoteToken: tokens.soy,
   },
-  {
-    pid: 18,
-    lpSymbol: 'SOY-CLOE LP',
-    lpAddresses: {
-      20729: '',
-      820: '0x9A95F9cf7Ea14264ef7AaC0798bbbE856246c0B2',
-    },
-    localFarmAddresses: {
-      820: '0x8c0A982A4193c6bF8Eea6637Db0CF9160dCF91fD',
-      20729: ''
-    },
-    token: tokens.cloe,
-    quoteToken: tokens.soy,
-  },
+  // {
+  //   pid: 18,
+  //   lpSymbol: 'SOY-CLOE LP',
+  //   lpAddresses: {
+  //     20729: '',
+  //     820: '0x9A95F9cf7Ea14264ef7AaC0798bbbE856246c0B2',
+  //   },
+  //   localFarmAddresses: {
+  //     820: '0x8c0A982A4193c6bF8Eea6637Db0CF9160dCF91fD',
+  //     20729: ''
+  //   },
+  //   token: tokens.cloe,
+  //   quoteToken: tokens.soy,
+  // },
   {
     pid: 19,
     lpSymbol: 'SOY-REEF LP',
