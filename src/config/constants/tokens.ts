@@ -165,6 +165,15 @@ const tokens = {
     },
     decimals: 18,
     projectLink: "https://explorer.callisto.network/address/0xCc1530716A7eBecFdc7572eDCbF01766f042155c/transactions"
+  },
+  bake: {
+    symbol: "ccBAKE",
+    address: {
+      820: "0xCCeC9F26F52E8e0D1d88365004f4F475f5274279",
+      20729: ''
+    },
+    decimals: 18,
+    projectLink: "https://explorer.callisto.network/address/0xCCeC9F26F52E8e0D1d88365004f4F475f5274279/transactions"
   }
 }
 

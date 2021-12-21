@@ -105,6 +105,14 @@
       "chainId": 820,
       "decimals": 18,
       "logoURI": "https://app.soy.finance/images/coins/0xCc1530716A7eBecFdc7572eDCbF01766f042155c.png"
+    },
+    {
+      "name": "Wrapped BAKE",
+      "symbol": "ccBAKE",
+      "address": "0xCCeC9F26F52E8e0D1d88365004f4F475f5274279",
+      "chainId": 820,
+      "decimals": 18,
+      "logoURI": "https://app.soy.finance/images/coins/0xCCeC9F26F52E8e0D1d88365004f4F475f5274279.png"
     }
   ]
 }

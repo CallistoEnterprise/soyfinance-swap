@@ -216,6 +216,20 @@ const farms: FarmConfig[] = [
     token: tokens.reef,
     quoteToken: tokens.soy,
   },
+  {
+    pid: 20,
+    lpSymbol: 'SOY-BAKE LP',
+    lpAddresses: {
+      20729: '',
+      820: '0xB48829bfd203eDa5C259f7609AB5c1d83a88a47b',
+    },
+    localFarmAddresses: {
+      820: '0x943c005eD3f77f44f17fF21a95E5043Bc04Bd3Fa',
+      20729: ''
+    },
+    token: tokens.bake,
+    quoteToken: tokens.soy,
+  },
 ]
 
 export default farms
