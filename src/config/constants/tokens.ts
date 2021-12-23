@@ -174,6 +174,15 @@ const tokens = {
     },
     decimals: 18,
     projectLink: "https://explorer.callisto.network/address/0xCCeC9F26F52E8e0D1d88365004f4F475f5274279/transactions"
+  },
+  shib: {
+    symbol: "ccSHIB",
+    address: {
+      820: "0xccA4F2ED7Fc093461c13f7F5d79870625329549A",
+      20729: ''
+    },
+    decimals: 18,
+    projectLink: "https://explorer.callisto.network/address/0xccA4F2ED7Fc093461c13f7F5d79870625329549A/transactions"
   }
 }
 

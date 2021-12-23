@@ -113,6 +113,14 @@
       "chainId": 820,
       "decimals": 18,
       "logoURI": "https://app.soy.finance/images/coins/0xCCeC9F26F52E8e0D1d88365004f4F475f5274279.png"
+    },
+    {
+      "name": "Wrapped SHIB",
+      "symbol": "ccSHIB",
+      "address": "0xccA4F2ED7Fc093461c13f7F5d79870625329549A",
+      "chainId": 820,
+      "decimals": 18,
+      "logoURI": "https://app.soy.finance/images/coins/0xccA4F2ED7Fc093461c13f7F5d79870625329549A.png"
     }
   ]
 }

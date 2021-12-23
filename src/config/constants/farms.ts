@@ -230,6 +230,20 @@ const farms: FarmConfig[] = [
     token: tokens.bake,
     quoteToken: tokens.soy,
   },
+  {
+    pid: 21,
+    lpSymbol: 'SOY-SHIB LP',
+    lpAddresses: {
+      20729: '',
+      820: '0x4bf425f5b5bcb76e2b2e5e2A2EF0EF881D53a746',
+    },
+    localFarmAddresses: {
+      820: '0x23560EE7ccC3791e7Fb6D3371F4BB02Fa81F403c',
+      20729: ''
+    },
+    token: tokens.shib,
+    quoteToken: tokens.soy,
+  },
 ]
 
 export default farms
