@@ -119,7 +119,7 @@ const Overview: React.FC = () => {
                 ${formatAmount(liquidityHover)}
               </Text>
             ) : (
-              <Skeleton width="128px" height="36px" />
+              <Skeleton marginLeft="77%" width="128px" height="36px"/>
             )}
             
             <Box height="250px">
@@ -129,6 +129,9 @@ const Overview: React.FC = () => {
                 setHoverDate={setLiquidityDateHover}
               />
             </Box>
+            <Text small color="secondary" textAlign="end">
+              {t('date')}
+            </Text>
           </Box>
         </Card>
         <Card>
@@ -142,11 +145,14 @@ const Overview: React.FC = () => {
                 ${formatAmount(volumeHover)}
               </Text>
             ) : (
-              <Skeleton width="128px" height="36px" />
+              <Skeleton marginLeft="77%" width="128px" height="36px" />
             )}
             <Box height="250px">
               <BarChart data={formattedVolumeData} setHoverValue={setVolumeHover} setHoverDate={setVolumeDateHover} />
             </Box>
+            <Text small color="secondary" textAlign="end">
+              {t('date')}
+            </Text>
           </Box>
         </Card>
       </ChartCardsContainer>

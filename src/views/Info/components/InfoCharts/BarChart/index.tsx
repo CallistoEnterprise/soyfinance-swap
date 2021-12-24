@@ -68,14 +68,14 @@ const Chart = ({ data, setHoverValue, setHoverDate }: LineChartProps) => {
           dataKey="time"
           axisLine={false}
           tickLine={false}
-          tickFormatter={(time) => format(time, 'dd')}
+          tickFormatter={(time) => format(time, 'dd/MM')}
           minTickGap={10}
           tick={{ fill: theme.colors.text }}
         />
         <YAxis
           dataKey="value"
-          tickCount={10}
           scale="linear"
+          domain={[dataMin => (dataMin), dataMax => (dataMax * 1.115)]}
           axisLine={false}
           tickLine={false}
           color={theme.colors.textSubtle}
