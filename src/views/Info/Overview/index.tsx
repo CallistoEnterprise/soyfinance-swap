@@ -110,17 +110,18 @@ const Overview: React.FC = () => {
       <ChartCardsContainer>
         <Card>
           <Box p={['16px', '16px', '24px']}>
-            <Text bold color="secondary">
+            <Text bold color="secondary" textAlign="center">
               {t('Liquidity')}
             </Text>
+            <Text textAlign="end">{liquidityDateHover ?? currentDate}</Text>
             {liquidityHover > 0 ? (
-              <Text bold fontSize="24px">
+              <Text bold fontSize="24px" textAlign="end">
                 ${formatAmount(liquidityHover)}
               </Text>
             ) : (
               <Skeleton width="128px" height="36px" />
             )}
-            <Text>{liquidityDateHover ?? currentDate}</Text>
+            
             <Box height="250px">
               <LineChart
                 data={formattedLiquidityData}
@@ -132,17 +133,17 @@ const Overview: React.FC = () => {
         </Card>
         <Card>
           <Box p={['16px', '16px', '24px']}>
-            <Text bold color="secondary">
+            <Text bold color="secondary" textAlign="center">
               {t('Volume 24H')}
             </Text>
+            <Text textAlign="end">{volumeDateHover ?? currentDate}</Text>
             {volumeHover > 0 ? (
-              <Text bold fontSize="24px">
+              <Text bold fontSize="24px" textAlign="end">
                 ${formatAmount(volumeHover)}
               </Text>
             ) : (
               <Skeleton width="128px" height="36px" />
             )}
-            <Text>{volumeDateHover ?? currentDate}</Text>
             <Box height="250px">
               <BarChart data={formattedVolumeData} setHoverValue={setVolumeHover} setHoverDate={setVolumeDateHover} />
             </Box>
