@@ -121,6 +121,14 @@
       "chainId": 820,
       "decimals": 18,
       "logoURI": "https://app.soy.finance/images/coins/0xccA4F2ED7Fc093461c13f7F5d79870625329549A.png"
+    },
+    {
+      "name": "Wrapped RACA",
+      "symbol": "ccRACA",
+      "address": "0xCC8B04c0f7d0797B3BD6b7BE8E0061ac0c3c0A9b",
+      "chainId": 820,
+      "decimals": 18,
+      "logoURI": "https://app.soy.finance/images/coins/0xCC8B04c0f7d0797B3BD6b7BE8E0061ac0c3c0A9b.png"
     }
   ]
 }

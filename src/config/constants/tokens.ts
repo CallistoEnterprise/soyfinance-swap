@@ -183,6 +183,15 @@ const tokens = {
     },
     decimals: 18,
     projectLink: "https://explorer.callisto.network/address/0xccA4F2ED7Fc093461c13f7F5d79870625329549A/transactions"
+  },
+  raca: {
+    symbol: "ccSHIB",
+    address: {
+      820: "0xCC8B04c0f7d0797B3BD6b7BE8E0061ac0c3c0A9b",
+      20729: ''
+    },
+    decimals: 18,
+    projectLink: "https://explorer.callisto.network/address/0xCC8B04c0f7d0797B3BD6b7BE8E0061ac0c3c0A9b/transactions"
   }
 }
 

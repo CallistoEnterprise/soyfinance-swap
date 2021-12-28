@@ -244,6 +244,20 @@ const farms: FarmConfig[] = [
     token: tokens.shib,
     quoteToken: tokens.soy,
   },
+  // {
+  //   pid: 22,
+  //   lpSymbol: 'SOY-RACA LP',
+  //   lpAddresses: {
+  //     20729: '',
+  //     820: '0xCC8B04c0f7d0797B3BD6b7BE8E0061ac0c3c0A9b',
+  //   },
+  //   localFarmAddresses: {
+  //     820: '0x23560EE7ccC3791e7Fb6D3371F4BB02Fa81F4030',
+  //     20729: ''
+  //   },
+  //   token: tokens.raca,
+  //   quoteToken: tokens.soy,
+  // },
 ]
 
 export default farms
