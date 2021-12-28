@@ -249,7 +249,7 @@ const farms: FarmConfig[] = [
     lpSymbol: 'SOY-RACA LP',
     lpAddresses: {
       20729: '',
-      820: '0xCC8B04c0f7d0797B3BD6b7BE8E0061ac0c3c0A9b',
+      820: '0x365F4B80C427EFDD6F2F1D06FF08bc2e2ffcA832',
     },
     localFarmAddresses: {
       820: '0x9D8D90518e096e337Bd3f32C93579d8D270a2825',
