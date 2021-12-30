@@ -185,13 +185,22 @@ const tokens = {
     projectLink: "https://explorer.callisto.network/address/0xccA4F2ED7Fc093461c13f7F5d79870625329549A/transactions"
   },
   raca: {
-    symbol: "ccSHIB",
+    symbol: "ccRACA",
     address: {
       820: "0xCC8B04c0f7d0797B3BD6b7BE8E0061ac0c3c0A9b",
       20729: ''
     },
     decimals: 18,
     projectLink: "https://explorer.callisto.network/address/0xCC8B04c0f7d0797B3BD6b7BE8E0061ac0c3c0A9b/transactions"
+  },
+  lina: {
+    symbol: "ccLINA",
+    address: {
+      820: "0xCC10A4050917f771210407DF7A4C048e8934332c",
+      20729: ''
+    },
+    decimals: 18,
+    projectLink: "https://explorer.callisto.network/address/0xCC10A4050917f771210407DF7A4C048e8934332c/transactions"
   }
 }
 

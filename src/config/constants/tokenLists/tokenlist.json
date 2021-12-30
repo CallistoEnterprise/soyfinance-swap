@@ -129,6 +129,14 @@
       "chainId": 820,
       "decimals": 18,
       "logoURI": "https://app.soy.finance/images/coins/0xCC8B04c0f7d0797B3BD6b7BE8E0061ac0c3c0A9b.png"
+    },
+    {
+      "name": "Wrapped LINA",
+      "symbol": "ccLINA",
+      "address": "0xCC10A4050917f771210407DF7A4C048e8934332c",
+      "chainId": 820,
+      "decimals": 18,
+      "logoURI": "https://app.soy.finance/images/coins/0xCC10A4050917f771210407DF7A4C048e8934332c.png"
     }
   ]
 }
