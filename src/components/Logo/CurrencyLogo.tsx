@@ -11,6 +11,7 @@ import Logo from './Logo'
 const StyledLogo = styled(Logo)<{ size: string }>`
   width: ${({ size }) => size};
   height: ${({ size }) => size};
+  border-radius: 50%;
 `
 const LogoImg = styled.img<{ size: string }>`
   width: ${({ size }) => size};
