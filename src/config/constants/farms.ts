@@ -258,20 +258,20 @@ const farms: FarmConfig[] = [
     token: tokens.raca,
     quoteToken: tokens.soy,
   },
-  // {
-  //   pid: 23,
-  //   lpSymbol: 'SOY-LINA LP',
-  //   lpAddresses: {
-  //     20729: '',
-  //     820: '0xF344E4fc351b6BA97e6dF9DC03f6cCe824aE9FC2',
-  //   },
-  //   localFarmAddresses: {
-  //     820: '0xAEE5De40fB9d24006B1b02A51bED7D44eA544A98',
-  //     20729: ''
-  //   },
-  //   token: tokens.lina,
-  //   quoteToken: tokens.soy,
-  // },
+  {
+    pid: 23,
+    lpSymbol: 'SOY-LINA LP',
+    lpAddresses: {
+      20729: '',
+      820: '0xF344E4fc351b6BA97e6dF9DC03f6cCe824aE9FC2',
+    },
+    localFarmAddresses: {
+      820: '0xAEE5De40fB9d24006B1b02A51bED7D44eA544A98',
+      20729: ''
+    },
+    token: tokens.lina,
+    quoteToken: tokens.soy,
+  },
 ]
 
 export default farms
