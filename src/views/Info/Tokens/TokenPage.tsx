@@ -31,10 +31,10 @@ import {
   usePoolsForToken,
   useTokenChartData,
   useTokenPriceData,
-  // useTokenTransactions,
+  useTokenTransactions,
 } from 'state/info/hooks'
 import PoolTable from 'views/Info/components/InfoTables/PoolsTable'
-// import TransactionTable from 'views/Info/components/InfoTables/TransactionsTable'
+import TransactionTable from 'views/Info/components/InfoTables/TransactionsTable'
 // import { useWatchlistTokens } from 'state/user/hooks'
 import { ONE_HOUR_SECONDS } from 'config/constants/info'
 import { useTranslation } from 'contexts/Localization'
@@ -83,7 +83,7 @@ const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
   const tokenData = useTokenData(address)
   const poolsForToken = usePoolsForToken(address)
   const poolDatas = usePoolDatas(poolsForToken ?? [])
-  // const transactions = useTokenTransactions(address)
+  const transactions = useTokenTransactions(address)
   const chartData = useTokenChartData(address)
 
   // pricing data
@@ -237,11 +237,10 @@ const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
 
             <PoolTable poolDatas={poolDatas} />
 
-            {/* <Heading scale="lg" mb="16px" mt="40px">
+            <Heading scale="lg" mb="16px" mt="40px">
               {t('Transactions')}
             </Heading>
-
-                <TransactionTable transactions={transactions} /> */}
+            <TransactionTable transactions={transactions} />
           </>
         )
       ) : (

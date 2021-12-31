@@ -17,7 +17,7 @@ export const SNAPSHOT_HUB_API = `${SNAPSHOT_BASE_URL}/api/message`
  */
 
 
-export const INFO_CLIENT = 'https://03.callisto.network/subgraphs/name/soyfinance'
+export const INFO_CLIENT = 'https://03.callisto.network/subgraphs/name/soyswap'
 export const BLOCKS_CLIENT = 'https://03.callisto.network/subgraphs/name/blocks'
 
 export const GRAPH_API_NFTMARKET = process.env.REACT_APP_GRAPH_API_NFT_MARKET
