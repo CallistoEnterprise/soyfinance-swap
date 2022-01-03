@@ -10,6 +10,7 @@ import fetchTokenChartData from 'state/info/queries/tokens/chartData'
 import fetchTokenTransactions from 'state/info/queries/tokens/transactions'
 import fetchTokenPriceData from 'state/info/queries/tokens/priceData'
 import fetchPoolsForToken from 'state/info/queries/tokens/poolsForToken'
+import { renameTokenDatas } from 'views/Info/utils/tokenInfoRename'
 import {
   updateProtocolData,
   updateProtocolChartData,
@@ -26,6 +27,7 @@ import {
   updateTokenTransactions,
 } from './actions'
 import { ProtocolData, PoolData, TokenData, ChartEntry, PriceChartEntry } from './types'
+
 
 // Protocol hooks
 
@@ -176,7 +178,7 @@ export const useAddTokenKeys = (): ((addresses: string[]) => void) => {
 }
 
 export const useTokenDatas = (addresses?: string[]): TokenData[] | undefined => {
-  const allTokenData = useAllTokenData()
+  const allTokenData = renameTokenDatas(useAllTokenData())
   const addNewTokenKeys = useAddTokenKeys()
 
   // if token not tracked yet track it

@@ -24,6 +24,7 @@ import useCMCLink from 'views/Info/hooks/useCMCLink'
 import { CurrencyLogo } from 'views/Info/components/CurrencyLogo'
 import { formatAmount } from 'views/Info/utils/formatInfoNumbers'
 import Percent from 'views/Info/components/Percent'
+import { renameTokens,renamePools,renameTransactions } from 'views/Info/utils/tokenInfoRename'
 // import SaveIcon from 'views/Info/components/SaveIcon'
 import {
   usePoolDatas,
@@ -80,10 +81,10 @@ const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
 
   const cmcLink = useCMCLink(address)
 
-  const tokenData = useTokenData(address)
+  const tokenData = renameTokens(useTokenData(address))
   const poolsForToken = usePoolsForToken(address)
-  const poolDatas = usePoolDatas(poolsForToken ?? [])
-  const transactions = useTokenTransactions(address)
+  const poolDatas = renamePools(usePoolDatas(poolsForToken ?? []))
+  const transactions =renameTransactions(useTokenTransactions(address))
   const chartData = useTokenChartData(address)
 
   // pricing data

@@ -9,6 +9,7 @@ import TokenTable from 'views/Info/components/InfoTables/TokensTable'
 import PoolTable from 'views/Info/components/InfoTables/PoolsTable'
 import { formatAmount } from 'views/Info/utils/formatInfoNumbers'
 import BarChart from 'views/Info/components/InfoCharts/BarChart'
+import { renameTokens,renamePool,renameTransactions } from 'views/Info/utils/tokenInfoRename'
 import {
   useAllPoolData,
   useAllTokenData,
@@ -43,7 +44,7 @@ const Overview: React.FC = () => {
 
   const [protocolData] = useProtocolData()
   const [chartData] = useProtocolChartData()
-  const [transactions] = useProtocolTransactions()
+  const [transactions] = renameTransactions(useProtocolTransactions(),0)
 
   const currentDate = format(new Date(), 'MMM d, yyyy')
 
@@ -87,14 +88,14 @@ const Overview: React.FC = () => {
 
   const formattedTokens = useMemo(() => {
     return Object.values(allTokens)
-      .map((token) => token.data)
+      .map((token) => renameTokens(token.data))
       .filter((token) => token)
   }, [allTokens])
 
   const allPoolData = useAllPoolData()
   const poolDatas = useMemo(() => {
     return Object.values(allPoolData)
-      .map((pool) => pool.data)
+      .map((pool) => renamePool(pool.data))
       .filter((pool) => pool)
   }, [allPoolData])
 

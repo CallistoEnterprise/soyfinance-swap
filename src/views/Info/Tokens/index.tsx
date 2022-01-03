@@ -7,6 +7,7 @@ import { useAllTokenData } from 'state/info/hooks' // useTokenDatas
 // import { useWatchlistTokens } from 'state/user/hooks'
 import { useTranslation } from 'contexts/Localization'
 import TopTokenMovers from 'views/Info/components/TopTokenMovers'
+import { renameTokens } from 'views/Info/utils/tokenInfoRename'
 
 const TokensOverview: React.FC = () => {
   const { t } = useTranslation()
@@ -18,7 +19,7 @@ const TokensOverview: React.FC = () => {
 
   const formattedTokens = useMemo(() => {
     return Object.values(allTokens)
-      .map((token) => token.data)
+      .map((token) => renameTokens(token.data))
       .filter((token) => token)
   }, [allTokens])
 
