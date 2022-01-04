@@ -71,7 +71,7 @@ const Collectibles = lazy(() => import('./views/Collectibles'))
 const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
 const Liquidity = lazy(() => import('./views/Pool'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
-// const Info = lazy(() => import('./views/Info'))
+const Info = lazy(() => import('./views/Info'))
 
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
 const IDOWeek = lazy(() => import('./views/IDOWeek'))
@@ -125,9 +125,9 @@ const App: React.FC = () => {
                   <Route exact path="/create/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
                   <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
                   <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
-                  {/* <Route path="/info">
+                  <Route path="/info">
                     <Info />
-                  </Route> */}
+                  </Route>
                   <Route path="/farms">
                     <Farms />
                   </Route>
