@@ -208,7 +208,7 @@ const tokens = {
       820: "0xCC50D400042177B9DAb6bd31ede73aE8e1ED6F08",
       20729: ''
     },
-    decimals: 18,
+    decimals: 9,
     projectLink: "https://explorer.callisto.network/address/0xCC50D400042177B9DAb6bd31ede73aE8e1ED6F08/transactions"
   }
 }
