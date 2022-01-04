@@ -137,6 +137,14 @@
       "chainId": 820,
       "decimals": 18,
       "logoURI": "https://app.soy.finance/images/coins/0xCC10A4050917f771210407DF7A4C048e8934332c.png"
+    },
+    {
+      "name": "Wrapped TON",
+      "symbol": "ccTON",
+      "address": "0xCC50D400042177B9DAb6bd31ede73aE8e1ED6F08",
+      "chainId": 820,
+      "decimals": 18,
+      "logoURI": "https://app.soy.finance/images/coins/0xCC50D400042177B9DAb6bd31ede73aE8e1ED6F08.png"
     }
   ]
 }

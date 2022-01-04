@@ -272,6 +272,20 @@ const farms: FarmConfig[] = [
     token: tokens.lina,
     quoteToken: tokens.soy,
   },
+  {
+    pid: 25,
+    lpSymbol: 'SOY-TON LP',
+    lpAddresses: {
+      20729: '',
+      820: '0x2831e574Fe43f0815091596d0e7982d2707A954A',
+    },
+    localFarmAddresses: {
+      820: '0xAEE5De40fB9d24006B1b02A51bED7D44eA544A94',
+      20729: ''
+    },
+    token: tokens.ton,
+    quoteToken: tokens.soy,
+  },
 ]
 
 export default farms

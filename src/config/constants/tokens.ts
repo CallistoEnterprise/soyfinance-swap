@@ -201,6 +201,15 @@ const tokens = {
     },
     decimals: 18,
     projectLink: "https://explorer.callisto.network/address/0xCC10A4050917f771210407DF7A4C048e8934332c/transactions"
+  },
+  ton: {
+    symbol: "ccTON",
+    address: {
+      820: "0xCC50D400042177B9DAb6bd31ede73aE8e1ED6F08",
+      20729: ''
+    },
+    decimals: 18,
+    projectLink: "https://explorer.callisto.network/address/0xCC50D400042177B9DAb6bd31ede73aE8e1ED6F08/transactions"
   }
 }
 
