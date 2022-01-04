@@ -24,6 +24,7 @@ import useCMCLink from 'views/Info/hooks/useCMCLink'
 import { CurrencyLogo } from 'views/Info/components/CurrencyLogo'
 import { formatAmount } from 'views/Info/utils/formatInfoNumbers'
 import Percent from 'views/Info/components/Percent'
+import { renameTokens,renamePools,renameTransactions } from 'views/Info/utils/tokenInfoRename'
 // import SaveIcon from 'views/Info/components/SaveIcon'
 import {
   usePoolDatas,
@@ -80,10 +81,10 @@ const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
 
   const cmcLink = useCMCLink(address)
 
-  const tokenData = useTokenData(address)
+  const tokenData = renameTokens(useTokenData(address))
   const poolsForToken = usePoolsForToken(address)
-  const poolDatas = usePoolDatas(poolsForToken ?? [])
-  const transactions = useTokenTransactions(address)
+  const poolDatas = renamePools(usePoolDatas(poolsForToken ?? []))
+  const transactions =renameTransactions(useTokenTransactions(address))
   const chartData = useTokenChartData(address)
 
   // pricing data
@@ -140,7 +141,7 @@ const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
               </Breadcrumbs>
               <Flex justifyContent={[null, null, 'flex-end']} mt={['8px', '8px', 0]}>
                 <LinkExternal mr="8px" color="primary" href={getCallistoExpLink(address, 'address')}>
-                  {t('View on BscScan')}
+                  {t('View on Callisto Explorer')}
                 </LinkExternal>
                 {cmcLink && (
                   <StyledCMCLink href={cmcLink} rel="noopener noreferrer nofollow" target="_blank">
@@ -240,7 +241,6 @@ const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
             <Heading scale="lg" mb="16px" mt="40px">
               {t('Transactions')}
             </Heading>
-
             <TransactionTable transactions={transactions} />
           </>
         )

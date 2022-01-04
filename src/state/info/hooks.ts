@@ -10,6 +10,7 @@ import fetchTokenChartData from 'state/info/queries/tokens/chartData'
 import fetchTokenTransactions from 'state/info/queries/tokens/transactions'
 import fetchTokenPriceData from 'state/info/queries/tokens/priceData'
 import fetchPoolsForToken from 'state/info/queries/tokens/poolsForToken'
+import { renameTokenDatas } from 'views/Info/utils/tokenInfoRename'
 import {
   updateProtocolData,
   updateProtocolChartData,
@@ -26,6 +27,7 @@ import {
   updateTokenTransactions,
 } from './actions'
 import { ProtocolData, PoolData, TokenData, ChartEntry, PriceChartEntry } from './types'
+
 
 // Protocol hooks
 
@@ -176,7 +178,7 @@ export const useAddTokenKeys = (): ((addresses: string[]) => void) => {
 }
 
 export const useTokenDatas = (addresses?: string[]): TokenData[] | undefined => {
-  const allTokenData = useAllTokenData()
+  const allTokenData = renameTokenDatas(useAllTokenData())
   const addNewTokenKeys = useAddTokenKeys()
 
   // if token not tracked yet track it
@@ -271,11 +273,11 @@ export const useTokenPriceData = (
 ): PriceChartEntry[] | undefined => {
   const dispatch = useDispatch<AppDispatch>()
   const token = useSelector((state: AppState) => state.info.tokens.byAddress[address])
-  const priceData = token.priceData[interval]
+  const priceData = token?.priceData[interval]
   const [error, setError] = useState(false)
 
   // construct timestamps and check if we need to fetch more data
-  const oldestTimestampFetched = token.priceData.oldestFetchedTimestamp
+  const oldestTimestampFetched = token?.priceData.oldestFetchedTimestamp
   const utcCurrentTime = getUnixTime(new Date()) * 1000
   const startTimestamp = getUnixTime(startOfHour(sub(utcCurrentTime, timeWindow)))
 

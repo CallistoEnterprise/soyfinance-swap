@@ -54,7 +54,7 @@ export interface TokenDayDatasResponse {
 export type PancakeDayData = TokenDayData
 
 export interface PancakeDayDatasResponse {
-  pancakeDayDatas: PancakeDayData[]
+  soySwapDayDatas: PancakeDayData[]
 }
 
 export interface PairDayData {

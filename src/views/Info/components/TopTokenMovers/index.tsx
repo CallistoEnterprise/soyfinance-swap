@@ -8,6 +8,7 @@ import { CurrencyLogo } from 'views/Info/components/CurrencyLogo'
 import { formatAmount } from 'views/Info/utils/formatInfoNumbers'
 import Percent from 'views/Info/components/Percent'
 import { useTranslation } from 'contexts/Localization'
+import { renameTokenDatas } from 'views/Info/utils/tokenInfoRename'
 
 const CardWrapper = styled(Link)`
   display: inline-block;
@@ -60,7 +61,7 @@ const DataCard = ({ tokenData }: { tokenData: TokenData }) => {
 }
 
 const TopTokenMovers: React.FC = () => {
-  const allTokens = useAllTokenData()
+  const allTokens = renameTokenDatas(useAllTokenData())
   const { t } = useTranslation()
 
   const topPriceIncrease = useMemo(() => {

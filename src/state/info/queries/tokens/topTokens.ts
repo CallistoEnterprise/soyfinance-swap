@@ -20,8 +20,8 @@ const fetchTopTokens = async (timestamp24hAgo: number): Promise<string[]> => {
     const query = gql`
       query topTokens($blacklist: [String!], $timestamp24hAgo: Int) {
         tokenDayDatas(
-          first: 30
-          where: { dailyTxns_gt: 300, id_not_in: $blacklist, date_gt: $timestamp24hAgo }
+          first: 50
+          where: { dailyTxns_gt: 1, token_not_in: $blacklist, date_gt: $timestamp24hAgo }
           orderBy: dailyVolumeUSD
           orderDirection: desc
         ) {
