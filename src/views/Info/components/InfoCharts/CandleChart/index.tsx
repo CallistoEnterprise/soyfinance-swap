@@ -105,6 +105,14 @@ const CandleChart = ({ data, setValue, setLabel, ...rest }: LineChartProps) => {
         wickUpColor: theme.colors.success,
       })
 
+      series.applyOptions({
+        priceFormat: {
+            type: 'price',
+            precision: 6,
+            minMove: 0.000001,
+        },
+      });
+
       series.setData(data)
 
       // update the title when hovering on the chart
