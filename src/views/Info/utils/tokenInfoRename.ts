@@ -11,7 +11,8 @@ const toRename = {
     '0xcc1530716a7ebecfdc7572edcbf01766f042155c':{name:'Wrapped REEF',symbol:'ccREEF'},
     '0xccebb9f0ee6d720debccee42f52915037f774a70':{name:'Wrapped WSG',symbol:'ccWSG'},
     '0xcc099e75152accda96d54fabaf6e333ca44ad86e':{name:'Wrapped TWT',symbol:'ccTWT'},
-    '0xcc2d45f7fe1b8864a13f5d552345eb3f5a005fed':{name:'Wrapped Cake',symbol:'ccCake'}
+    '0xcc2d45f7fe1b8864a13f5d552345eb3f5a005fed':{name:'Wrapped Cake',symbol:'ccCake'},
+    '0xcc50d400042177b9dab6bd31ede73ae8e1ed6f08':{name:'Wrapped TON',symbol:'ccTON'}
 }
     
 export function renameTokens(object){
