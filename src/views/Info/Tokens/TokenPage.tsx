@@ -81,7 +81,8 @@ const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
 
   const cmcLink = useCMCLink(address)
 
-  const tokenData = renameTokens(useTokenData(address))
+  const tokenData = useTokenData(address)
+  const tokenDataView = renameTokens(tokenData)
   const poolsForToken = usePoolsForToken(address)
   const poolDatas = renamePools(usePoolDatas(poolsForToken ?? []))
   const transactions =renameTransactions(useTokenTransactions(address))
@@ -111,8 +112,8 @@ const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
   return (
     // <Page symbol={tokenData?.symbol}>
     <Page>
-      {tokenData ? (
-        !tokenData.exists ? (
+      {tokenDataView ? (
+        !tokenDataView.exists ? (
           <Card>
             <Box p="16px">
               <Text>
@@ -135,7 +136,7 @@ const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
                   <Text color="primary">{t('Tokens')}</Text>
                 </Link>
                 <Flex>
-                  <Text mr="8px">{tokenData.symbol}</Text>
+                  <Text mr="8px">{tokenDataView.symbol}</Text>
                   <Text>{`(${truncateHash(address)})`}</Text>
                 </Flex>
               </Breadcrumbs>
@@ -162,10 +163,10 @@ const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
                     fontSize={isXs || isSm ? '24px' : '40px'}
                     id="info-token-name-title"
                   >
-                    {tokenData.name}
+                    {tokenDataView.name}
                   </Text>
                   <Text ml="12px" lineHeight="1" color="textSubtle" fontSize={isXs || isSm ? '14px' : '20px'}>
-                    ({tokenData.symbol})
+                    ({tokenDataView.symbol})
                   </Text>
                 </Flex>
                 <Flex mt="8px" ml="46px" alignItems="center">
