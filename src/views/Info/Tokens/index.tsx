@@ -1,6 +1,7 @@
 import React, { useMemo, useEffect } from 'react'
 // import { Text, Heading, Card } from '@soy-libs/uikit2'
 import { Heading } from '@soy-libs/uikit2'
+import styled from 'styled-components'
 import Page from 'components/Layout/Page'
 import TokenTable from 'views/Info/components/InfoTables/TokensTable'
 import { useAllTokenData } from 'state/info/hooks' // useTokenDatas
@@ -9,6 +10,13 @@ import { useTranslation } from 'contexts/Localization'
 import TopTokenMovers from 'views/Info/components/TopTokenMovers'
 import { renameTokens } from 'views/Info/utils/tokenInfoRename'
 
+const ResponsiveGrid = styled.div`
+  display: grid;
+  grid-gap: 1em;
+  grid-template-columns: 1fr;
+  margin: 8px 0;
+  align-items: center;
+`
 const TokensOverview: React.FC = () => {
   const { t } = useTranslation()
   useEffect(() => {
@@ -40,7 +48,9 @@ const TokensOverview: React.FC = () => {
           </Text>
         </Card> */}
       {/* )} */}
-      <TopTokenMovers />
+      <ResponsiveGrid>
+        <TopTokenMovers />
+      </ResponsiveGrid>
       <Heading scale="lg" mt="40px" mb="16px" id="info-tokens-title">
         {t('All Tokens')}
       </Heading>
