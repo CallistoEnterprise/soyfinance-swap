@@ -145,6 +145,14 @@
       "chainId": 820,
       "decimals": 9,
       "logoURI": "https://app.soy.finance/images/coins/0xCC50D400042177B9DAb6bd31ede73aE8e1ED6F08.png"
+    },
+    {
+      "name": "Wrapped XMS",
+      "symbol": "ccXMS",
+      "address": "0xcc45afedd2065EDcA770801055d1E376473a871B",
+      "chainId": 820,
+      "decimals": 18,
+      "logoURI": "https://app.soy.finance/images/coins/0xcc45afedd2065EDcA770801055d1E376473a871B.png"
     }
   ]
 }

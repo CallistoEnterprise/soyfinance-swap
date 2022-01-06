@@ -210,6 +210,15 @@ const tokens = {
     },
     decimals: 9,
     projectLink: "https://explorer.callisto.network/address/0xCC50D400042177B9DAb6bd31ede73aE8e1ED6F08/transactions"
+  },
+  xms: {
+    symbol: "ccXMS",
+    address: {
+      820: "0xcc45afedd2065EDcA770801055d1E376473a871B",
+      20729: ''
+    },
+    decimals: 18,
+    projectLink: "https://explorer.callisto.network/address/0xcc45afedd2065EDcA770801055d1E376473a871B/transactions"
   }
 }
 
