@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
+import styled from 'styled-components'
 import { PoolUpdater, ProtocolUpdater, TokenUpdater } from 'state/info/updaters'
 import InfoNav from './components/InfoNav'
 import Overview from './Overview'
@@ -8,9 +9,16 @@ import PoolPage from './Pools/PoolPage'
 import Tokens from './Tokens'
 import RedirectInvalidToken from './Tokens/redirects'
 
+const Container = styled.div`
+  width: 100%;
+  @media screen and (max-width: 768px) {
+    width: calc(100% - 2px);
+  }
+`
+
 const Info: React.FC = () => {
   return (
-    <>
+    <Container>
       <ProtocolUpdater />
       <PoolUpdater />
       <TokenUpdater />
@@ -26,7 +34,7 @@ const Info: React.FC = () => {
       </Route>
       <Route exact path={['/info/tokens/:address', '/info/token/:address']} component={RedirectInvalidToken} />
       <Route exact path={['/info/pools/:address', '/info/pool/:address', '/info/pair/:address']} component={PoolPage} />
-    </>
+    </Container>
   )
 }
 
