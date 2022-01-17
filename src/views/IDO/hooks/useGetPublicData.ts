@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import BigNumber from 'bignumber.js'
+import { getBalanceAmount } from 'utils/formatBalance'
 import { getDailyIdoContract } from 'utils/contractHelpers'
 
 const useGetPublicData = () => {
@@ -22,8 +24,8 @@ const useGetPublicData = () => {
             })
 
             const soyPrices = data.map((item) => {
-                const soyToSell = parseFloat(item.soyToSell.toString()) / 1000000000000000000
-                const usdCollected = parseFloat(item.usdCollected.toString()) / 1000000000000000000
+                const soyToSell = getBalanceAmount(new BigNumber(item.soyToSell.toString())).toNumber()
+                const usdCollected = getBalanceAmount(new BigNumber(item.usdCollected.toString())).toNumber()
                 const prevSoyUsdPrice = soyToSell === 0 ? 0 : usdCollected / soyToSell
                 return prevSoyUsdPrice
             })
@@ -31,10 +33,10 @@ const useGetPublicData = () => {
             const maxPricePercentage = await contract.maxPricePercentage()
             const lastRoundSoyPrice = await contract.lastRoundSoyPrice()
             // const totalSoyToSell = await contract.totalSoyToSell()
-            const minPrice = minPricePercentage * parseFloat(lastRoundSoyPrice.toString()) / 100000000000000000000
-            const maxPrice = maxPricePercentage * parseFloat(lastRoundSoyPrice.toString()) / 100000000000000000000
-            const soyToSell = parseFloat(auctionRound.soyToSell.toString()) / 1000000000000000000
-            const usdCollected = parseFloat(auctionRound.usdCollected.toString()) / 1000000000000000000
+            const minPrice = minPricePercentage * getBalanceAmount(new BigNumber(lastRoundSoyPrice.toString())).toNumber()
+            const maxPrice = maxPricePercentage * getBalanceAmount(new BigNumber(lastRoundSoyPrice.toString())).toNumber()
+            const soyToSell = getBalanceAmount(new BigNumber(auctionRound.soyToSell.toString())).toNumber()
+            const usdCollected = getBalanceAmount(new BigNumber(auctionRound.usdCollected.toString())).toNumber()
             
             const start = parseFloat(auctionRound.start.toString())
             const end = parseFloat(auctionRound.end.toString())
@@ -46,8 +48,8 @@ const useGetPublicData = () => {
             const returnData = {
                 currentRound: curRoundId.toNumber(),
                 soyToSell,
-                currentCollectedUSD: parseFloat(collected.currentRoundUSD.toString()) / 1000000000000000000,
-                totalUSD: parseFloat(collected.totalUSD.toString()) / 1000000000000000000,
+                currentCollectedUSD: getBalanceAmount(new BigNumber(collected.currentRoundUSD.toString())).toNumber(),
+                totalUSD: getBalanceAmount(new BigNumber(collected.totalUSD.toString())).toNumber(),
                 soyAvgPrice: averagePrice,
                 startTime: start,
                 endTime: end,
