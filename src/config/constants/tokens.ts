@@ -203,6 +203,15 @@ const tokens = {
     },
     decimals: 18,
     projectLink: "https://explorer.callisto.network/address/0xcc45afedd2065EDcA770801055d1E376473a871B/transactions"
+  },
+  ftm: {
+    symbol: "ccFTM",
+    address: {
+      820: "0xcc50aB63766660C6C1157B8d6A5D51ceA82Dff34",
+      20729: ''
+    },
+    decimals: 18,
+    projectLink: "https://explorer.callisto.network/address/0xcc50aB63766660C6C1157B8d6A5D51ceA82Dff34/transactions"
   }
 }
 
