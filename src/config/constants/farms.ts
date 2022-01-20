@@ -300,20 +300,20 @@ const farms: FarmConfig[] = [
     token: tokens.xms,
     quoteToken: tokens.soy,
   },
-  // {
-  //   pid: 28,
-  //   lpSymbol: 'SOY-FTM LP',
-  //   lpAddresses: {
-  //     20729: '',
-  //     820: '0x6C1D9C58d5221dEdD8B5f4d1f53dEd75a34D8858',
-  //   },
-  //   localFarmAddresses: {
-  //     820: '0x755dACb811Bb64F3a1A9DF3dEdf12dAc7d14500B',
-  //     20729: ''
-  //   },
-  //   token: tokens.ftm,
-  //   quoteToken: tokens.soy,
-  // },
+  {
+    pid: 28,
+    lpSymbol: 'SOY-FTM LP',
+    lpAddresses: {
+      20729: '',
+      820: '0x6C1D9C58d5221dEdD8B5f4d1f53dEd75a34D8858',
+    },
+    localFarmAddresses: {
+      820: '0x755dACb811Bb64F3a1A9DF3dEdf12dAc7d14500B',
+      20729: ''
+    },
+    token: tokens.ftm,
+    quoteToken: tokens.soy,
+  },
 ]
 
 export default farms
