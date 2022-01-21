@@ -33,8 +33,8 @@ const useGetPublicData = () => {
             const maxPricePercentage = await contract.maxPricePercentage()
             const lastRoundSoyPrice = await contract.lastRoundSoyPrice()
             // const totalSoyToSell = await contract.totalSoyToSell()
-            const minPrice = minPricePercentage * getBalanceAmount(new BigNumber(lastRoundSoyPrice.toString())).toNumber()
-            const maxPrice = maxPricePercentage * getBalanceAmount(new BigNumber(lastRoundSoyPrice.toString())).toNumber()
+            const minPrice = minPricePercentage * getBalanceAmount(new BigNumber(lastRoundSoyPrice.toString())).toNumber()/100
+            const maxPrice = maxPricePercentage * getBalanceAmount(new BigNumber(lastRoundSoyPrice.toString())).toNumber()/100
             const soyToSell = getBalanceAmount(new BigNumber(auctionRound.soyToSell.toString())).toNumber()
             const usdCollected = getBalanceAmount(new BigNumber(auctionRound.usdCollected.toString())).toNumber()
             
