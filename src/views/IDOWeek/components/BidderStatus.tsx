@@ -9,7 +9,7 @@ const BidderStatus = ({item, prevSoyPrice}) => {
     const dd = d.getDate() < 10 ? `0${d.getDate()}` : d.getDate()
     const mm = d.getMonth() + 1 < 10 ? `0${d.getMonth() + 1}` : d.getMonth() + 1
     const date = item.unlockDate === 0 ? '--/--/--' : `${dd}/${mm}/${d.getFullYear()}`
-    const bonus = (0.25 * item.soyAmount).toFixed(2)
+    const bonus = (0.5 * item.soyAmount).toFixed(2)
 
     return (
         <Container>
@@ -19,7 +19,7 @@ const BidderStatus = ({item, prevSoyPrice}) => {
                         <Text fontSize="14px">{item.id}</Text>
                         <Text fontSize="24px" mt="5px" color="primary">{item.unlockDate === 0 ? '-' : item.soyAmount.toFixed(2)} SOY</Text>
                         <Text fontSize="12px" mt="-5px" color="primary">Bonus: {bonus} SOY</Text>
-                     </AutoColumn>
+                    </AutoColumn>
                     <Line />
                     <AutoColumn justify="space-between">
                         <Text fontSize="14px">Price</Text>
