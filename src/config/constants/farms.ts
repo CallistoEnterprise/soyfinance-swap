@@ -328,6 +328,20 @@ const farms: FarmConfig[] = [
     token: tokens.ftm,
     quoteToken: tokens.soy,
   },
+  // {
+  //   pid: 29,
+  //   lpSymbol: 'SOY-BBT LP',
+  //   lpAddresses: {
+  //     20729: '',
+  //     820: '0x7698Aa8703623BB4bb149bb529e12Ab712952E26',
+  //   },
+  //   localFarmAddresses: {
+  //     820: '0x755dACb811Bb64F3a1A9DF3dEdf12dAc7d145000',
+  //     20729: ''
+  //   },
+  //   token: tokens.bbt,
+  //   quoteToken: tokens.soy,
+  // },
 ]
 
 export default farms
