@@ -212,6 +212,15 @@ const tokens = {
     },
     decimals: 18,
     projectLink: "https://explorer.callisto.network/address/0xcc50aB63766660C6C1157B8d6A5D51ceA82Dff34/transactions"
+  },
+  btt: {
+    symbol: "ccBTT",
+    address: {
+      820: "0xCc99C6635Fae4DAcF967a3fc2913ab9fa2b349C3",
+      20729: ''
+    },
+    decimals: 18,
+    projectLink: "https://explorer.callisto.network/address/0xCc99C6635Fae4DAcF967a3fc2913ab9fa2b349C3/transactions"
   }
 }
 

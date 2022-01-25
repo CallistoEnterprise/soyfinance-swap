@@ -161,6 +161,14 @@
       "chainId": 820,
       "decimals": 18,
       "logoURI": "https://app.soy.finance/images/coins/0xcc50aB63766660C6C1157B8d6A5D51ceA82Dff34.png"
+    },
+    {
+      "name": "Wrapped BTT",
+      "symbol": "ccBTT",
+      "address": "0xCc99C6635Fae4DAcF967a3fc2913ab9fa2b349C3",
+      "chainId": 820,
+      "decimals": 18,
+      "logoURI": "https://app.soy.finance/images/coins/0xCc99C6635Fae4DAcF967a3fc2913ab9fa2b349C3.png"
     }
   ]
 }
