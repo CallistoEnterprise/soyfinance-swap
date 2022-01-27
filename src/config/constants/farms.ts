@@ -342,20 +342,20 @@ const farms: FarmConfig[] = [
     token: tokens.bbt,
     quoteToken: tokens.soy,
   },
-  // {
-  //   pid: 30,
-  //   lpSymbol: 'SOY-ANTEX LP',
-  //   lpAddresses: {
-  //     20729: '',
-  //     820: '0x03423DDB47730799c1250BFbd8A150E6d1D4BbBF',
-  //   },
-  //   localFarmAddresses: {
-  //     820: '0x542aB5a505fa2ba75836Ae87C6045EE03Ef8B41d',
-  //     20729: ''
-  //   },
-  //   token: tokens.bbt,
-  //   quoteToken: tokens.soy,
-  // },
+  {
+    pid: 30,
+    lpSymbol: 'SOY-ANTEX LP',
+    lpAddresses: {
+      20729: '',
+      820: '0x03423DDB47730799c1250BFbd8A150E6d1D4BbBF',
+    },
+    localFarmAddresses: {
+      820: '0x542aB5a505fa2ba75836Ae87C6045EE03Ef8B41d',
+      20729: ''
+    },
+    token: tokens.antex,
+    quoteToken: tokens.soy,
+  },
 ]
 
 export default farms
