@@ -177,6 +177,14 @@
       "chainId": 820,
       "decimals": 8,
       "logoURI": "https://app.soy.finance/images/coins/0xcCCaC2f22752bbe77D4DAb4e9421F2AC6c988427.png"
+    },
+    {
+      "name": "Wrapped ANTEX",
+      "symbol": "ccANTEX",
+      "address": "0xCCd792f5D06b73685a1b54A32fE786346cAd1894",
+      "chainId": 820,
+      "decimals": 8,
+      "logoURI": "https://app.soy.finance/images/coins/0xCCd792f5D06b73685a1b54A32fE786346cAd1894.png"
     }
   ]
 }

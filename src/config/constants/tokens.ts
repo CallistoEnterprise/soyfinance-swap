@@ -230,6 +230,15 @@ const tokens = {
     },
     decimals: 8,
     projectLink: "https://explorer.callisto.network/address/0xcCCaC2f22752bbe77D4DAb4e9421F2AC6c988427/transactions"
+  },
+  antex: {
+    symbol: "ccANTEX",
+    address: {
+      820: "0xCCd792f5D06b73685a1b54A32fE786346cAd1894",
+      20729: ''
+    },
+    decimals: 8,
+    projectLink: "https://explorer.callisto.network/address/0xCCd792f5D06b73685a1b54A32fE786346cAd1894/transactions"
   }
 }
 
