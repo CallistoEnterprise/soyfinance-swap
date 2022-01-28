@@ -48,6 +48,18 @@ const Label = styled(Text)`
   font-weight: bold;
   color: ${({ theme }) => theme.colors.secondary};
 `
+const StyledLink = styled.a`
+  width: 200px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${({ theme }) => theme.colors.text};
+  background-color: ${({ theme }) => theme.colors.backgroundAlt};
+  border: 1px solid ${({ theme }) => theme.colors.btnPrimaryBk};
+  margin-top: 30px;
+`
 
 export default function Swap({ history }: RouteComponentProps) {
   const loadedUrlParams = useDefaultsFromURLSearch()
@@ -496,6 +508,7 @@ export default function Swap({ history }: RouteComponentProps) {
       ) : (
         <UnsupportedCurrencyFooter currencies={[currencies.INPUT, currencies.OUTPUT]} />
       )}
+      <StyledLink href="https://soy-finance.gitbook.io/soy-finance/miscellaneous/media-kit" target="_blank">Media kit</StyledLink>
     </Page>
   )
 }
