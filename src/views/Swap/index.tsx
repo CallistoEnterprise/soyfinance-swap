@@ -508,7 +508,7 @@ export default function Swap({ history }: RouteComponentProps) {
       ) : (
         <UnsupportedCurrencyFooter currencies={[currencies.INPUT, currencies.OUTPUT]} />
       )}
-      <StyledLink href="https://soy-finance.gitbook.io/soy-finance/miscellaneous/media-kit" target="_blank">Media kit</StyledLink>
+      <StyledLink href="https://soy-finance.gitbook.io/soy-finance/soy-products/trading/tokens-contracts" target="_blank">Tokens Contracts List</StyledLink>
     </Page>
   )
 }
