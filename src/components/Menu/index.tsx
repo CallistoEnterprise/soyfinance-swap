@@ -6,6 +6,7 @@ import useTheme from 'hooks/useTheme'
 // import useGetPriceData from 'hooks/useGetPriceData'
 import { usePriceCakeBusd } from 'state/farms/hooks'
 import { useProfile } from 'state/profile/hooks'
+import { addSoyToMetamask } from 'utils/wallet'
 import config from './config'
 import UserMenu from './UserMenu'
 
@@ -34,6 +35,7 @@ const Menu = (props) => {
         noProfileLink: '/profile',
         showPip: !profile?.username,
       }}
+      addSoyToMetamask={addSoyToMetamask}
       {...props}
     />
   )
