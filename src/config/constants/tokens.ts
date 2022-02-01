@@ -239,6 +239,15 @@ const tokens = {
     },
     decimals: 8,
     projectLink: "https://explorer.callisto.network/address/0xCCd792f5D06b73685a1b54A32fE786346cAd1894/transactions"
+  },
+  zoo: {
+    symbol: "ccZOO",
+    address: {
+      820: "0xCC9aFcE1e164fC2b381A3a104909e2D9E52cfB5D",
+      20729: ''
+    },
+    decimals: 18,
+    projectLink: "https://explorer.callisto.network/address/0xCC9aFcE1e164fC2b381A3a104909e2D9E52cfB5D/transactions"
   }
 }
 
