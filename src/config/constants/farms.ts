@@ -356,6 +356,20 @@ const farms: FarmConfig[] = [
     token: tokens.antex,
     quoteToken: tokens.soy,
   },
+  {
+    pid: 31,
+    lpSymbol: 'SOY-ZOO LP',
+    lpAddresses: {
+      20729: '',
+      820: '0x0F663DA289eD5E76C1CF7730A317F89D28A0B9E3',
+    },
+    localFarmAddresses: {
+      820: '0xDaD226E5c7A315946F938EA952b7D28548DF373d',
+      20729: ''
+    },
+    token: tokens.zoo,
+    quoteToken: tokens.soy,
+  },
 ]
 
 export default farms
