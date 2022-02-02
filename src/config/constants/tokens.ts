@@ -248,6 +248,15 @@ const tokens = {
     },
     decimals: 18,
     projectLink: "https://explorer.callisto.network/address/0xCC9aFcE1e164fC2b381A3a104909e2D9E52cfB5D/transactions"
+  },
+  bcoin: {
+    symbol: "ccBCOIN",
+    address: {
+      820: "0xcC6e7E97A46B6F0eD3bC81518Fc816da78F7cb65",
+      20729: ''
+    },
+    decimals: 18,
+    projectLink: "https://explorer.callisto.network/address/0xcC6e7E97A46B6F0eD3bC81518Fc816da78F7cb65/transactions"
   }
 }
 

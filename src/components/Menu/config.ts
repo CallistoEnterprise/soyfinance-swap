@@ -38,10 +38,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: '/ido',
   },
   {
-    label: t('CHOAM Sale'),
-    href: 'https://choamtoken.com/publicsale',
+    label: t('CHOAM'),
+    href: 'https://choamtoken.com/',
     icon: "ChoamIcon",
-    target: "_blank"
+    target: "_blank",
+    status: menuStatus.SOLDOUT
   },
   // {
   //   label: t('Pools'),

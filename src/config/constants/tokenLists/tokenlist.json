@@ -193,6 +193,14 @@
       "chainId": 820,
       "decimals": 18,
       "logoURI": "https://app.soy.finance/images/coins/0xCC9aFcE1e164fC2b381A3a104909e2D9E52cfB5D.png"
+    },
+    {
+      "name": "Wrapped BCOIN",
+      "symbol": "ccBCOIN",
+      "address": "0xcC6e7E97A46B6F0eD3bC81518Fc816da78F7cb65",
+      "chainId": 820,
+      "decimals": 18,
+      "logoURI": "https://app.soy.finance/images/coins/0xcC6e7E97A46B6F0eD3bC81518Fc816da78F7cb65.png"
     }
   ]
 }
