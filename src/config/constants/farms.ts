@@ -370,20 +370,20 @@ const farms: FarmConfig[] = [
     token: tokens.zoo,
     quoteToken: tokens.soy,
   },
-  // {
-  //   pid: 32,
-  //   lpSymbol: 'SOY-BCOIN LP',
-  //   lpAddresses: {
-  //     20729: '',
-  //     820: '0x7c2DBd65342A472F053CeA6d7Ff46Cdc751Bc6B8',
-  //   },
-  //   localFarmAddresses: {
-  //     820: '0xDaD226E5c7A315946F938EA952b7D28548DF373d',
-  //     20729: ''
-  //   },
-  //   token: tokens.bcoin,
-  //   quoteToken: tokens.soy,
-  // },
+  {
+    pid: 32,
+    lpSymbol: 'SOY-BCOIN LP',
+    lpAddresses: {
+      20729: '',
+      820: '0x7c2DBd65342A472F053CeA6d7Ff46Cdc751Bc6B8',
+    },
+    localFarmAddresses: {
+      820: '0xf995d7628FEAF679A776f055c5E211D55Ef5D9Bd',
+      20729: ''
+    },
+    token: tokens.bcoin,
+    quoteToken: tokens.soy,
+  },
 ]
 
 export default farms
