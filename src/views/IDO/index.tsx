@@ -16,7 +16,7 @@ import { AutoColumn } from '../../components/Layout/Column'
 import CurrencyInputPanel from '../../components/CurrencyInputPanelForIdo'
 import { AutoRow } from '../../components/Layout/Row'
 import { Wrapper } from './components/styleds'
-import { AppHeader, AppBody } from '../../components/App'
+import { AppHeader } from '../../components/App'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
 import { useSwapCallback } from '../../hooks/useSwapCallback'
 import useWrapCallback, { WrapType } from '../../hooks/useWrapCallback'
@@ -40,6 +40,13 @@ import useGetAllowance from './hooks/useGetAllowance'
 import useApprove from './hooks/useApprove'
 import useClaim from './hooks/useClaim'
 
+const CustomAppBody = styled(Card)`
+  max-height: 670px;
+  border-radius: 24px;
+  max-width: 436px;
+  width: 100%;
+  z-index: 0;
+`
 const CustomRow = styled.div`
   width: 100%;
   display: flex;
@@ -235,7 +242,7 @@ export default function IDODaily() {
   return (
     <IDOPage>
       <CustomRow>
-        <AppBody>
+        <CustomAppBody>
           <AppHeader title={t('SOY Finance IDO Pool')} subtitle={t('Invest In Your Funds Safety')} noConfig />
           <Wrapper id="swap-page">
             <AutoColumn gap="md">
@@ -338,7 +345,7 @@ export default function IDODaily() {
                 </Button>}
             </Box>
           </Wrapper>
-        </AppBody>
+        </CustomAppBody>
         {account && hasBidder && <SpacerH />}
         {account && hasBidder && <SpacerV />}
         {account && hasBidder && <BidderWrapper>
