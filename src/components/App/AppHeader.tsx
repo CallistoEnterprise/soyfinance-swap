@@ -54,7 +54,7 @@ const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig 
   )
 }
 
-export const BidderHeader = ({ title, handleClick, loading, claimAmount = 0, noConfig = false }) => {
+export const BidderHeader = ({ title, handleClick, loading, claimAmount = 0, noConfig = false, totalLockedSoy = 0 }) => {
 
   return (
     <AppHeaderContainer>
@@ -63,6 +63,9 @@ export const BidderHeader = ({ title, handleClick, loading, claimAmount = 0, noC
           <Heading as="h2" mb="8px">
             {title}
           </Heading>
+          <Text color="textSubtle" fontSize="14px">
+            {`Total Bidded Soy Amount : ${totalLockedSoy} SOY`}
+          </Text>
           <Text color="textSubtle" fontSize="14px">
             {claimAmount === 0 ? 'There is no any amount to be claim.' : `${claimAmount.toFixed(6)} SOY may be claimed.`}
           </Text>

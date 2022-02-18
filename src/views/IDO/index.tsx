@@ -44,7 +44,6 @@ const CustomRow = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
   @media screen and (max-width: 768px) {
     flex-direction: column;
 
@@ -226,6 +225,13 @@ export default function IDODaily() {
     } 
   }, [maxAmountInput, onUserInput])
 
+  const biddedSoyAmtArr = [];
+  statistics?.forEach((data) => {
+    biddedSoyAmtArr.push(data.soyAmount);
+  })
+
+  const totalLockedSoy = biddedSoyAmtArr.reduce((a, b) => a + b, 0)
+  
   return (
     <IDOPage>
       <CustomRow>
@@ -336,7 +342,13 @@ export default function IDODaily() {
         {account && hasBidder && <SpacerH />}
         {account && hasBidder && <SpacerV />}
         {account && hasBidder && <BidderWrapper>
-          <BidderHeader title={t('Bidder Statistics')} handleClick={() => handleClaim()} loading={claimPending} claimAmount={soyToClaim}/>
+          <BidderHeader
+            title={t('Bidder Statistics')}
+            totalLockedSoy={totalLockedSoy}
+            handleClick={() => handleClaim()}
+            loading={claimPending}
+            claimAmount={soyToClaim}
+          />
           <Wrapper id="swap-page">
               <AutoColumn justify="space-between">
                 {
