@@ -360,13 +360,13 @@ export default function IDODaily() {
             loading={claimPending}
             claimAmount={soyToClaim}
           />
-          <Wrapper id="swap-page">
+          <Wrapper id="swap-page" style={{height:'528px',overflowY:'scroll'}}>
               <AutoColumn justify="space-between">
                 {
-                  statistics.map((item, index) => {
+                  statistics.slice(0).reverse().map((item, index, array) => {
                     if (item.unlockDate === 0) return null
                     return (
-                      <BidderStatus item={item} key={item.id} prevSoyPrice={publicData ? publicData.prevSoyUsdPrice[index] : 0}/>
+                      <BidderStatus item={item} key={item.id} prevSoyPrice={publicData ? publicData.prevSoyUsdPrice[array.length - 1 - index] : 0}/>
                     )
                   })
                 }
