@@ -46,6 +46,10 @@ const CustomAppBody = styled(Card)`
   max-width: 436px;
   width: 100%;
   z-index: 0;
+  @media screen and (max-width: 768px) {
+    max-height: 1000px;
+    margin-bottom: 20px;
+  }
 `
 const CustomRow = styled.div`
   width: 100%;

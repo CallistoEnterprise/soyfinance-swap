@@ -57,7 +57,7 @@ const Counter = ({item, curRound, soyToSell, iteration}) => {
             <Text fontSize="18px">{`Number of SOY for this round ${soyToSell.toFixed(2)} SOY.`}</Text>
             {iteration !== 0 && <Text fontSize="18px">{`Current Iteration : ${iteration}.`}</Text>}
             <Text fontSize="18px">{`Round ${curRound} of 180 ends in`}</Text>
-            {item !== undefined && <Text fontSize="67px">{item === 0 || curRound === 0 ? '00:00:00' : datetime}</Text>}
+            {item !== undefined && <TimerText fontSize="67px">{item === 0 || curRound === 0 ? '00:00:00' : datetime}</TimerText>}
         </Container>
     )
 }
@@ -68,5 +68,9 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
 `
-
+const TimerText = styled(Text)`
+    @media screen and (max-width: 768px) {
+        font-size: 50px;
+    }
+`
 export default Counter
