@@ -259,7 +259,7 @@ export default function IDODaily() {
               <AutoColumn justify="space-between">
                 <StatusSection currentAmount={publicData ? publicData.currentCollectedUSD : 0}/>
               </AutoColumn>
-              { publicData && <AutoColumn justify="space-between">
+              {/* { publicData && <AutoColumn justify="space-between">
                 <AutoRow justify='space-between' style={{ padding: '0 1rem' }}>
                   <Text>Average Price</Text>
                   <Text
@@ -279,7 +279,7 @@ export default function IDODaily() {
                   <Text>Maximum Price</Text>
                   <Text>1 SOY = {publicData? parseFloat(publicData.maxPrice) !== 0 && parseFloat(publicData.maxPrice) < 0.0001 ? '<0.0001' : parseInt((publicData.maxPrice * 10000).toString()) / 10000 : 0} USD</Text>
                 </AutoRow>
-              </AutoColumn>}
+              </AutoColumn>} */}
               <CurrencyInputPanel
                 label={independentField === Field.OUTPUT && !showWrap && trade ? t('') : t('')}
                 value={formattedAmounts[Field.INPUT]}

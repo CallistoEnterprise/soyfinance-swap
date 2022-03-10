@@ -50,14 +50,16 @@ const Counter = ({item, curRound, soyToSell, iteration}) => {
         }
     }, [unlockTime])
 
-    const datetime = `${formatString(getHour(diff))} : ${formatString(getMin(diff))} : ${formatString(getSec(diff))}`
+    // const datetime = `${formatString(getHour(diff))} : ${formatString(getMin(diff))} : ${formatString(getSec(diff))}`
 
     return (
         <Container>
-            <Text fontSize="18px">{`Number of SOY for this round ${soyToSell.toFixed(2)} SOY.`}</Text>
+            <Text fontSize="24px">Daily IDO is closed.</Text>
+
+            {/* <Text fontSize="18px">{`Number of SOY for this round ${soyToSell.toFixed(2)} SOY.`}</Text>
             {iteration !== 0 && <Text fontSize="18px">{`Current Iteration : ${iteration}.`}</Text>}
             <Text fontSize="18px">{`Round ${curRound} of 180 ends in`}</Text>
-            {item !== undefined && <TimerText fontSize="67px">{item === 0 || curRound === 0 ? '00:00:00' : datetime}</TimerText>}
+            {item !== undefined && <TimerText fontSize="67px">{item === 0 || curRound === 0 ? '00:00:00' : datetime}</TimerText>} */}
         </Container>
     )
 }
