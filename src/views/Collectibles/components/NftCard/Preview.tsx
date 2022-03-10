@@ -23,7 +23,7 @@ const StyledImage = styled.img`
   transition: opacity 1s linear;
   height: 100%;
   object-fit: cover;
-  border-radius: 24px 24px 0 0;
+  /* border-radius: 24px 24px 0 0; */
 `
 
 const StyledVideo = styled.video`
@@ -32,25 +32,25 @@ const StyledVideo = styled.video`
 `
 
 const Preview: React.FC<PreviewProps> = ({ nft, isOwned = false }) => {
-  const { images, name, video } = nft
-  const previewImageSrc = `/images/nfts/${images.lg}`
+  const { images, name } = nft
+  const previewImageSrc = `/images/nfts/${images.sm}`
 
-  if (video) {
-    const videoComponent = (
-      <StyledVideo autoPlay controls={false} loop muted poster={previewImageSrc}>
-        <source src={video.webm} type="video/webm" />
-        <source src={video.mp4} type="video/mp4" />
-      </StyledVideo>
-    )
+  // if (video) {
+  //   const videoComponent = (
+  //     <StyledVideo autoPlay controls={false} loop muted poster={previewImageSrc}>
+  //       <source src={video.webm} type="video/webm" />
+  //       <source src={video.mp4} type="video/mp4" />
+  //     </StyledVideo>
+  //   )
 
-    return isOwned ? (
-      <a href={images.ipfs} target="_blank" rel="noreferrer noopener">
-        {videoComponent}
-      </a>
-    ) : (
-      videoComponent
-    )
-  }
+  //   return isOwned ? (
+  //     <a href={images.ipfs} target="_blank" rel="noreferrer noopener">
+  //       {videoComponent}
+  //     </a>
+  //   ) : (
+  //     videoComponent
+  //   )
+  // }
 
   const previewImage = <StyledImage src={previewImageSrc} alt={name} />
 

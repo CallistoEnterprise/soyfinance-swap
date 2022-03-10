@@ -45,7 +45,7 @@ const Collectibles = () => {
       {nftsInWallet.length > 0 && (
         <CollectibleList>
           {nftsInWallet.map((nftInWallet) => (
-            <CollectibleCard key={nftInWallet.identifier} nft={nftInWallet} />
+            <CollectibleCard key={nftInWallet.name} nft={nftInWallet} />
           ))}
         </CollectibleList>
       )}

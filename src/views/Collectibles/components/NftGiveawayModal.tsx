@@ -32,7 +32,7 @@ const showConfetti = () => {
   })
 }
 
-const getClaimableNft = (profile: Profile): Nft => {
+const getClaimableNft = (profile: Profile) => {
   if (!profile) {
     return null
   }
@@ -44,7 +44,7 @@ const getClaimableNft = (profile: Profile): Nft => {
   const identifier = Object.keys(teamNftMap).find(
     (mapNftIdentifier) => teamNftMap[mapNftIdentifier] === profile.team.id,
   )
-  return nftList.find((nft) => nft.identifier === identifier)
+  return nftList.find((nft) => nft.name === identifier)
 }
 
 const NftGiveawayModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {

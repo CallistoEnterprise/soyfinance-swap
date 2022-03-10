@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading } from '@soy-libs/uikit2'
+import { Heading, Text } from '@soy-libs/uikit2'
 import { useTranslation } from 'contexts/Localization'
 import Page from 'components/Layout/Page'
 import NftList from './components/NftList'
@@ -18,9 +18,12 @@ const Collectibles = () => {
     <Page>
       <StyledHero>
         <Heading as="h1" scale="xxl" color="secondary">
-          {t('Soyfinance NFTs')}
+          {t('Charity NFTs')}
         </Heading>
       </StyledHero>
+      <Text>The SOY Finance Charity NFT is designed as a reminder that we all share one planet, and we all need to spread one love.</Text>
+      <Text mt="8px">Considering the charitable nature of the series, a minimum price is set, but no maximum price: everyone is free to donate as much as they wish.</Text>
+      <Text mt="8px">All funds collected will be used to support people in need.</Text>
       <NftList />
     </Page>
   )

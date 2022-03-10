@@ -23,6 +23,6 @@ export const useGetCollectibles = () => {
     isInitialized,
     isLoading,
     tokenIds: data,
-    nftsInWallet: Nfts.filter((nft) => identifiers.includes(nft.identifier)),
+    nftsInWallet: Nfts.filter((nft) => identifiers.includes(nft.name)),
   }
 }

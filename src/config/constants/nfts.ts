@@ -24,39 +24,43 @@ export const nftSources: NftSource = {
  * https://gateway.pinata.cloud
  */
 
-const Nfts: Nft[] = [
+const Nfts = [
   {
-    name: 'Claire',
-    description: 'Can Claire the clairvoyant see what’s in the cards for you?',
+    name: 'Emerald',
     images: {
       lg: 'claire-lg.png',
       md: 'claire-md.png',
-      sm: 'claire-sm.png',
-      ipfs: 'https://cloudflare-ipfs.com/ipfs/QmRa2WbGnqdgUzrYXxZWv549BDxq3heYridJeoWGcebcU8/claire.png',
+      sm: 'emerald-sm.png',
+      ipfs: 'https://cloudflare-ipfs.com/ipfs',
     },
-    sortOrder: 999,
-    identifier: 'claire',
-    type: NftType.SAFEMOON,
-    variationId: 17,
+    minPrice: 10000,
+    maxPrice: 'infinity',
+    primaryColor: '#74AB46',
   },
   {
-    name: 'Syrup Soak',
-    description: 'Ahh... what could be sweeter than a syrupy soak?',
+    name: 'Saphire',
     images: {
-      lg: 'soak-lg.png',
-      md: 'soak-md.png',
-      sm: 'soak-sm.png',
-      ipfs: 'https://cloudflare-ipfs.com/ipfs/QmW3zLfdQpw9vWpgcDyR2WM9A34tTWvvYyjKc3JjhtL68z/syrup-soak.png',
+      lg: 'saphire-lg.png',
+      md: 'saphire-md.png',
+      sm: 'saphire-sm.png',
+      ipfs: 'https://cloudflare-ipfs.com/ipfs',
     },
-    video: {
-      webm: 'https://gateway.pinata.cloud/ipfs/QmW3zLfdQpw9vWpgcDyR2WM9A34tTWvvYyjKc3JjhtL68z/syrup-soak.webm',
-      mp4: 'https://gateway.pinata.cloud/ipfs/QmW3zLfdQpw9vWpgcDyR2WM9A34tTWvvYyjKc3JjhtL68z/syrup-soak.mp4',
+    minPrice: 1000,
+    maxPrice: 5000,
+    primaryColor: '#5A9BD5',
+  },
+  {
+    name: 'Purple',
+    images: {
+      lg: 'purple-lg.png',
+      md: 'purple-md.png',
+      sm: 'purple-sm.png',
+      ipfs: 'https://cloudflare-ipfs.com/ipfs',
     },
-    sortOrder: 999,
-    identifier: 'syrup-soak',
-    type: NftType.SAFEMOON,
-    variationId: 16,
-  }
+    minPrice: 100,
+    maxPrice: 500,
+    primaryColor: '#A85EFD',
+  },
 ]
 
 export default Nfts

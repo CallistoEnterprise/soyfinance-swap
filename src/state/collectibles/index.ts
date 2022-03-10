@@ -31,7 +31,7 @@ export const fetchWalletNfts = createAsyncThunk<NftSourceItem[], string>(
           const tokenId = tokenIdBn.toNumber()
 
           const walletNft = await getNftByTokenId(address, tokenId)
-          return [tokenId, walletNft.identifier]
+          return [tokenId, walletNft.name]
         } catch (error) {
           console.error('getTokenIdAndData', error)
           return null

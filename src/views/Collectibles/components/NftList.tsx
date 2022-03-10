@@ -33,9 +33,16 @@ const NftList = () => {
 
   return (
     <NftGrid>
-      <Text fontSize="30px">
+      {/* <Text fontSize="30px">
         <Dots>Comming Soon</Dots>
-      </Text>
+      </Text> */}
+      {
+        nfts.map((nft) => {
+          return (
+            <NftCard nft = {nft} tokenIds = {tokenIds[nft.name]} refresh = {handleRefresh}/>
+          )
+        })
+      }
       {/* {orderBy(nfts, 'sortOrder').map((nft) => {
         const Card = nftComponents[nft.identifier] || NftCard
 

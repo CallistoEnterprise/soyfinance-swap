@@ -86,7 +86,7 @@ const ProfilePicture: React.FC = () => {
             </Link>
           </Text>
           <NftWrapper>
-            {isLoading ? (
+            {/* {isLoading ? (
               <Skeleton height="80px" mb="16px" />
             ) : (
               nftsInWallet.map((walletNft) => {
@@ -106,7 +106,7 @@ const ProfilePicture: React.FC = () => {
                   </SelectionCard>
                 )
               })
-            )}
+            )} */}
           </NftWrapper>
           <Heading as="h4" scale="lg" mb="8px">
             {t('Allow collectible to be locked')}

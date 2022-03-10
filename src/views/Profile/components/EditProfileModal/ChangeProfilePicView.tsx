@@ -60,18 +60,18 @@ const ChangeProfilePicPage: React.FC<ChangeProfilePicPageProps> = ({ onDismiss }
         <Skeleton height="80px" mb="16px" />
       ) : (
         nftsInWallet.map((walletNft) => {
-          const [firstTokenId] = tokenIds[walletNft.identifier]
+          const [firstTokenId] = tokenIds[walletNft.name]
           const handleChange = (value: string) => {
             setSelectedNft({
               tokenId: Number(value),
-              nftAddress: getAddressByType(walletNft.type),
+              nftAddress: '0xA61e941D0D6b548ec188dC05E0DcFc0f30cCb284',
             })
           }
 
           return (
             <SelectionCard
               name="profilePicture"
-              key={walletNft.identifier}
+              key={walletNft.name}
               value={firstTokenId}
               image={`/images/nfts/${walletNft.images.md}`}
               isChecked={firstTokenId === selectedNft.tokenId}

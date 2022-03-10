@@ -44,7 +44,7 @@ const TransferNftModal: React.FC<TransferNftModalProps> = ({ nft, tokenIds, onSu
   const [error, setError] = useState(null)
   const { t } = useTranslation()
   const { account } = useWeb3React()
-  const contract = useERC721(getAddressByType(nft.type))
+  const contract = useERC721('0xA61e941D0D6b548ec188dC05E0DcFc0f30cCb284')
   const { toastSuccess } = useToast()
 
   const handleConfirm = async () => {

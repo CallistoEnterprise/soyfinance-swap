@@ -15,11 +15,11 @@ import ApproveConfirmButtons from '../components/ApproveConfirmButtons'
 import useProfileCreation from './contexts/hook'
 import { MINT_COST, STARTER_BUNNY_IDENTIFIERS } from './config'
 
-const nfts = nftList.filter((nft) => STARTER_BUNNY_IDENTIFIERS.includes(nft.identifier))
+const nfts = nftList.filter((nft) => STARTER_BUNNY_IDENTIFIERS.includes(nft.name))
 const minimumCakeBalanceToMint = new BigNumber(MINT_COST).multipliedBy(DEFAULT_TOKEN_DECIMAL)
 
 const Mint: React.FC = () => {
-  const [variationId, setVariationId] = useState<Nft['variationId']>(null)
+  const [variationId, setVariationId] = useState(null)
   const { actions, minimumCakeRequired, allowance } = useProfileCreation()
 
   const { account } = useWeb3React()
@@ -72,7 +72,7 @@ const Mint: React.FC = () => {
           <Text as="p" mb="24px" color="textSubtle">
             {t('Cost: %num% SOY', { num: MINT_COST })}
           </Text>
-          {nfts.map((nft) => {
+          {/* {nfts.map((nft) => {
             const handleChange = (value: string) => setVariationId(Number(value))
 
             return (
@@ -88,7 +88,7 @@ const Mint: React.FC = () => {
                 <Text bold>{nft.name}</Text>
               </SelectionCard>
             )
-          })}
+          })} */}
           {!hasMinimumCakeRequired && (
             <Text color="failure" mb="16px">
               {t('A minimum of %num% SOY is required', { num: MINT_COST })}
