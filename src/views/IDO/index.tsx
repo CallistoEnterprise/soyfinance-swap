@@ -320,7 +320,8 @@ export default function IDODaily() {
                   }}
                   id="swap-button"
                   width="100%"
-                  disabled={!account}
+                  disabled
+                  // disabled={!account}
                 >
                   {
                     txPending?
@@ -339,13 +340,17 @@ export default function IDODaily() {
                   }}
                   id="swap-button"
                   width="100%"
-                  disabled={!account || balance === '0' || parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance) || parseFloat(formattedAmounts[Field.INPUT]) === 0 || formattedAmounts[Field.INPUT] === ''}
+                  disabled
+                  // disabled={!account || balance === '0' || parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance) || parseFloat(formattedAmounts[Field.INPUT]) === 0 || formattedAmounts[Field.INPUT] === ''}
                 >
-                  {txPending?
+                  {
+                  txPending?
                   <CircleLoader />:
-                   account && parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance) ?
-                  `Insufficient balance`:
-                  `Submit Your Bid`}
+                  `IDO is closed`
+                  //  account && parseFloat(formattedAmounts[Field.INPUT]) > parseFloat(balance) ?
+                  // `Insufficient balance`:
+                  // `Submit Your Bid`
+                  }
                 </Button>}
             </Box>
           </Wrapper>
