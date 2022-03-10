@@ -36,6 +36,7 @@ const Nfts = [
     minPrice: 10000,
     maxPrice: 'infinity',
     primaryColor: '#74AB46',
+    classId: 2,
   },
   {
     name: 'Saphire',
@@ -48,6 +49,7 @@ const Nfts = [
     minPrice: 1000,
     maxPrice: 5000,
     primaryColor: '#5A9BD5',
+    classId: 1,
   },
   {
     name: 'Purple',
@@ -60,6 +62,7 @@ const Nfts = [
     minPrice: 100,
     maxPrice: 500,
     primaryColor: '#A85EFD',
+    classId: 0,
   },
 ]
 

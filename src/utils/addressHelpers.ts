@@ -29,6 +29,9 @@ export const getDailyIdoAddress = () => {
 export const getWeeklyIdoAddress = () => {
   return getAddress(addresses.weeklyIdo)
 }
+export const getCharityNftAddress = () => {
+  return getAddress(addresses.charityNft)
+}
 
 
 

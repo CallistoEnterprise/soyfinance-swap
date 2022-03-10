@@ -5,21 +5,24 @@ import {
   Card,
   CardBody,
   Heading,
-  // Tag,
+  AutoRenewIcon,
   Button,
   // ChevronUpIcon,
   // ChevronDownIcon,
   // Text,
   // CardFooter,
-  useModal,
+  // useModal,
 } from '@soy-libs/uikit2'
-// import { useProfile } from 'state/profile/hooks'
+import useToast from 'hooks/useToast'
 import { useTranslation } from 'contexts/Localization'
 import { Nft } from 'config/constants/types'
+import { useGetBnbBalance } from 'hooks/useTokenBalance'
+import { BIG_TEN } from 'utils/bigNumber'
+import useBuyNft from '../../hooks/useBuyNft'
 import { Input as NumericalInput } from './NumericalInput'
 import InfoRow from '../InfoRow'
 // import TransferNftModal from '../TransferNftModal'
-import ClaimNftModal from '../ClaimNftModal'
+// import ClaimNftModal from '../ClaimNftModal'
 import Preview from './Preview'
 
 export interface NftCardProps {
@@ -70,18 +73,49 @@ const PriceSection = styled.div`
   width: 100%;
 `
 
-const NftCard: React.FC<NftCardProps> = ({ nft, canClaim = false, tokenIds = [], onClaim, refresh }) => {
-  // const [isOpen, setIsOpen] = useState(false)
+const NftCard: React.FC<NftCardProps> = ({ nft, tokenIds = [], refresh }) => {
+  const [isConfirming, setIsConfirming] = useState(false)
   const [inputAmount, setInputAmount] = useState('')
   const { t } = useTranslation()
+  const { toastError, toastSuccess, toastWarning } = useToast()
   const { name } = nft
   const walletOwnsNft = tokenIds.length > 0
 
-  // const Icon = isOpen ? ChevronUpIcon : ChevronDownIcon
+  const { onBuyNft } = useBuyNft()
+  const { balance } = useGetBnbBalance()
 
-  // const handleClick = async () => {
-  //   setIsOpen(!isOpen)
-  // }
+  const handleConfirm = async () => {
+
+    const intAmount = parseInt(inputAmount, 10)
+    if ((nft.classId === 0) && intAmount > nft.maxPrice && nft.minPrice > intAmount) {
+      toastWarning('Please input a correct amount!')
+      return;
+    }
+    if ((nft.classId === 1) && intAmount > nft.maxPrice && nft.minPrice > intAmount) {
+      toastWarning('Please input a correct amount!')
+      return;
+    }
+    if (nft.classId === 2 && nft.minPrice > intAmount) {
+      toastWarning('Please input a correct amount!')
+      return;
+    }
+    const decimalBalance = balance.dividedBy(BIG_TEN.pow(18))
+
+    if (decimalBalance.toNumber() <= intAmount) {
+      toastWarning('Insufficient balance!')
+      return;
+    }
+    setIsConfirming(true)
+
+    const receipt = await onBuyNft(nft.classId, inputAmount)
+    if (receipt) {
+      toastSuccess(t('Successfully claimed!'))
+      setIsConfirming(false)
+    } else {
+      toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
+      setIsConfirming(false)
+    }
+  }
 
   const handleSuccess = () => {
     refresh()
@@ -91,20 +125,10 @@ const NftCard: React.FC<NftCardProps> = ({ nft, canClaim = false, tokenIds = [],
     setInputAmount(value)
   }
 
-  // const [onPresentTransferModal] = useModal(
-  //   <TransferNftModal nft={nft} tokenIds={tokenIds} onSuccess={handleSuccess} />,
-  // )
-  const [onPresentClaimModal] = useModal(<ClaimNftModal nft={nft} onSuccess={handleSuccess} onClaim={onClaim} />)
-
   return (
     <StyledCard isActive={walletOwnsNft}>
       <Header bkColor = {nft.primaryColor}>
         <Heading textAlign="center">{name}</Heading>
-        {/* {walletOwnsNft && (
-          <Tag outline variant="secondary">
-            {t('In Wallet')}
-          </Tag>
-        )} */}
       </Header>
       <PriceSection>
         <Heading color="#000">{`${nft.minPrice} - ${nft.maxPrice}`} CLO</Heading>
@@ -121,28 +145,16 @@ const NftCard: React.FC<NftCardProps> = ({ nft, canClaim = false, tokenIds = [],
       />
 
       <CardBody>
-        <BuyButton width="100%" mt="0px" bkColor = {nft.primaryColor} onClick={onPresentClaimModal}>
+        <BuyButton
+          width="100%"
+          mt="0px"
+          bkColor = {nft.primaryColor}
+          onClick={handleConfirm}
+          endIcon={isConfirming ? <AutoRenewIcon color="currentColor" spin /> : null}
+        >
           {t('Buy Now')}
         </BuyButton>
-
-        {/* {walletOwnsNft && (
-          <Button width="100%" variant="secondary" mt="24px" onClick={onPresentTransferModal}>
-            {t('Transfer')}
-          </Button>
-        )} */}
       </CardBody>
-      {/* <CardFooter p="0">
-        <DetailsButton width="100%" endIcon={<Icon width="24px" color="primary" />} onClick={handleClick}>
-          {t('Details')}
-        </DetailsButton>
-        {isOpen && (
-          <InfoBlock>
-            <Text as="p" color="textSubtle" style={{ textAlign: 'center' }}>
-              {t(description)}
-            </Text>
-          </InfoBlock>
-        )}
-      </CardFooter> */}
     </StyledCard>
   )
 }

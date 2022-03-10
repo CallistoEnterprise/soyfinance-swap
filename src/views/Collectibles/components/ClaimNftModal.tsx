@@ -29,19 +29,19 @@ const ClaimNftModal: React.FC<ClaimNftModalProps> = ({ nft, onSuccess, onClaim, 
   const { account } = useWeb3React()
   const { toastError, toastSuccess } = useToast()
 
-  const handleConfirm = async () => {
-    const tx = await onClaim()
-    setIsConfirming(true)
-    const receipt = await tx.wait()
-    if (receipt.status) {
-      toastSuccess(t('Successfully claimed!'))
-      onDismiss()
-      onSuccess()
-    } else {
-      toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
-      setIsConfirming(false)
-    }
-  }
+  // const handleConfirm = async () => {
+  //   const tx = await onClaim()
+  //   setIsConfirming(true)
+  //   const receipt = await tx.wait()
+  //   if (receipt.status) {
+  //     toastSuccess(t('Successfully claimed!'))
+  //     onDismiss()
+  //     onSuccess()
+  //   } else {
+  //     toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
+  //     setIsConfirming(false)
+  //   }
+  // }
 
   return (
     <Modal title={t('Claim Collectible')} onDismiss={onDismiss}>
@@ -57,7 +57,7 @@ const ClaimNftModal: React.FC<ClaimNftModalProps> = ({ nft, onSuccess, onClaim, 
         </Button>
         <Button
           width="100%"
-          onClick={handleConfirm}
+          onClick={onClaim}
           disabled={!account}
           isLoading={isConfirming}
           endIcon={isConfirming ? <AutoRenewIcon color="currentColor" spin /> : null}

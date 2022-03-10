@@ -67,5 +67,8 @@ export const getNftByTokenId = async (nftAddress: string, tokenId: number): Prom
     return null
   }
 
+  // return Nfts.find((nft) => {
+  //   return uriData[identifierKey].includes(nft.identifier)
+  // })
   return null
 }

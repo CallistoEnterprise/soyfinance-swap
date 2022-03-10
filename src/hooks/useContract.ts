@@ -24,6 +24,7 @@ import {
   getBunnySpecialCakeVaultContract,
   getBunnySpecialPredictionContract,
   getFarmAuctionContract,
+  getCharityNftContract2
 } from 'utils/contractHelpers'
 
 // Imports below migrated from Exchange useContract.ts
@@ -41,6 +42,10 @@ import { getContract } from '../utils'
 /**
  * Helper hooks to get specific contracts (by ABI)
  */
+export const useCharityContract = () => {
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getCharityNftContract2(library.getSigner()), [library])
+}
 
 export const useIfoV1Contract = (address: string) => {
   const { library } = useActiveWeb3React()

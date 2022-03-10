@@ -127,6 +127,7 @@ export type Nft = {
   minPrice: number
   maxPrice: number | string
   primaryColor?: string
+  classId?: number
 }
 
 export type TeamImages = {

@@ -11,6 +11,7 @@ import {
   getAddress,
   getDailyIdoAddress,
   getWeeklyIdoAddress,
+  getCharityNftAddress,
 
   getPancakeProfileAddress,
   getPancakeRabbitsAddress,
@@ -34,6 +35,7 @@ import {
 } from 'utils/addressHelpers'
 
 // ABI
+import charityNftAbi from 'config/abi/charityNft.json'
 import localFarmAbi from 'config/abi/localFarm.json'
 import profileABI from 'config/abi/pancakeProfile.json'
 import pancakeRabbitsAbi from 'config/abi/pancakeRabbits.json'
@@ -157,6 +159,9 @@ export const getLocalFarmContract = (addresses: Address, signer?: ethers.Signer 
 export const getLocalFarmContractWithAccount = (addresses: Address, library: Web3Provider, account: string) => {
   return getContract2(getLocalFarmAddress(addresses), localFarmAbi, library, account)
 }
+
+
+
 export const getDailyIdoContractWithAccount = (library: Web3Provider, account: string) => {
   return getContract2(getDailyIdoAddress(), dailyIdoAbi, library, account)
 }
@@ -169,6 +174,14 @@ export const getDailyIdoContract = (signer?: ethers.Signer | ethers.providers.Pr
 export const getWeeklyIdoContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(weeklyIdoAbi, getWeeklyIdoAddress(), signer)
 }
+export const getCharityNftContract = (library: Web3Provider, account: string) => {
+  return getContract2(getCharityNftAddress(), charityNftAbi, library, account)
+}
+export const getCharityNftContract2 = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(charityNftAbi, getCharityNftAddress(), signer)
+}
+
+
 
 
 
