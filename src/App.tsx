@@ -150,8 +150,6 @@ const App: React.FC = () => {
                     <Redirect to="/nft" />
                   </Route>
 
-                  {/* 404 */}
-                  {/* <Route component={NotFound} /> */}
                   <Route component={RedirectPathToSwapOnly} />
                 </Switch>
               </SuspenseWithChunkError>
