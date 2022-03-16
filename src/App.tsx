@@ -67,7 +67,7 @@ const BodyWrapper = styled.div`
 const Farms = lazy(() => import('./views/Farms'))
 // const FarmAuction = lazy(() => import('./views/FarmAuction'))
 // const NotFound = lazy(() => import('./views/NotFound'))
-// const Collectibles = lazy(() => import('./views/Collectibles'))
+const Collectibles = lazy(() => import('./views/Collectibles'))
 const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
 const Liquidity = lazy(() => import('./views/Pool'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
@@ -106,9 +106,9 @@ const App: React.FC = () => {
                   {/* <Route path="/pools">
                     <Pools />
                   </Route> */}
-                  {/* <Route path="/nft">
+                  <Route path="/nft">
                     <Collectibles />
-                  </Route> */}
+                  </Route>
 
                   {/* Using this format because these components use routes injected props. We need to rework them with hooks */}
                   <Route exact strict path="/swap" component={Swap} />

@@ -26,10 +26,10 @@ const StyledImage = styled.img`
   /* border-radius: 24px 24px 0 0; */
 `
 
-const StyledVideo = styled.video`
-  height: 100%;
-  width: 100%;
-`
+// const StyledVideo = styled.video`
+//   height: 100%;
+//   width: 100%;
+// `
 
 const Preview: React.FC<PreviewProps> = ({ nft, isOwned = false }) => {
   const { images, name } = nft

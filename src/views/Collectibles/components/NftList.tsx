@@ -9,7 +9,7 @@ import { useGetCollectibles } from 'state/collectibles/hooks'
 // import Dots from 'components/Loader/Dots'
 import NftCard from './NftCard'
 import NftGrid from './NftGrid'
-import EasterNftCard from './NftCard/EasterNftCard'
+// import EasterNftCard from './NftCard/EasterNftCard'
 
 /**
  * A map of bunnyIds to special campaigns (NFT distribution)

@@ -1,4 +1,4 @@
-import Nfts, { IPFS_GATEWAY, nftSources } from 'config/constants/nfts'
+import { IPFS_GATEWAY, nftSources } from 'config/constants/nfts'
 import { Nft, NftType } from 'config/constants/types'
 import { getAddress } from './addressHelpers'
 import { getErc721Contract } from './contractHelpers'

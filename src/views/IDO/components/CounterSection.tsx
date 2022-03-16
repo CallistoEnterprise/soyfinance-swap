@@ -1,54 +1,54 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components'
 import { Text } from '@soy-libs/uikit2';
 
 // function getDate(seconds) {
 //     return Math.floor(seconds/(3600 * 24))
 // }
-function getHour(seconds) {
-    return Math.floor(seconds/3600)
-}
+// function getHour(seconds) {
+//     return Math.floor(seconds/3600)
+// }
 
-function getMin(seconds) {
-    return Math.floor((seconds%3600)/60)
-}
+// function getMin(seconds) {
+//     return Math.floor((seconds%3600)/60)
+// }
 
-function getSec(seconds) {
-    const h = getHour(seconds)
-    const m = getMin(seconds)
-    return seconds - h * 3600 - m * 60
-}
+// function getSec(seconds) {
+//     const h = getHour(seconds)
+//     const m = getMin(seconds)
+//     return seconds - h * 3600 - m * 60
+// }
 
-function formatString(val: number) {
-    if( val < 10 ) {
-        return `0${val.toString()}`
-    } 
-    return val.toString()
-}
+// function formatString(val: number) {
+//     if( val < 10 ) {
+//         return `0${val.toString()}`
+//     } 
+//     return val.toString()
+// }
 
-const Counter = ({item, curRound, soyToSell, iteration}) => {
-    const unlockTime = item === undefined? 0 : item
-    const [diff, setDiff] = useState(0)
+const Counter = () => {
+    // const unlockTime = item === undefined? 0 : item
+    // const [diff, setDiff] = useState(0)
     
-    useEffect(() => {
-        let timer
-        const timeCount = () => {
+    // useEffect(() => {
+    //     let timer
+    //     const timeCount = () => {
 
-            timer = setInterval(() => {
-                const current = Math.floor(Date.now() / 1000)
-                if( unlockTime - current > 0) {
-                    setDiff(unlockTime - current)
-                } else {
-                    setDiff(0)
-                    clearInterval(timer)
-                }
-            }, 1000)
-        }
-        timeCount()
-        return () => {
-            clearInterval(timer)
-        }
-    }, [unlockTime])
+    //         timer = setInterval(() => {
+    //             const current = Math.floor(Date.now() / 1000)
+    //             if( unlockTime - current > 0) {
+    //                 setDiff(unlockTime - current)
+    //             } else {
+    //                 setDiff(0)
+    //                 clearInterval(timer)
+    //             }
+    //         }, 1000)
+    //     }
+    //     timeCount()
+    //     return () => {
+    //         clearInterval(timer)
+    //     }
+    // }, [unlockTime])
 
     // const datetime = `${formatString(getHour(diff))} : ${formatString(getMin(diff))} : ${formatString(getSec(diff))}`
 
@@ -70,9 +70,9 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
 `
-const TimerText = styled(Text)`
-    @media screen and (max-width: 768px) {
-        font-size: 50px;
-    }
-`
+// const TimerText = styled(Text)`
+//     @media screen and (max-width: 768px) {
+//         font-size: 50px;
+//     }
+// `
 export default Counter

@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 import { CurrencyAmount } from '@soy-libs/sdk2'
-import { Button, Text, Box, Card } from '@soy-libs/uikit2'
+import { Button, Box, Card } from '@soy-libs/uikit2'
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
 import { BidderHeader } from 'components/App/AppHeader'
@@ -10,11 +10,11 @@ import { getDecimalAmount } from 'utils/formatBalance'
 import tokens from 'config/constants/tokens'
 import { useCurrencyBalance } from 'state/wallet/hooks'
 import useToast from 'hooks/useToast'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+// import { usePriceCakeBusd } from 'state/farms/hooks'
 import Counter from './components/CounterSection'
 import { AutoColumn } from '../../components/Layout/Column'
 import CurrencyInputPanel from '../../components/CurrencyInputPanelForIdo'
-import { AutoRow } from '../../components/Layout/Row'
+// import { AutoRow } from '../../components/Layout/Row'
 import { Wrapper } from './components/styleds'
 import { AppHeader } from '../../components/App'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
@@ -87,7 +87,7 @@ export default function IDODaily() {
   const { onStakeBet } = useStakeBet()
   const { onClaim } = useClaim()
   const { toastError, toastSuccess, toastWarning } = useToast()
-  const cakePrice = usePriceCakeBusd()
+  // const cakePrice = usePriceCakeBusd()
   const [txPending, setTxPending] = useState(false)
   const [claimPending, setClaimPending] = useState(false)
   const publicData = useGetPublicData()
@@ -251,10 +251,10 @@ export default function IDODaily() {
           <Wrapper id="swap-page">
             <AutoColumn gap="md">
               <Counter
-                item={!publicData ? 0: publicData.endTime}
-                curRound = {publicData ? publicData.currentRound : 0}
-                soyToSell = {publicData ? publicData.soyToSell : 0}
-                iteration = {publicData ? publicData.iteration : 0}
+                // item={!publicData ? 0: publicData.endTime}
+                // curRound = {publicData ? publicData.currentRound : 0}
+                // soyToSell = {publicData ? publicData.soyToSell : 0}
+                // iteration = {publicData ? publicData.iteration : 0}
               />
               <AutoColumn justify="space-between">
                 <StatusSection currentAmount={publicData ? publicData.currentCollectedUSD : 0}/>

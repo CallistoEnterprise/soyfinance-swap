@@ -53,7 +53,6 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     label: t('NFT'),
     icon: 'NftIcon',
     href: '/nft',
-    status: menuStatus.SOON,
   },
   {
     label: t('Info'),

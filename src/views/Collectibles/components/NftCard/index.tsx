@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { ethers } from 'ethers'
+import { useWeb3React } from '@web3-react/core'
 import {
   Card,
   CardBody,
@@ -73,9 +74,10 @@ const PriceSection = styled.div`
   width: 100%;
 `
 
-const NftCard: React.FC<NftCardProps> = ({ nft, tokenIds = [], refresh }) => {
+const NftCard: React.FC<NftCardProps> = ({ nft, tokenIds = [] }) => {
   const [isConfirming, setIsConfirming] = useState(false)
   const [inputAmount, setInputAmount] = useState('')
+  const { account } = useWeb3React()
   const { t } = useTranslation()
   const { toastError, toastSuccess, toastWarning } = useToast()
   const { name } = nft
@@ -87,11 +89,11 @@ const NftCard: React.FC<NftCardProps> = ({ nft, tokenIds = [], refresh }) => {
   const handleConfirm = async () => {
 
     const intAmount = parseInt(inputAmount, 10)
-    if ((nft.classId === 0) && intAmount > nft.maxPrice && nft.minPrice > intAmount) {
+    if ((nft.classId === 0) && (intAmount > nft.maxPrice || nft.minPrice > intAmount)) {
       toastWarning('Please input a correct amount!')
       return;
     }
-    if ((nft.classId === 1) && intAmount > nft.maxPrice && nft.minPrice > intAmount) {
+    if ((nft.classId === 1) && (intAmount > nft.maxPrice || nft.minPrice > intAmount)) {
       toastWarning('Please input a correct amount!')
       return;
     }
@@ -115,10 +117,6 @@ const NftCard: React.FC<NftCardProps> = ({ nft, tokenIds = [], refresh }) => {
       toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
       setIsConfirming(false)
     }
-  }
-
-  const handleSuccess = () => {
-    refresh()
   }
 
   const handleTypeInput = (value: string) => {
@@ -151,8 +149,9 @@ const NftCard: React.FC<NftCardProps> = ({ nft, tokenIds = [], refresh }) => {
           bkColor = {nft.primaryColor}
           onClick={handleConfirm}
           endIcon={isConfirming ? <AutoRenewIcon color="currentColor" spin /> : null}
+          disabled = {!account}
         >
-          {t('Buy Now')}
+          {account ? t('Buy Now') : t('Connect Wallet')}
         </BuyButton>
       </CardBody>
     </StyledCard>
