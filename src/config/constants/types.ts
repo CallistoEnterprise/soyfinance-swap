@@ -123,6 +123,7 @@ export enum NftType {
 
 export type Nft = {
   name: string
+  subName?: string
   images: NftImages
   minPrice: number
   maxPrice: number | string

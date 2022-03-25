@@ -27,6 +27,49 @@ export const nftSources: NftSource = {
 const Nfts = [
   {
     name: 'Emerald',
+    subName: 'BatSloth',
+    images: {
+      lg: 'claire-lg-2.jpg',
+      md: 'claire-md-2.jpg',
+      sm: 'emerald-sm-2.jpg',
+      ipfs: 'https://cloudflare-ipfs.com/ipfs',
+    },
+    minPrice: 10000,
+    maxPrice: 'infinity',
+    primaryColor: '#74AB46',
+    classId: 5,
+  },
+  {
+    name: 'Saphire',
+    subName: 'BatSloth',
+    images: {
+      lg: 'saphire-lg-2.jpg',
+      md: 'saphire-md-2.jpg',
+      sm: 'saphire-sm-2.jpg',
+      ipfs: 'https://cloudflare-ipfs.com/ipfs',
+    },
+    minPrice: 1000,
+    maxPrice: 5000,
+    primaryColor: '#5A9BD5',
+    classId: 4,
+  },
+  {
+    name: 'Purple',
+    subName: 'BatSloth',
+    images: {
+      lg: 'purple-lg-2.jpg',
+      md: 'purple-md-2.jpg',
+      sm: 'purple-sm-2.jpg',
+      ipfs: 'https://cloudflare-ipfs.com/ipfs',
+    },
+    minPrice: 100,
+    maxPrice: 500,
+    primaryColor: '#A85EFD',
+    classId: 3,
+  },
+  {
+    name: 'Emerald',
+    subName: 'One Earth, One Heart',
     images: {
       lg: 'claire-lg.png',
       md: 'claire-md.png',
@@ -40,6 +83,7 @@ const Nfts = [
   },
   {
     name: 'Saphire',
+    subName: 'One Earth, One Heart',
     images: {
       lg: 'saphire-lg.png',
       md: 'saphire-md.png',
@@ -53,6 +97,7 @@ const Nfts = [
   },
   {
     name: 'Purple',
+    subName: 'One Earth, One Heart',
     images: {
       lg: 'purple-lg.png',
       md: 'purple-md.png',

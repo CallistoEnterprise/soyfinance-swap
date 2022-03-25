@@ -8,6 +8,7 @@ import {
   Heading,
   AutoRenewIcon,
   Button,
+  Text
   // ChevronUpIcon,
   // ChevronDownIcon,
   // Text,
@@ -43,10 +44,11 @@ const StyledCard = styled(Card)`
 `
 
 const Header = styled(InfoRow)<{bkColor?: string}>`
-  min-height: 45px;
+  min-height: 60px;
   width: 100%;
   background-color: ${({bkColor}) => bkColor};
   justify-content: center;
+  flex-direction: column;
 `
 const BuyButton = styled(Button)<{bkColor?: string}>`
   background-color: ${({bkColor}) => bkColor};
@@ -80,7 +82,7 @@ const NftCard: React.FC<NftCardProps> = ({ nft, tokenIds = [] }) => {
   const { account } = useWeb3React()
   const { t } = useTranslation()
   const { toastError, toastSuccess, toastWarning } = useToast()
-  const { name } = nft
+  const { name, subName } = nft
   const walletOwnsNft = tokenIds.length > 0
 
   const { onBuyNft } = useBuyNft()
@@ -89,15 +91,15 @@ const NftCard: React.FC<NftCardProps> = ({ nft, tokenIds = [] }) => {
   const handleConfirm = async () => {
 
     const intAmount = parseInt(inputAmount, 10)
-    if ((nft.classId === 0) && (intAmount > nft.maxPrice || nft.minPrice > intAmount)) {
+    if ((nft.classId % 3 === 0) && (intAmount > nft.maxPrice || nft.minPrice > intAmount)) {
       toastWarning('Please input a correct amount!')
       return;
     }
-    if ((nft.classId === 1) && (intAmount > nft.maxPrice || nft.minPrice > intAmount)) {
+    if ((nft.classId % 3 === 1) && (intAmount > nft.maxPrice || nft.minPrice > intAmount)) {
       toastWarning('Please input a correct amount!')
       return;
     }
-    if (nft.classId === 2 && nft.minPrice > intAmount) {
+    if (nft.classId % 3 === 2 && nft.minPrice > intAmount) {
       toastWarning('Please input a correct amount!')
       return;
     }
@@ -126,10 +128,11 @@ const NftCard: React.FC<NftCardProps> = ({ nft, tokenIds = [] }) => {
   return (
     <StyledCard isActive={walletOwnsNft}>
       <Header bkColor = {nft.primaryColor}>
-        <Heading textAlign="center">{name}</Heading>
+        <Heading textAlign="center" color="#000">{subName}</Heading>
+        <Text textAlign="center" fontSize='18px'>{name}</Text>
       </Header>
       <PriceSection>
-        <Heading color="#000">{`${nft.minPrice} - ${nft.maxPrice}`} CLO</Heading>
+        <Heading color="#000">{`${nft.minPrice} - ${nft.maxPrice === 'infinity' ? '∞' : nft.maxPrice}`} CLO</Heading>
       </PriceSection>
       <Preview nft={nft} isOwned={walletOwnsNft} />
 

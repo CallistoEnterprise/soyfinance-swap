@@ -39,7 +39,7 @@ const NftList = () => {
       {
         nfts.map((nft) => {
           return (
-            <NftCard nft = {nft} tokenIds = {tokenIds[nft.name]} refresh = {handleRefresh} key={nft.name}/>
+            <NftCard nft = {nft} tokenIds = {tokenIds[nft.name]} refresh = {handleRefresh} key={`${nft.name}-${nft.classId}`}/>
           )
         })
       }
