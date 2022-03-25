@@ -10,7 +10,15 @@ const StyledHero = styled.div`
   margin-bottom: 24px;
   padding-bottom: 32px;
 `
-
+const LinkButton = styled(LinkExternal)`
+  padding: 3px 5px 3px 25px;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.text};
+  display: flex;
+  flex-direction: 'row';
+  justify-content: center;
+  border-radius: 20px;
+`
 const Collectibles = () => {
   const { t } = useTranslation()
 
@@ -25,7 +33,7 @@ const Collectibles = () => {
       <Text mt="8px">Considering the charitable nature of the series, a minimum price is set, but no maximum price: everyone is free to donate as much as they wish.</Text>
       <Text mt="8px">All funds collected will be used to support people in need.</Text>
 
-      <LinkExternal href="https://soy-finance.gitbook.io/soy-finance/soy-products/nfts/one-earth-one-heart" marginTop="20px">Learn more about Charity NFTs</LinkExternal>
+      <LinkButton href="https://soy-finance.gitbook.io/soy-finance/soy-products/nfts/one-earth-one-heart" marginTop="20px" textAlign="center">Learn more about Charity NFTs</LinkButton>
       <NftList />
     </Page>
   )
