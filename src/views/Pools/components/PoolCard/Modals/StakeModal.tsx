@@ -57,7 +57,9 @@ const StakeModal: React.FC<StakeModalProps> = ({
   const usdValueStaked = stakeAmount && formatNumber(new BigNumber(stakeAmount).times(stakingTokenPrice).toNumber())
 
   const endTime = userData ? new BigNumber(userData.stakedStatus.endTime).toNumber() : 0
-  const multiplier = userData ? getFullDisplayBalance(new BigNumber(userData.stakedStatus.multiplier), earningToken.decimals, 2) : ''
+  const multiplier = userData
+    ? getFullDisplayBalance(new BigNumber(userData.stakedStatus.multiplier), earningToken.decimals, 2)
+    : ''
   const curTime = useBlockLatestTimestamp()
 
   useEffect(() => {
@@ -90,7 +92,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
   }
 
   const handleChangePeriods = (months: number) => {
-    setPeriods(months);
+    setPeriods(months)
   }
 
   const handleConfirmClick = async () => {
@@ -146,19 +148,23 @@ const StakeModal: React.FC<StakeModalProps> = ({
       onDismiss={onDismiss}
       headerBackground={theme.colors.gradients.cardHeader}
     >
-      {stakingLimit.gt(0) && !isRemovingStake && (
+      {/* {stakingLimit.gt(0) && !isRemovingStake && (
         <Text color="secondary" bold mb="24px" style={{ textAlign: 'center' }} fontSize="16px">
           {t('Max stake for this pool: %amount% %token%', {
             amount: getFullDisplayBalance(stakingLimit, stakingToken.decimals, 0),
             token: stakingToken.symbol,
           })}
         </Text>
-      )}
+      )} */}
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
         <Text bold>{isRemovingStake ? t('Unstake') : t('Stake')}:</Text>
         <Flex alignItems="center" minWidth="70px">
           <Image
-            src={isBnbPool? `https://app.soy.finance/images/coins/clo.png` : `https://app.soy.finance/images/coins/${getAddress(stakingToken.address)}.png`}
+            src={
+              isBnbPool
+                ? `https://app.soy.finance/images/coins/clo.png`
+                : `https://app.soy.finance/images/coins/${getAddress(stakingToken.address)}.png`
+            }
             width={24}
             height={24}
             alt={stakingToken.symbol}
@@ -169,25 +175,31 @@ const StakeModal: React.FC<StakeModalProps> = ({
         </Flex>
       </Flex>
       <Text bold>{!isRemovingStake ? `Staking Periods: ${periods} (months)` : `Staked Status`}</Text>
-      {isRemovingStake && <div>
-        <Text>{`Multiplier : ${multiplier}`}</Text>
-        <Text>{`End Time : ${getFormattedDateFromTimeStamp(endTime)} ${getTimeFromTimeStamp(endTime)}`}</Text>
-      </div>}
-      {!isRemovingStake && <Flex alignItems="center" justifyContent="space-between" mt="8px" mb="10px">
-        <PercentageButton onClick={() => handleChangePeriods(1)}>1</PercentageButton>
-        <PercentageButton onClick={() => handleChangePeriods(2)}>2</PercentageButton>
-        <PercentageButton onClick={() => handleChangePeriods(3)}>3</PercentageButton>
-        <PercentageButton onClick={() => handleChangePeriods(4)}>4</PercentageButton>
-        <PercentageButton onClick={() => handleChangePeriods(5)}>5</PercentageButton>
-        <PercentageButton onClick={() => handleChangePeriods(6)}>6</PercentageButton>
-      </Flex>}
-      {!isRemovingStake && <BalanceInput
-        value={stakeAmount}
-        onUserInput={handleStakeInputChange}
-        currencyValue={stakingTokenPrice !== 0 && `~${usdValueStaked || 0} USD`}
-        isWarning={hasReachedStakeLimit}
-        decimals={stakingToken.decimals}
-      />}
+      {isRemovingStake && (
+        <div>
+          <Text>{`Multiplier : ${multiplier}`}</Text>
+          <Text>{`End Time : ${getFormattedDateFromTimeStamp(endTime)} ${getTimeFromTimeStamp(endTime)}`}</Text>
+        </div>
+      )}
+      {!isRemovingStake && (
+        <Flex alignItems="center" justifyContent="space-between" mt="8px" mb="10px">
+          <PercentageButton onClick={() => handleChangePeriods(1)}>1</PercentageButton>
+          <PercentageButton onClick={() => handleChangePeriods(2)}>2</PercentageButton>
+          <PercentageButton onClick={() => handleChangePeriods(3)}>3</PercentageButton>
+          <PercentageButton onClick={() => handleChangePeriods(4)}>4</PercentageButton>
+          <PercentageButton onClick={() => handleChangePeriods(5)}>5</PercentageButton>
+          <PercentageButton onClick={() => handleChangePeriods(6)}>6</PercentageButton>
+        </Flex>
+      )}
+      {!isRemovingStake && (
+        <BalanceInput
+          value={stakeAmount}
+          onUserInput={handleStakeInputChange}
+          currencyValue={stakingTokenPrice !== 0 && `~${usdValueStaked || 0} USD`}
+          isWarning={hasReachedStakeLimit}
+          decimals={stakingToken.decimals}
+        />
+      )}
       {hasReachedStakeLimit && !isRemovingStake && (
         <Text color="failure" fontSize="12px" style={{ textAlign: 'right' }} mt="4px">
           {t('Maximum total stake: %amount% %token%', {
@@ -196,31 +208,42 @@ const StakeModal: React.FC<StakeModalProps> = ({
           })}
         </Text>
       )}
-      {!isRemovingStake && <Text ml="auto" color="textSubtle" fontSize="12px" mb="8px">
-        {t('Balance: %balance%', {
-          balance: getFullDisplayBalance(getCalculatedStakingLimit(), stakingToken.decimals),
-        })}
-      </Text>}
-      {!isRemovingStake &&  <Slider
-        min={0}
-        max={100}
-        value={percent}
-        onValueChanged={handleChangePercent}
-        name="stake"
-        valueLabel={`${percent}%`}
-        step={1}
-      />}
-      {!isRemovingStake && <Flex alignItems="center" justifyContent="space-between" mt="8px">
-        <PercentageButton onClick={() => handleChangePercent(25)}>25%</PercentageButton>
-        <PercentageButton onClick={() => handleChangePercent(50)}>50%</PercentageButton>
-        <PercentageButton onClick={() => handleChangePercent(75)}>75%</PercentageButton>
-        <PercentageButton onClick={() => handleChangePercent(100)}>{t('Max')}</PercentageButton>
-      </Flex>}
+      {!isRemovingStake && (
+        <Text ml="auto" color="textSubtle" fontSize="12px" mb="8px">
+          {t('Balance: %balance%', {
+            balance: getFullDisplayBalance(getCalculatedStakingLimit(), stakingToken.decimals),
+          })}
+        </Text>
+      )}
+      {!isRemovingStake && (
+        <Slider
+          min={0}
+          max={100}
+          value={percent}
+          onValueChanged={handleChangePercent}
+          name="stake"
+          valueLabel={`${percent}%`}
+          step={1}
+        />
+      )}
+      {!isRemovingStake && (
+        <Flex alignItems="center" justifyContent="space-between" mt="8px">
+          <PercentageButton onClick={() => handleChangePercent(25)}>25%</PercentageButton>
+          <PercentageButton onClick={() => handleChangePercent(50)}>50%</PercentageButton>
+          <PercentageButton onClick={() => handleChangePercent(75)}>75%</PercentageButton>
+          <PercentageButton onClick={() => handleChangePercent(100)}>{t('Max')}</PercentageButton>
+        </Flex>
+      )}
       <Button
         isLoading={pendingTx}
         endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
         onClick={handleConfirmClick}
-        disabled={(!stakeAmount && !isRemovingStake) || (parseFloat(stakeAmount) === 0 && !isRemovingStake) || hasReachedStakeLimit || (!periods && !isRemovingStake)}
+        disabled={
+          (!stakeAmount && !isRemovingStake) ||
+          (parseFloat(stakeAmount) === 0 && !isRemovingStake) ||
+          hasReachedStakeLimit ||
+          (!periods && !isRemovingStake)
+        }
         mt="24px"
       >
         {pendingTx ? t('Confirming') : t('Confirm')}

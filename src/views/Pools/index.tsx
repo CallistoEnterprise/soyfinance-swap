@@ -18,7 +18,7 @@ import SearchInput from 'components/SearchInput'
 import Select, { OptionProps } from 'components/Select/Select'
 import { Pool } from 'state/types'
 import Loading from 'components/Loading'
-import useRewardBlockCount from 'views/Farms/hooks/useRewardBlockCount'
+// import useRewardBlockCount from 'views/Farms/hooks/useRewardBlockCount'
 import PoolCard from './components/PoolCard'
 import CakeVaultCard from './components/CakeVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
@@ -111,12 +111,13 @@ const Pools: React.FC = () => {
       }),
     [openPools],
   )
+
   const hasStakeInFinishedPools = stakedOnlyFinishedPools.length > 0
 
-  const rewardBlockCount = useRewardBlockCount()
+  // const rewardBlockCount = useRewardBlockCount()
 
   usePollFarmsData()
-  useFetchPublicPoolsData(rewardBlockCount)
+  useFetchPublicPoolsData()
 
   useEffect(() => {
     const showMorePools = (entries) => {
@@ -198,6 +199,7 @@ const Pools: React.FC = () => {
 
   chosenPools = sortPools(chosenPools).slice(0, numberOfPoolsVisible)
   chosenPoolsLength.current = chosenPools.length
+
 
   const cardLayout = (
     <CardLayout>

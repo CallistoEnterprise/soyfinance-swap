@@ -51,7 +51,7 @@ export const fetchPoolsPublicDataAsync = (currentBlock: number, rewardBlockCount
   const liveData = poolsConfig.map((pool) => {
     const blockLimit = blockLimits.find((entry) => entry.sousId === pool.sousId)
     const totalStaking = totalStakings.find((entry) => entry.sousId === pool.sousId)
-    const isPoolEndBlockExceeded = currentBlock > 0 && blockLimit ? currentBlock > Number(blockLimit.endBlock) : false
+    const isPoolEndBlockExceeded = false // currentBlock > 0 && blockLimit ? currentBlock > Number(blockLimit.endBlock) : false
     const isPoolFinished = pool.isFinished || isPoolEndBlockExceeded
 
     const stakingTokenAddress = pool.stakingToken.address ? getAddress(pool.stakingToken.address).toLowerCase() : null
@@ -102,7 +102,6 @@ export const fetchPoolsStakingLimitsAsync = () => async (dispatch, getState) => 
       stakingLimit: stakingLimit.toJSON(),
     }
   })
-
   dispatch(setPoolsPublicData(stakingLimitData))
 }
 

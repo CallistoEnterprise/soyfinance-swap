@@ -16,19 +16,21 @@ import {
 import { State, Pool } from '../types'
 import { transformPool } from './helpers'
 
-export const useFetchPublicPoolsData = (rewardBlockCount: BigNumber, rwBLCntOfSousChef?: BigNumber, rwBLCntOfMaticStaking?: BigNumber) => {
+export const useFetchPublicPoolsData = (rewardBlockCount?: BigNumber, rwBLCntOfSousChef?: BigNumber, rwBLCntOfMaticStaking?: BigNumber) => {
   const dispatch = useAppDispatch()
   const { slowRefresh } = useRefresh()
 
   useEffect(() => {
     const fetchPoolsPublicData = async () => {
       const blockNumber = await simpleRpcProvider.getBlockNumber()
-      dispatch(fetchPoolsPublicDataAsync(blockNumber, rewardBlockCount)) // , rwBLCntOfSousChef, rwBLCntOfMaticStaking
+      // const pubData = await fetchPoolsPublicDataAsync(blockNumber, new BigNumber(0))
+      // console.log(pubData)
+      dispatch(fetchPoolsPublicDataAsync(blockNumber, new BigNumber(5))) // , rwBLCntOfSousChef, rwBLCntOfMaticStaking
     }
 
     fetchPoolsPublicData()
     dispatch(fetchPoolsStakingLimitsAsync())
-  }, [dispatch, slowRefresh, rewardBlockCount, rwBLCntOfSousChef, rwBLCntOfMaticStaking])
+  }, [dispatch, slowRefresh])
 }
 
 export const usePools = (account): { pools: Pool[]; userDataLoaded: boolean } => {

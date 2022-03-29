@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
-import { Flex, CardFooter, ExpandableLabel, HelpIcon, useTooltip } from '@soy-libs/uikit2'
+import { Flex, CardFooter, ExpandableLabel } from '@soy-libs/uikit2'
 import { Pool } from 'state/types'
-import { CompoundingPoolTag, ManualPoolTag } from 'components/Tags'
+// import { CompoundingPoolTag, ManualPoolTag } from 'components/Tags'
 import ExpandedFooter from './ExpandedFooter'
 
 interface FooterProps {
@@ -22,14 +22,14 @@ const ExpandableButtonWrapper = styled(Flex)`
 `
 
 const Footer: React.FC<FooterProps> = ({ pool, account }) => {
-  const { isAutoVault } = pool
+  // const { isAutoVault } = pool
   const { t } = useTranslation()
   const [isExpanded, setIsExpanded] = useState(false)
 
-  const manualTooltipText = t('You must harvest and compound your earnings from this pool manually.')
-  const autoTooltipText = t(
-    'Any funds you stake in this pool will be automagically harvested and restaked (compounded) for you.',
-  )
+  // const manualTooltipText = t('You must harvest and compound your earnings from this pool manually.')
+  // const autoTooltipText = t(
+  //   'Any funds you stake in this pool will be automagically harvested and restaked (compounded) for you.',
+  // )
 
   // const { targetRef, tooltip, tooltipVisible } = useTooltip(isAutoVault ? autoTooltipText : manualTooltipText, {
   //   placement: 'bottom',

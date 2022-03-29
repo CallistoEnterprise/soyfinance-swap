@@ -1,9 +1,9 @@
 import BigNumber from 'bignumber.js'
 import poolsConfig from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
-import wcloABI from 'config/abi/weth.json'
+// import wcloABI from 'config/abi/weth.json'
 import {multicall3} from 'utils/multicall'
-import { getAddress, getWcloAddress } from 'utils/addressHelpers'
+import { getAddress } from 'utils/addressHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
 
 export const fetchPoolsBlockLimits = async () => {
@@ -41,22 +41,22 @@ export const fetchPoolsTotalStaking = async () => {
 
   const callsNonCloPools = nonCloPools.map((poolConfig) => {
     return {
-      address: getAddress(poolConfig.stakingToken.address),
+      address: getAddress(poolConfig.contractAddress),
       name: 'TotalStakingAmount',
       // params: [getAddress(poolConfig.contractAddress)],
     }
   })
 
-  const callsCloPools = bnbPool.map((poolConfig) => {
-    return {
-      address: getWcloAddress(),
-      name: 'balanceOf',
-      params: [getAddress(poolConfig.contractAddress)],
-    }
-  })
+  // const callsCloPools = bnbPool.map((poolConfig) => {
+  //   return {
+  //     address: getWcloAddress(),
+  //     name: 'balanceOf',
+  //     params: [getAddress(poolConfig.contractAddress)],
+  //   }
+  // })
 
   const nonCloPoolsTotalStaked = await multicall3(sousChefABI, callsNonCloPools)
-  const cloPoolsTotalStaked = await multicall3(wcloABI, callsCloPools)
+  // const cloPoolsTotalStaked = await multicall3(wcloABI, callsCloPools)
 
   // return [
   //   ...nonBnbPools.map((p, index) => ({
@@ -68,19 +68,20 @@ export const fetchPoolsTotalStaking = async () => {
   //     totalStaked: new BigNumber(bnbPoolsTotalStaked[index]).toJSON(),
   //   })),
   // ]
+
   return [
     ...nonCloPools.map((p, index) => ({
       sousId: p.sousId,
       totalStaked: new BigNumber(nonCloPoolsTotalStaked[index]).toJSON(),
     })),
-    ...bnbPool.map((p, index) => ({
+    ...bnbPool.map((p) => ({
       sousId: p.sousId,
-      totalStaked: new BigNumber(cloPoolsTotalStaked[index]).toJSON(),
+      totalStaked: new BigNumber(0).toJSON(),
     })),
   ]
 }
 
-export const fetchPoolStakingLimit = async (sousId: number): Promise<BigNumber> => {
+export const fetchPoolStakingLimit = async (sousId?: number): Promise<BigNumber> => {
   try {
     // const sousContract = getSouschefV2Contract(sousId)
     // const stakingLimit = await sousContract.poolLimitPerUser()
