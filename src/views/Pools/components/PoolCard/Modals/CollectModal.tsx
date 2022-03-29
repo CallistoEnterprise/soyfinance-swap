@@ -47,6 +47,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
   const { onStake } = useStakePool(sousId, isBnbPool)
   const [pendingTx, setPendingTx] = useState(false)
   const [shouldCompound, setShouldCompound] = useState(isCompoundPool)
+
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     <>
       <Text mb="12px">{t('Compound: collect and restake SOY into pool.')}</Text>
@@ -60,7 +61,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
     // compounding
     if (shouldCompound) {
       try {
-        await onStake(fullBalance, earningToken.decimals)
+        await onStake('', fullBalance, earningToken.decimals, 1)
         toastSuccess(
           `${t('Compounded')}!`,
           t('Your %symbol% earnings have been re-invested into the pool!', { symbol: earningToken.symbol }),
@@ -92,7 +93,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
 
   return (
     <Modal
-      title={`${earningToken.symbol} ${isCompoundPool ? t('Collect') : t('Harvest')}`}
+      title={`${earningToken.symbol} ${isCompoundPool ? t('Collect') : t('Harvest & Withdraw')}`}
       onDismiss={onDismiss}
       headerBackground={theme.colors.gradients.cardHeader}
     >

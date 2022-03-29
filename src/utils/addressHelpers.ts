@@ -33,6 +33,9 @@ export const getCharityNftAddress = () => {
   return getAddress(addresses.charityNft)
 }
 
+export const getWcloAddress = () => {
+  return getAddress(tokens.wclo.address)
+}
 
 
 

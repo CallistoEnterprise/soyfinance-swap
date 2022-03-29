@@ -18,7 +18,7 @@ import EasterEgg from './components/EasterEgg'
 import history from './routerHistory'
 import RouteChangeTracker from './RouteChangeTracker'
 // Views included in the main bundle
-// import Pools from './views/Pools'
+import Pools from './views/Pools'
 import Swap from './views/Swap'
 import IDO from './views/IDO'
 // import IDOWeek from './views/IDOWeek'
@@ -75,6 +75,7 @@ const Info = lazy(() => import('./views/Info'))
 
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
 const IDOWeek = lazy(() => import('./views/IDOWeek'))
+
 // This config is required for number formatting
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
@@ -103,9 +104,9 @@ const App: React.FC = () => {
                   {/* <Route exact path="/farms/auction">
                     <FarmAuction />
                   </Route> */}
-                  {/* <Route path="/pools">
+                  <Route path="/pools">
                     <Pools />
-                  </Route> */}
+                  </Route>
                   <Route path="/nft">
                     <Collectibles />
                   </Route>
@@ -140,9 +141,9 @@ const App: React.FC = () => {
                   <Route path="/pool">
                     <Redirect to="/liquidity" />
                   </Route>
-                  {/* <Route path="/staking">
+                  <Route path="/staking">
                     <Redirect to="/pools" />
-                  </Route> */}
+                  </Route>
                   {/* <Route path="/psyrup">
                     <Redirect to="/pools" />
                   </Route> */}

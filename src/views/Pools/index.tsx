@@ -3,12 +3,12 @@ import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Flex, Image, Text } from '@soy-libs/uikit2'
+import { Heading, Flex, Text } from '@soy-libs/uikit2'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
 import usePersistState from 'hooks/usePersistState'
-import { useFetchPublicPoolsData, usePools, useFetchCakeVault, useCakeVault } from 'state/pools/hooks'
+import { useFetchPublicPoolsData, usePools } from 'state/pools/hooks'
 import { usePollFarmsData } from 'state/farms/hooks'
 import { latinise } from 'utils/latinise'
 import FlexLayout from 'components/Layout/Flex'
@@ -22,12 +22,11 @@ import useRewardBlockCount from 'views/Farms/hooks/useRewardBlockCount'
 import PoolCard from './components/PoolCard'
 import CakeVaultCard from './components/CakeVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
-import BountyCard from './components/BountyCard'
 // import HelpButton from './components/HelpButton'
 import PoolsTable from './components/PoolsTable/PoolsTable'
 import { ViewMode } from './components/ToggleView/ToggleView'
-import { getAprData, getCakeVaultEarnings } from './helpers'
-import useRewardBlockCountOfSous, { useRewardBlockCountForMaticStaking } from './hooks/useRewardBlockCount'
+import { getAprData } from './helpers'
+// import useRewardBlockCountOfSous, { useRewardBlockCountForMaticStaking } from './hooks/useRewardBlockCount'
 
 const CardLayout = styled(FlexLayout)`
   justify-content: center;
@@ -36,7 +35,7 @@ const CardLayout = styled(FlexLayout)`
 const PoolControls = styled.div`
   display: flex;
   width: 100%;
-  align-items: center;
+  align-items: flex-end;
   position: relative;
 
   justify-content: space-between;
@@ -56,10 +55,12 @@ const FilterContainer = styled.div`
   align-items: center;
   width: 100%;
   padding: 8px 0px;
+  margin-left: 0;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     width: auto;
     padding: 0;
+    margin-left: 10px;
   }
 `
 
@@ -82,59 +83,39 @@ const Pools: React.FC = () => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { pools: poolsWithoutAutoVault, userDataLoaded } = usePools(account)
-  const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'polysafemoon_pool_staked' })
+  const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'soyfinance_pool_staked' })
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const [observerIsSet, setObserverIsSet] = useState(false)
   const loadMoreRef = useRef<HTMLDivElement>(null)
-  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'polysafemoon_pool_view' })
+  const [viewMode, setViewMode] = usePersistState(ViewMode.CARD, { localStorageKey: 'soyfinance_pool_view' })
   const [searchQuery, setSearchQuery] = useState('')
   const [sortOption, setSortOption] = useState('hot')
   const chosenPoolsLength = useRef(0)
-  const {
-    userData: { pmoonAtLastUserAction, userShares },
-    fees: { performanceFee },
-    pricePerFullShare,
-    totalCakeInVault,
-  } = useCakeVault()
-  const accountHasVaultShares = userShares && userShares.gt(0)
-  const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
   const pools = useMemo(() => {
-    const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
-    const cakeAutoVault = { ...cakePool, isAutoVault: true }
-    return [cakeAutoVault, ...poolsWithoutAutoVault]
+    return [...poolsWithoutAutoVault]
   }, [poolsWithoutAutoVault])
 
-  // TODO aren't arrays in dep array checked just by reference, i.e. it will rerender every time reference changes?
   const [finishedPools, openPools] = useMemo(() => partition(pools, (pool) => pool.isFinished), [pools])
   const stakedOnlyFinishedPools = useMemo(
     () =>
       finishedPools.filter((pool) => {
-        if (pool.isAutoVault) {
-          return accountHasVaultShares
-        }
         return pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0)
       }),
-    [finishedPools, accountHasVaultShares],
+    [finishedPools],
   )
   const stakedOnlyOpenPools = useMemo(
     () =>
       openPools.filter((pool) => {
-        if (pool.isAutoVault) {
-          return accountHasVaultShares
-        }
         return pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0)
       }),
-    [openPools, accountHasVaultShares],
+    [openPools],
   )
   const hasStakeInFinishedPools = stakedOnlyFinishedPools.length > 0
 
   const rewardBlockCount = useRewardBlockCount()
-  // const rwBLCntOfSousChef = useRewardBlockCountOfSous()
-  // const rwBLCntOfMaticStaking = useRewardBlockCountForMaticStaking()
 
   usePollFarmsData()
-  useFetchCakeVault()
   useFetchPublicPoolsData(rewardBlockCount)
 
   useEffect(() => {
@@ -176,7 +157,7 @@ const Pools: React.FC = () => {
         // Ternary is needed to prevent pools without APR (like MIX) getting top spot
         return orderBy(
           poolsToSort,
-          (pool: Pool) => (pool.apr ? getAprData(pool, performanceFeeAsDecimal).apr : 0),
+          (pool: Pool) => (pool.apr ? getAprData(pool, 18).apr : 0),
           'desc',
         )
       case 'earned':
@@ -186,22 +167,14 @@ const Pools: React.FC = () => {
             if (!pool.userData || !pool.earningTokenPrice) {
               return 0
             }
-            return pool.isAutoVault
-              ? getCakeVaultEarnings(
-                  account,
-                  pmoonAtLastUserAction,
-                  userShares,
-                  pricePerFullShare,
-                  pool.earningTokenPrice,
-                ).autoUsdToDisplay
-              : pool.userData.pendingReward.times(pool.earningTokenPrice).toNumber()
+            return pool.userData.pendingReward.times(pool.earningTokenPrice).toNumber()
           },
           'desc',
         )
       case 'totalStaked':
         return orderBy(
           poolsToSort,
-          (pool: Pool) => (pool.isAutoVault ? totalCakeInVault.toNumber() : pool.totalStaked.toNumber()),
+          (pool: Pool) => (pool.totalStaked.toNumber()),
           'desc',
         )
       default:
@@ -243,10 +216,10 @@ const Pools: React.FC = () => {
   return (
     <>
       <PageHeader>
-        <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
+        <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']} alignItems="center">
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
             <Heading as="h1" scale="xxl" color="secondary" mb="24px">
-              {t('PolySyrup Pools')}
+              {t('Soyfinance Pools')}
             </Heading>
             <Heading scale="md" color="text">
               {t('Just stake some tokens to earn.')}
@@ -254,10 +227,6 @@ const Pools: React.FC = () => {
             <Heading scale="md" color="text">
               {t('High APR, low risk.')}
             </Heading>
-          </Flex>
-          <Flex flex="1" height="fit-content" justifyContent="flex-end" alignItems="center" mt={['24px', null, '0']}>
-            {/* <HelpButton /> */}
-            <BountyCard />
           </Flex>
         </Flex>
       </PageHeader>
@@ -319,14 +288,6 @@ const Pools: React.FC = () => {
         )}
         {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
         <div ref={loadMoreRef} />
-        <Image
-          mx="auto"
-          mt="20px"
-          src="/images/decorations/3dpan.svg"
-          alt="polysafemoon illustration"
-          width={100}
-          height={100}
-        />
       </Page>
     </>
   )

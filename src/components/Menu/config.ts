@@ -44,11 +44,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     target: "_blank",
     status: menuStatus.SOLDOUT
   },
-  // {
-  //   label: t('Pools'),
-  //   icon: 'PoolIcon',
-  //   href: '/pools',
-  // },
+  {
+    label: t('Pools'),
+    icon: 'PoolIcon',
+    href: '/staking',
+  },
   {
     label: t('NFT'),
     icon: 'NftIcon',
