@@ -11,7 +11,6 @@ import BigNumber from 'bignumber.js'
 const nonCloPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'CLO')
 const bnbPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'CLO')
 const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 0)
-// const masterChefContract = getMasterchefContract()
 
 export const fetchPoolsAllowance = async (account) => {
   const calls = nonCloPools.map((p) => ({
@@ -76,28 +75,27 @@ export const fetchUserStakeBalances = async (account) => {
       },
     }),
     {},
-  )  // SOY / SOY pool
-  // const { amount: masterPoolAmount } = await masterChefContract.userInfo('0', account)
+  )
+
   return { stakedBalances, userInfo } // 0: new BigNumber(masterPoolAmount.toString()).toJSON()
 }
 
 export const fetchUserPendingRewards = async (account) => {
-  // const calls = nonMasterPools.map((p) => ({
-  //   address: getAddress(p.contractAddress),
-  //   name: 'stake_reward',
-  //   params: [account],
-  // }))
-  // console.log("calls ::", calls)
-  // const res = await multicall3(sousChefABI, calls)
-  // console.log("pendingRewards ::", res)
+  const calls = nonMasterPools.map((p) => ({
+    address: getAddress(p.contractAddress),
+    name: 'stake_reward',
+    params: [account],
+  }))
+
+  const res = await multicall3(sousChefABI, calls)
+
   const pendingRewards = nonMasterPools.reduce(
     (acc, pool, index) => ({
       ...acc,
-      [pool.sousId]: new BigNumber(0).toJSON() // new BigNumber(res[index].toString()).toJSON(),
+      [pool.sousId]: new BigNumber(res[index].toString()).toJSON(),
     }),
     {},
   )
-  // SOY / SOY pool
-  // const pendingReward = await masterChefContract.pendingPmoon('0', account)
-  return { ...pendingRewards } // 0: new BigNumber(pendingReward.toString()).toJSON()
+
+  return { ...pendingRewards }
 }
