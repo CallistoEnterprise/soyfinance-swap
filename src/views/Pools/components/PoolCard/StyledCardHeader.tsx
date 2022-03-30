@@ -30,7 +30,7 @@ const StyledCardHeader: React.FC<{
     }
     if (isCakePool) {
       // manual cake
-      return t('Manual')
+      return t('Cold Staking')
     }
     // all other pools
     return t('Earn')
@@ -41,7 +41,7 @@ const StyledCardHeader: React.FC<{
       return t('Automatic restaking')
     }
     if (isCakePool) {
-      return t('Earn SOY, stake SOY')
+      return t('Freeze SOY, Earn SOY')
     }
     return t('Stake %symbol%', { symbol: stakingToken.symbol })
   }
@@ -51,7 +51,7 @@ const StyledCardHeader: React.FC<{
       <Flex alignItems="center" justifyContent="space-between">
         <Flex flexDirection="column">
           <Heading color={isFinished ? 'textDisabled' : 'body'} scale="lg">
-            {`${getHeadingPrefix()} ${earningToken.symbol}`}
+            {`${earningToken.symbol} ${getHeadingPrefix()}`}
           </Heading>
           <Text color={isFinished ? 'textDisabled' : 'textSubtle'}>{getSubHeading()}</Text>
         </Flex>

@@ -22,9 +22,10 @@ import { useCakeVault } from 'state/pools/hooks'
 import { Pool } from 'state/types'
 import { getAddress, getPmoonVaultAddress } from 'utils/addressHelpers'
 import { registerToken } from 'utils/wallet'
-import { getCallistoExpLink } from 'utils'
+// import { getCallistoExpLink } from 'utils'
 import Balance from 'components/Balance'
-import { getPoolBlockInfo } from 'views/Pools/helpers'
+// import { getPoolBlockInfo } from 'views/Pools/helpers'
+import { getTimeFromTimeStamp2 } from 'utils/formatTimePeriod'
 
 interface ExpandedFooterProps {
   pool: Pool
@@ -37,12 +38,12 @@ const ExpandedWrapper = styled(Flex)`
     width: 14px;
   }
 `
-const chainId = process.env.REACT_APP_CHAIN_ID
-const expLink = BASE_CALLISTO_SCAN_URLS[chainId]
+// const chainId = process.env.REACT_APP_CHAIN_ID
+// const expLink = BASE_CALLISTO_SCAN_URLS[chainId]
 
 const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
   const { t } = useTranslation()
-  const { currentBlock } = useBlock()
+  // const { currentBlock } = useBlock()
   const {
     totalCakeInVault,
     fees: { performanceFee },
@@ -52,12 +53,13 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
     stakingToken,
     earningToken,
     totalStaked,
-    startBlock,
-    endBlock,
-    stakingLimit,
+    // startBlock,
+    // endBlock,
+    // stakingLimit,
     contractAddress,
     sousId,
     isAutoVault,
+    userData,
   } = pool
 
   const tokenAddress = earningToken.address ? getAddress(earningToken.address) : ''
@@ -66,14 +68,20 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
   const isMetaMaskInScope = !!window.ethereum?.isMetaMask
   const isManualCakePool = sousId === 0
 
-  const { shouldShowBlockCountdown, blocksUntilStart, blocksRemaining, hasPoolStarted, blocksToDisplay } =
-    getPoolBlockInfo(pool, currentBlock)
+  // const { shouldShowBlockCountdown, blocksUntilStart, blocksRemaining, hasPoolStarted, blocksToDisplay } =
+  //   getPoolBlockInfo(pool, currentBlock)
 
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(
-    t('Subtracted automatically from each yield harvest and burned.'),
-    { placement: 'bottom-start' },
-  )
+  // const { targetRef, tooltip, tooltipVisible } = useTooltip(
+  //   t('Subtracted automatically from each yield harvest and burned.'),
+  //   { placement: 'bottom-start' },
+  // )
+  // const nextHarvest = account && userData ? userData.stakedStatus.time.toNumber() : 0
+  const endStaking = account && userData ? userData.stakedStatus.endTime.toNumber() : 0
 
+  // const nextTimeStr = nextHarvest === 0 ? '' : getTimeFromTimeStamp2(nextHarvest)
+  const endTimeStr = endStaking === 0 ? '' : getTimeFromTimeStamp2(endStaking)
+
+  // console.log(nextTimeStr, endTimeStr, "<======")
   const getTotalStakedBalance = () => {
     if (isAutoVault) {
       return getBalanceNumber(totalCakeInVault, stakingToken.decimals)
@@ -95,8 +103,21 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
 
   return (
     <ExpandedWrapper flexDirection="column">
-      <Flex mb="2px" justifyContent="space-between" alignItems="center">
+      <Flex mb="2px" justifyContent="space-between" flexDirection="column">
         <Text small color="primary">{t('Next Harvest In')}:</Text>
+        {
+          endTimeStr
+          ? <Text small>{endTimeStr}</Text>
+          : <Skeleton width="200px" height="21px" />
+        }
+      </Flex>
+      <Flex mb="2px" justifyContent="space-between" flexDirection="column">
+        <Text small color="primary">{t('Cold Staking Ends In')}:</Text>
+        {
+          endTimeStr
+          ? <Text small>{endTimeStr}</Text>
+          : <Skeleton width="200px" height="21px" />
+        }
       </Flex>
       <Flex mb="2px" justifyContent="space-between" alignItems="center">
         <Text small>{t('Total staked')}:</Text>
@@ -114,13 +135,13 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
           {totalStakedTooltipVisible && totalStakedTooltip}
         </Flex>
       </Flex>
-      {stakingLimit && stakingLimit.gt(0) && (
+      {/* {stakingLimit && stakingLimit.gt(0) && (
         <Flex mb="2px" justifyContent="space-between">
           <Text small>{t('Max. stake per user')}:</Text>
           <Text small>{`${getFullDisplayBalance(stakingLimit, stakingToken.decimals, 0)} ${stakingToken.symbol}`}</Text>
         </Flex>
-      )}
-      {shouldShowBlockCountdown && (
+      )} */}
+      {/* {shouldShowBlockCountdown && (
         <Flex mb="2px" justifyContent="space-between" alignItems="center">
           <Text small>{hasPoolStarted ? t('Ends in') : t('Starts in')}:</Text>
           {blocksRemaining || blocksUntilStart ? (
@@ -150,8 +171,8 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
             </Text>
           </Flex>
         </Flex>
-      )}
-      <Flex mb="2px" justifyContent="flex-end">
+      )} */}
+      {/* <Flex mb="2px" justifyContent="flex-end">
         <LinkExternal href={`${expLink}/token/${getAddress(earningToken.address)}`} bold={false} small>
           {t('See Token Info')}
         </LinkExternal>
@@ -160,33 +181,35 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
         <LinkExternal href={earningToken.projectLink} bold={false} small>
           {t('View Project Site')}
         </LinkExternal>
+      </Flex> */}
+      <Flex mb="2px" justifyContent="space-between">
+        {account && isMetaMaskInScope && tokenAddress && (
+          <Flex justifyContent="flex-start">
+            <Button
+              variant="text"
+              p="0"
+              height="auto"
+              onClick={() => registerToken(tokenAddress, earningToken.symbol, earningToken.decimals)}
+            >
+              <Text color="primary" fontSize="14px">
+                {t('Add to Metamask')}
+              </Text>
+              <MetamaskIcon ml="4px" />
+            </Button>
+          </Flex>
+        )}
+        {poolContractAddress && (
+          <Flex mb="2px" justifyContent="flex-end">
+            <LinkExternal
+              href={`${BASE_CALLISTO_SCAN_URL}/address/${isAutoVault ? cakeVaultContractAddress : poolContractAddress}/transactions`}
+              bold={false}
+              small
+            >
+              {t('View Contract')}
+            </LinkExternal>
+          </Flex>
+        )}
       </Flex>
-      {poolContractAddress && (
-        <Flex mb="2px" justifyContent="flex-end">
-          <LinkExternal
-            href={`${BASE_CALLISTO_SCAN_URL}/address/${isAutoVault ? cakeVaultContractAddress : poolContractAddress}/transactions`}
-            bold={false}
-            small
-          >
-            {t('View Contract')}
-          </LinkExternal>
-        </Flex>
-      )}
-      {account && isMetaMaskInScope && tokenAddress && (
-        <Flex justifyContent="flex-end">
-          <Button
-            variant="text"
-            p="0"
-            height="auto"
-            onClick={() => registerToken(tokenAddress, earningToken.symbol, earningToken.decimals)}
-          >
-            <Text color="primary" fontSize="14px">
-              {t('Add to Metamask')}
-            </Text>
-            <MetamaskIcon ml="4px" />
-          </Button>
-        </Flex>
-      )}
     </ExpandedWrapper>
   )
 }

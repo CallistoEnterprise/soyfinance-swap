@@ -43,7 +43,7 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
   const showStakedTag = isAutoVault ? hasVaultShares : isStaked
 
   let title = `${t('Earn')} ${earningTokenSymbol}`
-  let subtitle = `${t('Stake')} ${stakingTokenSymbol}`
+  let subtitle = `${t('Freeze')} ${stakingTokenSymbol}`
   const showSubtitle = sousId !== 0 || (sousId === 0 && !isXs && !isSm)
 
   if (isAutoVault) {

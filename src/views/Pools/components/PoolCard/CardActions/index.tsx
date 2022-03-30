@@ -6,6 +6,7 @@ import { Flex, Text, Box } from '@soy-libs/uikit2'
 import { useTranslation } from 'contexts/Localization'
 import { PoolCategory } from 'config/constants/types'
 import { Pool } from 'state/types'
+import { getTimeFromTimeStamp2 } from 'utils/formatTimePeriod'
 import ApprovalAction from './ApprovalAction'
 import StakeActions from './StakeActions'
 import HarvestActions from './HarvestActions'
@@ -24,12 +25,17 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
   // Pools using native CLO behave differently than pools using a token
   const isBnbPool = poolCategory === PoolCategory.CLO
   const { t } = useTranslation()
-  const allowance = userData?.allowance ? new BigNumber(userData.allowance) : BIG_ZERO
+  // const allowance = userData?.allowance ? new BigNumber(userData.allowance) : BIG_ZERO
   const stakingTokenBalance = userData?.stakingTokenBalance ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO
   const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
   const needsApproval = false // !allowance.gt(0) && !isBnbPool
   const isStaked = stakedBalance.gt(0)
   const isLoading = !userData
+
+  const endStaking = userData ? userData.stakedStatus.endTime.toNumber() : 0
+
+  // const nextTimeStr = nextHarvest === 0 ? '' : getTimeFromTimeStamp2(nextHarvest)
+  const endTimeStr = endStaking === 0 ? null : getTimeFromTimeStamp2(endStaking)
 
   return (
     <Flex flexDirection="column">
@@ -51,6 +57,7 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
               earningTokenPrice={earningTokenPrice}
               isBnbPool={isBnbPool}
               isLoading={isLoading}
+              endTimeStr={endTimeStr}
             />
           </>
         )}

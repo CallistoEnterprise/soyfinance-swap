@@ -38,4 +38,39 @@ export function getTimeFromTimeStamp(seconds: number) {
   return `${hh}:${mm}:${ss}`;
 }
 
+function getDate(seconds) {
+    return Math.floor(seconds/(3600 * 24))
+}
+function getHour(seconds) {
+    return Math.floor(seconds % (24 * 3600)/3600)
+}
+
+function getMin(seconds) {
+    return Math.floor((seconds%3600)/60)
+}
+
+function getSec(seconds) {
+    const h = getHour(seconds)
+    const m = getMin(seconds)
+    return seconds - h * 3600 - m * 60
+}
+
+function formatString(val: number) {
+    if( val < 10 ) {
+        return `0${val.toString()}`
+    } 
+    return val.toString()
+}
+
+export function getTimeFromTimeStamp2(seconds: number) {
+  const date = new Date();
+  const nowSeconds = Math.floor(date.getTime() / 1000);
+  const diff = seconds - nowSeconds;
+  if (diff < 0) {
+    return null
+  }
+  const datetime = `${formatString(getDate(diff))} Days, ${formatString(getHour(diff))} Hours, ${formatString(getMin(diff))} Minutes`
+  return datetime;
+}
+
 export default formatTimePeriod

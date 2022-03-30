@@ -26,6 +26,7 @@ import { getAddress, getPmoonVaultAddress } from 'utils/addressHelpers'
 import { registerToken } from 'utils/wallet'
 import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import { getPoolBlockInfo } from 'views/Pools/helpers'
+import { getTimeFromTimeStamp2 } from 'utils/formatTimePeriod'
 import Harvest from './Harvest'
 import Stake from './Stake'
 import Apr from '../Apr'
@@ -120,6 +121,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
     stakingLimit,
     contractAddress,
     isAutoVault,
+    userData,
   } = pool
   const { t } = useTranslation()
   const poolContractAddress = getAddress(contractAddress)
@@ -161,7 +163,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
     placement: 'bottom',
   })
 
-  const manualTooltipText = t('You must harvest and compound your earnings from this pool manually.')
+  const manualTooltipText = t('You must harvest your earnings from this pool after staking periods ends manually.')
   const autoTooltipText = t(
     'Any funds you stake in this pool will be automagically harvested and restaked (compounded) for you.',
   )
@@ -173,6 +175,9 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   } = useTooltip(isAutoVault ? autoTooltipText : manualTooltipText, {
     placement: 'bottom-start',
   })
+
+  const endStaking = userDataLoaded ? userData.stakedStatus.endTime.toNumber() : 0
+  const endTimeStr = endStaking === 0 ? '' : getTimeFromTimeStamp2(endStaking)
 
   const maxStakeRow = stakingLimit.gt(0) ? (
     <Flex mb="8px" justifyContent="space-between">
@@ -228,11 +233,9 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   return (
     <StyledActionPanel expanded={expanded}>
       <InfoSection>
-        {maxStakeRow}
-        {(isXs || isSm) && aprRow}
-        {(isXs || isSm || isMd) && totalStakedRow}
-        {shouldShowBlockCountdown && blocksRow}
-        <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
+        {/* {maxStakeRow} */}
+        {/* {shouldShowBlockCountdown && blocksRow} */}
+        {/* <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
           <LinkExternal href={`https://soyfinance.info/token/${getAddress(earningToken.address)}`} bold={false}>
             {t('See Token Info')}
           </LinkExternal>
@@ -241,7 +244,28 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
           <LinkExternal href={earningToken.projectLink} bold={false}>
             {t('View Project Site')}
           </LinkExternal>
+        </Flex> */}
+
+        <Flex mb="2px" justifyContent="space-between" flexDirection="column">
+          <Text small color="primary">{t('Next Harvest In')}:</Text>
+          {
+            endTimeStr
+            ? <Text small>{endTimeStr}</Text>
+            : <Skeleton width="200px" height="21px" />
+          }
         </Flex>
+        <Flex mb="2px" justifyContent="space-between" flexDirection="column">
+          <Text small color="primary">{t('Cold Staking Ends In')}:</Text>
+          {
+            endTimeStr
+            ? <Text small>{endTimeStr}</Text>
+            : <Skeleton width="200px" height="21px" />
+          }
+        </Flex>
+
+        {(isXs || isSm) && aprRow}
+        {(isXs || isSm || isMd) && totalStakedRow}
+        
         {poolContractAddress && (
           <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
             <LinkExternal
@@ -277,7 +301,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
             {isAutoVault ? t('Automatic restaking') : `${t('Earn')} SOY ${t('Stake').toLocaleLowerCase()} SOY`}
           </Text>
         )}
-        <Harvest {...pool} userDataLoaded={userDataLoaded} />
+        <Harvest {...pool} userDataLoaded={userDataLoaded} endTimeStr={endTimeStr}/>
         <Stake pool={pool} userDataLoaded={userDataLoaded} />
       </ActionContainer>
     </StyledActionPanel>

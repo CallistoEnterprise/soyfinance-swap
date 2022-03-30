@@ -17,6 +17,7 @@ import UnstakingFeeCountdownRow from '../../CakeVaultCard/UnstakingFeeCountdownR
 
 interface HarvestActionProps extends Pool {
   userDataLoaded: boolean
+  endTimeStr?: string | null
 }
 
 const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
@@ -27,6 +28,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   userDataLoaded,
   isAutoVault,
   earningTokenPrice,
+  endTimeStr
 }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
@@ -161,7 +163,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
             </Flex>
           </Flex>
         ) : (
-          <Button disabled={!hasEarnings} onClick={onPresentCollect}>
+          <Button disabled={!hasEarnings || endTimeStr !== null} onClick={onPresentCollect}>
             {isCompoundPool ? t('Collect') : t('Harvest')}
           </Button>
         )}
