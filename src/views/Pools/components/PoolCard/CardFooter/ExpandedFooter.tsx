@@ -101,15 +101,29 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
     placement: 'bottom',
   })
 
+  const {
+    targetRef: harvestTargetRef,
+    tooltip: harvestTooltip,
+    tooltipVisible: harvestTooltipVisible,
+  } = useTooltip(t('Next harvest (claim reward without deposited amount) available every 27 days.'), {
+    placement: 'bottom',
+  })
+
   return (
     <ExpandedWrapper flexDirection="column">
       <Flex mb="2px" justifyContent="space-between" flexDirection="column">
         <Text small color="primary">{t('Next Harvest In')}:</Text>
-        {
-          endTimeStr
-          ? <Text small>{endTimeStr}</Text>
-          : <Skeleton width="200px" height="21px" />
-        }
+        <Flex mb="0px" justifyContent="flex-start">
+          {
+            endTimeStr
+            ? <Text small>{endTimeStr}</Text>
+            : <Skeleton width="200px" height="21px" />
+          }
+          <span ref={harvestTargetRef}>
+            <HelpIcon color="textSubtle" width="20px" ml="6px" mt="4px" />
+          </span>
+        </Flex>
+        {harvestTooltipVisible && harvestTooltip}
       </Flex>
       <Flex mb="2px" justifyContent="space-between" flexDirection="column">
         <Text small color="primary">{t('Cold Staking Ends In')}:</Text>
