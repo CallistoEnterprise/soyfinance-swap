@@ -49,11 +49,11 @@ function getMin(seconds) {
     return Math.floor((seconds%3600)/60)
 }
 
-function getSec(seconds) {
-    const h = getHour(seconds)
-    const m = getMin(seconds)
-    return seconds - h * 3600 - m * 60
-}
+// function getSec(seconds) {
+//     const h = getHour(seconds)
+//     const m = getMin(seconds)
+//     return seconds - h * 3600 - m * 60
+// }
 
 function formatString(val: number) {
     if( val < 10 ) {

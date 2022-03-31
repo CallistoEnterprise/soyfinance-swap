@@ -1,23 +1,23 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
-import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
+import { getBalanceNumber } from 'utils/formatBalance'
 import { useTranslation } from 'contexts/Localization'
 import {
   Flex,
   MetamaskIcon,
   Text,
-  TooltipText,
+  // TooltipText,
   LinkExternal,
-  TimerIcon,
+  // TimerIcon,
   Skeleton,
   useTooltip,
   Button,
-  Link,
+  // Link,
   HelpIcon,
 } from '@soy-libs/uikit2'
-import { BASE_CALLISTO_SCAN_URL, BASE_CALLISTO_SCAN_URLS } from 'config'
-import { useBlock } from 'state/block/hooks'
+import { BASE_CALLISTO_SCAN_URL } from 'config'
+// import { useBlock } from 'state/block/hooks'
 import { useCakeVault } from 'state/pools/hooks'
 import { Pool } from 'state/types'
 import { getAddress, getPmoonVaultAddress } from 'utils/addressHelpers'
@@ -25,11 +25,11 @@ import { registerToken } from 'utils/wallet'
 // import { getCallistoExpLink } from 'utils'
 import Balance from 'components/Balance'
 // import { getPoolBlockInfo } from 'views/Pools/helpers'
-import { getTimeFromTimeStamp2 } from 'utils/formatTimePeriod'
 
 interface ExpandedFooterProps {
   pool: Pool
   account: string
+  endTimeStr: string | null
 }
 
 const ExpandedWrapper = styled(Flex)`
@@ -41,7 +41,7 @@ const ExpandedWrapper = styled(Flex)`
 // const chainId = process.env.REACT_APP_CHAIN_ID
 // const expLink = BASE_CALLISTO_SCAN_URLS[chainId]
 
-const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
+const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account, endTimeStr }) => {
   const { t } = useTranslation()
   // const { currentBlock } = useBlock()
   const {
@@ -59,7 +59,6 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
     contractAddress,
     sousId,
     isAutoVault,
-    userData,
   } = pool
 
   const tokenAddress = earningToken.address ? getAddress(earningToken.address) : ''
@@ -76,10 +75,10 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
   //   { placement: 'bottom-start' },
   // )
   // const nextHarvest = account && userData ? userData.stakedStatus.time.toNumber() : 0
-  const endStaking = account && userData ? userData.stakedStatus.endTime.toNumber() : 0
+  // const endStaking = account && userData ? userData.stakedStatus.endTime.toNumber() : 0
 
   // const nextTimeStr = nextHarvest === 0 ? '' : getTimeFromTimeStamp2(nextHarvest)
-  const endTimeStr = endStaking === 0 ? '' : getTimeFromTimeStamp2(endStaking)
+  // const endTimeStr = endStaking === 0 ? '' : getTimeFromTimeStamp2(endStaking)
 
   // console.log(nextTimeStr, endTimeStr, "<======")
   const getTotalStakedBalance = () => {
@@ -101,30 +100,9 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
     placement: 'bottom',
   })
 
-  const {
-    targetRef: harvestTargetRef,
-    tooltip: harvestTooltip,
-    tooltipVisible: harvestTooltipVisible,
-  } = useTooltip(t('Next harvest (claim reward without deposited amount) available every 27 days.'), {
-    placement: 'bottom',
-  })
-
   return (
     <ExpandedWrapper flexDirection="column">
-      <Flex mb="2px" justifyContent="space-between" flexDirection="column">
-        <Text small color="primary">{t('Next Harvest In')}:</Text>
-        <Flex mb="0px" justifyContent="flex-start">
-          {
-            endTimeStr
-            ? <Text small>{endTimeStr}</Text>
-            : <Skeleton width="200px" height="21px" />
-          }
-          <span ref={harvestTargetRef}>
-            <HelpIcon color="textSubtle" width="20px" ml="6px" mt="4px" />
-          </span>
-        </Flex>
-        {harvestTooltipVisible && harvestTooltip}
-      </Flex>
+      
       <Flex mb="2px" justifyContent="space-between" flexDirection="column">
         <Text small color="primary">{t('Cold Staking Ends In')}:</Text>
         {
