@@ -8,6 +8,8 @@ import { getTimeFromTimeStamp2 } from 'utils/formatTimePeriod'
 // import { CompoundingPoolTag, ManualPoolTag } from 'components/Tags'
 import ExpandedFooter from './ExpandedFooter'
 
+const periodSeconds = 27 * 24 * 3600
+
 interface FooterProps {
   pool: Pool
   account: string
@@ -41,9 +43,11 @@ const Footer: React.FC<FooterProps> = ({ pool, account }) => {
   //   placement: 'bottom',
   // })
   const endStaking = account && userData ? userData.stakedStatus.endTime.toNumber() : 0
+  const harvestDay = userData ? userData.stakedStatus.time.toNumber() : 0
 
   // const nextTimeStr = nextHarvest === 0 ? '' : getTimeFromTimeStamp2(nextHarvest)
   const endTimeStr = endStaking === 0 ? '' : getTimeFromTimeStamp2(endStaking)
+  const havestDayStr = harvestDay === 0 ? null : getTimeFromTimeStamp2(harvestDay + periodSeconds)
 
   const {
     targetRef: harvestTargetRef,
@@ -59,8 +63,8 @@ const Footer: React.FC<FooterProps> = ({ pool, account }) => {
         <Text small color="primary">{t('Next Harvest In')}:</Text>
         <Flex mb="0px" justifyContent="flex-start">
           {
-            endTimeStr
-            ? <Text small>{endTimeStr}</Text>
+            havestDayStr
+            ? <Text small>{havestDayStr}</Text>
             : <Skeleton width="200px" height="21px" />
           }
           <span ref={harvestTargetRef}>

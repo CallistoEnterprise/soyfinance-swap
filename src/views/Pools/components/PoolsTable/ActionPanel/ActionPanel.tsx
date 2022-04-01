@@ -109,6 +109,7 @@ const InfoSection = styled(Box)`
     flex-basis: 230px;
   }
 `
+const periodSeconds = 27 * 24 * 3600
 
 const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded, expanded, breakpoints }) => {
   const {
@@ -186,13 +187,15 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
 
   const endStaking = userDataLoaded ? userData.stakedStatus.endTime.toNumber() : 0
   const endTimeStr = endStaking === 0 ? '' : getTimeFromTimeStamp2(endStaking)
+  const harvestDay = userData ? userData.stakedStatus.time.toNumber() : 0
+  const havestDayStr = harvestDay === 0 ? null : getTimeFromTimeStamp2(harvestDay + periodSeconds)
 
-  const maxStakeRow = stakingLimit.gt(0) ? (
-    <Flex mb="8px" justifyContent="space-between">
-      <Text>{t('Max. stake per user')}:</Text>
-      <Text>{`${getFullDisplayBalance(stakingLimit, stakingToken.decimals, 0)} ${stakingToken.symbol}`}</Text>
-    </Flex>
-  ) : null
+  // const maxStakeRow = stakingLimit.gt(0) ? (
+  //   <Flex mb="8px" justifyContent="space-between">
+  //     <Text>{t('Max. stake per user')}:</Text>
+  //     <Text>{`${getFullDisplayBalance(stakingLimit, stakingToken.decimals, 0)} ${stakingToken.symbol}`}</Text>
+  //   </Flex>
+  // ) : null
 
   const blocksRow =
     blocksRemaining || blocksUntilStart ? (
@@ -258,8 +261,8 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
           <Text small color="primary">{t('Next Harvest In')}:</Text>
           <Flex mb="0px" justifyContent="flex-start">
             {
-              endTimeStr
-              ? <Text small>{endTimeStr}</Text>
+              havestDayStr
+              ? <Text small>{havestDayStr}</Text>
               : <Skeleton width="200px" height="21px" />
             }
             <span ref={harvestTargetRef}>

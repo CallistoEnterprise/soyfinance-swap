@@ -14,6 +14,7 @@ import HarvestActions from './HarvestActions'
 const InlineText = styled(Text)`
   display: inline;
 `
+const periodSeconds = 27 * 24 * 3600
 
 interface CardActionsProps {
   pool: Pool
@@ -33,9 +34,10 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
   const isLoading = !userData
 
   const endStaking = userData ? userData.stakedStatus.endTime.toNumber() : 0
-
+  const harvestDay = userData ? userData.stakedStatus.time.toNumber() : 0
   // const nextTimeStr = nextHarvest === 0 ? '' : getTimeFromTimeStamp2(nextHarvest)
   const endTimeStr = endStaking === 0 ? null : getTimeFromTimeStamp2(endStaking)
+  const havestDayStr = harvestDay === 0 ? null : getTimeFromTimeStamp2(harvestDay + periodSeconds)
 
   return (
     <Flex flexDirection="column">
@@ -58,6 +60,7 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
               isBnbPool={isBnbPool}
               isLoading={isLoading}
               endTimeStr={endTimeStr}
+              havestDayStr={havestDayStr}
             />
           </>
         )}

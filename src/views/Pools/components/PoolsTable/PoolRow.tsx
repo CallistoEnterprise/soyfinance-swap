@@ -33,10 +33,10 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account, userDataLoaded }) => {
     setExpanded((prev) => !prev)
   }
 
-  const {
-    fees: { performanceFee },
-  } = useCakeVault()
-  const performanceFeeAsDecimal = performanceFee && performanceFee / 100
+  // const {
+  //   fees: { performanceFee },
+  // } = useCakeVault()
+  // const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
   return (
     <>
