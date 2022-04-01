@@ -44,7 +44,7 @@ const StyledCard = styled(Card)`
 `
 
 const Header = styled(InfoRow)<{bkColor?: string}>`
-  min-height: 60px;
+  min-height: 70px;
   width: 100%;
   background-color: ${({bkColor}) => bkColor};
   justify-content: center;

@@ -27,6 +27,48 @@ export const nftSources: NftSource = {
 const Nfts = [
   {
     name: 'Emerald',
+    subName: 'Astronaut Heart',
+    images: {
+      lg: 'Astronaut Heart_3.jpg',
+      md: 'Astronaut Heart_3.jpg',
+      sm: 'Astronaut Heart_3.jpg',
+      ipfs: '',
+    },
+    minPrice: 10000,
+    maxPrice: 'infinity',
+    primaryColor: '#74AB46',
+    classId: 8,
+  },
+  {
+    name: 'Saphire',
+    subName: 'Astronaut Heart',
+    images: {
+      lg: 'Astronaut Heart_1.jpg',
+      md: 'Astronaut Heart_1.jpg',
+      sm: 'Astronaut Heart_1.jpg',
+      ipfs: '',
+    },
+    minPrice: 1000,
+    maxPrice: 5000,
+    primaryColor: '#5A9BD5',
+    classId: 7,
+  },
+  {
+    name: 'Purple',
+    subName: 'Astronaut Heart',
+    images: {
+      lg: 'Astronaut Heart_2.jpg',
+      md: 'Astronaut Heart_2.jpg',
+      sm: 'Astronaut Heart_2.jpg',
+      ipfs: '',
+    },
+    minPrice: 100,
+    maxPrice: 500,
+    primaryColor: '#A85EFD',
+    classId: 6,
+  },
+  {
+    name: 'Emerald',
     subName: 'BatSloth',
     images: {
       lg: 'claire-lg-2.jpg',
