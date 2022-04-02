@@ -9,11 +9,6 @@ import {
   AutoRenewIcon,
   Button,
   Text
-  // ChevronUpIcon,
-  // ChevronDownIcon,
-  // Text,
-  // CardFooter,
-  // useModal,
 } from '@soy-libs/uikit2'
 import useToast from 'hooks/useToast'
 import { useTranslation } from 'contexts/Localization'
@@ -23,8 +18,6 @@ import { BIG_TEN } from 'utils/bigNumber'
 import useBuyNft from '../../hooks/useBuyNft'
 import { Input as NumericalInput } from './NumericalInput'
 import InfoRow from '../InfoRow'
-// import TransferNftModal from '../TransferNftModal'
-// import ClaimNftModal from '../ClaimNftModal'
 import Preview from './Preview'
 
 export interface NftCardProps {
@@ -54,18 +47,6 @@ const BuyButton = styled(Button)<{bkColor?: string}>`
   background-color: ${({bkColor}) => bkColor};
   color: #FFFFFF;
 `
-// const DetailsButton = styled(Button).attrs({ variant: 'text' })`
-//   height: auto;
-//   padding: 16px 24px;
-
-//   &:hover:not(:disabled):not(:active) {
-//     background-color: transparent;
-//   }
-
-//   &:focus:not(:active) {
-//     box-shadow: none;
-//   }
-// `
 
 const PriceSection = styled.div`
   display: flex;
@@ -81,7 +62,7 @@ const NftCard: React.FC<NftCardProps> = ({ nft, tokenIds = [] }) => {
   const [inputAmount, setInputAmount] = useState('')
   const { account } = useWeb3React()
   const { t } = useTranslation()
-  const { toastError, toastSuccess, toastWarning } = useToast()
+  const { toastSuccess, toastWarning } = useToast()
   const { name, subName } = nft
   const walletOwnsNft = tokenIds.length > 0
 
@@ -113,12 +94,10 @@ const NftCard: React.FC<NftCardProps> = ({ nft, tokenIds = [] }) => {
 
     const receipt = await onBuyNft(nft.classId, inputAmount)
     if (receipt) {
-      toastSuccess(t('Successfully claimed!'))
-      setIsConfirming(false)
-    } else {
-      toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
-      setIsConfirming(false)
+      toastSuccess(t('Successfully puchased!'))
     }
+    setIsConfirming(false)
+    setInputAmount('')
   }
 
   const handleTypeInput = (value: string) => {
