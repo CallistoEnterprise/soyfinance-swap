@@ -17,7 +17,8 @@ export const getPoolApr = (
   tokenPerBlock: number,
   rewardBlockCount: BigNumber
 ): number => {
-  const totalRewardPricePerYear = new BigNumber(rewardTokenPrice).times(tokenPerBlock).times(rewardBlockCount)
+  // const totalRewardPricePerYear = new BigNumber(rewardTokenPrice).times(tokenPerBlock).times(rewardBlockCount)
+  const totalRewardPricePerYear = new BigNumber(rewardTokenPrice).times(REWARD_TOKENS_PER_YEAR.times(new BigNumber(0.169)))
   const totalStakingTokenInPool = new BigNumber(stakingTokenPrice).times(totalStaked)
 
   const apr = totalRewardPricePerYear.div(totalStakingTokenInPool).times(100)
