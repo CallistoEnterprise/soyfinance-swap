@@ -18,7 +18,7 @@ const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
 
   const tooltipContent = isAutoVault
     ? t('APY includes compounding, APR doesn’t. This pool’s SOY is compounded automatically, so we show APY.')
-    : t('We are showing the average APR of 6 months.')
+    : t('Max apr is based on 6 months.')
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(tooltipContent, { placement: 'bottom-start' })
 
@@ -42,7 +42,7 @@ const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
   return (
     <Flex alignItems="center" justifyContent="space-between">
       {tooltipVisible && tooltip}
-      <TooltipText ref={targetRef}>{isAutoVault ? `${t('APY')}:` : `${t('Average APR')}:`}</TooltipText>
+      <TooltipText ref={targetRef}>{isAutoVault ? `${t('APY')}:` : `${t('MAX APR')}:`}</TooltipText>
       {isFinished || !apr ? (
         <Skeleton width="82px" height="32px" />
       ) : (

@@ -70,7 +70,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   console.log("apr :: ", apr)
   const tokenEarnedPerThousand1M = tokenEarnedPerThousandDollarsCompounding({
     numberOfDays: 30,
-    farmApr: 0.5 * apr / 0.8,
+    farmApr: 0.5 * apr,
     tokenPrice,
     roundingDecimals,
     compoundFrequency,
@@ -78,7 +78,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   })
   const tokenEarnedPerThousand2M = tokenEarnedPerThousandDollarsCompounding({
     numberOfDays: 60,
-    farmApr: 0.6 * apr / 0.8,
+    farmApr: 0.6 * apr,
     tokenPrice,
     roundingDecimals,
     compoundFrequency,
@@ -86,7 +86,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   })
   const tokenEarnedPerThousand3M = tokenEarnedPerThousandDollarsCompounding({
     numberOfDays: 90,
-    farmApr: 0.7 * apr / 0.8,
+    farmApr: 0.7 * apr,
     tokenPrice,
     roundingDecimals,
     compoundFrequency,
@@ -94,7 +94,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   })
   const tokenEarnedPerThousand4M = tokenEarnedPerThousandDollarsCompounding({
     numberOfDays: 120,
-    farmApr: apr,
+    farmApr: 0.8 * apr,
     tokenPrice,
     roundingDecimals,
     compoundFrequency,
@@ -102,7 +102,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   })
   const tokenEarnedPerThousand5M = tokenEarnedPerThousandDollarsCompounding({
     numberOfDays: 150,
-    farmApr: 0.9 * apr / 0.8,
+    farmApr: 0.9 * apr,
     tokenPrice,
     roundingDecimals,
     compoundFrequency,
@@ -110,7 +110,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   })
   const tokenEarnedPerThousand6M = tokenEarnedPerThousandDollarsCompounding({
     numberOfDays: 180,
-    farmApr: apr / 0.8,
+    farmApr: apr,
     tokenPrice,
     roundingDecimals,
     compoundFrequency,
