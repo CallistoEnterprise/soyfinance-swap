@@ -1,6 +1,6 @@
 import React from 'react'
 import { Flex, useModal, CalculateIcon, Skeleton, FlexProps, Button } from '@soy-libs/uikit2'
-import ApyCalculatorModal from 'components/ApyCalculatorModal'
+import ApyCalculatorModal from 'components/ApyCalculatorModal/poolAPY'
 import Balance from 'components/Balance'
 import { Pool } from 'state/types'
 import { useTranslation } from 'contexts/Localization'

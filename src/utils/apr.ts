@@ -2,6 +2,7 @@ import BigNumber from 'bignumber.js'
 import { REWARD_TOKENS_PER_YEAR } from 'config'
 import lpAprs from 'config/constants/lpAprs.json'
 
+const POOL_REWARDS = new BigNumber(23152 * 365)
 /**
  * Get the APR value in %
  * @param stakingTokenPrice Token price in the same quote currency
@@ -18,7 +19,7 @@ export const getPoolApr = (
   rewardBlockCount: BigNumber
 ): number => {
   // const totalRewardPricePerYear = new BigNumber(rewardTokenPrice).times(tokenPerBlock).times(rewardBlockCount)
-  const totalRewardPricePerYear = new BigNumber(rewardTokenPrice).times(REWARD_TOKENS_PER_YEAR.times(new BigNumber(0.169)))
+  const totalRewardPricePerYear = new BigNumber(rewardTokenPrice).times(POOL_REWARDS).times(new BigNumber(0.8))
   const totalStakingTokenInPool = new BigNumber(stakingTokenPrice).times(totalStaked)
 
   const apr = totalRewardPricePerYear.div(totalStakingTokenInPool).times(100)
