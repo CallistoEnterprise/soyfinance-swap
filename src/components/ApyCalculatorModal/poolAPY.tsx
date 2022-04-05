@@ -67,7 +67,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
 }) => {
   const { t } = useTranslation()
   const oneThousandDollarsWorthOfToken = 1000 / tokenPrice
-  console.log("apr :: ", apr)
+  
   const tokenEarnedPerThousand1M = tokenEarnedPerThousandDollarsCompounding({
     numberOfDays: 30,
     farmApr: 0.5 * apr,
@@ -120,7 +120,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   // const customAPR = (365 * getRoi({ amountEarned: tokenEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfToken })).toFixed(2,)
 
   return (
-    <Modal title={t('ROI')} onDismiss={onDismiss}>
+    <Modal title={t('APR')} onDismiss={onDismiss}>
       <Grid>
         <GridHeaderItem>
           <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase" mb="12px">
@@ -138,7 +138,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
             ml="12px"
             mb="12px"
           >
-            {t('ROI')}
+            {t('APR')}
           </Text>
         </GridHeaderItem>
         <GridHeaderItem>
@@ -152,9 +152,10 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         <GridItem>
           <Text textAlign="right" mr="12px" ml="12px">
-            {getRoi({ amountEarned: tokenEarnedPerThousand1M, amountInvested: oneThousandDollarsWorthOfToken }).toFixed(
+            {/* {getRoi({ amountEarned: tokenEarnedPerThousand1M, amountInvested: oneThousandDollarsWorthOfToken }).toFixed(
               roundingDecimals,
-            )}
+            )} */}
+            {(0.5 * apr).toFixed(2)}
             %
           </Text>
         </GridItem>
@@ -167,9 +168,10 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         <GridItem>
           <Text textAlign="right" mr="12px" ml="12px">
-            {getRoi({ amountEarned: tokenEarnedPerThousand2M, amountInvested: oneThousandDollarsWorthOfToken }).toFixed(
+            {/* {getRoi({ amountEarned: tokenEarnedPerThousand2M, amountInvested: oneThousandDollarsWorthOfToken }).toFixed(
               roundingDecimals,
-            )}
+            )} */}
+            {(0.6 * apr).toFixed(2)}
             %
           </Text>
         </GridItem>
@@ -182,10 +184,11 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         <GridItem>
           <Text textAlign="right" mr="12px" ml="12px">
-            {getRoi({
+            {/* {getRoi({
               amountEarned: tokenEarnedPerThousand3M,
               amountInvested: oneThousandDollarsWorthOfToken,
-            }).toFixed(roundingDecimals)}
+            }).toFixed(roundingDecimals)} */}
+            {(0.7 * apr).toFixed(2)}
             %
           </Text>
         </GridItem>
@@ -198,10 +201,11 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         <GridItem>
           <Text textAlign="right" mr="12px" ml="12px">
-            {parseInt(getRoi({
+            {/* {parseInt(getRoi({
               amountEarned: tokenEarnedPerThousand4M,
               amountInvested: oneThousandDollarsWorthOfToken,
-            }).toFixed(roundingDecimals))}
+            }).toFixed(roundingDecimals))} */}
+            {(0.8 * apr).toFixed(2)}
             %
           </Text>
         </GridItem>
@@ -214,10 +218,11 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         <GridItem>
           <Text textAlign="right" mr="12px" ml="12px">
-            {parseInt(getRoi({
+            {/* {parseInt(getRoi({
               amountEarned: tokenEarnedPerThousand5M,
               amountInvested: oneThousandDollarsWorthOfToken,
-            }).toFixed(roundingDecimals))}
+            }).toFixed(roundingDecimals))} */}
+            {(0.9 * apr).toFixed(2)}
             %
           </Text>
         </GridItem>
@@ -226,14 +231,15 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
 
         <GridItem style={{ maxWidth: '180px' }}>
-          <Text>{t('%num% months', { num: 6 })}</Text>
+          <Text>{t('MAX APR')}</Text>
         </GridItem>
         <GridItem>
           <Text textAlign="right" mr="12px" ml="12px">
-            {parseInt(getRoi({
+            {/* {parseInt(getRoi({
               amountEarned: tokenEarnedPerThousand6M,
               amountInvested: oneThousandDollarsWorthOfToken,
-            }).toFixed(roundingDecimals))}
+            }).toFixed(roundingDecimals))} */}
+            {apr.toFixed(2)}
             %
           </Text>
         </GridItem>
@@ -250,11 +256,11 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
                 {t('Calculated based on current rates.')}
               </Text>
             </li>
-            <li>
+            {/* <li>
               <Text fontSize="12px" textAlign="center" color="textSubtle" display="inline">
                 {t('Compounding %freq%x daily.', { freq: compoundFrequency.toLocaleString() })}
               </Text>
-            </li>
+            </li> */}
             {isFarm && (
               <li>
                 <Text fontSize="12px" textAlign="center" color="textSubtle" display="inline">
