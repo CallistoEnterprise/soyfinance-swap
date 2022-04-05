@@ -231,7 +231,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
 
         <GridItem style={{ maxWidth: '180px' }}>
-          <Text>{t('MAX APR')}</Text>
+          <Text>{t('%num% months', { num: 6 })}</Text>
         </GridItem>
         <GridItem>
           <Text textAlign="right" mr="12px" ml="12px">
