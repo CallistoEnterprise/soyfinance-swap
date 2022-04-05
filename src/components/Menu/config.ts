@@ -27,6 +27,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: '/farms',
   },
   {
+    label: t('Staking Pools'),
+    icon: 'PoolIcon',
+    href: '/staking',
+  },
+  {
     label: t('Bridge'),
     icon: 'BridgeIcon',
     href: 'https://callistobridge.netlify.app/',
@@ -43,11 +48,6 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     icon: "ChoamIcon",
     target: "_blank",
     status: menuStatus.SOLDOUT
-  },
-  {
-    label: t('Pools'),
-    icon: 'PoolIcon',
-    href: '/staking',
   },
   {
     label: t('NFT'),
