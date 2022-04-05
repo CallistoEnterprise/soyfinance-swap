@@ -14,7 +14,7 @@ import { latinise } from 'utils/latinise'
 import FlexLayout from 'components/Layout/Flex'
 import Page from 'components/Layout/Page'
 import PageHeader from 'components/PageHeader'
-import SearchInput from 'components/SearchInput'
+// import SearchInput from 'components/SearchInput'
 import Select, { OptionProps } from 'components/Select/Select'
 import { Pool } from 'state/types'
 import Loading from 'components/Loading'
@@ -144,9 +144,9 @@ const Pools: React.FC = () => {
 
   const showFinishedPools = location.pathname.includes('history')
 
-  const handleChangeSearchQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value)
-  }
+  // const handleChangeSearchQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setSearchQuery(event.target.value)
+  // }
 
   const handleSortOptionChange = (option: OptionProps): void => {
     setSortOption(option.value)
@@ -270,12 +270,13 @@ const Pools: React.FC = () => {
                 />
               </ControlStretch>
             </LabelWrapper>
-            <LabelWrapper style={{ marginLeft: 16 }}>
+            <div style = {{minWidth: 120}} />
+            {/* <LabelWrapper style={{ marginLeft: 16 }}>
               <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
                 {t('Search')}
               </Text>
               <SearchInput onChange={handleChangeSearchQuery} placeholder="Search Pools" />
-            </LabelWrapper>
+            </LabelWrapper> */}
           </FilterContainer>
         </PoolControls>
         {showFinishedPools && (
