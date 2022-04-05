@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Modal, Text, LinkExternal, Flex, Box } from '@soy-libs/uikit2'
 import { useTranslation } from 'contexts/Localization'
-import { tokenEarnedPerThousandDollarsCompounding, getRoi } from 'utils/compoundApyHelpers'
+import { tokenEarnedPerThousandDollarsCompoundingForPools, getRoi } from 'utils/compoundApyHelpers'
 
 interface ApyCalculatorModalProps {
   onDismiss?: () => void
@@ -68,7 +68,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   const { t } = useTranslation()
   const oneThousandDollarsWorthOfToken = 1000 / tokenPrice
   
-  const tokenEarnedPerThousand1M = tokenEarnedPerThousandDollarsCompounding({
+  const tokenEarnedPerThousand1M = tokenEarnedPerThousandDollarsCompoundingForPools({
     numberOfDays: 30,
     farmApr: 0.5 * apr,
     tokenPrice,
@@ -76,7 +76,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
     compoundFrequency,
     performanceFee,
   })
-  const tokenEarnedPerThousand2M = tokenEarnedPerThousandDollarsCompounding({
+  const tokenEarnedPerThousand2M = tokenEarnedPerThousandDollarsCompoundingForPools({
     numberOfDays: 60,
     farmApr: 0.6 * apr,
     tokenPrice,
@@ -84,7 +84,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
     compoundFrequency,
     performanceFee,
   })
-  const tokenEarnedPerThousand3M = tokenEarnedPerThousandDollarsCompounding({
+  const tokenEarnedPerThousand3M = tokenEarnedPerThousandDollarsCompoundingForPools({
     numberOfDays: 90,
     farmApr: 0.7 * apr,
     tokenPrice,
@@ -92,7 +92,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
     compoundFrequency,
     performanceFee,
   })
-  const tokenEarnedPerThousand4M = tokenEarnedPerThousandDollarsCompounding({
+  const tokenEarnedPerThousand4M = tokenEarnedPerThousandDollarsCompoundingForPools({
     numberOfDays: 120,
     farmApr: 0.8 * apr,
     tokenPrice,
@@ -100,7 +100,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
     compoundFrequency,
     performanceFee,
   })
-  const tokenEarnedPerThousand5M = tokenEarnedPerThousandDollarsCompounding({
+  const tokenEarnedPerThousand5M = tokenEarnedPerThousandDollarsCompoundingForPools({
     numberOfDays: 150,
     farmApr: 0.9 * apr,
     tokenPrice,
@@ -108,7 +108,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
     compoundFrequency,
     performanceFee,
   })
-  const tokenEarnedPerThousand6M = tokenEarnedPerThousandDollarsCompounding({
+  const tokenEarnedPerThousand6M = tokenEarnedPerThousandDollarsCompoundingForPools({
     numberOfDays: 180,
     farmApr: apr,
     tokenPrice,

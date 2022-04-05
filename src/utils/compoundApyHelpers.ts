@@ -35,3 +35,15 @@ export const getRoi = ({ amountEarned, amountInvested }) => {
   const percentage = (amountEarned / amountInvested) * 100
   return percentage
 }
+
+export const tokenEarnedPerThousandDollarsCompoundingForPools = ({
+  numberOfDays,
+  farmApr,
+  tokenPrice,
+  roundingDecimals = 2,
+  compoundFrequency = 1,
+  performanceFee = 0,
+}) => {
+  const earnedSoy = tokenPrice === 0 ? 0 : 10 * farmApr / tokenPrice
+  return parseFloat((earnedSoy).toFixed(roundingDecimals))
+}
