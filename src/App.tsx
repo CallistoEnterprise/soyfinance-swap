@@ -68,6 +68,7 @@ const Farms = lazy(() => import('./views/Farms'))
 // const FarmAuction = lazy(() => import('./views/FarmAuction'))
 // const NotFound = lazy(() => import('./views/NotFound'))
 const Collectibles = lazy(() => import('./views/Collectibles'))
+const Launchpad = lazy(() => import('./views/LaunchPad'))
 const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
 const Liquidity = lazy(() => import('./views/Pool'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
@@ -107,6 +108,9 @@ const App: React.FC = () => {
                   <Route path="/pools">
                     <Pools />
                   </Route>
+                  <Route path="/launchpad">
+                    <Launchpad />
+                  </Route>
                   <Route path="/nft">
                     <Collectibles />
                   </Route>
@@ -144,6 +148,9 @@ const App: React.FC = () => {
                   <Route path="/staking">
                     <Redirect to="/pools" />
                   </Route>
+                  {/* <Route path="/launchpad">
+                    <Redirect to="/launchpad" />
+                  </Route> */}
                   {/* <Route path="/psyrup">
                     <Redirect to="/pools" />
                   </Route> */}

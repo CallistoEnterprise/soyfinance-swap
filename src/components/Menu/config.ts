@@ -31,6 +31,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     icon: 'PoolIcon',
     href: '/staking',
   },
+  // {
+  //   label: t('Launchpad'),
+  //   icon: 'LaunchpadIcon',
+  //   href: '/launchpad',
+  // },
   {
     label: t('Bridge'),
     icon: 'BridgeIcon',

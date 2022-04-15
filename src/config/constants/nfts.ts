@@ -27,6 +27,48 @@ export const nftSources: NftSource = {
 const Nfts = [
   {
     name: 'Emerald',
+    subName: 'CLO Birthday 2022',
+    images: {
+      lg: '4th birthday-03.png',
+      md: '4th birthday-03.png',
+      sm: '4th birthday-03.png',
+      ipfs: '',
+    },
+    minPrice: 10000,
+    maxPrice: 'infinity',
+    primaryColor: '#74AB46',
+    classId: 14,
+  },
+  {
+    name: 'Saphire',
+    subName: 'CLO Birthday 2022',
+    images: {
+      lg: '4th birthday-01.png',
+      md: '4th birthday-01.png',
+      sm: '4th birthday-01.png',
+      ipfs: '',
+    },
+    minPrice: 1000,
+    maxPrice: 5000,
+    primaryColor: '#5A9BD5',
+    classId: 13,
+  },
+  {
+    name: 'Purple',
+    subName: 'CLO Birthday 2022',
+    images: {
+      lg: '4th birthday-02.png',
+      md: '4th birthday-02.png',
+      sm: '4th birthday-02.png',
+      ipfs: '',
+    },
+    minPrice: 100,
+    maxPrice: 500,
+    primaryColor: '#A85EFD',
+    classId: 12,
+  },
+  {    
+    name: 'Emerald',
     subName: 'Cold Sloth',
     images: {
       lg: 'Cold Sloth-02.png',
