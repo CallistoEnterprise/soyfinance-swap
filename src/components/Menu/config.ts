@@ -32,7 +32,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     href: '/staking',
   },
   {
-    label: t('Launchpad'),
+    label: t('Launchpads'),
     icon: 'LaunchpadIcon',
     href: '/launchpad',
   },
