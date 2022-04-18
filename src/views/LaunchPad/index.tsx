@@ -26,7 +26,7 @@ const LaunchPad = () => {
     <Page>
       <StyledHero>
         <Heading as="h1" scale="xxl" color="secondary">
-          {t('Soy Launchpad')}
+          {t('Soy Launchpads')}
         </Heading>
       </StyledHero>
       {/* <Text>The SOY Finance Charity NFT is designed as a reminder that we all share one planet, and we all need to spread one love.</Text>

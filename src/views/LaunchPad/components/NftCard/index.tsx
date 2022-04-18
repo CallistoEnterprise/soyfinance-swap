@@ -71,7 +71,7 @@ const NftCard: React.FC<NftCardProps> = ({ nft, tokenIds = [] }) => {
   // const { balance } = useGetBnbBalance()
 
   const handleConfirm = async () => {
-    window.open('https://nft.therepublic.io', '_blank');
+    window.open('https://therepublik.io/', '_blank');
     // const intAmount = parseInt(inputAmount, 10)
     // if ((nft.classId % 3 === 0) && (intAmount > nft.maxPrice || nft.minPrice > intAmount)) {
     //   toastWarning('Please input a correct amount!')
