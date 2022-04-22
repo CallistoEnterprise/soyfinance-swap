@@ -27,6 +27,48 @@ export const nftSources: NftSource = {
 const Nfts = [
   {
     name: 'Emerald',
+    subName: 'Aztec',
+    images: {
+      lg: 'Aztec Sloth-380 (3).png',
+      md: 'Aztec Sloth-380 (3).png',
+      sm: 'Aztec Sloth-380 (3).png',
+      ipfs: '',
+    },
+    minPrice: 10000,
+    maxPrice: 'infinity',
+    primaryColor: '#74AB46',
+    classId: 17,
+  },
+  {
+    name: 'Saphire',
+    subName: 'Aztec',
+    images: {
+      lg: 'Aztec Sloth-380 (4).png',
+      md: 'Aztec Sloth-380 (4).png',
+      sm: 'Aztec Sloth-380 (4).png',
+      ipfs: '',
+    },
+    minPrice: 1000,
+    maxPrice: 5000,
+    primaryColor: '#5A9BD5',
+    classId: 16,
+  },
+  {
+    name: 'Purple',
+    subName: 'Aztec',
+    images: {
+      lg: 'Aztec Sloth-380 (5).png',
+      md: 'Aztec Sloth-380 (5).png',
+      sm: 'Aztec Sloth-380 (5).png',
+      ipfs: '',
+    },
+    minPrice: 100,
+    maxPrice: 500,
+    primaryColor: '#A85EFD',
+    classId: 15,
+  },
+  {
+    name: 'Emerald',
     subName: 'CLO Birthday 2022',
     images: {
       lg: '4th birthday-03.png',
