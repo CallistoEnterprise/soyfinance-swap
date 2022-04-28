@@ -10,7 +10,7 @@ import {
   WalletConnectConnector,
 } from '@web3-react/walletconnect-connector'
 import { ConnectorNames, connectorLocalStorageKey } from '@soy-libs/uikit2'
-import { connectorsByName } from 'utils/web3React'
+import { connectorsByName, uauth } from 'utils/web3React'
 import { setupNetwork } from 'utils/wallet'
 import useToast from 'hooks/useToast'
 import { profileClear } from 'state/profile'
@@ -27,11 +27,11 @@ const useAuth = () => {
     (connectorID: ConnectorNames) => {
       const connector = connectorsByName[connectorID]
       if (connector) {
-        activate(connector, async (error: Error) => {
+        activate(uauth, async (error: Error) => {
           if (error instanceof UnsupportedChainIdError) {
             const hasSetup = await setupNetwork()
             if (hasSetup) {
-              activate(connector)
+              activate(uauth)
             }
           } else {
             window.localStorage.removeItem(connectorLocalStorageKey)
