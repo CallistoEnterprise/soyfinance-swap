@@ -41,8 +41,7 @@ const UserMenu = () => {
         console.log(err, "<==== error");
       })
     }
-    if (!account)
-      get();
+    get();
   }, [account])
 
   if (!account) {
