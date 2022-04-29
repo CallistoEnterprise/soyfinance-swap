@@ -7,6 +7,8 @@ import {
   UserMenu as UIKitUserMenu,
   UserMenuDivider,
   UserMenuItem,
+  connectorLocalStorageKey,
+  ConnectorNames
 } from '@soy-libs/uikit2'
 import useAuth from 'hooks/useAuth'
 import { useProfile } from 'state/profile/hooks'
@@ -31,6 +33,10 @@ const UserMenu = () => {
   const avatarSrc = profile && profile.nft ? `/images/nfts/${profile.nft.images.sm}` : undefined
   const hasLowBnbBalance = fetchStatus === FetchStatus.SUCCESS && balance.lte(LOW_BNB_BALANCE)
 
+  const connectorId = window.localStorage.getItem(connectorLocalStorageKey)
+
+  const isUnstoppable = connectorId === ConnectorNames.Unstoppable
+
   useEffect(() => {
     const get = async () => {
       uauth.uauth.user().then((res) => {
@@ -48,7 +54,7 @@ const UserMenu = () => {
   }
 
   return (
-    <UIKitUserMenu account={unstoppable ?? account} avatarSrc={avatarSrc}>
+    <UIKitUserMenu account={isUnstoppable ? unstoppable ?? account : account} avatarSrc={avatarSrc}>
       <WalletUserMenuItem hasLowBnbBalance={hasLowBnbBalance} onPresentWalletModal={onPresentWalletModal} />
       <UserMenuItem as="button" onClick={onPresentTransactionModal}>
         {t('Transactions')}
