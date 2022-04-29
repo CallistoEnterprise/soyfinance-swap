@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import {
   Flex,
@@ -13,6 +13,7 @@ import { useProfile } from 'state/profile/hooks'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { FetchStatus, useGetBnbBalance } from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
+import { uauth } from 'utils/web3React'
 import WalletModal, { WalletView, LOW_BNB_BALANCE } from './WalletModal'
 // import ProfileUserMenuItem from './ProfileUserMenutItem'
 import WalletUserMenuItem from './WalletUserMenuItem'
@@ -28,6 +29,20 @@ const UserMenu = () => {
   // const hasProfile = isInitialized && !!profile
   const avatarSrc = profile && profile.nft ? `/images/nfts/${profile.nft.images.sm}` : undefined
   const hasLowBnbBalance = fetchStatus === FetchStatus.SUCCESS && balance.lte(LOW_BNB_BALANCE)
+
+  useEffect(() => {
+    const get = async () => {
+      uauth.uauth.user().then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    }
+    if (!account && account === '') {
+      get();
+    }
+  }, [account])
 
   if (!account) {
     return <ConnectWalletButton scale="sm" />

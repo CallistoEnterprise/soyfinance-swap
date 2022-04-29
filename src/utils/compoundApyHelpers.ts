@@ -44,6 +44,6 @@ export const tokenEarnedPerThousandDollarsCompoundingForPools = ({
   compoundFrequency = 1,
   performanceFee = 0,
 }) => {
-  const earnedSoy = tokenPrice === 0 ? 0 : 10 * farmApr / tokenPrice
+  const earnedSoy = tokenPrice === 0 ? 0 : 10 * farmApr * numberOfDays / (365 * tokenPrice)
   return parseFloat((earnedSoy).toFixed(roundingDecimals))
 }

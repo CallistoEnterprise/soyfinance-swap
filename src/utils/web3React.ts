@@ -22,12 +22,6 @@ const walletconnect = new WalletConnectConnector({
 
 const bscConnector = new BscConnector({ supportedChainIds: [chainId] })
 
-export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
-  [ConnectorNames.Injected]: injected,
-  [ConnectorNames.WalletConnect]: walletconnect,
-  [ConnectorNames.BSC]: bscConnector,
-}
-
 export const uauth = new UAuthConnector({
   clientID: process.env.REACT_APP_UNSTOPPABLE_CLIENT_ID,
   redirectUri: 'https://app.soy.finance',
@@ -42,6 +36,13 @@ export const connectors: Record<string, AbstractConnector> = {
   injected,
   walletconnect,
   uauth,
+}
+
+export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
+  [ConnectorNames.Injected]: injected,
+  [ConnectorNames.WalletConnect]: walletconnect,
+  [ConnectorNames.BSC]: bscConnector,
+  // [ConnectorNames.Unstoppable]: uauth,
 }
 
 export const getLibrary = (provider): ethers.providers.Web3Provider => {
