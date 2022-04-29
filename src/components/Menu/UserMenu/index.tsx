@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import {
   Flex,
@@ -20,6 +20,7 @@ import WalletUserMenuItem from './WalletUserMenuItem'
 
 const UserMenu = () => {
   const { t } = useTranslation()
+  const [unstoppable, setUnstoppable] = useState(null)
   const { account } = useWeb3React()
   const { logout } = useAuth()
   const { balance, fetchStatus } = useGetBnbBalance()
@@ -34,14 +35,13 @@ const UserMenu = () => {
     const get = async () => {
       uauth.uauth.user().then((res) => {
         console.log(res);
+        setUnstoppable(res)
       })
       .catch((err) => {
         console.log(err);
       })
     }
-    if (!account && account === '') {
-      get();
-    }
+    get();
   }, [account])
 
   if (!account) {
@@ -49,7 +49,7 @@ const UserMenu = () => {
   }
 
   return (
-    <UIKitUserMenu account={account} avatarSrc={avatarSrc}>
+    <UIKitUserMenu account={unstoppable ?? account} avatarSrc={avatarSrc}>
       <WalletUserMenuItem hasLowBnbBalance={hasLowBnbBalance} onPresentWalletModal={onPresentWalletModal} />
       <UserMenuItem as="button" onClick={onPresentTransactionModal}>
         {t('Transactions')}

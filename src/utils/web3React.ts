@@ -42,7 +42,7 @@ export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
   [ConnectorNames.Injected]: injected,
   [ConnectorNames.WalletConnect]: walletconnect,
   [ConnectorNames.BSC]: bscConnector,
-  // [ConnectorNames.Unstoppable]: uauth,
+  [ConnectorNames.Unstoppable]: uauth,
 }
 
 export const getLibrary = (provider): ethers.providers.Web3Provider => {
