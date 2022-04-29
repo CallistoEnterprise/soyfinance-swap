@@ -1,3 +1,4 @@
+import UAuth from '@uauth/js'
 import { UAuthConnector } from '@uauth/web3-react'
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
@@ -29,7 +30,14 @@ export const uauth = new UAuthConnector({
 
   scope: 'openid wallet',
 
-  connectors: { injected, walletconnect }
+  connectors: { injected, walletconnect },
+
+  uauth: new UAuth({
+    clientID: process.env.REACT_APP_UNSTOPPABLE_CLIENT_ID,
+    redirectUri: 'https://app.soy.finance',
+    postLogoutRedirectUri: 'https://app.soy.finance',
+    scope: 'openid wallet',
+  })
 })
 
 export const connectors: Record<string, AbstractConnector> = {

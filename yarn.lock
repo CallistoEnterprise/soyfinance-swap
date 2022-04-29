@@ -3033,7 +3033,7 @@
     "@emotion/css" "^11.7.1"
     "@uauth/abstract-ui" "1.1.0"
 
-"@uauth/js@1.1.0":
+"@uauth/js@1.1.0", "@uauth/js@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@uauth/js/-/js-1.1.0.tgz#ae26a4686c637869ce09dca79ce243db3853b864"
   integrity sha512-PGl+1h0S59QKVSfKfNRR9s0xFdmIojlL1+rKR4vXGmMGa1iUldUcBZHPlvCo6DdIfVI+Y7mOwEiYnsufKj/BPA==

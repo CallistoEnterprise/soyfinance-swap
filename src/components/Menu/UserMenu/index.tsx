@@ -34,14 +34,15 @@ const UserMenu = () => {
   useEffect(() => {
     const get = async () => {
       uauth.uauth.user().then((res) => {
-        console.log(res);
+        console.log(res, "<==== res");
         setUnstoppable(res)
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err, "<==== error");
       })
     }
-    get();
+    if (!account)
+      get();
   }, [account])
 
   if (!account) {
