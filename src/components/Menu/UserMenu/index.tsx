@@ -35,7 +35,7 @@ const UserMenu = () => {
     const get = async () => {
       uauth.uauth.user().then((res) => {
         console.log(res, "<==== res");
-        setUnstoppable(res)
+        setUnstoppable(res.sub)
       })
       .catch((err) => {
         console.log(err, "<==== error");
