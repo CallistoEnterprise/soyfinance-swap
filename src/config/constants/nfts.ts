@@ -27,6 +27,48 @@ export const nftSources: NftSource = {
 const Nfts = [
   {
     name: 'Emerald',
+    subName: 'Dexa',
+    images: {
+      lg: 'Dexa-Sloth 380 (3).png',
+      md: 'Dexa-Sloth 380 (3).png',
+      sm: 'Dexa-Sloth 380 (3).png',
+      ipfs: '',
+    },
+    minPrice: 10000,
+    maxPrice: 'infinity',
+    primaryColor: '#74AB46',
+    classId: 20,
+  },
+  {
+    name: 'Saphire',
+    subName: 'Dexa',
+    images: {
+      lg: 'Dexa-Sloth 380 (4).png',
+      md: 'Dexa-Sloth 380 (4).png',
+      sm: 'Dexa-Sloth 380 (4).png',
+      ipfs: '',
+    },
+    minPrice: 1000,
+    maxPrice: 5000,
+    primaryColor: '#5A9BD5',
+    classId: 19,
+  },
+  {
+    name: 'Purple',
+    subName: 'Dexa',
+    images: {
+      lg: 'Dexa-Sloth 380 (5).png',
+      md: 'Dexa-Sloth 380 (5).png',
+      sm: 'Dexa-Sloth 380 (5).png',
+      ipfs: '',
+    },
+    minPrice: 100,
+    maxPrice: 500,
+    primaryColor: '#A85EFD',
+    classId: 18,
+  },
+  {
+    name: 'Emerald',
     subName: 'Aztec',
     images: {
       lg: 'Aztec Sloth-380 (3).png',
