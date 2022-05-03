@@ -188,7 +188,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
           <PercentageButton onClick={() => handleChangePeriods(3)}>3</PercentageButton>
           <PercentageButton onClick={() => handleChangePeriods(4)}>4</PercentageButton>
           <PercentageButton onClick={() => handleChangePeriods(5)}>5</PercentageButton>
-          <PercentageButton onClick={() => handleChangePeriods(6)}>6</PercentageButton>
+          <PercentageButton disabled onClick={() => handleChangePeriods(6)}>6</PercentageButton>
         </Flex>
       )}
       {!isRemovingStake && (
