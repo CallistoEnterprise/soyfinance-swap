@@ -54,7 +54,7 @@ const UserMenu = () => {
   }
 
   return (
-    <UIKitUserMenu account={isUnstoppable ? unstoppable ?? account : account} avatarSrc={avatarSrc}>
+    <UIKitUserMenu account={isUnstoppable ? 'test' : account} text = {isUnstoppable ? unstoppable : null} avatarSrc={avatarSrc}>
       <WalletUserMenuItem hasLowBnbBalance={hasLowBnbBalance} onPresentWalletModal={onPresentWalletModal} />
       <UserMenuItem as="button" onClick={onPresentTransactionModal}>
         {t('Transactions')}
