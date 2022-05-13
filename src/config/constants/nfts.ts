@@ -27,6 +27,48 @@ export const nftSources: NftSource = {
 const Nfts = [
   {
     name: 'Emerald',
+    subName: 'Sleepy',
+    images: {
+      lg: 'Sleepy Sloth_380 (3).png',
+      md: 'Sleepy Sloth_380 (3).png',
+      sm: 'Sleepy Sloth_380 (3).png',
+      ipfs: '',
+    },
+    minPrice: 10000,
+    maxPrice: 'infinity',
+    primaryColor: '#74AB46',
+    classId: 26,
+  },
+  {
+    name: 'Saphire',
+    subName: 'Sleepy',
+    images: {
+      lg: 'Sleepy Sloth_380 (1).png',
+      md: 'Sleepy Sloth_380 (1).png',
+      sm: 'Sleepy Sloth_380 (1).png',
+      ipfs: '',
+    },
+    minPrice: 1000,
+    maxPrice: 5000,
+    primaryColor: '#5A9BD5',
+    classId: 25,
+  },
+  {
+    name: 'Purple',
+    subName: 'Sleepy',
+    images: {
+      lg: 'Sleepy Sloth_380 (2).png',
+      md: 'Sleepy Sloth_380 (2).png',
+      sm: 'Sleepy Sloth_380 (2).png',
+      ipfs: '',
+    },
+    minPrice: 100,
+    maxPrice: 500,
+    primaryColor: '#A85EFD',
+    classId: 24,
+  },
+  {
+    name: 'Emerald',
     subName: 'Farming',
     images: {
       lg: 'Farming Sloth_380 (5).png',
