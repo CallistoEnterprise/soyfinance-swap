@@ -43,9 +43,9 @@ const Nav = () => {
         <ButtonMenuItem id="pool-nav-bridge" href="https://callistobridge.netlify.app/" as="a" target="_blank">
           {t('Bridge')}
         </ButtonMenuItem>
-        <ButtonMenuItem id="pool-nav-choam" className="d-none" href="https://choamtoken.com/publicsale" as="a" target="_blank">
+        {/* <ButtonMenuItem id="pool-nav-choam" className="d-none" href="https://choamtoken.com/publicsale" as="a" target="_blank">
           {t('CHOAM Sale')}
-        </ButtonMenuItem>
+        </ButtonMenuItem> */}
       </ButtonMenu>
     </StyledNav>
   )
