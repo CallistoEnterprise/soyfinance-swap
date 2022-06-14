@@ -112,7 +112,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
   // })
 
   // const customAPR = (365 * getRoi({ amountEarned: tokenEarnedPerThousand1D, amountInvested: oneThousandDollarsWorthOfToken })).toFixed(2,)
-  
+
   return (
     <FCard isPromotedFarm={isPromotedFarm}>
       {isPromotedFarm && <StyledCardAccent />}
