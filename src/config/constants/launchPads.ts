@@ -29,9 +29,9 @@ const LaunchPads = [
     name: 'Saphire',
     subName: 'One Earth, One Heart',
     images: {
-      lg: 'republik.png',
-      md: 'republik.png',
-      sm: 'republik.png',
+      lg: 'VW.png',
+      md: 'VW.png',
+      sm: 'VW.png',
       ipfs: '',
     },
     minPrice: 1000,
