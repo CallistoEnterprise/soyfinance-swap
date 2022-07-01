@@ -71,7 +71,7 @@ const NftCard: React.FC<NftCardProps> = ({ nft, tokenIds = [] }) => {
   // const { balance } = useGetBnbBalance()
 
   const handleConfirm = async () => {
-    window.open('https://therepublik.io/', '_blank');
+    window.open('https://warz.vip/#/ico/', '_blank');
     // const intAmount = parseInt(inputAmount, 10)
     // if ((nft.classId % 3 === 0) && (intAmount > nft.maxPrice || nft.minPrice > intAmount)) {
     //   toastWarning('Please input a correct amount!')
@@ -134,7 +134,7 @@ const NftCard: React.FC<NftCardProps> = ({ nft, tokenIds = [] }) => {
           // endIcon={isConfirming ? <AutoRenewIcon color="currentColor" spin /> : null}
           // disabled = {!account}
         >
-          {t('Discover The Republik')}
+          {t('Discover VIPWarz')}
           {/* {account ? t('Buy Now') : t('Connect Wallet')} */}
         </BuyButton>
       </CardBody>
