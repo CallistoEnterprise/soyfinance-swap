@@ -15,7 +15,7 @@ import { useProfile } from 'state/profile/hooks'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { FetchStatus, useGetBnbBalance } from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
-import { uauth } from 'utils/web3React'
+import { unstoppableAuth } from 'utils/web3React'
 import WalletModal, { WalletView, LOW_BNB_BALANCE } from './WalletModal'
 // import ProfileUserMenuItem from './ProfileUserMenutItem'
 import WalletUserMenuItem from './WalletUserMenuItem'
@@ -39,7 +39,7 @@ const UserMenu = () => {
 
   useEffect(() => {
     const get = async () => {
-      uauth.uauth.user().then((res) => {
+      unstoppableAuth.user().then((res) => {
         setUnstoppable(res.sub)
       })
       .catch((err) => {
